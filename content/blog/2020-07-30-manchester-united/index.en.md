@@ -17,6 +17,7 @@ image:
   preview_only: no
 projects: []
 ---
+![](featured.jpg)
 
 The greatest football team in England, got off to a worse start in 30 years. United occupied 14<sup>th</sup> position after losing 3, drawing 4 and winning just 2 games out of the first 9 games of the season. The team was written off before end of first half of the season. 
 
