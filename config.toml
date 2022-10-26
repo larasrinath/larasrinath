@@ -1,4 +1,4 @@
-baseURL = "/"
+baseURL = "www.larasrinath.com"
 theme = "hugo-apero"
 languageCode = "en"
 title = "Lara Srinath"
