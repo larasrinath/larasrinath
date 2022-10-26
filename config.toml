@@ -1,4 +1,6 @@
-baseURL = "www.larasrinath.com"
+# The URL of your site.
+# End your URL with a `/` trailing slash, e.g. `https://example.com/`.
+baseURL = "www.larasrinath.com/"
 theme = "hugo-apero"
 languageCode = "en"
 title = "Lara Srinath"
