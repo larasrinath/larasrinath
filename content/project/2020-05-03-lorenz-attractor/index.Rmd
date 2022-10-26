@@ -1,0 +1,188 @@
+---
+title: Lorenz Attractor
+author: Lara Srinath
+date: '2020-05-03'
+slug: lorenz-attractor
+categories: []
+tags:
+  - dataviz
+  - R
+subtitle: 'Mapping the Chaos'
+summary: 'Mapping the Chaos'
+authors: []
+lastmod: '2020-05-03'
+featured: no
+image:
+  caption: ''
+  focal_point: ''
+  preview_only: no
+projects: []
+---
+![](images/featured.jpg)
+Edward Lorenz was an American meteorologist and mathematician, working on a model to predict the climate. He had 12 parameters (temperature, pressure, humidity, etc.) and 12 sets of equations and used a vacuum tube computer to run the model and printed out the result of each iteration as a row of 12 numbers and studied the parameters as it evolved over time.
+
+When Lorenz re-ran the model using inputs from the old output, the two models were totally different, predicting an entirely different state of climate. This happened as the printer output was rounded of to 3 decimal points, while his vacuum tube computer ran the model with 6 decimal points. Thus a 1/1000th change in decimal had a massive impact on the results.
+
+This gave birth to the most famous term "The Butterfly Effect" which states the flapping of butterflies in Brazil (as insignificant as they are) can lead to a tornado in Texas (thousands of miles away).
+
+And is there a better time than right now to talk about chaos, as we are all in lockdown, waiting for the nightmare to be over. Underlying basis of chaos is a very sensitive dependence of initial condition. A small change in any of the initial condition can have very different consequence. The world is in chaos because someone in one corner of our world decided to give a firm handshake after a hearty meal, could have been very different if the one had waved goodbye.
+
+
+> *Chaos isn't a pit.*  
+*Chaos is a ladder.*  
+*Many who try to climb it fail and never get to try again*  
+*The fall breaks them. And some are given a chance to climb, but they refuse. They cling to the realm or the gods or love.*  
+*Illusions.*  
+*Only the ladder is real.*  
+*The climb is all there is.* 
+>
+– Lord Petyr “Littlefinger” Baelish, Game of Thrones
+
+
+But the reason for this post is due to the fact that I was always fascinated by this system since I was 14, though not understanding it completely then (nor now), but I always loved the picture for its two-winged nature. 
+
+
+> *Embrace the Chaos*  
+>
+– Dr. Sheldon Lee Cooper (BS, MS, MA, PhD, and ScD), The Big Bang Theory
+
+
+So I decided to create a 3D plot of the Lorenz system and here is my attempt at it through programming of R…
+
+# Lorenz System 
+
+The 12 sets of equation of the atmospheric model was simplified to the following 3 equations,
+
+
+> dx/dt = σ(y-x)  
+dy/dt = x(ρ-z)-y  
+dz/dt = xy-βz
+
+
+## 3D Plot
+
+Swipe, zoom and pan around the plot to discover order in the chaotic system.  
+Isn't it beautiful!!!
+
+_Note: Click on 'Code' to show/hide code_
+
+```{r, echo = T, message=F, warning=F, eval=T, out.width='100%', out.height='150%'}
+library(viridis) # Default Color Maps from 'matplotlib'
+library(data.table) # Extension of `data.frame`
+library(dplyr) # A Grammar of Data Manipulation
+library(plotly) # Create Interactive Web Graphics via 'plotly.js'
+
+#defining the equation in a function
+
+lorenz_attractor <- function( s = 20, dt = 0.01, 
+                              r = 28, b = 8/3,
+                              x = -1, y = 1,
+                              z = -1, n = 100){
+
+# Setting up the initial conditions
+  
+  x[1] <- x
+  y[1] <- y
+  z[1] <- z
+
+  for (i in 2: n) {
+
+          x[i] <- x[i-1]+(s*(y[i-1]-x[i-1])) * dt
+          y[i] <- y[i-1]+(x[i-1]*(r-z[i-1])-y[i-1]) * dt
+          z[i] <- z[i-1]+(x[i-1]*y[i-1]-b*z[i-1]) * dt
+
+  }
+  
+# defining a dataframe
+  
+  df <- data.table(x = x, y = y, z = z)
+  return(df)
+}
+
+# Creating a dataset with 10000 data points
+# The more datapoints you have, more chaotic system
+
+la_df <- lorenz_attractor(n = 10000)
+
+# Create your own dataset with varying initial conditions of
+# la_df <- lorenz_attractor(s = __, dt = __, 
+#                           r = __,  b = __,
+#                           x = __,  y = __,
+#                           z = __,  n = __ )
+          
+# Plotting the Chaotic System
+
+plot_ly(la_df, x = ~x, y = ~y, z = ~z, 
+        type = 'scatter3d', mode = 'markers',
+        marker = list(
+          size = 1,
+          color = ~z,
+          colorscale = 'Viridis'
+        ),
+        hoverinfo='skip') %>%
+  layout(scene = list(xaxis=list(title =' ', 
+                                 showticklabels=FALSE,
+                                 showspikes = FALSE, 
+                                 backgroundcolor='rgba(0, 0, 0, 0)', 
+                                 showgrid=FALSE, zeroline=FALSE),
+                      
+                      yaxis=list(title =' ',
+                                 showticklabels=FALSE,
+                                 showspikes = FALSE,
+                                 backgroundcolor='rgba(0, 0, 0, 0)',
+                                 showgrid=FALSE, zeroline=FALSE),
+                      
+                      zaxis=list(title =' ', 
+                                 showticklabels=FALSE, 
+                                 showspikes = FALSE, 
+                                 backgroundcolor='rgba(0, 0, 0, 0)',
+                                 showgrid=FALSE, 
+                                 zeroline=FALSE)
+                      ),
+         paper_bgcolor='black'
+         ) %>% config(displayModeBar = F)
+```
+
+_Note:  Interactive plots are not optimized for mobile devices_
+
+## 2D Plot
+
+Alternatively, we can also plot the system in 2D using Plotly
+
+_Note: Click on 'Code' to show/hide code_
+
+```{r, echo = T, message=F, warning=F, eval=T, out.width='100%'}
+
+plot_ly(la_df, x = ~x, y = ~z, 
+        name = ' ', 
+        type = 'scatter', 
+        mode = 'lines', 
+        line = list(width = 1),
+        hoverinfo='skip')  %>%
+  layout(xaxis = list(title =' ', 
+                      showticklabels=FALSE,
+                      showspikes = FALSE, 
+                      showgrid=FALSE, 
+                      zeroline=FALSE,
+                      fixedrange = TRUE),
+         yaxis=list(title =' ',
+                    showticklabels=FALSE,
+                    showspikes = FALSE,
+                    showgrid=FALSE, zeroline=FALSE,
+                    fixedrange = TRUE),
+         plot_bgcolor  = "black",
+         paper_bgcolor = "black"
+         ) %>% 
+  config(displayModeBar = F)
+
+```
+
+
+### Life Lesson
+
+An insignificant choice can have a massive impact on life.  
+That is the essence of chaos.
+
+
+
+

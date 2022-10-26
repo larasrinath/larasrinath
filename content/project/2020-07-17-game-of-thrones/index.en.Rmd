@@ -1,0 +1,188 @@
+---
+title: Game of Thrones
+author: Lara Srinath
+date: '2020-07-17'
+slug: game-of-thrones
+categories: []
+tags:
+  - dataviz
+  - tvshows
+subtitle: 'A Song of Graph and Number'
+summary: 'A Song of Graph and Number'
+authors: []
+lastmod: '2020-07-17T22:19:02+08:00'
+featured: no
+draft: 
+image:
+  caption: ''
+  focal_point: "Right"
+  preview_only: no
+projects: []
+---
+ 
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE, warning = F)
+```
+### How the King of TV shows fared across the seasons
+
+A simple visualization of how GOT failed in the much anticipated season finale and did a terrible job of letting it's fans down worldwide.
+
+
+```{r prep, include=FALSE,message=FALSE, warning=FALSE,echo = T, eval=T}
+## packages
+library(tidyverse)
+library(showtext)
+library(cowplot)
+library(sysfonts)
+
+
+## ggplot theme
+theme_set(theme_minimal(base_family = "Roboto Mono"))
+theme_update(plot.background = element_rect(fill = "#fafaf5", color = "#fafaf5"),
+             panel.background = element_rect(fill = NA, color = NA),
+             panel.border = element_rect(fill = NA, color = NA),
+             panel.grid.major.x = element_blank(),
+             panel.grid.minor = element_blank(),
+             axis.text.x = element_blank(),
+             axis.text.y = element_text(size = 10),
+             axis.ticks = element_blank(),
+             axis.title.y = element_text(size = 13, 
+                                         margin = margin(r = 10)),
+             legend.title = element_text(size = 9),
+             plot.caption = element_text(family = "Special Elite",
+                                         size = 10,
+                                         color = "grey70",
+                                         face = "bold",
+                                         hjust = .5,
+                                         margin = margin(5, 0, 20, 0)),
+             plot.margin = margin(10, 25, 10, 25))
+
+```
+
+```{r data, include=FALSE,message=FALSE, warning=FALSE,echo = T, eval=T}
+df_got <- readr::read_csv(here::here('content/project/2020-07-17-game-of-thrones/ratings.csv'))
+```
+
+
+```{r data-prep,include=FALSE,message=FALSE, warning=FALSE,echo = T, eval=T}
+df_got_avg <-
+  df_got %>% 
+  arrange(season, episode) %>% 
+  mutate(episode_id = row_number()) %>% 
+  group_by(season) %>% 
+  mutate(
+    avg = mean(imdb_rating),
+    episode_mod = episode_id + (9 * season),
+    mid = mean(episode_mod)
+  ) %>% 
+  ungroup() %>% 
+  mutate(season = factor(season))
+
+df_lines_got <-
+  df_got_avg %>% 
+  group_by(season) %>% 
+  summarize(
+    start_x = min(episode_mod) - 5,
+    end_x = max(episode_mod) + 5,
+    y = unique(avg)
+  ) %>% 
+  pivot_longer(
+    cols = c(start_x, end_x),
+    names_to = "type",
+    values_to = "x"
+  ) %>% 
+  mutate(
+    x_group = if_else(type == "start_x", x + .1, x - .1),
+    x_group = if_else(type == "start_x" & x == min(x), x_group - .1, x_group),
+    x_group = if_else(type == "end_x" & x == max(x), x_group + .1, x_group)
+  )
+
+```
+
+
+```{r plot, message=FALSE, warning=FALSE,echo = FALSE, eval=T, fig.width = 15, fig.height = 9}
+p <- df_got_avg %>% 
+  ggplot(aes(episode_mod, imdb_rating)) +
+  geom_hline(data = tibble(y = 7:10),
+             aes(yintercept = y),
+             color = "grey82",
+             size = .5) +
+  geom_segment(aes(xend = episode_mod,
+                   yend = avg, 
+                   color = season, 
+                   color = after_scale(colorspace::lighten(color, .2)))) +
+  geom_line(data = df_lines_got,
+            aes(x, y),
+            color = "grey40") +
+  geom_line(data = df_lines_got,
+            aes(x_group, y, 
+                color = season, 
+                color = after_scale(colorspace::darken(color, .2))),
+            size = 2.5) +
+  geom_point(aes(size = total_votes,
+                 color = season)) +
+  geom_label(aes(mid, 10.5,
+                 label = glue::glue(" Season {season} "),
+                 color = season, 
+                 color = after_scale(colorspace::darken(color, .2))),
+             fill = NA,
+             family = "Special Elite",
+             fontface = "bold",
+             label.padding = unit(.2, "lines"),
+             label.r = unit(.25, "lines"),
+             label.size = .5) +
+  scale_x_continuous(expand = c(.015, .015)) +
+  scale_y_continuous(expand = c(.03, .03),
+                     limits = c(4, 10.9),
+                     breaks = seq(4, 10, by = 1),
+                     sec.axis = dup_axis(name = NULL)) +
+  scale_color_manual(values = c("#486090", "#D7BFA6", "#6078A8", "#9CCCCC", 
+                                "#7890A8", "#C7B0C1", "#B5C9C9", "#90A8C0", "#A8A890"),
+                     guide = F) +
+  scale_size_binned(name = "Votes per Episode",
+                    range = c(.5, 3)) +
+  labs(x = NULL, y = "IMDb Rating",
+       caption = "IMDb ratings of GOT season by season") +
+  guides(size = guide_bins(show.limits = T,
+                           direction = "horizontal",
+                           title.position = "top",
+                           title.hjust = 0.5)) +
+  theme(legend.position = c(.5, .085), 
+        legend.key.width = unit(2, "lines"))
+
+logo <- png::readPNG(here::here("content/project/2020-07-17-game-of-thrones/logo.png"))
+
+ggdraw(p) +
+  draw_image(logo, x = -.35, y = -.34, scale = .12)
+
+# save png
+#ggsave(here::here("content/project/2020-07-17-game-of-thrones/ratings_got.png"), 
+#       width = 15, height = 9) 
+
+```
+
+<!-- ### Screen time of Characters -->
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+```{r session-info, include=FALSE,message=FALSE, warning=FALSE,echo = T,eval=T}
+sessionInfo()
+```
+
+
+#### Data Source
+
+https://data.world/rezaghari/game-of-thrones

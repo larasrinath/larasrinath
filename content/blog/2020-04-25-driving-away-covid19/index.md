@@ -1,0 +1,41 @@
+---
+title: '"Driving" Away COVID19'
+author: Lara Srinath
+date: '2020-04-25'
+slug: driving-away-covid19
+categories: []
+tags: 
+  - life
+  - news
+  - insanity
+  - dumb
+subtitle: ''
+summary: 'How India and US are trying to "shoo" COVID19?'
+authors: []
+lastmod: '2020-04-25T17:23:42+08:00'
+featured: no
+image:
+  caption: ''
+  focal_point: ''
+  preview_only: yes
+projects: []
+---
+
+The whole world is in lock down.
+
+You can go no where.
+
+With little to no comfort to seek life has become a routine with no contact with the outside world, if you are staying alone.
+
+
+Yet at this time of the pandemic, insanity and lunacy prevails.
+
+From the idea of "shooing" coronavirus by banging vessels to replacing electric lights with candle lights and to going extremes by burning a COVID19 effigy.
+
+Adding to the brilliant plans of driving away the pandemic, comes the suggestion of treating the disease by exposing the body to "tremendous" high powered UV lights or bringing the lights inside the body.The other best way, suggested, is to inject disinfectant into the body so it gets in the lungs and cleanses the body from within. 
+
+Disinfectant conglomerates had to issue to press notice requesting the public to avoid consuming or injecting their chemical cleaning liquids into the body. While the press had a field day, Social Media had all the fun(Twitter! Not the company which sells user data and store password in text files). Consuming disinfectants or injecting them in the body can have a very severe effect to health. It could lead to poisoning and failure of vital organs.
+
+At this time of the hour, we need to follow social distancing and maintain a distance with absurd suggestions that could harm us and the people we care about. Wash your hands and keep safe.
+
+There is light, at the end of the tunnel always.
