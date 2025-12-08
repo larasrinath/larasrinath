@@ -7,22 +7,26 @@ number_categories: 0 # set to zero to exclude
 show_intro: true
 intro: |
 
-  Lara Srinath is a Consultant at [Vuealta](https://vuealta.com), with cross - industry experience extensively in the field of Supply Chain Operations. He has almost six years of experience in modelling [Anaplan](https://anaplan.com) applications and he is a certified Master Anaplanner and a Solution Architect.
+  Lara Srinath is a Consultant at [GenXAI](https://www.genxai.com/), with cross - industry experience extensively in the field of Supply Chain Operations. He has over nine years of experience in modelling [Anaplan](https://anaplan.com) applications and he is a certified Master Anaplanner and a Solution Architect.
   
-  Lara’s role as an Anaplan consultant is to help businesses design and model their operations and process their data to make the best decisions on time, solving their day to day business short-comings by moving them to the Anaplan platform.
+  Lara’s role as an Anaplan expert is to help businesses design and model their operations and process their data to make the best decisions on time, solving their day to day business short-comings by moving them to the Anaplan platform.
   
-  Lara holds a Bachelor’s degree in Electrical and Electronics Engineering. His interests include reading books, listening to songs and following the world’s greatest football club, Manchester United and Astronomy.
+  Lara holds a Bachelor’s degree in Electrical and Electronics Engineering. His interests include building lego sets, reading books, astronomy, and following the world’s greatest football club, Manchester United.
  
-  Lara lives in Singapore.
+  Lara lives in the United States.
 
 show_outro: true
 outro: |
 
   ### Work Experience
+
+  <i class="fa fa-briefcase pr1"></i> <b> GenXAI </b>
+  > Manager - Anaplan Development, US <br>
+  Nov 2025 to Present
   
-  <i class="fa fa-briefcase pr1"></i> <b> Vuealta </b>
-  > Anaplan Consultant, Singapore <br>
-  May 2021 to Present
+  <i class="fa fa-briefcase pr1"></i> <b> Vuealta Consulting </b>
+  > Senior Solution Architect, Singapore <br>
+  May 2021 to Oct 2025
   
   <i class="fa fa-briefcase pr1"></i> <b> Deloitte Consulting SEA </b>
   > Consultant, Malaysia <br>
