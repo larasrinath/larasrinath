@@ -7,7 +7,7 @@ number_categories: 0 # set to zero to exclude
 show_intro: true
 intro: |
 
-  Lara Srinath is a Consultant at [GenXAI](https://www.genxai.com/), with cross - industry experience extensively in the field of Supply Chain Operations. He has over nine years of experience in modelling [Anaplan](https://anaplan.com) applications and he is a certified Master Anaplanner and a Solution Architect.
+  Lara Srinath is a Anaplan Development Mananger at [GenXAI](https://www.genxai.com/), with cross - industry experience extensively in the field of Supply Chain Operations. He has over nine years of experience in modelling [Anaplan](https://anaplan.com) applications and he is a certified Master Anaplanner and a Solution Architect.
   
   Lara’s role as an Anaplan expert is to help businesses design and model their operations and process their data to make the best decisions on time, solving their day to day business short-comings by moving them to the Anaplan platform.
   
