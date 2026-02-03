@@ -1,8 +1,10 @@
 ---
+title: COVID-19 Global Tracker
+author: Lara Srinath
 date: "2020-04-20"
 external_link: https://larasrinath.shinyapps.io/covid19/
 image:
-  caption: COVID-19 Tracker
+  caption: Lara Srinath
   focal_point: Smart
 summary: Interactive dashboard tracking the global spread of COVID-19 using R Shiny and Flexdashboard.
 links:
@@ -15,8 +17,6 @@ tags:
 - data-visualization
 - dashboard
 - healthcare
-
-title: COVID-19 Global Tracker
 ---
 
 **Note:** This application was developed to track the spread of COVID-19 during the early stages of the pandemic. As data sources change and hosting services hibernate, the live link may be intermittent.
