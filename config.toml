@@ -32,7 +32,7 @@ enableEmoji = true
 [params]
   orgName = "Lara Srinath"
   orgLocal = ""
-  description = "A modern, beautiful, and easily configurable blog theme for Hugo."
+  description = "Personal website of Lara Srinath - Anaplan Solution Architect & Master Anaplanner specializing in Supply Chain Optimization."
   favicon = "/img/icon.png"
   logo = "/img/icon.png"
   mainSections = ["blog", "project", "talk"]
