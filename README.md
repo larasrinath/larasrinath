@@ -1,3 +1,7 @@
+[![Netlify Status](https://api.netlify.com/api/v1/badges/fc5d6f35-a801-4093-8e21-fac53734805b/deploy-status)](https://app.netlify.com/projects/larasrinath/deploys) [![LinkedIn](https://img.shields.io/badge/LinkedIn-Lara_Srinath-blue?logo=linkedin)](https://www.linkedin.com/in/larasrinath)
+
+![Hugo](https://img.shields.io/badge/Hugo-Start-blue?logo=hugo) ![R](https://img.shields.io/badge/R-276DC3?logo=r&logoColor=white) ![Netlify](https://img.shields.io/badge/Netlify-00C7B7?logo=netlify&logoColor=white)
+
 # Lara Srinath – Personal Website
 
 This repository contains the source code for the personal website of **Lara Srinath**, built with [Hugo](https://gohugo.io/) and [blogdown](https://bookdown.org/yihui/blogdown/).  
