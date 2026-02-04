@@ -1,6 +1,6 @@
 # Hi there, I'm Lara Srinath 👋
 
-### Anaplan Solution Architect | Master Anaplanner | Data Scientist
+### Anaplan Solution Architect | Master Anaplanner
 
 I am an accomplished **Anaplan Solution Architect** and **Master Anaplanner** with over 9 years of expertise in model design, implementation, and process optimization across FMCG, chemical, energy, and retail industries. I specialize in building data-driven strategies and advanced modeling frameworks that streamline complex enterprise planning.
 
