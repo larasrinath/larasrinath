@@ -40,9 +40,7 @@ The site uses the [hugo-apéro](https://github.com/hugo-apero/hugo-apero) theme.
    ```
 
 3. **Run Locally**  
-   ```bash
-   hugo server -D
-   ```
+hugo server -D
    Then open [http://localhost:1313](http://localhost:1313).
 
 ---

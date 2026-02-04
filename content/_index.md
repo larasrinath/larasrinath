@@ -5,7 +5,7 @@ description: ""
 
 
 images:
-  - img/avatar.jpg
+  - img/avatar.png
 image_left: true
 text_align_left: false
 show_social_links: true # specify social accounts in site config

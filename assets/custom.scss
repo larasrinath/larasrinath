@@ -9,6 +9,40 @@
   font-size: 1.5rem;
 }
 
+/* Global spacing for all pages to minimize gap between header and content */
+.page-main, 
+.page-main.pa4, 
+.page-main.ph4.pt4 {
+  padding-top: 2.5rem !important;
+  padding-bottom: 1rem !important;
+}
+
+/* Consistent footer spacing */
+.site-footer {
+  padding-top: 1rem !important;
+  padding-bottom: 1rem !important;
+}
+
+/* Fix for listing pages (Projects, Blog) that have an extra intro section */
+.blog-intro {
+  margin-top: 0 !important;
+  padding-top: 0 !important;
+}
+
+.blog-intro h2 {
+  margin-top: 0 !important;
+}
+
+/* Align content exactly with the header logo */
+.site-header, .page-main {
+  padding-left: 4rem !important;
+  padding-right: 4rem !important;
+}
+
+.page-content {
+  padding-left: 0 !important;
+  padding-right: 0 !important;
+}
 
 /* About page */
 

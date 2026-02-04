@@ -40,10 +40,10 @@ enableEmoji = true
   # show/hide social icons in site header & footer
   # configure social icons and links below in [[params.social]]
   socialInHeader = false
-  socialInFooter = true
+  socialInFooter = false
   # Default image for social sharing and search engines. 
   # Place image file in `static` folder and specify image name here.
-  sharing_image = "/img/avatar.jpg"
+  sharing_image = "/img/avatar.png"
   # Twitter username (without @). Used when a visitor shares your site on Twitter.
   twitter = "larasrinath"
   
@@ -88,21 +88,17 @@ enableEmoji = true
   # Icon pack "fas" includes solid icons, see: https://fontawesome.com/icons?d=gallery&s=solid&m=free
   # Icon pack "far" includes regular icons, see: https://fontawesome.com/icons?d=gallery&s=regular&m=free
   [[params.social]]
-      icon      = "twitter" # icon name without the 'fa-'
+      icon      = "linkedin-in" # icon name without the 'fa-'
       icon_pack = "fab"
-      url       = "https://twitter.com/larasrinath"
+      url       = "https://www.linkedin.com/in/larasrinath/"
   [[params.social]]
       icon      = "github" # icon name without the 'fa-'
       icon_pack = "fab"
       url       = "https://github.com/larasrinath"
   [[params.social]]
-      icon      = "skype" # icon name without the 'fa-'
+      icon      = "twitter" # icon name without the 'fa-'
       icon_pack = "fab"
-      url       = "skype:lara.srinath"
-  [[params.social]]
-      icon      = "linkedin-in" # icon name without the 'fa-'
-      icon_pack = "fab"
-      url       = "https://www.linkedin.com/in/larasrinath/"
+      url       = "https://twitter.com/larasrinath"
   [[params.social]]
       icon      = "instagram" # icon name without the 'fa-'
       icon_pack = "fab"
