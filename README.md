@@ -45,6 +45,3 @@ I am an accomplished **Anaplan Solution Architect** and **Master Anaplanner** wi
 
 ### 📂 About This Repository
 This repository also contains the source code for my personal website. For setup and technical details, see [DEVELOPMENT.md](./DEVELOPMENT.md).
-
-![Lara's GitHub Stats](https://github-readme-stats.vercel.app/api?username=larasrinath&show_icons=true&theme=react&border_radius=10)
-![Top Langs](https://github-readme-stats.vercel.app/api/top-langs/?username=larasrinath&layout=compact&theme=react&border_radius=10)
