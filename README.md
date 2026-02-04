@@ -12,7 +12,7 @@ I am an accomplished **Anaplan Solution Architect** and **Master Anaplanner** wi
 - 🏆 **Expertise:** Certified Master Anaplanner, Solution Architect, and Pigment Modeler.
 - 🏢 **Past Experience:** Senior Solution Architect at **Vuealta** (Singapore) and Consultant at **Deloitte** (Southeast Asia).
 - 🛠️ **Core Specialization:** 
-  - **Anaplan Mastery:** AI M, Data Hub, CloudWorks, NUX, and **Optimizer** for complex supply chain balancing.
+  - **Anaplan Mastery:** ALM, Data Hub, CloudWorks, NUX, and **Optimizer** for complex supply chain balancing.
   - **Pigment:** Multi-dimensional modeling, Formulas, and Boards.
   - **Supply Chain:** DRP, MRP, MPS, S&OP, and MEIO optimization.
   - **Data Science:** Advanced analysis using **R**, **Python**, and **AMPL**; EDA, cleansing, and outlier detection.
@@ -40,12 +40,11 @@ I am an accomplished **Anaplan Solution Architect** and **Master Anaplanner** wi
 
 - 🌐 [Personal Website](https://www.larasrinath.com)
 - 💼 [LinkedIn](https://www.linkedin.com/in/larasrinath/)
-- 📧 [Email Me](mailto:larasrinath@gmail.com)
 
 ---
 
 ### 📂 About This Repository
-This repository contains the source code for my personal website. For setup and technical details, see [DEVELOPMENT.md](./DEVELOPMENT.md).
+This repository also contains the source code for my personal website. For setup and technical details, see [DEVELOPMENT.md](./DEVELOPMENT.md).
 
 ![Lara's GitHub Stats](https://github-readme-stats.vercel.app/api?username=larasrinath&show_icons=true&theme=transparent&rank_icon=github&border_radius=10)
 ![Top Langs](https://github-readme-stats.vercel.app/api/top-langs/?username=larasrinath&layout=compact&theme=transparent&border_radius=10)
