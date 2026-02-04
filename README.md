@@ -1,67 +1,51 @@
-[![Netlify Status](https://api.netlify.com/api/v1/badges/fc5d6f35-a801-4093-8e21-fac53734805b/deploy-status)](https://app.netlify.com/projects/larasrinath/deploys) [![LinkedIn](https://img.shields.io/badge/LinkedIn-Lara_Srinath-blue?logo=linkedin)](https://www.linkedin.com/in/larasrinath)
+# Hi there, I'm Lara Srinath 👋
 
-![Hugo](https://img.shields.io/badge/Hugo-Start-blue?logo=hugo) ![R](https://img.shields.io/badge/R-276DC3?logo=r&logoColor=white) ![Netlify](https://img.shields.io/badge/Netlify-00C7B7?logo=netlify&logoColor=white)
+### Anaplan Solution Architect | Master Anaplanner | Data Scientist
 
-# Lara Srinath – Personal Website
-
-This repository contains the source code for the personal website of **Lara Srinath**, built with [Hugo](https://gohugo.io/) and [blogdown](https://bookdown.org/yihui/blogdown/).  
-The site uses the [hugo-apéro](https://github.com/hugo-apero/hugo-apero) theme.
+I am an accomplished **Anaplan Solution Architect** and **Master Anaplanner** with over 9 years of expertise in model design, implementation, and process optimization across FMCG, chemical, energy, and retail industries. I specialize in building data-driven strategies and advanced modeling frameworks that streamline complex enterprise planning.
 
 ---
 
-## 🚀 Features
-- Static website powered by **Hugo** and **R blogdown**
-- Customizable with **config.toml**
-- Responsive design via **hugo-apéro** theme
-- Deployed via **Netlify**
+### 🚀 Professional Highlights
+
+- 🔭 **Current Role:** Manager - Anaplan Development at **GenXAI Analytics** (Texas, USA).
+- 🏆 **Expertise:** Certified Master Anaplanner, Solution Architect, and Pigment Modeler.
+- 🏢 **Past Experience:** Senior Solution Architect at **Vuealta** (Singapore) and Consultant at **Deloitte** (Southeast Asia).
+- 🛠️ **Core Specialization:** 
+  - **Anaplan Mastery:** AI M, Data Hub, CloudWorks, NUX, and **Optimizer** for complex supply chain balancing.
+  - **Pigment:** Multi-dimensional modeling, Formulas, and Boards.
+  - **Supply Chain:** DRP, MRP, MPS, S&OP, and MEIO optimization.
+  - **Data Science:** Advanced analysis using **R**, **Python**, and **AMPL**; EDA, cleansing, and outlier detection.
 
 ---
 
-## 📂 Repository Structure
-- `content/` → Website content (posts, pages)
-- `layouts/` → Custom layouts and templates
-- `static/` → Static files (images, PDFs, CSS overrides)
-- `themes/hugo-apero/` → Theme files
-- `config.toml` → Site configuration
-- `index.Rmd` → Homepage source
-- `netlify.toml` → Netlify deployment configuration
+### 💼 Key Project Experience
+
+- **Multi-Echelon Optimization:** Implemented cost-to-serve and weeks-cover optimization for global supply chains.
+- **Statistical Forecasting:** Developed best-fit statistical algorithms and integrated DRP/MPS/MRP for major FMCG clients like **Del Monte**.
+- **Demand Planning:** Led contract-driven demand planning and inventory management for **Wilmar International**.
+- **Procurement Modeling:** Built end-to-end procurement and warehouse management models for large-scale retail and energy groups.
 
 ---
 
-## ⚙️ Setup
+### 🛠️ Tech Stack
 
-1. **Install Hugo**  
-   Follow instructions: [Install Hugo](https://gohugo.io/getting-started/installing/)
-
-2. **Clone the Repository**  
-   ```bash
-   git clone https://github.com/larasrinath/larasrinath.git
-   cd larasrinath
-   ```
-
-3. **Run Locally**  
-hugo server -D
-   Then open [http://localhost:1313](http://localhost:1313).
+- **Planning Platforms:** Anaplan, Pigment
+- **Data & Programming:** R, Python, SQL, AMPL, PowerBI, Tableau
+- **Ways of Working:** DISCO, Agile/Scrum, ALM, CI/CD for Planning
 
 ---
 
-## 📝 Deployment
-The site is deployed automatically via **Netlify**.  
-To deploy updates:
-1. Commit changes to the `master` branch.
-2. Push to GitHub.
-3. Netlify will build and publish the latest version.
+### 🔗 Let's Connect!
+
+- 🌐 [Personal Website](https://www.larasrinath.com)
+- 💼 [LinkedIn](https://www.linkedin.com/in/larasrinath/)
+- 📧 [Email Me](mailto:larasrinath@gmail.com)
 
 ---
 
-## 🔗 Links
-- Live Website: [larasrinath.com](https://www.larasrinath.com)
-- Theme: [hugo-apéro](https://github.com/hugo-apero/hugo-apero)
-- Blogdown Documentation: [bookdown.org/yihui/blogdown](https://bookdown.org/yihui/blogdown/)
+### 📂 About This Repository
+This repository contains the source code for my personal website. For setup and technical details, see [DEVELOPMENT.md](./DEVELOPMENT.md).
 
----
-
-## 👤 Author
-**Lara Srinath**  
-Anaplan Solution Architect & Master Anaplanner  
-[LinkedIn](https://www.linkedin.com/in/larasrinath) | [GitHub](https://github.com/larasrinath)
+![Lara's GitHub Stats](https://github-readme-stats.vercel.app/api?username=larasrinath&show_icons=true&theme=transparent&rank_icon=github&border_radius=10)
+![Top Langs](https://github-readme-stats.vercel.app/api/top-langs/?username=larasrinath&layout=compact&theme=transparent&border_radius=10)
