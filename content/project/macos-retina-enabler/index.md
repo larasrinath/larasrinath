@@ -14,6 +14,9 @@ categories:
   - Projects
   - Utilities
 layout: single
+image:
+  caption: "Retina scaling makes every pixel count"
+  focal_point: Smart
 links:
 - icon: github
   icon_pack: fab
@@ -28,9 +31,6 @@ If you've ever connected a standard 1080p or 1440p monitor to a Mac, you've like
 ## The Solution: MacOS ex-Retina Display
 
 This project is a **hardened and security-focused fork** of the popular HiDPI enabler script. It allows you to "trick" macOS into providing native HiDPI resolutions for your external monitor, effectively giving you a Retina experience on third-party hardware.
-
-![Peacock Feather Detail](featured.png)
-*Behold the detail: Retina scaling makes every pixel count.*
 
 ## Key Improvements in this Version
 
