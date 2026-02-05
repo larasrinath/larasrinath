@@ -20,7 +20,7 @@ image:
 links:
 - icon: github
   icon_pack: fab
-  name: repository
+  name: GitHub
   url: https://github.com/larasrinath/macos-hidpi
 ---
 
