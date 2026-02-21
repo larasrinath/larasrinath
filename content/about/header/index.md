@@ -2,8 +2,8 @@
 ## Configure header of page
 text_align_right: false
 show_title_as_headline: false
-headline: 
-  Hi there!!!
+headline: |
+  Hello, I'm Lara.
 ---
 
-<!-- this is a subheadline -->
+Anaplan Solution Architect, Master Anaplanner, and supply chain optimization enthusiast with 9+ years of experience helping businesses make better decisions through data.

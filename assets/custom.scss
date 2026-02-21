@@ -44,12 +44,112 @@
   padding-right: 0 !important;
 }
 
-/* About page */
-
-
+/* About page - reduce header whitespace */
+.page-header.mb5 {
+  margin-bottom: 1.5rem !important;
+  padding-bottom: 1rem !important;
+  border-bottom: none !important;
+}
 
 body > div > main > section > section > div > div {
   margin-top: -2em;
+}
+
+.page-body .w-two-thirds-l.pt5 {
+  padding-top: 1.5rem !important;
+}
+
+/* About sidebar - avatar styling */
+#profile img {
+  width: 10rem !important;
+  height: auto !important;
+  border-radius: 8px;
+}
+
+/* Reduce gap between headings and content */
+#profile h4 {
+  margin-bottom: 0.25rem !important;
+}
+
+#profile h2 {
+  font-weight: 500 !important;
+}
+
+.about-main {
+  margin-bottom: -0.5rem !important;
+  font-weight: 500 !important;
+}
+
+/* About sidebar card styling */
+#profile {
+  background: linear-gradient(180deg, #fafafa 0%, #ffffff 100%);
+  border-radius: 8px;
+  padding: 1rem !important;
+}
+
+/* Skill tags */
+.about-tag {
+  display: inline-block;
+  background: #f0f0f0;
+  color: #333;
+  padding: 0.25rem 0.75rem;
+  border-radius: 20px;
+  font-size: 0.85rem;
+  margin: 0.2rem 0.15rem;
+  font-weight: 500;
+  transition: background 0.2s;
+}
+
+.about-tag:hover {
+  background: #e0e0e0;
+}
+
+/* Work experience items */
+.work-item {
+  padding: 0.75rem 0;
+  border-left: 3px solid #e0e0e0;
+  padding-left: 1rem;
+  margin-bottom: 0.75rem;
+  transition: border-color 0.2s;
+}
+
+.work-item:hover {
+  border-left-color: #999;
+}
+
+.work-header {
+  display: flex;
+  align-items: baseline;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+}
+
+.work-header strong {
+  margin-right: auto;
+}
+
+.work-date {
+  font-size: 0.85rem;
+  color: #888;
+  font-weight: 400;
+}
+
+.work-role {
+  font-size: 0.95rem;
+  color: #555;
+  padding-top: 0.25rem;
+}
+
+/* About page header */
+.page-header h1 {
+  font-size: 2.5rem !important;
+  line-height: 1.2;
+}
+
+.page-header .pt2 {
+  font-size: 1.15rem;
+  color: #555;
+  max-width: 600px;
 }
 
 

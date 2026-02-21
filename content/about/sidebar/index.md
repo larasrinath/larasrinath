@@ -1,33 +1,37 @@
 ---
 ## Configure sidebar content in narrow column
 author: "Lara Srinath"
-role: "Anaplan Consultant"
-avatar_shape: square # circle, square, rounded, leave blank to exclude
-show_social_links: true # specify social accounts in site config
-# audio_link_label: "How to say my name" # leave blank to exclude
-# link_list_label: "Links" # bookmarks, elsewhere, etc.
-# link_list:
-# - name: CV
+role: "Solution Architect & Master Anaplanner"
+avatar_shape: square
+show_social_links: true
 
 show_outro: true
 outro: |
 
-  #### Skills 
-  
+  #### Skills
 
-  <i class="fas  fa-pen pr1"></i> Anaplan Modelling <br>
-  <i class="fas  fa-pen pr1"></i> Data Analysis <br>
-  <i class="fas  fa-pen pr1"></i> Visualization <br>
-  <i class="fas  fa-pen pr1"></i> R <br>
- 
- 
-  #### Interests 
-  
+  <span class="about-tag">Anaplan</span>
+  <span class="about-tag">Supply Chain</span>
+  <span class="about-tag">Python</span>
+  <span class="about-tag">R</span>
+  <span class="about-tag">SQL</span>
+  <span class="about-tag">TypeScript</span>
+  <span class="about-tag">AMPL</span>
+  <span class="about-tag">PowerBI</span>
+  <span class="about-tag">Tableau</span>
+  <span class="about-tag">Data Analysis</span>
+
+  #### Interests
+
+  <div style="line-height: 2.2">
   <i class="fa fa-bicycle pr1"></i> Cycling <br>
-  <i class="fa fa-star pr1"></i> Astronomy <br>
   <i class="fa fa-futbol pr1"></i> Football <br>
+  <i class="fa fa-star pr1"></i> Astronomy <br>
   <i class="fa fa-chess pr1"></i> Chess <br>
-  
+  <i class="fa fa-book pr1"></i> Reading <br>
+  <i class="fas fa-cubes pr1"></i> Lego
+  </div>
+
 ---
 
 ** index doesn't contain a body, just front matter above.

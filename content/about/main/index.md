@@ -1,52 +1,64 @@
 ---
 ## Configure page content in wide column
-title: "" # leave blank to exclude
-number_featured: 1 # pulling from mainSections in config.toml
-use_featured: true # if false, use most recent by date
-number_categories: 0 # set to zero to exclude
+title: "About Me"
+number_featured: 0
+use_featured: false
+number_categories: 0
 show_intro: true
 intro: |
 
-  Lara Srinath is an Anaplan Development Manager at [GenXAI](https://www.genxai.com/), with cross-industry experience extensively in the field of Supply Chain Operations. He has over nine years of experience in modelling [Anaplan](https://anaplan.com) applications and he is a certified Master Anaplanner and a Solution Architect.
-  
-  Lara’s role as an Anaplan expert is to help businesses design and model their operations and process their data to make the best decisions on time, solving their day to day business short-comings by moving them to the Anaplan platform.
-  
-  Lara holds a Bachelor’s degree in Electrical and Electronics Engineering. His interests include building lego sets, reading books, astronomy, and following the world’s greatest football club, Manchester United.
- 
-  Lara lives in the United States.
+  I'm an Anaplan Development Manager at [GenXAI](https://www.genxai.com/), specializing in supply chain operations across multiple industries. With over nine years of experience building [Anaplan](https://anaplan.com) applications, I'm a certified **Master Anaplanner** and **Solution Architect**.
+
+  I help businesses design and model their operations, turning complex data into timely, actionable decisions. My passion is taking messy real-world processes and building elegant planning solutions on the Anaplan platform.
+
+  When I'm not planning and optimizing businesses, you'll find me building lego sets, stargazing, or rooting for the world's greatest football club - Manchester United.
 
 show_outro: true
 outro: |
 
   ### Work Experience
 
-  <i class="fa fa-briefcase pr1"></i> <b> GenXAI </b>
-  > Manager - Anaplan Development, US <br>
-  Nov 2025 to Present
-  
-  <i class="fa fa-briefcase pr1"></i> <b> Vuealta Consulting </b>
-  > Senior Solution Architect, Singapore <br>
-  May 2021 to Oct 2025
-  
-  <i class="fa fa-briefcase pr1"></i> <b> Deloitte Consulting SEA </b>
-  > Consultant, Malaysia <br>
-  Sep 2019 to Apr 2021
-  
-  > Analyst, Philippines <br>
-  Sep 2018 to Aug 2019
-  
-  <i class="fa fa-briefcase pr1"></i> <b> Solvanni Technologies </b>
-  > Anaplan Developer, India <br>
-  Feb 2016 to Jun 2018
+  <div class="work-item">
+  <div class="work-header">
+  <i class="fa fa-briefcase pr1 gray"></i> <strong>GenXAI</strong>
+  <span class="work-date">Nov 2025 - Present</span>
+  </div>
+  <div class="work-role">Manager - Anaplan Delivery, US</div>
+  </div>
 
-  <hr>
+  <div class="work-item">
+  <div class="work-header">
+  <i class="fa fa-briefcase pr1 gray"></i> <strong>Vuealta Consulting</strong>
+  <span class="work-date">May 2021 - Oct 2025</span>
+  </div>
+  <div class="work-role">Senior Solution Architect, Singapore</div>
+  </div>
+
+  <div class="work-item">
+  <div class="work-header">
+  <i class="fa fa-briefcase pr1 gray"></i> <strong>Deloitte Consulting SEA</strong>
+  <span class="work-date">Sep 2018 - Apr 2021</span>
+  </div>
+  <div class="work-role">Consultant, Malaysia<br>Analyst, Philippines</div>
+  </div>
+
+  <div class="work-item">
+  <div class="work-header">
+  <i class="fa fa-briefcase pr1 gray"></i> <strong>Solvanni Technologies</strong>
+  <span class="work-date">Feb 2016 - Jun 2018</span>
+  </div>
+  <div class="work-role">Anaplan Developer, India</div>
+  </div>
 
   ### Education
-  
-  <i class="fas  fa-graduation-cap pr1"></i> <b> BE in Electrical and Electronics (SW) </b> <br>
-  > PSG College of Technology, 2011 to 2016
- 
 
+  <div class="work-item">
+  <div class="work-header">
+  <i class="fas fa-graduation-cap pr1 gray"></i> <strong>PSG College of Technology</strong>
+  <span class="work-date">2011 - 2016</span>
+  </div>
+  <div class="work-role">BE in Electrical & Electronics Engineering</div>
+  </div>
 
 ---
 
