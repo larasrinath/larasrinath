@@ -4,3 +4,8 @@
 .Ruserdata
 public/
 /resources/
+.env
+.env.*
+*.key
+*.pem
+credentials*
