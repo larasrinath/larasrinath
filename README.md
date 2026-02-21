@@ -8,7 +8,7 @@ I am an accomplished **Anaplan Solution Architect** and **Master Anaplanner** wi
 
 ### 🚀 Professional Highlights
 
-- 🔭 **Current Role:** Manager - Anaplan Development at **GenXAI Analytics** (Texas, USA).
+- 🔭 **Current Role:** Manager - Anaplan Delivery at **GenXAI** (Texas, USA).
 - 🏆 **Expertise:** Certified Master Anaplanner, Solution Architect, and Pigment Modeler.
 - 🏢 **Past Experience:** Senior Solution Architect at **Vuealta** (Singapore) and Consultant at **Deloitte** (Southeast Asia).
 - 🛠️ **Core Specialization:** 

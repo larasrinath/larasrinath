@@ -7,7 +7,7 @@ number_categories: 0
 show_intro: true
 intro: |
 
-  I'm an Anaplan Development Manager at [GenXAI](https://www.genxai.com/), specializing in supply chain operations across multiple industries. With over nine years of experience building [Anaplan](https://anaplan.com) applications, I'm a certified **Master Anaplanner** and **Solution Architect**.
+  I'm an Anaplan Delivery Manager at [GenXAI](https://www.genxai.com/), specializing in supply chain operations across multiple industries. With over nine years of experience building [Anaplan](https://anaplan.com) applications, I'm a certified **Master Anaplanner** and **Solution Architect**.
 
   I help businesses design and model their operations, turning complex data into timely, actionable decisions. My passion is taking messy real-world processes and building elegant planning solutions on the Anaplan platform.
 
