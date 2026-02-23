@@ -68,16 +68,30 @@ body > div > main > section > section > div > div {
 
 /* Reduce gap between headings and content */
 #profile h4 {
+  margin-top: -0.25rem !important;
   margin-bottom: 0.25rem !important;
+}
+
+#profile h4#interests {
+  margin-top: 0.75rem !important;
 }
 
 #profile h2 {
   font-weight: 500 !important;
 }
 
+#profile h5 {
+  margin-bottom: 0.25rem !important;
+}
+
 .about-main {
   margin-bottom: -0.5rem !important;
   font-weight: 500 !important;
+}
+
+/* Social icon spacing */
+.social-icon-links a {
+  margin: 0 0.35rem;
 }
 
 /* About sidebar card styling */
