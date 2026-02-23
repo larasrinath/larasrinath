@@ -179,8 +179,8 @@ body > div > main > section > section > div > div {
 /* Mobile responsive - work experience */
 @media (max-width: 480px) {
   .site-header, .page-main {
-    padding-left: 1.5rem !important;
-    padding-right: 1.5rem !important;
+    padding-left: 2rem !important;
+    padding-right: 2rem !important;
   }
 
   .work-header {
@@ -196,4 +196,5 @@ body > div > main > section > section > div > div {
     flex-wrap: wrap;
     gap: 0.25rem;
   }
+
 }
