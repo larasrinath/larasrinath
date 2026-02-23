@@ -5,7 +5,7 @@
     <div class="flex-ns items-center justify-center">
       <div class="w-50-ns">
       {{ with .Params.images }}
-        {{ range first 1 . }}<img class="db mv0 center" style="width:90%" src="{{ . | relURL }}"/>{{ end }}
+        {{ range first 1 . }}<img class="db mv0 center" src="{{ . | relURL }}"/>{{ end }}
       {{ end }}
       </div>
       <div class="w-50-ns {{ if not .Params.text_align_left }}tr{{ end }}">
