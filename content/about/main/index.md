@@ -22,7 +22,7 @@ outro: |
 
   <div class="work-item">
   <div class="work-header">
-  <i class="fa fa-briefcase pr1 gray"></i> <strong>Manager - Anaplan Delivery</strong>
+  <strong><i class="fa fa-briefcase pr1 gray"></i>Manager - Anaplan Delivery</strong>
   <span class="work-date">Nov 2025 - Present</span>
   </div>
   <div class="work-role">GenXAI <span class="work-date">US</span></div>
@@ -30,7 +30,7 @@ outro: |
 
   <div class="work-item">
   <div class="work-header">
-  <i class="fa fa-briefcase pr1 gray"></i> <strong>Senior Solution Architect</strong>
+  <strong><i class="fa fa-briefcase pr1 gray"></i>Senior Solution Architect</strong>
   <span class="work-date">May 2021 - Oct 2025</span>
   </div>
   <div class="work-role">Vuealta Consulting <span class="work-date">Singapore</span></div>
@@ -38,7 +38,7 @@ outro: |
 
   <div class="work-item">
   <div class="work-header">
-  <i class="fa fa-briefcase pr1 gray"></i> <strong>Consultant</strong>
+  <strong><i class="fa fa-briefcase pr1 gray"></i>Consultant</strong>
   <span class="work-date">Sep 2019 - Apr 2021</span>
   </div>
   <div class="work-role">Deloitte Southeast Asia <span class="work-date">Malaysia</span></div>
@@ -46,7 +46,7 @@ outro: |
 
   <div class="work-item">
   <div class="work-header">
-  <i class="fa fa-briefcase pr1 gray"></i> <strong>Analyst</strong>
+  <strong><i class="fa fa-briefcase pr1 gray"></i>Analyst</strong>
   <span class="work-date">Sep 2018 - Aug 2019</span>
   </div>
   <div class="work-role">Deloitte Southeast Asia <span class="work-date">Philippines</span></div>
@@ -54,7 +54,7 @@ outro: |
 
   <div class="work-item">
   <div class="work-header">
-  <i class="fa fa-briefcase pr1 gray"></i> <strong>Anaplan Developer</strong>
+  <strong><i class="fa fa-briefcase pr1 gray"></i>Anaplan Developer</strong>
   <span class="work-date">Feb 2016 - Jun 2018</span>
   </div>
   <div class="work-role">Solvanni Technologies <span class="work-date">India</span></div>
@@ -64,7 +64,7 @@ outro: |
 
   <div class="work-item">
   <div class="work-header">
-  <i class="fas fa-graduation-cap pr1 gray"></i> <strong>B.E. in Electrical & Electronics Engineering</strong>
+  <strong><i class="fas fa-graduation-cap pr1 gray"></i>B.E. in Electrical & Electronics Engineering</strong>
   <span class="work-date">2011 - 2016</span>
   </div>
   <div class="work-role">PSG College of Technology <span class="work-date">India</span></div>
