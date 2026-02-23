@@ -19,8 +19,10 @@
 
 /* Consistent footer spacing */
 .site-footer {
-  padding-top: 1rem !important;
-  padding-bottom: 1rem !important;
+  padding-top: 0.5rem !important;
+  padding-bottom: 0.5rem !important;
+  padding-left: 2rem !important;
+  padding-right: 2rem !important;
 }
 
 /* Fix for listing pages (Projects, Blog) that have an extra intro section */
@@ -56,9 +58,11 @@
   margin-bottom: 0.75rem !important;
 }
 
-/* Pull main content up to align with sidebar */
-body > div > main > section > section > div > div {
-  margin-top: -2em;
+/* Pull main content up to align with sidebar — only on large screens */
+@media (min-width: 60em) {
+  body > div > main > section > section > div > div {
+    margin-top: -2em;
+  }
 }
 
 /* Main content column — remove theme's pt5 (4rem) top padding */

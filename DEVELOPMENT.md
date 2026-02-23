@@ -61,7 +61,12 @@ To deploy updates:
 
 ---
 
+## 📄 License
+This project is licensed under the [MIT License](LICENSE).
+
+---
+
 ## 👤 Author
-**Lara Srinath**  
-Anaplan Solution Architect & Master Anaplanner  
+**Lara Srinath**
+Anaplan Solution Architect & Master Anaplanner
 [LinkedIn](https://www.linkedin.com/in/larasrinath) | [GitHub](https://github.com/larasrinath)
