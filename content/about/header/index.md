@@ -6,4 +6,4 @@ headline: |
   Hello, I'm Lara.
 ---
 
-Anaplan Solution Architect, Master Anaplanner, and supply chain optimization enthusiast with 9+ years of experience helping businesses make better decisions through data.
+Anaplan Solution Architect, Master Anaplanner and supply chain planning and optimization enthusiast with 9+ years of experience helping businesses make better decisions through data.

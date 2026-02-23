@@ -7,11 +7,13 @@ number_categories: 0
 show_intro: true
 intro: |
 
-  I'm an Anaplan Delivery Manager at [GenXAI](https://www.genxai.com/), specializing in supply chain operations across multiple industries. With over nine years of experience building [Anaplan](https://anaplan.com) applications, I'm a certified **Master Anaplanner** and **Solution Architect**.
+  I'm an Anaplan Delivery Manager at [GenXAI](https://www.genxai.com/), specializing in supply chain and financial planning across multiple industries. With over nine years of experience building [Anaplan](https://anaplan.com) applications, I'm a certified **Master Anaplanner** and **Solution Architect**.
 
   I help businesses design and model their operations, turning complex data into timely, actionable decisions. My passion is taking messy real-world processes and building elegant planning solutions on the Anaplan platform.
 
-  When I'm not planning and optimizing businesses, you'll find me building lego sets, stargazing, or rooting for the world's greatest football club - Manchester United.
+  When I'm not building planning applications and optimizing businesses, you'll find me building LEGO sets, stargazing, or rooting for the world's greatest football club - Manchester United (Keep the Red Flag flying high, We'll never die!)
+
+  I currently live in the US.
 
 show_outro: true
 outro: |
@@ -54,10 +56,10 @@ outro: |
 
   <div class="work-item">
   <div class="work-header">
-  <i class="fas fa-graduation-cap pr1 gray"></i> <strong>PSG College of Technology</strong>
+  <i class="fas fa-graduation-cap pr1 gray"></i> <strong>B.E. in Electrical & Electronics Engineering</strong>
   <span class="work-date">2011 - 2016</span>
   </div>
-  <div class="work-role">BE in Electrical & Electronics Engineering</div>
+  <div class="work-role">PSG College of Technology</div>
   </div>
 
 ---

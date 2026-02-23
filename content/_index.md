@@ -1,7 +1,7 @@
 ---
 title: "Lara\_Srinath"
 subtitle: "Anaplan + Data"
-description: "I build planning solutions that help businesses make better decisions. Certified Master Anaplanner with 9+ years of Anaplan experience across supply chain operations."
+description: "Anaplan Solution Architect, Master Anaplanner and supply chain planning and optimization enthusiast with 9+ years of experience helping businesses make better decisions through data."
 
 
 images:
