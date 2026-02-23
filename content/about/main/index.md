@@ -22,34 +22,42 @@ outro: |
 
   <div class="work-item">
   <div class="work-header">
-  <i class="fa fa-briefcase pr1 gray"></i> <strong>GenXAI</strong>
+  <i class="fa fa-briefcase pr1 gray"></i> <strong>Manager - Anaplan Delivery</strong>
   <span class="work-date">Nov 2025 - Present</span>
   </div>
-  <div class="work-role">Manager - Anaplan Delivery, US</div>
+  <div class="work-role">GenXAI <span class="work-date">US</span></div>
   </div>
 
   <div class="work-item">
   <div class="work-header">
-  <i class="fa fa-briefcase pr1 gray"></i> <strong>Vuealta Consulting</strong>
+  <i class="fa fa-briefcase pr1 gray"></i> <strong>Senior Solution Architect</strong>
   <span class="work-date">May 2021 - Oct 2025</span>
   </div>
-  <div class="work-role">Senior Solution Architect, Singapore</div>
+  <div class="work-role">Vuealta Consulting <span class="work-date">Singapore</span></div>
   </div>
 
   <div class="work-item">
   <div class="work-header">
-  <i class="fa fa-briefcase pr1 gray"></i> <strong>Deloitte Consulting SEA</strong>
-  <span class="work-date">Sep 2018 - Apr 2021</span>
+  <i class="fa fa-briefcase pr1 gray"></i> <strong>Consultant</strong>
+  <span class="work-date">Sep 2019 - Apr 2021</span>
   </div>
-  <div class="work-role">Consultant, Malaysia<br>Analyst, Philippines</div>
+  <div class="work-role">Deloitte Southeast Asia <span class="work-date">Malaysia</span></div>
   </div>
 
   <div class="work-item">
   <div class="work-header">
-  <i class="fa fa-briefcase pr1 gray"></i> <strong>Solvanni Technologies</strong>
+  <i class="fa fa-briefcase pr1 gray"></i> <strong>Analyst</strong>
+  <span class="work-date">Sep 2018 - Aug 2019</span>
+  </div>
+  <div class="work-role">Deloitte Southeast Asia <span class="work-date">Philippines</span></div>
+  </div>
+
+  <div class="work-item">
+  <div class="work-header">
+  <i class="fa fa-briefcase pr1 gray"></i> <strong>Anaplan Developer</strong>
   <span class="work-date">Feb 2016 - Jun 2018</span>
   </div>
-  <div class="work-role">Anaplan Developer, India</div>
+  <div class="work-role">Solvanni Technologies <span class="work-date">India</span></div>
   </div>
 
   ### Education
@@ -59,7 +67,7 @@ outro: |
   <i class="fas fa-graduation-cap pr1 gray"></i> <strong>B.E. in Electrical & Electronics Engineering</strong>
   <span class="work-date">2011 - 2016</span>
   </div>
-  <div class="work-role">PSG College of Technology</div>
+  <div class="work-role">PSG College of Technology <span class="work-date">India</span></div>
   </div>
 
 ---

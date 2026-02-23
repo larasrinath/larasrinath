@@ -135,6 +135,9 @@ body > div > main > section > section > div > div {
 }
 
 .work-role {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
   font-size: 0.95rem;
   color: #555;
   padding-top: 0.25rem;
