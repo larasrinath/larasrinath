@@ -46,17 +46,52 @@
 
 /* About page - reduce header whitespace */
 .page-header.mb5 {
-  margin-bottom: 1.5rem !important;
-  padding-bottom: 1rem !important;
+  margin-bottom: 3.5rem !important;
+  padding-bottom: 0 !important;
   border-bottom: none !important;
 }
 
+.page-header h1 {
+  margin-top: 0 !important;
+  margin-bottom: 0.75rem !important;
+}
+
+/* Pull main content up to align with sidebar */
 body > div > main > section > section > div > div {
   margin-top: -2em;
 }
 
+/* Main content column — remove theme's pt5 (4rem) top padding */
 .page-body .w-two-thirds-l.pt5 {
-  padding-top: 1.5rem !important;
+  padding-top: 0 !important;
+}
+
+/* About Me heading */
+.page-body h2.about-main {
+  margin-top: 0 !important;
+  margin-bottom: 0.75rem !important;
+}
+
+/* Intro section — remove Tachyons pv3 vertical padding */
+.page-body .pv3.f4.measure {
+  padding-top: 0 !important;
+  padding-bottom: 0 !important;
+}
+
+/* Outro section — remove Tachyons pt3 top padding */
+.page-body .pt3.measure-wide {
+  padding-top: 0 !important;
+}
+
+/* Section headings (Work Experience, Education) — uniform spacing */
+.page-body h3 {
+  margin-top: 1.5rem !important;
+  margin-bottom: 0.75rem !important;
+}
+
+/* First h3 (Work Experience) — less margin since intro div boundary prevents collapse */
+.page-body .pt3.measure-wide > h3:first-child {
+  margin-top: 0.25rem !important;
 }
 
 /* About sidebar - avatar styling */
