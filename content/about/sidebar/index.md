@@ -15,11 +15,10 @@ outro: |
   <span class="about-tag">Python</span>
   <span class="about-tag">R</span>
   <span class="about-tag">SQL</span>
-  <span class="about-tag">TypeScript</span>
   <span class="about-tag">AMPL</span>
-  <span class="about-tag">PowerBI</span>
-  <span class="about-tag">Tableau</span>
+  <span class="about-tag">Pigment</span>
   <span class="about-tag">Data Analysis</span>
+  <span class="about-tag">Generative AI</span>
 
   #### Interests
 
