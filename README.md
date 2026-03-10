@@ -8,10 +8,10 @@ I help businesses design and model their operations, turning complex data into t
 
 ### What I Do
 
-- **Supply Chain Planning** — DRP, MRP, MPS, S&OP, and multi-echelon inventory optimization (MEIO)
-- **Anaplan Architecture** — ALM, Data Hub, CloudWorks, NUX, and Optimizer for complex supply chain balancing
-- **Statistical Forecasting** — Best-fit algorithms, demand planning, and inventory management
-- **Data Analysis** — EDA, cleansing, outlier detection, and procurement modeling
+- **Supply Chain Planning:** DRP, MRP, MPS, S&OP, and multi-echelon inventory optimization (MEIO)
+- **Anaplan Architecture:** ALM, Data Hub, CloudWorks, NUX, and Optimizer for complex supply chain balancing
+- **Statistical Forecasting:** Best-fit algorithms, demand planning, and inventory management
+- **Data Analysis:** EDA, cleansing, outlier detection, and procurement modeling
 
 ### Experience
 
@@ -23,7 +23,7 @@ I help businesses design and model their operations, turning complex data into t
 
 ### Education
 
-- **B.E. in Electrical & Electronics Engineering** — PSG College of Technology, India (2011 - 2016)
+- **B.E. in Electrical & Electronics Engineering:** PSG College of Technology, India (2011 - 2016)
 
 ### Skills
 
