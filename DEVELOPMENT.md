@@ -68,5 +68,5 @@ This project is licensed under the [MIT License](LICENSE).
 
 ## 👤 Author
 **Lara Srinath**
-Anaplan Solution Architect & Master Anaplanner
+Manager - Anaplan Delivery at GenXAI | Certified Master Anaplanner & Anaplan Solution Architect
 [LinkedIn](https://www.linkedin.com/in/larasrinath) | [GitHub](https://github.com/larasrinath)
