@@ -229,6 +229,87 @@
    line-height: 1.5em;
  }
 
+/* Resume page */
+.resume-page {
+  padding-bottom: 3rem;
+  font-size: 1.1rem;
+}
+
+.resume-page h1 {
+  font-size: 2.5rem;
+  margin-bottom: 0.25rem;
+}
+
+.resume-page h2 {
+  font-size: 1.3rem;
+  text-transform: uppercase;
+  letter-spacing: 1.5px;
+  border-bottom: 2px solid #e0e0e0;
+  padding-bottom: 0.4rem;
+  margin-top: 2rem;
+  margin-bottom: 1rem;
+}
+
+.resume-header {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 1rem;
+}
+
+.resume-download {
+  font-size: 0.85rem;
+  padding: 0.4rem 1rem;
+  border: 1.5px solid #ccc;
+  border-radius: 6px;
+  text-decoration: none !important;
+  transition: background 0.2s, border-color 0.2s;
+  white-space: nowrap;
+
+  &:hover {
+    background: #f5f5f5;
+    border-color: #999;
+  }
+}
+
+.resume-bullets {
+  margin: 0.5rem 0 0;
+  padding-left: 1.25rem;
+  list-style-type: square;
+
+  li {
+    margin-bottom: 0.5rem;
+    font-size: 1.05rem;
+    line-height: 1.6;
+  }
+}
+
+.resume-skills,
+.resume-certs {
+  margin: 0.5rem 0;
+}
+
+.resume-projects p {
+  margin: 0.5rem 0;
+  font-size: 1.05rem;
+}
+
+[data-theme="dark"] {
+  .resume-page h2 {
+    border-bottom-color: var(--dm-border) !important;
+  }
+
+  .resume-download {
+    border-color: var(--dm-border) !important;
+    color: var(--dm-text) !important;
+
+    &:hover {
+      background: var(--dm-elevated) !important;
+    }
+  }
+}
+
 // ===== Dynamic Animations =====
 
 // -- Fade-in-up (homepage load) --

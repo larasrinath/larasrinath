@@ -6,7 +6,7 @@ languageCode = "en"
 title = "Lara Srinath"
 author = "Lara Srinath"
 copyright = "" # set to override the auto generated copyright using org info and now year
-googleAnalytics = "UA-163485776-1"
+googleAnalytics = "G-N42DXSJWCH"
 disqusShortname = "" # see params.utterances to use utterances instead of Disqus
 metaDataFormat = "yaml"
 footnoteReturnLinkContents = "&#8617;" # ↩
@@ -129,7 +129,7 @@ enableEmoji = true
   [[menu.header]]
     name = "Resume"
     title = "Resume"
-    url = "/pdf/larasrinath.pdf"
+    url = "/resume/"
     weight = 3  
   
 
