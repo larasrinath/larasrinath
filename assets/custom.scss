@@ -520,11 +520,32 @@
   }
 }
 
-/* Mobile responsive - work experience */
+/* Mobile responsive */
+@media (max-width: 768px) {
+  /* Homepage — stack image and text with spacing */
+  .home .page-content .flex-ns {
+    flex-direction: column;
+  }
+
+  .home .page-content img {
+    max-width: 70%;
+    margin: 0 auto 1.5rem;
+  }
+
+  .home .page-content .w-50-ns {
+    width: 100% !important;
+    text-align: center !important;
+  }
+}
+
 @media (max-width: 480px) {
   .site-header, .page-main {
     padding-left: 2rem !important;
     padding-right: 2rem !important;
+  }
+
+  .home .page-content img {
+    max-width: 85%;
   }
 
   .work-header {
@@ -540,5 +561,4 @@
     flex-wrap: wrap;
     gap: 0.25rem;
   }
-
 }

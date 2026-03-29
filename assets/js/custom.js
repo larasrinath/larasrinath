@@ -245,6 +245,7 @@
   // ---- 8. Parallax Homepage Avatar ----
   function initParallax() {
     if (prefersReduced) return;
+    if (window.innerWidth < 768) return; // disable on mobile
 
     var img = document.querySelector('.home .page-content img');
     if (!img) return;
