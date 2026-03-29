@@ -240,6 +240,23 @@
   margin-bottom: 0.25rem;
 }
 
+@media (max-width: 768px) {
+  .resume-page h1 {
+    font-size: 1.6rem;
+    margin-top: 0;
+  }
+
+  .resume-header {
+    flex-direction: column;
+    gap: 0.5rem;
+  }
+
+  .resume-page h2 {
+    margin-top: 1.25rem;
+    font-size: 1.1rem;
+  }
+}
+
 .resume-page h2 {
   font-size: 1.3rem;
   text-transform: uppercase;
