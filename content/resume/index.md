@@ -1,7 +1,6 @@
 ---
 title: "Resume"
 description: "Lara Srinath - Anaplan Solution Architect & Master Anaplanner"
-layout: "single"
 ---
 
 <div class="resume-header">
