@@ -274,8 +274,17 @@
 
       var href = link.getAttribute('href');
       // Only internal links, not anchors or new tabs
-      if (!href || href.startsWith('#') || href.startsWith('http') || href.startsWith('mailto:') ||
+      if (!href || href.startsWith('#') || href.startsWith('mailto:') ||
           link.getAttribute('target') === '_blank' || e.ctrlKey || e.metaKey) return;
+
+      // Allow same-origin absolute URLs, skip truly external ones
+      if (href.startsWith('http')) {
+        try {
+          var linkUrl = new URL(href);
+          if (linkUrl.origin !== window.location.origin) return;
+          href = linkUrl.pathname + linkUrl.search + linkUrl.hash;
+        } catch (ex) { return; }
+      }
 
       e.preventDefault();
       wrapper.classList.add('page-exit');
