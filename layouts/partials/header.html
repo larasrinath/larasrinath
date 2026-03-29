@@ -4,6 +4,11 @@
     <a class="site-brand db dtc-l v-mid link no-underline w-100 w-33-l tc tl-l" href="{{ "/" | relURL }}" title="Home">
       {{ if .Site.Params.logo }}<img src="{{ .Site.Params.logo | relURL }}" class="dib db-l h2 w-auto" alt="{{ .Site.Title }}">{{ else }}<span class="f4 fw7">{{ .Site.Title }}</span>{{ end }}
     </a>
+    <button class="mobile-menu-toggle dn-l" type="button" aria-label="Toggle menu" aria-expanded="false">
+      <span class="hamburger-line"></span>
+      <span class="hamburger-line"></span>
+      <span class="hamburger-line"></span>
+    </button>
     <div class="site-links db dtc-l v-mid w-100 w-47-l tc tr-l mt3 mt0-l {{ if $.Site.Params.navallcaps }}ttu tracked{{ end }}">
       {{ range .Site.Menus.header }}
         {{ $active := or ($page.IsMenuCurrent "header" .) ($page.HasMenuCurrent "header" .) }}

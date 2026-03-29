@@ -183,8 +183,8 @@
       label: 'GitHub Dark',
       bg: '#0D1117', surface: '#161B22', elevated: '#21262D',
       border: '#30363D', text: '#E6EDF3', muted: '#8B949E',
-      accent: '#58A6FF', toggle: '#F78166',
-      swatches: ['#0D1117','#58A6FF','#F78166']
+      accent: '#E22027', toggle: '#E22027',
+      swatches: ['#0D1117','#58A6FF','#58A6FF']
     },
     dracula: {
       label: 'Dracula',
@@ -287,8 +287,31 @@
   }
 
   // ---- Initialize everything ----
+  // ---- Mobile Hamburger Menu ----
+  function initMobileMenu() {
+    var btn = document.querySelector('.mobile-menu-toggle');
+    var links = document.querySelector('.site-links');
+    if (!btn || !links) return;
+
+    btn.addEventListener('click', function () {
+      var isOpen = btn.classList.toggle('open');
+      links.classList.toggle('open');
+      btn.setAttribute('aria-expanded', isOpen);
+    });
+
+    // Close menu when a link is clicked
+    links.querySelectorAll('a').forEach(function (link) {
+      link.addEventListener('click', function () {
+        btn.classList.remove('open');
+        links.classList.remove('open');
+        btn.setAttribute('aria-expanded', 'false');
+      });
+    });
+  }
+
   document.addEventListener('DOMContentLoaded', function () {
     initDarkMode();
+    initMobileMenu();
     initTypewriter();
     initFadeIn();
     initScrollReveal();
