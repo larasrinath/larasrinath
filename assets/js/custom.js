@@ -316,12 +316,20 @@
         btn.setAttribute('aria-expanded', 'false');
       });
     });
+
+    // Close menu when clicking anywhere outside
+    document.addEventListener('click', function (e) {
+      if (!btn.classList.contains('open')) return;
+      if (btn.contains(e.target) || links.contains(e.target)) return;
+      btn.classList.remove('open');
+      links.classList.remove('open');
+      btn.setAttribute('aria-expanded', 'false');
+    });
   }
 
   // ---- Supply Chain Flowing Background (Resume page) ----
   function initSupplyChainChart() {
     if (prefersReduced) return;
-    if (window.innerWidth < 768) return;
 
     var resumePage = document.querySelector('.resume-page');
     if (!resumePage) return;
@@ -568,6 +576,18 @@
       var rect = canvas.getBoundingClientRect();
       mouse.x = e.clientX - rect.left;
       mouse.y = e.clientY - rect.top;
+    }, { passive: true });
+
+    document.addEventListener('touchmove', function (e) {
+      var rect = canvas.getBoundingClientRect();
+      var touch = e.touches[0];
+      mouse.x = touch.clientX - rect.left;
+      mouse.y = touch.clientY - rect.top;
+    }, { passive: true });
+
+    document.addEventListener('touchend', function () {
+      mouse.x = -9999;
+      mouse.y = -9999;
     }, { passive: true });
 
     window.addEventListener('resize', resize);
