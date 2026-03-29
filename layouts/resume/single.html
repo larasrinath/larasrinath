@@ -1,9 +1,11 @@
 {{ define "main" }}
 <main class="page-main" role="main">
-  <section class="page-content center" style="max-width: 960px;">
-    <div class="resume-page lh-copy">
-      {{ .Content }}
-    </div>
-  </section>
+  <div class="resume-canvas-container">
+    <section class="page-content center" style="max-width: 960px;">
+      <div class="resume-page lh-copy">
+        {{ .Content }}
+      </div>
+    </section>
+  </div>
 </main>
 {{ end }}
