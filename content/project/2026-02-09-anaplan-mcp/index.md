@@ -4,7 +4,7 @@ external_link: https://github.com/larasrinath/anaplan-mcp
 image:
   caption: Anaplan MCP Server
   focal_point: Smart
-summary: Model Context Protocol (MCP) server for Anaplan Integration API v2, enabling AI assistants to manage Anaplan workflows using natural language.
+summary: An MCP server that lets AI assistants like Claude manage Anaplan workspaces, models, and data through natural language — 68 tools covering exploration, bulk operations, and transactional workflows.
 links:
 - icon: github
   icon_pack: fab
@@ -20,20 +20,40 @@ tags:
 title: Anaplan MCP
 ---
 
-Anaplan MCP is a Model Context Protocol (MCP) server that bridges the gap between AI assistants (like Claude) and Anaplan's Integration API v2. It allows businesses to run and manage Anaplan workflows using natural language, making complex modeling tasks more accessible.
+Anaplan's Integration API is powerful but technically demanding — most organizations rely on a small group of model builders to handle data extraction, imports, and workflow execution, creating bottlenecks. **Anaplan MCP** democratizes that access by wrapping the entire API in 68 structured tools that AI assistants can invoke conversationally.
 
-### Key Features
-- **Name Resolution**: Human-readable names (e.g., "Revenue Model") are mapped to raw Anaplan IDs with case-insensitive matching and caching.
-- **Pagination and Search**: Support for `offset`, `limit`, and `search` parameters across all list tools.
-- **Automatic Task Polling**: Asynchronous actions (import, export, process, delete) are automatically polled every 2 seconds.
-- **Retry Logic**: Built-in exponential backoff and handling for rate limiting (429) and server errors (5xx).
-- **Large Response Handling**: Automatic truncation of large transactional responses and streaming for CSV datasets.
-- **Chunked File Upload**: Transparent management of large file uploads (50MB chunks) for imports.
+Built in **TypeScript** and running over the **Model Context Protocol (MCP)**, this server lets business users ask Claude to explore models, pull data, run imports, or manage workflows — all in plain English, without touching the API directly.
 
-### Tools Included
-The server provides 68 structured tools to:
-- Browse workspaces and models
-- Read and write model data
-- Execute actions and processes
-- Manage list items
-- Administer models and users
+### What It Can Do
+
+- **Explore** workspaces, models, modules, lists, views, and line items
+- **Read & write** cell data and list items
+- **Run** imports, exports, processes, and delete actions with automatic task polling
+- **Upload & download** files with chunked transfer for large datasets (50MB chunks)
+- **Administer** models — open, close, delete, set periods and fiscal year
+- **Query** users, versions, and task history
+
+### Common Use Cases
+
+- **Model documentation** — explore structure, list line items with formulas, check dimension usage
+- **Data review** — pull current data, identify recently added items, summarize forecasts
+- **Impact analysis** — find modules using specific lists, trace line-item references
+- **Automation** — run monthly imports, export actuals, add new products to master lists
+- **Onboarding** — walk new team members through module structure and model composition
+
+### Engineering Highlights
+
+- **Name resolution** — human-readable names mapped to Anaplan IDs with case-insensitive matching and caching
+- **Automatic task polling** — async actions polled every 2 seconds with up to 5-minute timeout
+- **Retry logic** — exponential backoff for rate limits (429) and server errors (5xx)
+- **Chunked uploads** — transparent management of large file uploads
+- **Large response handling** — automatic truncation and streaming for CSV datasets
+- **Three-layer architecture** — Auth (pluggable providers) → API (16 domain wrappers) → Tools (MCP registrations with Zod validation)
+
+### Authentication
+
+Supports **basic auth**, **certificate auth**, and **OAuth2** (both device grant and authorization code flows). Configuration is entirely through environment variables — no config files or CLI flags.
+
+### Works With
+
+Claude Desktop, Claude Code, and any MCP-compatible client using stdio transport. Built with TypeScript 5.x and Node.js 18+.
