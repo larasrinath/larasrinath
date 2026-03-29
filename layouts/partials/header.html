@@ -1,7 +1,7 @@
 {{ $page := . }}
 <header class="site-header pt3 pb1 mb0 bb b--transparent ph5 headroom z-max" role="banner">
   <nav class="site-nav db dt-l w-100" role="navigation">
-    <a class="site-brand db dtc-l v-mid link no-underline w-100 w-33-l tc tl-l" href="{{ .Site.BaseURL }}" title="Home">
+    <a class="site-brand db dtc-l v-mid link no-underline w-100 w-33-l tc tl-l" href="{{ "/" | relURL }}" title="Home">
       {{ if .Site.Params.logo }}<img src="{{ .Site.Params.logo | relURL }}" class="dib db-l h2 w-auto" alt="{{ .Site.Title }}">{{ else }}<span class="f4 fw7">{{ .Site.Title }}</span>{{ end }}
     </a>
     <div class="site-links db dtc-l v-mid w-100 w-47-l tc tr-l mt3 mt0-l {{ if $.Site.Params.navallcaps }}ttu tracked{{ end }}">
@@ -16,6 +16,14 @@
         {{ partial "shared/social-links.html" . }}
       </div>
       {{ end }}
+      <label id="dark-mode-toggle" class="theme-toggle dib v-mid" title="Toggle theme">
+        <input type="checkbox" class="theme-toggle__input" />
+        <span class="theme-toggle-sr">Toggle theme</span>
+        <svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" width="1em" height="1em" fill="currentColor" class="theme-toggle__inner-moon" viewBox="0 0 32 32">
+          <path d="M27.5 11.5v-7h-7L16 0l-4.5 4.5h-7v7L0 16l4.5 4.5v7h7L16 32l4.5-4.5h7v-7L32 16l-4.5-4.5zM16 25.4a9.39 9.39 0 1 1 0-18.8 9.39 9.39 0 1 1 0 18.8z" />
+          <circle cx="16" cy="16" r="8.1" />
+        </svg>
+      </label>
     </div>
   </nav>
 </header>

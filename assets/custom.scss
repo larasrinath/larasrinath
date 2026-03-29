@@ -229,6 +229,297 @@
    line-height: 1.5em;
  }
 
+// ===== Dynamic Animations =====
+
+// -- Fade-in-up (homepage load) --
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.fade-in-up {
+  opacity: 0;
+  animation: fadeInUp 0.7s ease forwards;
+}
+
+// -- Typewriter cursor blink --
+.typewriter-cursor {
+  border-right: 2px solid currentColor;
+  padding-right: 3px;
+  animation: cursorBlink 0.75s step-end infinite;
+}
+
+@keyframes cursorBlink {
+  50% { border-color: transparent; }
+}
+
+// -- Scroll reveal --
+.scroll-reveal {
+  opacity: 0;
+  transform: translateY(20px);
+  transition: opacity 0.6s ease, transform 0.6s ease;
+}
+
+.scroll-reveal.revealed {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+// Stagger project/blog cards
+.blog-content > article.scroll-reveal {
+  @for $i from 1 through 6 {
+    &:nth-child(#{$i}) {
+      transition-delay: #{($i - 1) * 0.1}s;
+    }
+  }
+}
+
+// Stagger work experience items
+.work-item.scroll-reveal {
+  @for $i from 1 through 8 {
+    &:nth-child(#{$i}) {
+      transition-delay: #{($i - 1) * 0.08}s;
+    }
+  }
+}
+
+// -- Skill tag pop-in --
+@keyframes tagPopIn {
+  from {
+    opacity: 0;
+    transform: scale(0.7) translateY(8px);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1) translateY(0);
+  }
+}
+
+.tag-pop-in {
+  opacity: 0;
+  animation: tagPopIn 0.35s cubic-bezier(0.34, 1.56, 0.64, 1) forwards;
+}
+
+
+// ===== Dark Mode =====
+
+// Animated sun/moon toggle (@theme-toggles/InnerMoon)
+.theme-toggle {
+  --theme-toggle__inner-moon--duration: 750ms;
+  border: none;
+  background: 0 0;
+  cursor: pointer;
+  padding: 0.25rem;
+  margin-left: 0.75rem;
+  color: inherit;
+  vertical-align: middle;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.4rem;
+}
+
+.theme-toggle__input {
+  display: none;
+}
+
+.theme-toggle-sr {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  border: 0;
+}
+
+.theme-toggle__inner-moon path {
+  transform-origin: center;
+  transition: transform var(--theme-toggle__inner-moon--duration) cubic-bezier(0, 0, 0.15, 1.25);
+}
+
+.theme-toggle__inner-moon circle {
+  transition: transform calc(var(--theme-toggle__inner-moon--duration) / 1.5) cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.theme-toggle--toggled.theme-toggle .theme-toggle__inner-moon path {
+  transform: rotate(180deg);
+}
+
+.theme-toggle--toggled.theme-toggle .theme-toggle__inner-moon circle {
+  transform: translate3d(15%, 0, 0);
+}
+
+// ===== Dark Theme (CSS custom properties) =====
+// Palette is set via JS on [data-theme="dark"]
+
+[data-theme="dark"],
+[data-theme="dark"] body {
+  background-color: var(--dm-bg) !important;
+  color: var(--dm-text) !important;
+}
+
+[data-theme="dark"] {
+  .grid-container {
+    background-color: var(--dm-bg);
+  }
+
+  .site-header,
+  .headroom {
+    background-color: var(--dm-bg) !important;
+  }
+
+  .page-main {
+    background-color: var(--dm-bg) !important;
+  }
+
+  // All text — uniform
+  .custom-text-color,
+  .custom-heading-color,
+  .custom-headline-color,
+  .custom-sidebar-text-color,
+  .custom-body-link-color,
+  .custom-nav-link-color,
+  .custom-sidebar-link-color,
+  .custom-footer-text-color,
+  body, p, li, span, div,
+  .page-main, .page-body, .page-header, .page-content,
+  .about-sidebar, .page-sidebar, .post-content, .blog-content,
+  .f4, .f5, .f6, .f7,
+  .measure, .measure-wide, .lh-copy {
+    color: var(--dm-text) !important;
+  }
+
+  h1, h2, h3, h4, h5, h6,
+  .f-headline, .f-subheadline,
+  .f-headline-l, .f-subheadline-l,
+  .f1, .f2, .f3,
+  .fw5, .fw6, .fw7 {
+    color: var(--dm-text) !important;
+  }
+
+  a:not(.theme-toggle):not(.site-brand) {
+    color: var(--dm-accent) !important;
+  }
+
+  .site-header a,
+  .site-links a {
+    color: var(--dm-text) !important;
+  }
+
+  .site-brand span {
+    color: var(--dm-text) !important;
+  }
+
+  article {
+    border-color: var(--dm-border) !important;
+    background-color: var(--dm-bg) !important;
+  }
+
+  .b--black-10 {
+    border-color: var(--dm-border) !important;
+  }
+
+  .b--transparent {
+    border-color: transparent !important;
+  }
+
+  #profile {
+    background: var(--dm-surface) !important;
+    border-radius: 8px;
+  }
+
+  .about-tag {
+    background: var(--dm-elevated) !important;
+    color: var(--dm-text) !important;
+    &:hover { background: var(--dm-border) !important; }
+  }
+
+  .work-item {
+    border-left-color: var(--dm-border) !important;
+    &:hover { border-left-color: var(--dm-accent) !important; }
+  }
+
+  .work-date, .work-role, .gray {
+    color: var(--dm-muted) !important;
+  }
+
+  .site-footer {
+    background-color: var(--dm-bg) !important;
+    color: var(--dm-muted) !important;
+  }
+
+  .theme-toggle {
+    color: var(--dm-toggle);
+  }
+
+  pre, code {
+    background-color: var(--dm-elevated) !important;
+    color: var(--dm-text) !important;
+  }
+
+  .social-icon-links a {
+    color: var(--dm-muted) !important;
+    &:hover { color: var(--dm-accent) !important; }
+  }
+
+  .action {
+    color: var(--dm-accent) !important;
+  }
+}
+
+
+// ===== Page Transitions =====
+@keyframes pageEnter {
+  from {
+    opacity: 0;
+    transform: translateY(8px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.page-enter {
+  animation: pageEnter 0.35s ease forwards;
+}
+
+.page-exit {
+  opacity: 0;
+  transform: translateY(-8px);
+  transition: opacity 0.25s ease, transform 0.25s ease;
+}
+
+// -- Respect reduced motion --
+@media (prefers-reduced-motion: reduce) {
+  .fade-in-up,
+  .scroll-reveal,
+  .tag-pop-in,
+  .page-enter {
+    opacity: 1 !important;
+    transform: none !important;
+    animation: none !important;
+    transition: none !important;
+  }
+
+  .typewriter-cursor {
+    animation: none !important;
+    border-right: none !important;
+  }
+
+  .page-exit {
+    transition: none !important;
+  }
+}
+
 /* Mobile responsive - work experience */
 @media (max-width: 480px) {
   .site-header, .page-main {
