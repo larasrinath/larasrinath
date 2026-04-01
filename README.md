@@ -1,4 +1,4 @@
-# Hello, I'm Lara!
+# Hello, I'm [Lara](https://www.larasrinath.com)
 
 **Manager - Anaplan Delivery** at [GenXAI](https://www.genxai.com/) | Certified **Master Anaplanner** & **Anaplan Solution Architect**
 
