@@ -6,7 +6,7 @@ external_link: https://larasrinath.shinyapps.io/covid19/
 image:
   caption: Lara Srinath
   focal_point: Smart
-summary: Interactive dashboard tracking the global spread of COVID-19 using R Shiny and Flexdashboard.
+excerpt: "Interactive R Shiny pandemic dashboard"
 links:
 - icon: door-open
   icon_pack: fas

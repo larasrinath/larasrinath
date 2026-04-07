@@ -3,7 +3,7 @@ title: Projects
 description: ""
 author: ""
 show_post_thumbnail: true
-show_author_byline: true
+show_author_byline: false
 show_post_date: false
 show_button_links: false
 # for listing page layout

@@ -1,7 +1,7 @@
 ---
 title: "MacOS ex-Retina Display"
 subtitle: "Enabling High-DPI Retina scaling on external monitors"
-excerpt: "A hardened and security-focused utility to enable native HiDPI resolutions on non-Apple displays for a crisper macOS experience."
+excerpt: "Retina scaling for external monitors"
 date: 2026-02-04
 author: "Lara Srinath"
 draft: false

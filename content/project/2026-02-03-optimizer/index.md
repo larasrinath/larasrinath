@@ -4,7 +4,7 @@ external_link: https://github.com/larasrinath/Optimizer
 image:
   caption: Supply Chain Optimization
   focal_point: Smart
-summary: Multi-echelon supply chain optimization model with sequential weeks cover and network cascade logic.
+excerpt: "Multi-echelon supply chain optimization"
 links:
 - icon: github
   icon_pack: fab
