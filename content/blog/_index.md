@@ -8,7 +8,7 @@ show_author_byline: false
 show_post_date: true
 show_button_links: false
 # for listing page layout
-layout: list # list, list-sidebar, list-grid
+layout: list-grid # list, list-sidebar, list-grid
 
 # for list-sidebar layout
 sidebar: 
@@ -22,8 +22,9 @@ sidebar:
 # set up common front matter for all pages inside blog/
 cascade:
   author: "Lara Srinath"
-  show_author_byline: true
-  show_post_date: true
+  show_author_byline: false
+  show_post_date: false
+  show_post_pagination: false # next/prev links at bottom of single pages
   show_comments: false # see site config to choose Disqus or Utterances
   # for single-sidebar layout
   sidebar:

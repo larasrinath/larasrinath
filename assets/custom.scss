@@ -1,105 +1,680 @@
+/* ===================================================================
+ * CUSTOM.SCSS — site-specific overrides on top of hugo-apero theme
+ * ===================================================================
+ * File map:
+ *   §00  Design tokens (sizes, weights, colors — light + dark)
+ *   §01  Universal type system (h1–h5, body, meta, strong)
+ *   §02  Universal link behavior (hover-underline mixin + usage)
+ *   §03  Responsive token overrides (tablet / phone)
+ *   §04  Universal spacing (page padding, h2 rhythm)
+ *   §05  Chrome (top nav, social icons, X icon, footer)
+ *   §06  Blog listing (grid, card title, excerpt)
+ *   §07  About page (header, sidebar, work items, tags)
+ *   §08  Resume page (header, canvas container, download)
+ *   §09  Dark mode (per-element overrides)
+ *   §10  Animations & page transitions
+ *   §11  Project: Anaplan MCP (.page-intro, .setup-guide — scoped)
+ *   §12  Home page (the one `display` exception)
+ * =================================================================== */
 
-/* -- home page -- */
 
- .home .page-main.pa4 h1 {
-  color: black;
+/* ═══════════════════════════════════════════════════════════════════
+   §00 — DESIGN TOKENS
+   ═══════════════════════════════════════════════════════════════════
+ * Composition rule: SIZE (token) + WEIGHT (regular 400 | medium 500).
+ * Size tokens are FIXED vocabulary; weight is CHOSEN per usage.
+ * e.g. "h3 regular" = 20/400, "h3 medium" = 20/500.
+ *
+ * TYPE SIZE tokens (px at 16px root):
+ *   display     76  — home hero ONLY (single named exception)
+ *   h1          36  — page titles
+ *   h2          24  — section headings
+ *   h3          20  — subsection headings
+ *   h4          16  — minor headings (size = body, weight distinguishes)
+ *   eyebrow     14  — UPPERCASE TRACKED labels (nav, kicker, action)
+ *   body        16  — paragraphs, lists
+ *   meta        14  — dates, tags, bylines
+ *   instruction 14  — callout / note / tip / warning / danger bodies
+ *   micro       10  — footer copyright
+ *
+ * EM-SCALE (component-internal, text-relative):
+ *   em-xs 0.875 | em-sm 1 | em-md 1.125 | em-lg 1.25 | em-xl 1.5
+ *   (code token is rem-based — see --fs-code below, 14px absolute)
+ *
+ * COMPONENT LAYOUT (em-based, shared by cards / callouts / steps):
+ *   --gap-card      flex gap: icon ↔ content
+ *   --pad-card      default component padding (row layout)
+ *   --pad-card-lg   feature/stacked variant padding
+ *   --margin-block  vertical rhythm between stacked components
+ *
+ * SPACING (--s-*): 4 / 8 / 16 / 24 / 32 / 48 / 64   (px)
+ * RADII (--radius-*): sm 3 | md 6 | lg 10           (px)
+ * SHADOWS (--shadow-*): 1 (subtle) | 2 (hover) | 3 (elevated)
+ * SURFACES: --surface (#fff) | --surface-alt (#fafafa)
+ * BORDERS:  --border-soft (#eee)
+ * STROKES:  --stroke-accent (2px) — callout / step / pre / work left-border
+ * COLORS:   --color-text | --color-muted | --color-subtle | --color-link
+ * WEIGHTS:  --fw-regular (400) | --fw-medium (500)
+ * LEADING:  --lh-tight / heading / sub / body / meta
+ * BRAND:    --brand-accent / -accent-rgb / -soft / -border / -text
+ *           (override at page scope, e.g. `.project--anaplan-mcp { ... }`)
+ * =================================================================== */
+
+:root {
+  /* type sizes */
+  --fs-display:     4.75rem;
+  --fs-h1:          2.25rem;
+  --fs-h2:          1.5rem;
+  --fs-h3:          1.25rem;
+  --fs-h4:          1rem;
+  --fs-eyebrow:     0.875rem;
+  --fs-body:        1rem;
+  --fs-meta:        0.875rem;
+  --fs-instruction: 0.875rem; /* callouts / alerts */
+  --fs-micro:       0.625rem;
+
+  /* weights */
+  --fw-regular: 400;
+  --fw-medium:  500;
+
+  /* leading */
+  --lh-tight:   1.05;
+  --lh-heading: 1.15;
+  --lh-sub:     1.3;
+  --lh-body:    1.6;
+  --lh-meta:    1.5;
+
+  /* colors (light mode) — 3 text levels + 1 link */
+  --color-text:   #444444;/* primary: body, headings */
+  --color-muted:  #555555;/* secondary: meta, subtitles, work-role */
+  --color-subtle: #777777;/* tertiary: dates, very quiet labels */
+  --color-link:   #1a1f24;/* links */
+
+  /* spacing scale — 4px / 8px grid, applied everywhere */
+  --s-1:  0.25rem; /* 4  — hair */
+  --s-2:  0.5rem;  /* 8  — tight */
+  --s-3:  1rem;    /* 16 — default */
+  --s-4:  1.5rem;  /* 24 — section */
+  --s-5:  2rem;    /* 32 — page edge */
+  --s-6:  3rem;    /* 48 — major section */
+  --s-7:  4rem;    /* 64 — hero gap */
+
+  /* radii — 3-step */
+  --radius-sm: 3px;     /* code chips, badges */
+  --radius-md: 6px;     /* cards, inputs */
+  --radius-lg: 10px;    /* hero cards, modals */
+
+  /* shadows — 3-step */
+  --shadow-1: 0 1px 3px rgba(0, 0, 0, 0.04);   /* card at rest */
+  --shadow-2: 0 2px 6px rgba(0, 0, 0, 0.08);   /* card hover */
+  --shadow-3: 0 6px 16px rgba(0, 0, 0, 0.12);  /* elevated */
+
+  /* surfaces — card / bg fills */
+  --surface:       #fff;     /* default card fill */
+  --surface-alt:   #fafafa;  /* subtle grey fill */
+  --border-soft:   #eee;     /* default card / table border */
+
+  /* strokes — line widths for accent borders (callout left stripe,
+     step-card accent, code-block accent, work-item indicator). One
+     value rules them all. */
+  --stroke-accent: 2px;
+
+  /* component em-scale — for component-internal text that scales
+     relative to its container (cards, callouts, badges). Snaps the
+     previously noisy em values to five canonical steps. */
+  --fs-em-xs: 0.875em;  /* small labels, code, meta */
+  --fs-em-sm: 1em;      /* body in cards (baseline) */
+  --fs-em-md: 1.125em;  /* emphasis body */
+  --fs-em-lg: 1.25em;   /* sub-heading in card */
+  --fs-em-xl: 1.5em;    /* card heading */
+
+  /* component layout — em-based so gaps/padding scale with the
+     surrounding text size. Used by .card, .card--quote, .callout,
+     .step-card, and future components with the same pattern. */
+  --gap-card: 1em;           /* flex gap: icon ↔ content */
+  --pad-card: 1em 1.1em;     /* default card/callout padding */
+  --pad-card-lg: 1.4em 1.4em 1.3em;  /* feature card (stacked, more generous) */
+  --margin-block: 1.2em 0;   /* vertical rhythm between stacked components */
+
+  /* code — inline `<code>` and `<pre>` blocks. rem-based so code is
+     a consistent 14px everywhere — callouts don't shrink it further. */
+  --fs-code: 0.875rem;  /* 14 (absolute) */
+
+  /* Brand slot — page-level accent + soft / border / text variants.
+     Defaults are neutral; individual project pages override at their
+     root (e.g. `.project--anaplan-mcp { --brand-accent: #0075CA; }`).
+     Every reusable component references `var(--brand-*)` — swap the
+     brand by changing the slot, not the components. */
+  --brand-accent:     var(--color-link);    /* primary accent color */
+  --brand-accent-rgb: 66, 66, 66;           /* for rgba math */
+  --brand-soft:       var(--surface-alt);   /* light accent fill */
+  --brand-border:     var(--border-soft);   /* accent border */
+  --brand-text:       var(--color-text);    /* dark accent text */
 }
 
- .home .page-main.pa4 h2 {
-  font-size: 1.5rem;
+/* Dark mode: remap the semantic color tokens to the active dark palette
+ * (--dm-* vars are set dynamically by custom.js when a dark theme is active).
+ * Every element using var(--color-text) etc. auto-switches with no per-element
+ * [data-theme="dark"] overrides needed. */
+[data-theme="dark"] {
+  /* text colors remap to the active dark palette */
+  --color-text:   var(--dm-text);
+  --color-muted:  var(--dm-muted);
+  --color-subtle: var(--dm-muted);
+  --color-link:   var(--dm-accent);
+
+  /* surfaces remap: card fills + borders track the dark palette so
+     .card, tables, and other surface-bearing components invert too */
+  --surface:      var(--dm-surface);
+  --surface-alt:  var(--dm-elevated);
+  --border-soft:  var(--dm-border);
+
+  /* soften shadows on dark — translucent black is nearly invisible
+     on dark bg, so bump alpha slightly */
+  --shadow-1: 0 1px 3px rgba(0, 0, 0, 0.25);
+  --shadow-2: 0 2px 6px rgba(0, 0, 0, 0.35);
+  --shadow-3: 0 6px 16px rgba(0, 0, 0, 0.45);
 }
 
-/* ===== Global Type Scale =====
- * h1:   2.25rem / 500  — page titles
- * h2:   1.5rem  / 600  — section headings
- * h3:   1.25rem / 600  — sub-headings
- * h4:   1.1rem  / 600  — sidebar headings
- * body: 1.125rem / 400 — paragraphs, bullets
- * small: 0.875rem / 400 — dates, tags, meta
- * line-height: 1.6 everywhere
- */
 
+/* ═══════════════════════════════════════════════════════════════════
+   §01 — UNIVERSAL TYPE SYSTEM
+   h1–h5, body, meta, strong, tables. Applied site-wide via token vars.
+   ═══════════════════════════════════════════════════════════════════ */
+
+/* --- h1 token: page titles ------------------------------------- */
 .page-header h1,
-.page-body h1,
+.page-body   h1,
 .resume-page h1,
-.post-content h1 {
-  font-size: 2.25rem !important;
-  font-weight: 500 !important;
-  line-height: 1.2 !important;
+.post-content h1,
+.post-header h1 {
+  font-size: var(--fs-h1) !important;
+  font-weight: var(--fw-medium) !important;
+  line-height: var(--lh-heading) !important;
+  letter-spacing: -0.01em;
+  color: var(--color-text);
 }
 
-.page-body h2,
+/* --- h2 token: section headings -------------------------------- */
+.page-body   h2,
 .resume-page h2,
-.post-content h2 {
-  font-size: 1.5rem !important;
-  font-weight: 600 !important;
+.post-content h2,
+.post-content .post-body h2,
+.page-body h2.about-main,
+#profile h2 {
+  font-size: var(--fs-h2) !important;
+  font-weight: var(--fw-medium) !important;
+  line-height: var(--lh-heading) !important;
+  letter-spacing: 0;
+  color: var(--color-text);
 }
 
-.page-body h3,
+/* --- h3 token: subsection headings ----------------------------- */
+.page-body   h3,
 .resume-page h3,
-.post-content h3 {
-  font-size: 1.25rem !important;
-  font-weight: 600 !important;
-  margin-top: 1.5rem !important;
-  margin-bottom: 0.75rem !important;
+.post-content h3,
+.post-content .post-body h3 {
+  font-size: var(--fs-h3) !important;
+  font-weight: var(--fw-medium) !important;
+  line-height: var(--lh-sub) !important;
+  margin-top: var(--s-4) !important;
+  margin-bottom: var(--s-2) !important;
+  color: var(--color-text);
 }
 
-.page-body h4,
+/* --- h4 token: minor headings (16px / 500, plain case) --------- */
+.page-body   h4,
 .resume-page h4,
 .post-content h4,
-#profile h4 {
-  font-size: 1.1rem !important;
-  font-weight: 600 !important;
+#profile h4,
+.page-header h4,
+.post-header h4 {
+  font-size: var(--fs-h4) !important;
+  font-weight: var(--fw-medium) !important;
+  line-height: var(--lh-sub) !important;
+  color: var(--color-text);
 }
 
+/* --- h5 → eyebrow token (UPPERCASE TRACKED 14px label) --------- */
+.page-body   h5,
+.resume-page h5,
+.post-content h5,
+#profile h5,
+.about-sidebar h5 {
+  font-size: var(--fs-eyebrow) !important;
+  font-weight: var(--fw-medium) !important;
+  line-height: var(--lh-sub) !important;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--color-muted);
+}
+
+/* --- body token: paragraphs, lists ----------------------------- */
 .page-header p,
 .page-header div,
-.page-body p,
-.page-body li,
+.page-body   p,
+.page-body   li,
 .resume-page p,
 .resume-page li,
 .post-content p,
-.post-content li {
-  font-size: 1.125rem !important;
-  line-height: 1.6 !important;
+.post-content li,
+.post-header p {
+  font-size: var(--fs-body) !important;
+  font-weight: var(--fw-regular);
+  line-height: var(--lh-body) !important;
+  color: var(--color-text);
 }
 
-/* Job titles in work items — between h3 and body */
-.work-header strong {
-  font-size: 1.125rem !important;
-  font-weight: 700 !important;
+/* --- strong inline: medium, not heavy -------------------------- */
+.post-content .post-body strong,
+.page-body strong {
+  font-weight: var(--fw-medium);
+  color: var(--color-text);
 }
 
-.work-role {
-  font-size: 1rem !important;
-  line-height: 1.6 !important;
-}
-
-/* Small / meta text */
+/* --- meta token: dates, tags, bylines, post meta -------------- */
 .work-date,
 .about-tag,
-.site-footer,
-.f7 {
-  font-size: 0.875rem !important;
+.f7,
+.blog-content .f5,
+.blog-content article h2,
+.post-header p.f6,
+.post-header .f7 {
+  font-size: var(--fs-meta) !important;
+  font-weight: var(--fw-regular) !important;
+  line-height: var(--lh-meta) !important;
+  color: var(--color-subtle);
 }
 
-/* Global spacing for all pages to minimize gap between header and content */
-.page-main, 
-.page-main.pa4, 
+/* --- Blog listing: per-post card title → h3 token -------------- */
+.blog-content article h1 {
+  font-size: var(--fs-h3) !important;
+  font-weight: var(--fw-medium) !important;
+  line-height: var(--lh-sub) !important;
+  color: var(--color-text) !important;
+}
+.blog-content article h1 a {
+  color: var(--color-text) !important;
+}
+
+/* --- Blog listing: excerpt text uses body color -------------- */
+.blog-content .f6,
+.blog-content article p {
+  color: var(--color-text);
+}
+
+/* Prevent page-level horizontal scroll. Long content (wide <pre>
+   blocks, oversized tables, embedded images) should scroll within
+   its own box — never push the whole page sideways. */
+html, body { overflow-x: hidden; }
+
+/* ---------- Universal code styling ----------
+ * One rule for inline <code> and <pre> blocks that applies on every
+ * page (blog, about, project, resume). Scoped blocks only need to
+ * override the specific bits they customize (colors, border-left).
+ * Horizontal scroll + touch momentum are always on for <pre>. */
+code {
+  font-size: var(--fs-code);
+  background: var(--surface-alt);
+  color: var(--color-text);
+  padding: 0.1em 0.35em;
+  border-radius: var(--radius-sm);
+}
+
+pre {
+  font-size: var(--fs-code);
+  line-height: 1.5;
+  /* !important overrides Hugo Chroma's inline style="background-color:#000" */
+  background: #2b2a33 !important;
+  color: #ffffff !important;
+  padding: 1em 1.2em;
+  margin: 0.8em 0;
+  border-radius: var(--radius-md);
+  overflow-x: auto;
+  -webkit-overflow-scrolling: touch;
+  /* Constrain to parent even when nested inside flex containers
+     like .step-card .step-body — without this, long commands can
+     expand the parent beyond the card's bounds. */
+  max-width: 100%;
+  min-width: 0;
+}
+
+/* Force every descendant inside <pre> to pure white — no syntax
+   highlighting tints, no OS theme leak. Pre blocks are intentionally
+   monochrome so the user's eye reads the command, not the color. */
+pre,
+pre * {
+  color: #ffffff !important;
+}
+
+/* Dark mode: INVERT the code block. Page is dark, make code blocks
+   LIGHT with DARK text. Chroma injects inline `style="color:..."` on
+   both <pre> and nested <span>s — every selector below has !important
+   to override every level of inline styling. */
+[data-theme="dark"] pre,
+[data-theme="dark"] .highlight pre,
+[data-theme="dark"] pre code,
+[data-theme="dark"] pre *,
+[data-theme="dark"] pre code *,
+[data-theme="dark"] pre span,
+[data-theme="dark"] pre span[style] {
+  background: transparent !important;
+  color: #1a1a1a !important;
+  opacity: 1 !important;
+}
+[data-theme="dark"] pre,
+[data-theme="dark"] .highlight pre {
+  background: #f5f5f7 !important;
+}
+[data-theme="dark"] pre::-webkit-scrollbar-track { background: rgba(0, 0, 0, 0.05); }
+[data-theme="dark"] pre::-webkit-scrollbar-thumb { background: #1a1a1a; }
+[data-theme="dark"] pre::-webkit-scrollbar-thumb:hover { background: #555; }
+[data-theme="dark"] pre { scrollbar-color: #1a1a1a rgba(0,0,0,0.05); }
+
+/* Visible thin scrollbar on <pre> so long commands are clearly
+   scrollable (default system scrollbars are often hover-only and
+   invisible on mobile). */
+pre::-webkit-scrollbar        { height: 8px; }
+pre::-webkit-scrollbar-track  { background: rgba(255, 255, 255, 0.1); }
+pre::-webkit-scrollbar-thumb  {
+  background: #ffffff;
+  border-radius: 4px;
+}
+pre::-webkit-scrollbar-thumb:hover { background: #e0e0e0; }
+pre { scrollbar-width: thin; scrollbar-color: #ffffff rgba(255,255,255,0.1); }
+
+pre code {
+  background: transparent;
+  color: inherit;
+  padding: 0;
+  font-size: inherit;
+  border-radius: 0;
+}
+
+/* --- Blog listing grid: force 2 columns on desktop (theme default
+ * is 3-col via .w-third-l). 1 column on mobile stays untouched.
+ * Also widen the gap between cards so they breathe. -- */
+@media (min-width: 60em) {
+  .blog-content article.w-third-l {
+    width: 50% !important;
+    padding-left: var(--s-4);  /* 24 */
+    padding-right: var(--s-4);
+  }
+}
+
+@media (min-width: 30em) and (max-width: 60em) {
+  .blog-content article.w-50-m {
+    padding-left: var(--s-3);  /* 16 */
+    padding-right: var(--s-3);
+  }
+}
+
+/* Remove the mobile `bb bw1` divider line between cards — the
+ * card spacing (mb4) is enough visual separation. */
+.blog-content article {
+  border-bottom: none !important;
+}
+
+/* ═══════════════════════════════════════════════════════════════════
+   §02 — UNIVERSAL LINK BEHAVIOR
+   No underline by default. On hover, a thin bar grows from the center
+   (same animation as the theme's top nav). Excludes `.absolute` (image
+   overlays) and `.btn-links` (buttons) to preserve their styling.
+   ═══════════════════════════════════════════════════════════════════ */
+@mixin animated-underline($offset: -0.05em, $height: 1px) {
+  position: relative;
+  text-decoration: none !important;
+  transition: color 0.2s ease;
+
+  &::after {
+    content: '';
+    position: absolute;
+    bottom: $offset;
+    left: 0;
+    right: 0;
+    margin: auto;
+    width: 0%;
+    height: $height;
+    background-color: currentColor;
+    pointer-events: none;
+    transition: width 0.3s ease;
+  }
+
+  &:hover::after { width: 100%; }
+}
+
+/* Kill the Tachyons `.underline` utility so it no longer forces a
+   constant underline — the animation below replaces it. */
+.underline,
+.underline-ns { text-decoration: none !important; }
+
+/* One selector list, three behaviors composed by the mixin.
+   Excludes: .absolute (image-overlay anchors), .btn-links (buttons),
+   .link (Tachyons chrome class used by social/nav icon anchors),
+   .cta-banner (self-styled), .glow (icon hover animation). */
+.site-links a,
+.blog-content article h1 a,
+.blog-content article a:not(.absolute):not(.btn-links):not(.link),
+.post-content .post-body a:not(.link):not(.btn-links):not(.cta-banner),
+.post-content .post-header a:not(.btn-links):not(.link),
+.page-body a:not(.link):not(.glow):not(.cta-banner),
+.home .action.text,
+.home .action.button,
+a.underline {
+  @include animated-underline;
+}
+
+/* Animated-underline target anchors that the theme sets to
+   `display: block` (post titles, home action link, etc.) — shrink
+   them back to inline-block so the ::after bar hugs the TEXT, not
+   the full block width. Inline and inline-block anchors are
+   unaffected. */
+.blog-content article h1 a.db,
+.blog-content article a.db:not(.absolute):not(.btn-links),
+.post-content .post-body a.db,
+.page-body a.db,
+.home .action.text,
+.home .action.button {
+  display: inline-block !important;
+}
+
+/* Nav links have `.ph2` (0.5rem) horizontal padding AND the theme
+   permanently sets `width: 85%` on the active link's underline. Both
+   fight the simple inset. Override with a transform-scale approach:
+   the bar fills the inset space (left:0.5rem → right:0.5rem) with
+   width:auto, then scales from 0 → 1 on hover/active. */
+.site-links a::after {
+  left: var(--s-2) !important;
+  right: var(--s-2) !important;
+  width: auto !important;
+  /* reset theme's `color: transparent` so currentColor inherits
+     the link's actual text color in both light and dark modes */
+  color: inherit !important;
+  background-color: currentColor !important;
+  transform: scaleX(0);
+  transform-origin: center;
+  transition: transform 0.3s ease !important;
+}
+
+.site-links a:hover::after,
+.site-links a.active::after {
+  width: auto !important;
+  transform: scaleX(1) !important;
+}
+
+/* --- work-item internals align to the scale -------------------- */
+.work-header strong {
+  font-size: var(--fs-body) !important;
+  font-weight: var(--fw-medium) !important;
+  color: var(--color-text);
+}
+.work-role {
+  font-size: var(--fs-body) !important;
+  line-height: var(--lh-body) !important;
+  color: var(--color-muted);
+}
+
+/* --- Tables / dt / legend: emphasis = medium ------------------- */
+.page-body > table th,
+.page-body > dl dt,
+form legend {
+  font-weight: var(--fw-medium) !important;
+}
+
+/* ═══════════════════════════════════════════════════════════════════
+   §03 — RESPONSIVE TOKEN OVERRIDES
+   Scale both TYPE and SPACING tokens down on tablet (<60em) and phone
+   (<40em). Every element that uses var(--fs-*) or var(--s-*) rescales
+   automatically — no per-element media queries needed anywhere else.
+   Small spacings (s-1, s-2, s-3 = 4/8/16) stay fixed since they're
+   already minimum-readable. Only the major page-level spacings shrink.
+   ═══════════════════════════════════════════════════════════════════ */
+@media (max-width: 60em) {
+  :root {
+    /* type */
+    --fs-display: 4rem;     /* 64 */
+    --fs-h1:      2rem;     /* 32 */
+    --fs-h2:      1.375rem; /* 22 */
+    --fs-h3:      1.125rem; /* 18 */
+    --fs-h4:      0.9375rem;/* 15 */
+    --fs-body:    0.9375rem;/* 15 */
+
+    /* spacing (only larger values shrink) */
+    --s-5:        1.5rem;   /* 32 → 24 — page edge */
+    --s-6:        2rem;     /* 48 → 32 — major section */
+    --s-7:        2.5rem;   /* 64 → 40 — hero gap / gutter */
+  }
+}
+
+@media (max-width: 40em) {
+  :root {
+    /* type */
+    --fs-display:     3rem;     /* 48 */
+    --fs-h1:          1.75rem;  /* 28 */
+    --fs-h2:          1.25rem;  /* 20 */
+    --fs-h3:          1.0625rem;/* 17 */
+    --fs-h4:          0.875rem; /* 14 */
+    --fs-eyebrow:     0.8125rem;/* 13 */
+    --fs-body:        0.9375rem;/* 15 */
+    --fs-meta:        0.8125rem;/* 13 */
+    --fs-instruction: 0.8125rem;/* 13 — callouts shrink on phone */
+    --fs-code:        0.8125rem;/* 13 — code shrinks on phone */
+
+    /* spacing — phone gets a tighter gutter and smaller section gaps */
+    --s-4:        1rem;     /* 24 → 16 — section */
+    --s-5:        1rem;     /* 32 → 16 — page edge */
+    --s-6:        1.5rem;   /* 48 → 24 — major section */
+    --s-7:        1.5rem;   /* 64 → 24 — gutter */
+  }
+}
+
+/* ═══════════════════════════════════════════════════════════════════
+   §04 — UNIVERSAL SPACING
+   Page padding, post-content fixes, sitewide h2 rhythm.
+   ═══════════════════════════════════════════════════════════════════ */
+
+/* Page padding (top / bottom) — every page, every route. */
+.page-main,
+.page-main.pa4,
 .page-main.ph4.pt4 {
-  padding-top: 2.5rem !important;
-  padding-bottom: 1rem !important;
+  padding-top: var(--s-5) !important;    /* 32 */
+  padding-bottom: var(--s-3) !important; /* 16 */
 }
 
-/* Consistent footer spacing */
+/* Post page: button-links block + post-body top padding (theme ships
+ * pt5 = 4rem on both, stacking to ~7rem of dead space above content). */
+.post-content .post-header > div.pt5 {
+  padding-top: var(--s-3) !important;    /* 16 */
+}
+
+.post-content .post-body.pt5 {
+  padding-top: var(--s-2) !important;    /* 8  */
+}
+
+/* Post subtitle h4 under post title. */
+.post-content .post-header h4 {
+  margin-bottom: var(--s-2) !important;  /* 8  */
+}
+
+/* First element inside .post-body has no top margin, so the image
+ * or first paragraph sits flush against the post-body padding. */
+.post-content .post-body > *:first-child {
+  margin-top: 0 !important;
+}
+
+/* H2 rhythm inside single-page bodies. First h2 is flush. */
+.post-content .post-body h2,
+.page-body h2 {
+  margin-top: var(--s-5) !important;     /* 32 */
+  margin-bottom: var(--s-2) !important;  /* 8  */
+}
+
+.post-content .post-body > h2:first-child,
+.post-content .post-body > div:first-child > h2:first-child {
+  margin-top: 0 !important;
+}
+
+/* ═══════════════════════════════════════════════════════════════════
+   §05 — CHROME (nav, social icons, X icon, footer)
+   ═══════════════════════════════════════════════════════════════════ */
+
+/* --- Nav links (header top): eyebrow token --- */
+.site-links a.link {
+  font-size: var(--fs-eyebrow) !important;
+  font-weight: var(--fw-medium) !important;
+  letter-spacing: 0.08em;
+  color: var(--color-text) !important;
+}
+
+/* --- Social icons: body-sized, with breathing room between them --- */
+.social-icon-links a {
+  font-size: var(--fs-body) !important;
+  margin-right: var(--s-4) !important;   /* 24 */
+}
+.social-icon-links a:last-child {
+  margin-right: 0 !important;
+}
+
+/* X (formerly Twitter) icon. Theme ships FontAwesome 5.15 which
+   predates this glyph, so we render it via a CSS mask with inline
+   SVG — uses currentColor, needs no font. */
+.fa-x-twitter,
+.fab.fa-x-twitter {
+  font-family: inherit !important;
+  width: 1em;
+  height: 1em;
+  display: inline-block;
+  vertical-align: -0.125em;
+  background-color: currentColor;
+  -webkit-mask: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 512 512'><path d='M389.2 48h70.6L305.6 224.2 487 464H345L233.7 318.6 106.5 464H35.8l164.9-188.5L26.8 48h145.6l100.5 132.9L389.2 48zM364.4 421.8h39.1L151.1 88h-42L364.4 421.8z'/></svg>") no-repeat center / contain;
+  mask: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 512 512'><path d='M389.2 48h70.6L305.6 224.2 487 464H345L233.7 318.6 106.5 464H35.8l164.9-188.5L26.8 48h145.6l100.5 132.9L389.2 48zM364.4 421.8h39.1L151.1 88h-42L364.4 421.8z'/></svg>") no-repeat center / contain;
+}
+.fa-x-twitter::before,
+.fab.fa-x-twitter::before {
+  content: none !important;
+}
+
+/* Footer spacing + font size — consistent across every page. */
 .site-footer {
-  padding-top: 0.5rem !important;
-  padding-bottom: 0.5rem !important;
-  padding-left: 2rem !important;
-  padding-right: 2rem !important;
+  padding-top: var(--s-2) !important;    /* 8  */
+  padding-bottom: var(--s-2) !important;
+  padding-left: var(--s-5) !important;   /* 32 */
+  padding-right: var(--s-5) !important;
+  font-size: var(--fs-micro) !important;
 }
 
-/* Fix for listing pages (Projects, Blog) that have an extra intro section */
+.site-footer .site-copyright,
+.site-footer .social-icon-links a {
+  font-size: var(--fs-micro) !important;
+}
+
+/* ═══════════════════════════════════════════════════════════════════
+   §06 — BLOG / PROJECT LISTING (both use `.blog-content` wrapper)
+   Grid layout + card title, excerpt, intro section.
+   (Per-post card title → h3, meta stylings are in §01.)
+   ═══════════════════════════════════════════════════════════════════ */
+
+/* Listing pages have an extra intro section above the grid. */
 .blog-intro {
   margin-top: 0 !important;
   padding-top: 0 !important;
@@ -109,10 +684,11 @@
   margin-top: 0 !important;
 }
 
-/* Align content exactly with the header logo */
+/* Align content exactly with the header logo. Uses --s-7 (64px)
+   because this is the page's horizontal gutter on desktop. */
 .site-header, .page-main {
-  padding-left: 4rem !important;
-  padding-right: 4rem !important;
+  padding-left: var(--s-7) !important;   /* 64 */
+  padding-right: var(--s-7) !important;
 }
 
 .page-content {
@@ -120,16 +696,23 @@
   padding-right: 0 !important;
 }
 
-/* About page - reduce header whitespace */
+/* ═══════════════════════════════════════════════════════════════════
+   §07 — ABOUT PAGE
+   Page header, main column fixes, sidebar (#profile), work items,
+   skill tags. Scoped to about page selectors (.page-header, #profile,
+   .about-*, .work-*).
+   ═══════════════════════════════════════════════════════════════════ */
+
+/* About page — reduce header whitespace */
 .page-header.mb5 {
-  margin-bottom: 3.5rem !important;
+  margin-bottom: var(--s-6) !important;  /* 48 */
   padding-bottom: 0 !important;
   border-bottom: none !important;
 }
 
 .page-header h1 {
   margin-top: 0 !important;
-  margin-bottom: 0.75rem !important;
+  margin-bottom: var(--s-2) !important;  /* 8 */
 }
 
 /* Pull main content up to align with sidebar — only on large screens */
@@ -147,7 +730,7 @@
 /* About Me heading */
 .page-body h2.about-main {
   margin-top: 0 !important;
-  margin-bottom: 0.75rem !important;
+  margin-bottom: var(--s-2) !important;  /* 8 */
 }
 
 /* Intro section — remove Tachyons pv3 vertical padding */
@@ -161,15 +744,10 @@
   padding-top: 0 !important;
 }
 
-/* Section headings (Work Experience, Education) — uniform spacing */
-.page-body h3 {
-  margin-top: 1.5rem !important;
-  margin-bottom: 0.75rem !important;
-}
-
-/* First h3 (Work Experience) — less margin since intro div boundary prevents collapse */
+/* About page h3 rhythm handled by universal h3 token rule.
+ * First h3 (Work Experience) — pull slightly up from intro div. */
 .page-body .pt3.measure-wide > h3:first-child {
-  margin-top: 0.25rem !important;
+  margin-top: var(--s-1) !important;  /* 4 */
 }
 
 /* About sidebar - avatar styling */
@@ -181,74 +759,62 @@
 
 /* Reduce gap between headings and content */
 #profile h4 {
-  margin-top: -0.25rem !important;
-  margin-bottom: 0.25rem !important;
+  margin-top: calc(var(--s-1) * -1) !important;  /* -4 */
+  margin-bottom: var(--s-1) !important;          /*  4 */
 }
 
 #profile h4#interests {
-  margin-top: 0.75rem !important;
+  margin-top: var(--s-2) !important;             /*  8 */
 }
 
-#profile h2 {
-  font-weight: 500 !important;
-}
-
-#profile h5 {
-  margin-bottom: 0.25rem !important;
-}
-
-.about-main {
-  margin-bottom: -0.5rem !important;
-  font-weight: 500 !important;
-}
-
-/* Social icon spacing */
-.social-icon-links a {
-  margin: 0 0.35rem;
-}
+/* #profile h2 weight is set by the universal h2 rule; only the
+   tighter bottom margin for h5 and the negative margin for
+   .about-main are page-specific. */
+#profile h5 { margin-bottom: var(--s-1) !important; }
+.about-main { margin-bottom: calc(var(--s-2) * -1) !important; }
 
 /* About sidebar card styling */
 #profile {
   background: linear-gradient(180deg, #fafafa 0%, #ffffff 100%);
   border-radius: 8px;
-  padding: 1rem !important;
+  padding: var(--s-3) !important;  /* 16 */
 }
 
 /* Skill tags */
 .about-tag {
   display: inline-block;
-  background: #f0f0f0;
-  color: #333;
-  padding: 0.25rem 0.75rem;
+  background: var(--surface-alt);
+  color: var(--color-text);
+  padding: var(--s-1) var(--s-2);  /* 4 8 */
   border-radius: 20px;
-  font-size: 0.85rem;
-  margin: 0.2rem 0.15rem;
-  font-weight: 500;
+  font-size: var(--fs-meta) !important;
+  font-weight: var(--fw-medium) !important;
+  margin: var(--s-1) 0.15rem;
   transition: background 0.2s;
 }
 
 .about-tag:hover {
-  background: #e0e0e0;
+  background: var(--border-soft);
 }
 
 /* Work experience items */
 .work-item {
-  padding: 0.75rem 0;
-  border-left: 3px solid #e0e0e0;
-  padding-left: 1rem;
-  margin-bottom: 0.75rem;
+  padding: var(--s-2) 0;             /* 8 */
+  padding-left: var(--s-3);          /* 16 */
+  border-left: var(--stroke-accent) solid var(--border-soft);
+  margin-bottom: var(--s-2);         /* 8 */
   transition: border-color 0.2s;
 }
 
 .work-item:hover {
-  border-left-color: #999;
+  border-left-color: var(--color-subtle);
 }
 
 .work-header {
   display: flex;
   align-items: baseline;
   flex-wrap: wrap;
-  gap: 0.5rem;
+  gap: var(--s-2);                   /* 8 */
 }
 
 .work-header strong {
@@ -256,29 +822,24 @@
 }
 
 .work-date {
-  font-size: 0.85rem;
-  color: #888;
-  font-weight: 400;
+  font-size: var(--fs-meta);
+  color: var(--color-subtle);
+  font-weight: var(--fw-regular);
 }
 
 .work-role {
   display: flex;
   align-items: baseline;
   justify-content: space-between;
-  font-size: 0.95rem;
-  color: #555;
-  padding-top: 0.25rem;
+  font-size: var(--fs-body);
+  color: var(--color-muted);
+  padding-top: var(--s-1);            /* 4 */
 }
 
-/* About page header */
-.page-header h1 {
-  font-size: 2.5rem !important;
-  line-height: 1.2;
-}
-
+/* About page header — subtitle description block */
 .page-header .pt2 {
-  font-size: 1.15rem;
-  color: #555;
+  font-size: var(--fs-body);
+  color: var(--color-muted);
   max-width: 600px;
 }
 
@@ -286,28 +847,33 @@
 /* blog list page */
 
  .blog-content .f6 {
-   font-size: 1.125rem;
+   font-size: var(--fs-body);
  }
- 
+
  footer .f7 {
    text-transform: uppercase;
    letter-spacing: 1.5pt;
    padding-top: 1em;
  }
- 
- 
+
+
  /* blog single page */
- 
+
  .post-content {
-   font-size: 1.125rem;
-   line-height: 1.6;
+   font-size: var(--fs-body);
+   line-height: var(--lh-body);
  }
+
+/* ═══════════════════════════════════════════════════════════════════
+   §08 — RESUME PAGE
+   Header layout, canvas background container, download button.
+   ═══════════════════════════════════════════════════════════════════ */
 
 /* Resume canvas container — matches main page width */
 .resume-canvas-container {
   position: relative;
   overflow: hidden;
-  padding: 2rem 0;
+  padding: var(--s-5) 0;   /* 32 */
 }
 
 .supply-chain-canvas,
@@ -326,7 +892,7 @@
   z-index: 1;
 }
 
-@media (max-width: 768px) {
+@media (max-width: 48em) {
   .data-network-canvas {
     display: none;
   }
@@ -334,34 +900,29 @@
 
 /* Resume page */
 .resume-page {
-  padding-bottom: 3rem;
+  padding-bottom: var(--s-6);          /* 48 */
 }
 
 .resume-page h1 {
-  margin-bottom: 0.25rem;
+  margin-bottom: var(--s-1);           /* 4 */
 }
 
 .resume-page h2 {
-  border-bottom: 2px solid #e0e0e0;
-  padding-bottom: 0.4rem;
-  margin-top: 1.5rem !important;
-  margin-bottom: 0.75rem !important;
+  margin-top: var(--s-4) !important;   /* 24 */
+  margin-bottom: var(--s-2) !important;/* 8 */
 }
 
-@media (max-width: 768px) {
+@media (max-width: 48em) {
+  /* Responsive h1/h2 sizes come from :root token media queries — no
+     per-element overrides needed. Keep only layout tweaks here. */
   .page-header h1,
   .resume-page h1 {
-    font-size: 1.6rem !important;
     margin-top: 0;
   }
 
   .resume-header {
     flex-direction: column;
-    gap: 0.5rem;
-  }
-
-  .resume-page h2 {
-    font-size: 1.1rem !important;
+    gap: var(--s-2);                   /* 8 */
   }
 }
 
@@ -370,62 +931,110 @@
   align-items: baseline;
   justify-content: space-between;
   flex-wrap: wrap;
-  gap: 1rem;
+  gap: var(--s-3);                     /* 16 */
 }
 
-.resume-download {
-  font-size: 0.85rem;
-  padding: 0.4rem 1rem;
-  border: 1.5px solid #ccc;
-  border-radius: 6px;
+/* Shared button SHAPE — used by both .resume-download and .btn-links
+   (GitHub / Setup Guide / etc. rendered by the theme's link buttons).
+   Only shape properties (padding, border, radius, size) — NOT color. */
+.resume-download,
+.btn-links {
+  font-size: var(--fs-meta) !important;
+  padding: var(--s-2) var(--s-3) !important;
+  border: 1.5px solid var(--border-soft) !important;
+  border-radius: var(--radius-md) !important;
+  background: transparent !important;
   text-decoration: none !important;
-  transition: background 0.2s, border-color 0.2s;
+  transition: background 0.2s ease, border-color 0.2s ease, color 0.2s ease;
   white-space: nowrap;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4em;
 
   &:hover {
-    background: #f5f5f5;
-    border-color: #999;
+    background: var(--surface-alt) !important;
+    border-color: var(--color-subtle) !important;
   }
 }
 
+/* Light-mode text color for both buttons. Dark mode splits:
+ *   .btn-links → forced to --color-text (see dark-mode block below)
+ *   .resume-download → inherits theme's --dm-accent (palette red/purple) */
+.page-main .resume-download,
+.page-main .btn-links {
+  color: var(--color-text) !important;
+}
+
 .resume-bullets {
-  margin: 0.5rem 0 0;
-  padding-left: 1.25rem;
+  margin: var(--s-2) 0 0;              /* 8 */
+  padding-left: var(--s-3);            /* 16 */
   list-style-type: square;
 
   li {
-    margin-bottom: 0.5rem;
+    margin-bottom: var(--s-2);         /* 8 */
   }
 }
 
 .resume-skills,
 .resume-certs {
-  margin: 0.5rem 0;
+  margin: var(--s-2) 0;                /* 8 */
 }
 
 .resume-projects p {
-  margin: 0.5rem 0;
+  margin: var(--s-2) 0;                /* 8 */
 }
 
-[data-theme="dark"] {
-  .resume-page h2 {
-    border-bottom-color: var(--dm-border) !important;
-  }
+/* Dark-mode buttons: ALL action buttons (Download PDF on resume,
+   GitHub + Setup Guide on project pages) use the palette ACCENT color.
+   Prefix with `html` to push specificity ABOVE the theme's deepest
+   matching rule — theme uses `[data-theme=dark] .page-main ... a.btn-links`
+   (0,4,2), so `html[data-theme=dark] .page-main ... a.btn-links` gives
+   us (0,4,3), which beats it regardless of source order. */
+html[data-theme="dark"] .page-main .post-header a.btn-links,
+html[data-theme="dark"] .page-main article footer a.btn-links,
+html[data-theme="dark"] .page-main .resume-download,
+html[data-theme="dark"] .page-main a.resume-download,
+html[data-theme="dark"] .page-main .btn-links,
+html[data-theme="dark"] .page-main a.btn-links {
+  color: var(--dm-accent) !important;
+  border-color: var(--dm-accent) !important;
+}
 
-  .resume-download {
-    border-color: var(--dm-border) !important;
-    color: var(--dm-text) !important;
+html[data-theme="dark"] .page-main .post-header a.btn-links i,
+html[data-theme="dark"] .page-main article footer a.btn-links i,
+html[data-theme="dark"] .page-main .resume-download i,
+html[data-theme="dark"] .page-main .btn-links i {
+  color: var(--dm-accent) !important;
+}
 
-    &:hover {
-      background: var(--dm-elevated) !important;
-    }
-  }
+html[data-theme="dark"] .page-main .post-header a.btn-links:hover,
+html[data-theme="dark"] .page-main article footer a.btn-links:hover,
+html[data-theme="dark"] .page-main .resume-download:hover,
+html[data-theme="dark"] .page-main a.resume-download:hover,
+html[data-theme="dark"] .page-main .btn-links:hover,
+html[data-theme="dark"] .page-main a.btn-links:hover {
+  /* 10% tint of the active palette accent (works for any dark palette) */
+  background: color-mix(in srgb, var(--dm-accent) 10%, transparent) !important;
+  border-color: var(--dm-accent) !important;
+  color: var(--dm-accent) !important;
 }
 
 
-// ===== Dynamic Animations =====
+/* ═══════════════════════════════════════════════════════════════════
+   §09 — DARK MODE (continues in §10 inline, and throughout file)
+   The [data-theme="dark"] block immediately above handles resume page.
+   Other dark overrides are interleaved with their light counterparts.
+   Color tokens (--color-*) auto-remap via §00 — most elements need no
+   per-element dark rule.
+   ═══════════════════════════════════════════════════════════════════ */
 
-// -- Fade-in-up (homepage load) --
+
+/* ═══════════════════════════════════════════════════════════════════
+   §10 — ANIMATIONS & KEYFRAMES
+   Fade-in-up, scroll reveal, page transitions, prefers-reduced-motion.
+   ═══════════════════════════════════════════════════════════════════ */
+
+/* -- Fade-in-up (homepage load) -- */
 @keyframes fadeInUp {
   from {
     opacity: 0;
@@ -510,7 +1119,7 @@
   background: 0 0;
   cursor: pointer;
   padding: 0;
-  margin-left: 0.75rem;
+  margin-left: var(--s-2);   /* 8 — theme-toggle gap from nav */
   color: inherit;
   vertical-align: middle;
   display: inline-flex;
@@ -613,10 +1222,8 @@
     color: var(--dm-text) !important;
   }
 
-  .site-links a::after,
-  .site-links a.active::after {
-    background-color: var(--dm-accent) !important;
-  }
+  /* .site-links a::after bar color uses var(--color-text) which
+     auto-remaps to var(--dm-text) in dark mode via §00 tokens. */
 
   .site-brand span {
     color: var(--dm-text) !important;
@@ -664,10 +1271,9 @@
     color: var(--dm-toggle);
   }
 
-  pre, code {
-    background-color: var(--dm-elevated) !important;
-    color: var(--dm-text) !important;
-  }
+  /* inline `code` auto-inherits --surface-alt = --dm-elevated via the
+     dark-mode token remap; `pre` stays dark in both modes. No override
+     needed. */
 
   .social-icon-links a {
     color: var(--dm-muted) !important;
@@ -730,9 +1336,9 @@
   background: none;
   border: none;
   cursor: pointer;
-  padding: 0.5rem;
+  padding: var(--s-2);            /* 8 */
   position: absolute;
-  right: 2rem;
+  right: var(--s-5);               /* 32 */
   top: 50%;
   transform: translateY(-50%);
   z-index: 101;
@@ -776,8 +1382,8 @@
     right: 0;
     width: auto;
     min-width: 180px;
-    background: #ffffff;
-    padding: 1rem 1.5rem 1.5rem;
+    background: var(--surface);
+    padding: var(--s-3) var(--s-4) var(--s-4);  /* 16 24 24 */
     text-align: right;
     z-index: 100;
     border-radius: 0 0 0 8px;
@@ -790,7 +1396,7 @@
 
   .site-links a {
     display: block !important;
-    padding: 0.6rem 0 !important;
+    padding: var(--s-2) 0 !important;   /* 8 */
 
     &::after,
     &.active::after {
@@ -799,7 +1405,7 @@
   }
 
   .theme-toggle {
-    margin-top: 0.5rem;
+    margin-top: var(--s-2);              /* 8 */
     margin-left: 0;
   }
 }
@@ -810,16 +1416,15 @@
   }
 }
 
-/* Mobile responsive */
-@media (max-width: 768px) {
-  /* Homepage — stack image and text with spacing */
+/* Tablet & below: home hero stacks image over text. */
+@media (max-width: 48em) {
   .home .page-content .flex-ns {
     flex-direction: column;
   }
 
   .home .page-content img {
     max-width: 70%;
-    margin: 0 auto 1.5rem;
+    margin: 0 auto var(--s-4);           /* 24 */
   }
 
   .home .page-content .w-50-ns {
@@ -828,19 +1433,16 @@
   }
 }
 
-@media (max-width: 480px) {
-  .site-header, .page-main {
-    padding-left: 2rem !important;
-    padding-right: 2rem !important;
-  }
-
+/* Phone: tighter hero image, work items stack vertically. Page
+   gutter is already handled by the responsive --s-7 token. */
+@media (max-width: 30em) {
   .home .page-content img {
     max-width: 85%;
   }
 
   .work-header {
     flex-direction: column;
-    gap: 0.15rem;
+    gap: var(--s-1);                     /* 4 */
   }
 
   .work-header strong {
@@ -849,6 +1451,847 @@
 
   .work-role {
     flex-wrap: wrap;
-    gap: 0.25rem;
+    gap: var(--s-1);                     /* 4 */
   }
+}
+
+
+/* ═══════════════════════════════════════════════════════════════════
+   §11 — REUSABLE COMPONENTS
+   Generic patterns that any page (project, blog post, about) can use.
+   Style is driven by the `--brand-*` slot — set the slot at the page
+   root and the components adopt the brand automatically.
+   ═══════════════════════════════════════════════════════════════════ */
+
+/* ---------- .card (base = horizontal row layout) ----------
+ * Default is: icon LEFT, title + body RIGHT inside a wrapper <div>.
+ * This is the most reusable pattern across project pages.
+ *
+ * Expected markup:
+ *   <div class="card">
+ *     <i class="fas fa-..."></i>
+ *     <div>
+ *       <strong>Title</strong>
+ *       <p>Description.</p>
+ *     </div>
+ *   </div>
+ *
+ * Modifiers:
+ *   .card--feature  — stacked layout (icon on top, then title, then body)
+ *   .card--quote    — soft-tinted with a fa-quote-left accent
+ */
+.card {
+  display: flex;
+  gap: var(--gap-card);
+  padding: var(--pad-card);
+  background: var(--surface);
+  border: 1px solid var(--border-soft);
+  border-radius: var(--radius-md);
+  box-shadow: var(--shadow-1);
+  transition: box-shadow 0.15s ease, border-color 0.15s ease;
+
+  &:hover {
+    box-shadow: var(--shadow-2);
+    border-color: var(--brand-border);
+  }
+
+  > i,
+  .card__icon {
+    flex-shrink: 0;
+    width: 2.2em;
+    height: 2.2em;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: var(--brand-soft);
+    color: var(--brand-accent);
+    border-radius: var(--radius-md);
+    font-size: var(--fs-em-sm);
+  }
+
+  > div { flex: 1; min-width: 0; }
+
+  strong {
+    display: block;
+    font-size: var(--fs-em-sm);
+    color: var(--color-text);
+    margin-bottom: 0.25em;
+  }
+
+  p {
+    margin: 0 !important;
+    font-size: var(--fs-em-xs) !important;
+    line-height: 1.55 !important;
+    color: var(--color-subtle);
+  }
+
+  /* Feature variant — stacked layout (icon on top, title + body below).
+     Expected markup:
+       <div class="card card--feature">
+         <div class="card__icon"><i/></div>
+         <h3>Title</h3>
+         <p>Body.</p>
+       </div>  */
+  &.card--feature {
+    display: block;
+    padding: var(--pad-card-lg);
+    border-radius: var(--radius-lg);
+
+    &:hover {
+      transform: translateY(-2px);
+      box-shadow: var(--shadow-3);
+    }
+
+    .card__icon {
+      width: 2.6em;
+      height: 2.6em;
+      margin-bottom: 0.9em;
+      border-radius: var(--radius-lg);
+      font-size: var(--fs-em-md);
+    }
+
+    > h3,
+    .card__title {
+      margin: 0 0 0.5em 0 !important;
+      font-size: var(--fs-em-md) !important;
+      color: var(--color-text);
+      display: block;
+    }
+
+    > p,
+    .card__body {
+      font-size: var(--fs-em-sm) !important;
+      line-height: 1.6 !important;
+    }
+  }
+
+  /* Quote variant — same flex layout as the row-style card, so the
+     gap between icon and text matches Common Use Cases exactly.
+     No more absolute positioning + overlap. */
+  &.card--quote {
+    display: flex;
+    gap: var(--gap-card);
+    align-items: flex-start;
+    padding: var(--pad-card);
+    background: linear-gradient(135deg, var(--brand-soft) 0%, var(--surface) 100%);
+    border-color: var(--brand-border);
+    box-shadow: 0 1px 3px rgba(var(--brand-accent-rgb), 0.05);
+
+    i.fa-quote-left {
+      flex-shrink: 0;
+      color: var(--brand-accent);
+      opacity: 0.5;
+      font-size: 1.25em;
+      line-height: 1.2;
+    }
+
+    p {
+      margin: 0 !important;
+      flex: 1;
+      min-width: 0;
+      font-style: italic;
+      color: var(--color-muted);
+      font-size: var(--fs-em-sm) !important;
+      line-height: 1.5 !important;
+    }
+  }
+}
+
+/* ---------- .card-grid ----------
+ * Responsive auto-fit grid. Default minimum width (320px) suits the
+ * row-layout card; modifiers narrow it for other card shapes. */
+.card-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+  gap: 1.1em;
+  margin: 1.5em 0 !important;
+
+  &.card-grid--feature {
+    grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  }
+
+  &.card-grid--quote {
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    gap: 1em;
+  }
+}
+
+/* ---------- .cta-banner ----------
+ * In-page anchor prompt — "jump to X section below". Used on project
+ * pages to pull readers down to the install guide before they bounce.
+ * Brand-tinted, reads as an action not just a link. */
+.cta-banner {
+  display: flex !important;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--gap-card);
+  margin: var(--s-5) 0 var(--s-3);
+  padding: var(--pad-card);
+  background: var(--brand-soft);
+  border: 1px solid var(--brand-border);
+  border-radius: var(--radius-md);
+  color: var(--color-text) !important;
+  text-decoration: none !important;
+  transition: background 0.2s ease, transform 0.2s ease, box-shadow 0.2s ease;
+
+  &:hover {
+    background: var(--brand-soft);
+    transform: translateY(-1px);
+    box-shadow: 0 4px 12px rgba(var(--brand-accent-rgb), 0.15);
+  }
+
+  /* Disable the universal link-underline animation for this element. */
+  &::after { display: none !important; }
+
+  .cta-banner__label {
+    display: flex;
+    align-items: center;
+    gap: 0.6em;
+    font-size: var(--fs-em-sm);
+    line-height: 1.4;
+
+    i {
+      color: var(--brand-accent);
+      font-size: var(--fs-em-md);
+    }
+
+    strong {
+      color: var(--color-text);
+      font-weight: var(--fw-medium);
+      margin-right: 0.2em;
+    }
+  }
+
+  .cta-banner__arrow {
+    flex-shrink: 0;
+    color: var(--brand-accent);
+    font-size: var(--fs-em-md);
+    transition: transform 0.2s ease;
+  }
+
+  &:hover .cta-banner__arrow {
+    transform: translateY(2px);
+  }
+}
+
+/* ---------- .section-heading ----------
+ * Major section divider: icon + text, accent underline.
+ * Selector is scoped under .post-body so it overrides the universal
+ * h2 margin rule (which has higher specificity than a flat class). */
+.post-body h2.section-heading,
+.page-body h2.section-heading,
+h2.section-heading,
+.section-heading {
+  margin-top: 2em !important;
+  margin-bottom: 0.6em !important;
+  color: var(--color-text) !important;
+  display: flex;
+  align-items: center;
+  gap: 0.55em;
+  text-transform: none !important;
+}
+
+.section-heading i {
+  color: var(--brand-accent);
+  font-size: 0.78em;
+}
+
+/* ---------- .callout ----------
+ * Inline tinted info box. Default is "info" (brand-tinted).
+ * Variants: .callout-info, .callout-tip, .callout-warning,
+ * .callout-danger, .callout-note — matches the shortcode template
+ * that renders <div class="callout callout-{type}">. */
+.callout {
+  margin: var(--margin-block);
+  padding: var(--pad-card);
+  border-radius: var(--radius-md);
+  border-left: var(--stroke-accent) solid var(--brand-accent);
+  background: var(--brand-soft);
+  color: var(--color-muted);
+  font-size: var(--fs-instruction);
+  line-height: 1.6;
+
+  /* Force instruction size on nested <p> too — the universal
+     .post-content p rule sets 16px body by default; override it. */
+  p, li {
+    font-size: var(--fs-instruction) !important;
+    line-height: 1.6 !important;
+  }
+
+  strong {
+    color: var(--brand-text);
+    font-weight: 700;
+  }
+
+  .callout-title {
+    font-weight: 700;
+    margin-bottom: 0.4em;
+    color: var(--color-text);
+
+    i { margin-right: 0.35em; }
+  }
+
+  .callout-body {
+    > *:first-child { margin-top: 0 !important; }
+    > *:last-child  { margin-bottom: 0 !important; }
+  }
+
+  &.callout-info    { background: #f6fafd; border-left-color: var(--brand-accent); }
+  &.callout-note    { background: #eef4fb; border-left-color: #3b82c4; .callout-title { color: #2a6aa8; } }
+  &.callout-tip     { background: #eef9f1; border-left-color: #3ea867; .callout-title { color: #2a7a4a; } }
+  &.callout-warning { background: #fdf6e3; border-left-color: #d4a017; .callout-title { color: #95731a; } }
+  &.callout-danger  { background: #fbecec; border-left-color: #c0392b; .callout-title { color: #932a1f; } }
+}
+
+/* ---------- Dark-mode callouts ----------
+ * Each variant gets: a translucent accent-tinted background, a
+ * SATURATED border-left (full-opacity accent so it pops on dark),
+ * and a LIGHTENED title color with proper contrast vs the tint.
+ * All variants read with the same confidence as light mode. */
+[data-theme="dark"] {
+  .callout,
+  .callout-info {
+    background: rgba(var(--brand-accent-rgb), 0.14);
+    border-left-color: var(--brand-accent) !important;
+    strong { color: #8fc2e9; }
+  }
+  .callout-note {
+    background: rgba(59, 130, 196, 0.14);
+    border-left-color: #5aa3da !important;
+    .callout-title { color: #8fc2e9; }
+  }
+  .callout-tip {
+    background: rgba(62, 168, 103, 0.14);
+    border-left-color: #52c97f !important;
+    .callout-title { color: #7ddba0; }
+  }
+  .callout-warning {
+    background: rgba(212, 160, 23, 0.14);
+    border-left-color: #e8b934 !important;
+    .callout-title { color: #e8c560; }
+  }
+  .callout-danger {
+    background: rgba(192, 57, 43, 0.14);
+    border-left-color: #d9584b !important;
+    .callout-title { color: #e88b82; }
+  }
+}
+
+
+/* ═══════════════════════════════════════════════════════════════════
+   §12 — PROJECT: ANAPLAN MCP (scoped brand + page-specific bits)
+   Self-contained overrides for the Anaplan MCP project page. Uses the
+   generic components in §11 with a page-scoped brand slot. OS-picker
+   and auth-picker styling are kept scoped here (not yet generalized).
+   ═══════════════════════════════════════════════════════════════════ */
+
+/* Anaplan MCP brand slot — scoped to the page root + the legacy
+   .page-intro / .setup-guide wrappers so existing markup still works. */
+.project--anaplan-mcp,
+.page-intro,
+.setup-guide {
+  --brand-accent:     #0075CA;
+  --brand-accent-rgb: 0, 117, 202;
+  --brand-soft:       #e6f2fb;
+  --brand-border:     #b8dbf0;
+  --brand-text:       #005591;
+}
+
+/* Dark-mode brand remap: light blue tints become translucent accent
+   blues so cards, callouts, and query boxes stay readable on a dark
+   page instead of glaring as bright rectangles. */
+[data-theme="dark"] .project--anaplan-mcp,
+[data-theme="dark"] .page-intro,
+[data-theme="dark"] .setup-guide {
+  --brand-soft:   rgba(0, 117, 202, 0.15);
+  --brand-border: rgba(0, 117, 202, 0.35);
+  --brand-text:   #7fb8e4;   /* lighter blue for strong/emphasis text */
+}
+
+/* Anaplan MCP project overview (top half of the page) */
+.page-intro {
+  h2 {
+    text-transform: none !important;
+    letter-spacing: 0.02em;
+    color: var(--color-text);
+  }
+
+  h3 {
+    text-transform: none !important;
+    color: var(--color-text);
+  }
+
+  /* Inline code inherits universal padding/size; only recolor with brand. */
+  code {
+    background: var(--brand-soft);
+    color: var(--brand-text);
+  }
+}
+
+/* Installation heading, install-intro callout — replaced by
+   .section-heading and .callout .callout-info in §11. */
+
+/* ===========================================================
+ * Anaplan MCP setup guide
+ * =========================================================== */
+
+/* Reset top/bottom margin on the first/last children of a container. */
+@mixin flush-edges {
+  > *:first-child { margin-top: 0 !important; }
+  > *:last-child  { margin-bottom: 0 !important; }
+}
+
+/* Per-OS theme map: { slug: (accent, accent-rgb, bg, bg-hover, border, text, code-tint, code-color) } */
+$os-themes: (
+  win: (#0078D4, "0, 120, 212",   #E8F2FC, #D4E7FA, #BBDEFB, #01579B, #EDF4FC, #0E5A9E),
+  mac: (#86868B, "134, 134, 139", #F5F5F7, #EAEAEC, #D2D2D7, #424245, #F0F0F2, #515154),
+  lin: (#E95420, "233, 84, 32",   #FFF4EE, #FFE5D5, #FFCFB2, #BF360C, #FFF0E6, #C34214),
+);
+
+@each $slug, $t in $os-themes {
+  body:has(##{"os-global-" + $slug}:checked) .setup-guide {
+    --os-accent:       #{nth($t, 1)};
+    --os-accent-rgb:   #{nth($t, 2)};
+    --os-bg:           #{nth($t, 3)};
+    --os-bg-hover:     #{nth($t, 4)};
+    --os-border:       #{nth($t, 5)};
+    --os-text:         #{nth($t, 6)};
+    --os-code-tint:    #{nth($t, 7)};
+    --os-code-color:   #{nth($t, 8)};
+  }
+
+  /* Dark mode: accent stays the same, but backgrounds/text invert.
+     Use translucent accent-tints for surfaces (so cards/tables are
+     clearly themed without glaring) and the accent itself for text
+     (brightly readable on dark surfaces). */
+  [data-theme="dark"] body:has(##{"os-global-" + $slug}:checked) .setup-guide {
+    --os-bg:           rgba(#{nth($t, 2)}, 0.18);
+    --os-bg-hover:     rgba(#{nth($t, 2)}, 0.28);
+    --os-border:       rgba(#{nth($t, 2)}, 0.45);
+    --os-text:         #{nth($t, 1)};
+    --os-code-tint:    rgba(#{nth($t, 2)}, 0.22);
+    --os-code-color:   #{nth($t, 1)};
+  }
+}
+
+.setup-guide {
+  /* h2/h3/body inherit site-wide sizes. Only structural/visual deltas stay here. */
+  h2 {
+    text-transform: none !important;
+    letter-spacing: 0.02em;
+    color: var(--color-text);
+  }
+
+  h3 {
+    margin-top: 1.5em !important;
+    text-transform: none !important;
+    color: var(--color-muted);
+  }
+
+  /* Wrap tables in a scrollable container on small screens so long
+     monospaced variable names don't force other columns into 2-word
+     lines. Desktop keeps the full-width collapsed layout. */
+  .table-scroll,
+  table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 1.5em 0 !important;
+    font-size: var(--fs-em-sm);
+    border: 1px solid var(--border-soft) !important;
+
+    th, td {
+      padding: 0.7em 0.9em !important;
+      text-align: left;
+      border-bottom: 1px solid var(--border-soft);
+      vertical-align: top;
+      font-size: var(--fs-em-sm) !important;
+    }
+
+    th {
+      background: var(--os-bg);
+      color: var(--os-text);
+      font-weight: 700;
+      border-bottom: 2px solid var(--os-border);
+      text-transform: none !important;
+      letter-spacing: 0;
+      transition: background 0.25s ease, color 0.25s ease, border-color 0.25s ease;
+    }
+
+    tr:hover td {
+      background: var(--os-bg-hover);
+      transition: background 0.2s ease;
+    }
+  }
+
+  /* On phone / small tablet, let tables scroll horizontally instead of
+     cramming columns into thin strips. Wrap the <table> in display:
+     block + overflow-x:auto so the natural column widths are preserved
+     and the user can swipe sideways to see the rest. */
+  @media (max-width: 48em) {
+    table {
+      display: block;
+      overflow-x: auto;
+      -webkit-overflow-scrolling: touch;
+      white-space: nowrap;
+      border: none !important;
+    }
+    table th,
+    table td {
+      white-space: normal;  /* cells themselves can still wrap text */
+    }
+  }
+
+  /* Inline code + pre inherit universal styling; only OS-themed bits
+     live here. */
+  code {
+    background: var(--os-code-tint);
+    color: var(--os-code-color);
+    transition: background 0.25s ease, color 0.25s ease;
+  }
+
+  pre {
+    border-left: var(--stroke-accent) solid var(--os-accent);
+  }
+}
+
+/* Step cards */
+.step-card {
+  display: flex;
+  align-items: flex-start;
+  gap: var(--gap-card);
+  margin: var(--margin-block);
+  padding: var(--pad-card);
+  background: var(--surface);
+  border: 1px solid var(--border-soft);
+  border-left: var(--stroke-accent) solid var(--os-accent);
+  border-radius: var(--radius-md);
+  box-shadow: var(--shadow-1);
+  transition: border-color 0.25s ease;
+
+  .step-num {
+    flex-shrink: 0;
+    min-width: 2.6em;
+    height: 2.6em;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0 0.6em;
+    background: var(--os-accent);
+    color: #fff;
+    font-weight: 700;
+    font-size: 0.95em;
+    border-radius: 50px;
+    transition: background 0.25s ease;
+  }
+
+  .step-body {
+    flex: 1 1 0;         /* basis 0 so the column doesn't grow on wide
+                            content; children (pre) can't push it out */
+    min-width: 0;
+    max-width: 100%;
+    overflow: hidden;    /* wide <pre> blocks scroll internally via
+                            their own overflow-x: auto */
+    @include flush-edges;
+  }
+
+  .step-title {
+    margin: 0 0 0.5em 0 !important;
+    font-size: 1.05em !important;
+    font-weight: 700 !important;
+    text-transform: none !important;
+    color: var(--color-text);
+  }
+}
+
+/* Callout base + variants live in §11 as a generic reusable component. */
+
+/* OS selector and blocks */
+.os-global-radio,
+.auth-global-radio {
+  position: absolute;
+  opacity: 0;
+  pointer-events: none;
+}
+
+.os-selector {
+  margin: 1.5em 0 2em;
+  padding: 0.8em 1em;
+  background: var(--surface);
+  border: 1px solid var(--border-soft);
+  border-radius: var(--radius-md);
+  box-shadow: var(--shadow-1);
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 0.8em;
+
+  .os-selector-label {
+    font-size: 0.9em;
+    font-weight: 700;
+    color: var(--color-subtle);
+    margin-right: 0.3em;
+  }
+
+  .os-selector-choices {
+    display: flex;
+    gap: 0.5em;
+    flex-wrap: wrap;
+
+    label {
+      padding: 0.45em 1em;
+      border: 1px solid var(--border-soft);
+      border-radius: 50px;
+      background: var(--surface-alt);
+      color: var(--color-subtle);
+      cursor: pointer;
+      font-weight: 700;
+      font-size: 0.9em;
+      transition: all 0.15s ease;
+      display: inline-flex;
+      align-items: center;
+      gap: 0.4em;
+
+      &:hover {
+        background: var(--brand-soft);
+        border-color: var(--brand-border);
+      }
+    }
+  }
+}
+
+/* OS pill: per-OS brand color for the selector label (active + icon tint) */
+@each $slug, $t in $os-themes {
+  $id: "os-global-" + $slug;
+  $color: nth($t, 1);
+
+  .os-selector-choices label[for="#{$id}"] i { color: $color; }
+
+  ##{$id}:checked ~ .os-selector {
+    .os-selector-choices label[for="#{$id}"] {
+      background: $color !important;
+      color: #fff !important;
+      border-color: $color !important;
+      box-shadow: 0 2px 6px rgba($color, 0.3);
+
+      i { color: #fff; }
+    }
+  }
+}
+
+.os-block {
+  display: none;
+  @include flush-edges;
+}
+
+/* OS-specific content blocks: show when matching OS is selected,
+   with subtle accent using the themed OS color */
+#os-global-win:checked ~ .os-block[data-os~="win"],
+#os-global-win:checked ~ * .os-block[data-os~="win"],
+#os-global-mac:checked ~ .os-block[data-os~="mac"],
+#os-global-mac:checked ~ * .os-block[data-os~="mac"],
+#os-global-lin:checked ~ .os-block[data-os~="lin"],
+#os-global-lin:checked ~ * .os-block[data-os~="lin"] {
+  display: block;
+  margin: 0.4em 0;
+}
+
+/* Auth selector and blocks */
+.auth-global-radio {
+  position: absolute;
+  opacity: 0;
+  pointer-events: none;
+}
+
+.auth-selector {
+  margin: 2em 0 1.5em;
+  padding: 1em 1.2em;
+  background: linear-gradient(135deg, rgba(var(--os-accent-rgb), 0.06) 0%, var(--surface) 100%);
+  border: 1px solid var(--os-border);
+  border-radius: var(--radius-md);
+  box-shadow: 0 1px 4px rgba(var(--os-accent-rgb), 0.06);
+  transition: background 0.25s ease, border-color 0.25s ease;
+
+  .auth-selector-label {
+    font-size: 0.9em;
+    font-weight: 700;
+    color: var(--color-subtle);
+    margin-bottom: 0.6em;
+  }
+
+  .auth-selector-choices {
+    display: flex;
+    gap: 0.5em;
+    flex-wrap: wrap;
+
+    label {
+      padding: 0.55em 1.1em;
+      border: 1px solid var(--os-border);
+      border-radius: 50px;
+      background: var(--surface);
+      color: var(--color-subtle);
+      cursor: pointer;
+      font-weight: 700;
+      font-size: 0.92em;
+      transition: all 0.15s ease;
+      display: inline-flex;
+      align-items: center;
+      gap: 0.45em;
+
+      .auth-rec {
+        font-size: 0.72em;
+        padding: 0.2em 0.6em;
+        background: var(--os-bg);
+        color: var(--os-text);
+        border-radius: 50px;
+        letter-spacing: 0.05em;
+        text-transform: uppercase;
+        font-weight: 700;
+      }
+
+      &:hover {
+        background: var(--os-bg);
+        border-color: var(--os-accent);
+      }
+    }
+  }
+}
+
+#auth-global-oauth:checked ~ .auth-selector .auth-selector-choices label[for="auth-global-oauth"],
+#auth-global-cert:checked ~ .auth-selector .auth-selector-choices label[for="auth-global-cert"],
+#auth-global-basic:checked ~ .auth-selector .auth-selector-choices label[for="auth-global-basic"] {
+  background: var(--os-accent) !important;
+  color: #fff !important;
+  border-color: var(--os-accent) !important;
+  box-shadow: 0 2px 6px rgba(var(--os-accent-rgb), 0.3);
+
+  /* The RECOMMENDED badge inside the selected pill.
+     Light mode: white bg + accent text (reads as a chip on orange pill).
+     Dark mode: dark bg + white text (higher contrast against bright pill). */
+  .auth-rec {
+    background: #fff !important;
+    color: var(--os-accent) !important;
+  }
+}
+
+[data-theme="dark"] {
+  #auth-global-oauth:checked ~ .auth-selector .auth-selector-choices label[for="auth-global-oauth"],
+  #auth-global-cert:checked ~ .auth-selector .auth-selector-choices label[for="auth-global-cert"],
+  #auth-global-basic:checked ~ .auth-selector .auth-selector-choices label[for="auth-global-basic"] {
+    .auth-rec {
+      background: rgba(0, 0, 0, 0.5) !important;
+      color: #fff !important;
+    }
+  }
+}
+
+.auth-block {
+  display: none;
+  @include flush-edges;
+}
+
+#auth-global-oauth:checked ~ .auth-block[data-auth~="oauth"],
+#auth-global-oauth:checked ~ * .auth-block[data-auth~="oauth"],
+#auth-global-cert:checked ~ .auth-block[data-auth~="cert"],
+#auth-global-cert:checked ~ * .auth-block[data-auth~="cert"],
+#auth-global-basic:checked ~ .auth-block[data-auth~="basic"],
+#auth-global-basic:checked ~ * .auth-block[data-auth~="basic"] {
+  display: block;
+}
+
+@media (max-width: 40em) {
+  .step-card {
+    flex-direction: column;
+    gap: 0.6em;
+
+    .step-num {
+      min-width: 2.2em;
+      height: 2.2em;
+      font-size: 0.85em;
+    }
+  }
+
+}
+
+
+/* ═══════════════════════════════════════════════════════════════════
+   §12 — HOME PAGE
+   The ONE named deviation from the universal scale. Hero `<h1>` uses
+   the `display` token (76px). Subtitle `<h2>` uses `h3` size kept
+   uppercase-tracked. Everything else on home (nav, social icons,
+   footer) uses the universal tokens handled in §05.
+   ═══════════════════════════════════════════════════════════════════ */
+
+.home {
+  /* Hero: display token */
+  h1 {
+    font-size: var(--fs-display) !important;
+    font-weight: var(--fw-regular) !important;
+    line-height: var(--lh-tight) !important;
+    letter-spacing: -0.02em;
+    color: var(--color-text);
+  }
+
+  /* Subtitle "ANAPLAN + DATA": h3 size, kept uppercase tracked */
+  h2 {
+    font-size: var(--fs-h3) !important;
+    font-weight: var(--fw-medium) !important;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--color-text);
+  }
+
+  /* Description paragraph: h3 size, regular weight */
+  .page-content p {
+    font-size: var(--fs-h3) !important;
+    font-weight: var(--fw-regular);
+    line-height: var(--lh-body) !important;
+    color: var(--color-text);
+  }
+
+  /* Action link "About Me ›": eyebrow token */
+  .action.text,
+  .action.button {
+    font-size: var(--fs-eyebrow) !important;
+    font-weight: var(--fw-medium) !important;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--color-text);
+  }
+
+  /* -- Fill the viewport vertically on desktop so the surrounding
+     whitespace reads as intentional breathing room (poster-style),
+     not accidental emptiness. Subtract header height roughly. -- */
+  @media (min-width: 60em) {
+    .page-main {
+      min-height: calc(100vh - 8rem);
+      display: flex;
+      align-items: center;
+    }
+    .page-content {
+      width: 100%;
+    }
+  }
+
+  /* -- Rebalance the two columns so the image and text sit closer
+     together. Image column shrinks slightly, text column grows. -- */
+  @media (min-width: 30em) {
+    .page-content .flex-ns > .w-50-ns:first-child {
+      width: 45% !important;
+    }
+    .page-content .flex-ns > .w-50-ns:last-child {
+      width: 55% !important;
+      padding-left: var(--s-5);    /* 32 — column gap */
+    }
+  }
+
+  /* -- Portrait image: cap its desktop size so the layout breathes -- */
+  .page-content img {
+    max-width: 480px;
+    width: 100%;
+    height: auto;
+    margin-left: auto;
+  }
+
+  /* Responsive sizes are handled by the :root token overrides in
+     the universal type system — no home-specific media rules needed. */
 }

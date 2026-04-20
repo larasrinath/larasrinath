@@ -1,0 +1,9 @@
+{{ $num := .Get "num" | default (.Get 0) }}
+{{ $title := .Get "title" | default (.Get 1) }}
+<div class="step-card">
+  <div class="step-num">{{ $num }}</div>
+  <div class="step-body">
+    {{ with $title }}<h3 class="step-title">{{ . }}</h3>{{ end }}
+    {{ .Inner | markdownify }}
+  </div>
+</div>

@@ -1,0 +1,4 @@
+{{ $os := .Get "os" }}
+<div class="os-block" data-os="{{ $os }}">
+{{ .Inner | markdownify }}
+</div>

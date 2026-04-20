@@ -96,9 +96,9 @@ enableEmoji = true
       icon_pack = "fab"
       url       = "https://github.com/larasrinath"
   [[params.social]]
-      icon      = "twitter" # icon name without the 'fa-'
+      icon      = "x-twitter" # icon name without the 'fa-' (FA6 brand)
       icon_pack = "fab"
-      url       = "https://twitter.com/larasrinath"
+      url       = "https://x.com/larasrinath"
   [[params.social]]
       icon      = "instagram" # icon name without the 'fa-'
       icon_pack = "fab"

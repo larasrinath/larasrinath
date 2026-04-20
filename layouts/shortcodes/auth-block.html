@@ -1,0 +1,4 @@
+{{ $auth := .Get "auth" }}
+<div class="auth-block" data-auth="{{ $auth }}">
+{{ .Inner | markdownify }}
+</div>

@@ -1,0 +1,12 @@
+{{/* Render pagination only if show_post_pagination is true in the page's
+     front matter (or cascaded from the section _index.md). */}}
+{{ if .Params.show_post_pagination }}
+<div class="post-pagination dt w-100 mt4 mb2">
+  {{ with .NextInSection }}
+    <a class="prev dtc pr2 tl v-top fw6" href="{{ .Permalink }}">&larr; {{ .Title }}</a>
+  {{ end }}
+  {{ with .PrevInSection }}
+    <a class="next dtc pl2 tr v-top fw6" href="{{ .Permalink }}">{{ .Title }} &rarr;</a>
+  {{ end }}
+</div>
+{{ end }}
