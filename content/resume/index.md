@@ -30,12 +30,12 @@ Lara Srinath is an accomplished **Anaplan Solution Architect** and **Master Anap
 
 <div class="work-item">
 <div class="work-header">
-<strong>Manager - Anaplan Development</strong>
+<strong>Manager - Anaplan Delivery</strong>
 <span class="work-date">Nov 2025 - Present</span>
 </div>
 <div class="work-role">GenXAI Analytics <span class="work-date">Texas, USA</span></div>
 <ul class="resume-bullets">
-<li>Leads <strong>Anaplan development team</strong> to deliver enterprise planning solutions for demand, supply, material replenishment and FP&A teams, establish modelling standards, and scale Anaplan use cases across functions.</li>
+<li>Leads <strong>Anaplan delivery team</strong> to deliver enterprise planning solutions for demand, supply, material replenishment and FP&A teams, establish modelling standards, and scale Anaplan use cases across functions.</li>
 </ul>
 </div>
 
