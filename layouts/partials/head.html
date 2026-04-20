@@ -2,6 +2,46 @@
   {{ partial "meta.html" . }}
   {{ template "_internal/schema.html" . }}
   {{ template "_internal/google_analytics.html" . }}
+
+  {{/* OpenGraph image — missing by default in theme, add explicitly so
+       LinkedIn / Facebook / Slack link previews show the avatar photo. */}}
+  <meta property="og:image" content="{{ "img/avatar.png" | absURL }}">
+  <meta property="og:image:width" content="800">
+  <meta property="og:image:height" content="800">
+  <meta property="og:image:alt" content="Lara Srinath">
+
+  {{/* JSON-LD Person schema — declares a single entity so Google's
+       knowledge panel doesn't conflate with other "Lara Srinath"s.
+       sameAs links bind these profiles to this identity. */}}
+  {{ if .IsHome }}
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "Person",
+    "name": "Lara Srinath",
+    "alternateName": "larasrinath",
+    "jobTitle": "Anaplan Solution Architect and Master Anaplanner",
+    "description": "Anaplan Solution Architect, Master Anaplanner and supply chain planning and optimization enthusiast with 9+ years of experience helping businesses make better decisions through data.",
+    "url": "{{ .Site.BaseURL }}",
+    "image": "{{ "img/avatar.png" | absURL }}",
+    "sameAs": [
+      "https://www.linkedin.com/in/larasrinath/",
+      "https://github.com/larasrinath",
+      "https://x.com/larasrinath",
+      "https://www.instagram.com/larasrinath"
+    ],
+    "worksFor": {
+      "@type": "Organization",
+      "name": "GenXAI",
+      "url": "https://www.genxai.com/"
+    },
+    "alumniOf": {
+      "@type": "CollegeOrUniversity",
+      "name": "PSG College of Technology"
+    }
+  }
+  </script>
+  {{ end }}
   {{ `<!--[if IE]><script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script><![endif]-->` | safeHTML }}
   <link rel="shortcut icon" href="{{ .Site.Params.favicon }}" type="image/x-icon">
   <link rel="icon" href="{{ .Site.Params.favicon }}" type="image/x-icon">
