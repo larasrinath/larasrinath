@@ -173,9 +173,13 @@ For implementation details (internals, module layout, client compatibility matri
 
 <h2 class="section-heading" id="setup-guide"><i class="fas fa-rocket"></i> Setup Guide</h2>
 
-<p class="callout callout-info">
-  This guide is <strong>platform-aware</strong>. Pick your operating system below and the commands, file paths, and troubleshooting will switch to match. In <strong>Phase 2</strong> you will also pick an authentication method: <strong>OAuth2</strong> (recommended), <strong>Certificate</strong>, or <strong>Basic Auth</strong>. Both pickers stay in sync throughout the page.
-</p>
+{{< callout type="note" >}}
+This guide is <strong>platform-aware</strong>. Pick your operating system below and the commands, file paths, and troubleshooting will switch to match. In <strong>Phase 2</strong> you will also pick an authentication method: <strong>OAuth2</strong> (recommended), <strong>Certificate</strong>, or <strong>Basic Auth</strong>. Both pickers stay in sync throughout the page.
+{{< /callout >}}
+
+{{< callout type="note" title="Scope of this walkthrough" >}}
+This walkthrough covers the local **Claude Desktop** setup only (`stdio` transport). Remote or cloud-hosted MCP deployment is not covered on this page.
+{{< /callout >}}
 
 {{< os-select >}}
 
@@ -256,6 +260,8 @@ nvm install --lts
 sudo apt install nodejs npm     # Debian/Ubuntu
 sudo dnf install nodejs         # Fedora/RHEL
 ```
+
+Some distro package managers ship an older Node.js version. After installing, run `node --version` and confirm it is still **18 or higher**. If not, use `nvm`.
 
 Git:
 
@@ -393,7 +399,7 @@ Use only ONE authentication method. If multiple env vars are present, the server
 |                | OAuth2 (Recommended) | Certificate | Basic Auth |
 | -------------- | -------------------- | ----------- | ---------- |
 | Best for       | Most users, SSO tenants | Service accounts, automation | Simple, non-SSO accounts |
-| Env var(s)     | `ANAPLAN_CLIENT_ID` | `ANAPLAN_CERTIFICATE_PATH` + `ANAPLAN_PRIVATE_KEY_PATH` | `ANAPLAN_USERNAME` + `ANAPLAN_PASSWORD` |
+| What you need  | OAuth2 client ID (device grant flow) | Paths to your certificate `.pem` and private key `.pem` files | Your Anaplan login email and password |
 | Token lifetime | 60 min idle (in-memory) | Session-based | Session-based |
 | SSO compatible | Yes | Yes | No |
 
@@ -415,6 +421,12 @@ Press `Windows + R`, type `%APPDATA%\Claude`, press Enter. Open `claude_desktop_
 
 {{< os-block os="mac" >}}
 
+If the folder does not exist yet:
+
+```bash
+mkdir -p ~/Library/Application\ Support/Claude
+```
+
 ```bash
 # Open the config folder in Finder
 open ~/Library/Application\ Support/Claude
@@ -422,11 +434,15 @@ open ~/Library/Application\ Support/Claude
 # Or edit directly in terminal
 nano ~/Library/Application\ Support/Claude/claude_desktop_config.json
 ```
-
-If the folder does not exist: `mkdir -p ~/Library/Application\ Support/Claude`.
 {{< /os-block >}}
 
 {{< os-block os="lin" >}}
+
+If the folder does not exist yet:
+
+```bash
+mkdir -p ~/.config/Claude
+```
 
 ```bash
 # Edit in terminal
@@ -435,15 +451,13 @@ nano ~/.config/Claude/claude_desktop_config.json
 # Or with a GUI editor
 gedit ~/.config/Claude/claude_desktop_config.json
 ```
-
-If the folder does not exist: `mkdir -p ~/.config/Claude`.
 {{< /os-block >}}
 
 {{< /step >}}
 
 {{< step num="A2" title="Paste the OAuth2 configuration" >}}
 
-Replace the entire file contents with the block below. Substitute your actual path and Client ID.
+If this is your only MCP server, you can replace the entire file contents with the block below. Otherwise, add or update only the `anaplan` entry inside `mcpServers`. Substitute your actual path and Client ID.
 
 {{< os-block os="win" >}}
 
@@ -542,6 +556,12 @@ Press `Windows + R`, type `%APPDATA%\Claude`, press Enter. Open `claude_desktop_
 
 {{< os-block os="mac" >}}
 
+If the folder does not exist yet:
+
+```bash
+mkdir -p ~/Library/Application\ Support/Claude
+```
+
 ```bash
 # Open the config folder in Finder
 open ~/Library/Application\ Support/Claude
@@ -549,11 +569,15 @@ open ~/Library/Application\ Support/Claude
 # Or edit directly in terminal
 nano ~/Library/Application\ Support/Claude/claude_desktop_config.json
 ```
-
-If the folder does not exist: `mkdir -p ~/Library/Application\ Support/Claude`.
 {{< /os-block >}}
 
 {{< os-block os="lin" >}}
+
+If the folder does not exist yet:
+
+```bash
+mkdir -p ~/.config/Claude
+```
 
 ```bash
 # Edit in terminal
@@ -562,15 +586,13 @@ nano ~/.config/Claude/claude_desktop_config.json
 # Or with a GUI editor
 gedit ~/.config/Claude/claude_desktop_config.json
 ```
-
-If the folder does not exist: `mkdir -p ~/.config/Claude`.
 {{< /os-block >}}
 
 {{< /step >}}
 
 {{< step num="B2" title="Paste the Certificate configuration" >}}
 
-Replace the file contents. Use absolute paths to your `.pem` files. On Windows, use forward slashes.
+If this is your only MCP server, you can replace the file contents with the block below. Otherwise, add or update only the `anaplan` entry inside `mcpServers`. Use absolute paths to your `.pem` files. On Windows, use forward slashes.
 
 {{< os-block os="win" >}}
 
@@ -655,6 +677,12 @@ Press `Windows + R`, type `%APPDATA%\Claude`, press Enter. Open `claude_desktop_
 
 {{< os-block os="mac" >}}
 
+If the folder does not exist yet:
+
+```bash
+mkdir -p ~/Library/Application\ Support/Claude
+```
+
 ```bash
 # Open the config folder in Finder
 open ~/Library/Application\ Support/Claude
@@ -662,11 +690,15 @@ open ~/Library/Application\ Support/Claude
 # Or edit directly in terminal
 nano ~/Library/Application\ Support/Claude/claude_desktop_config.json
 ```
-
-If the folder does not exist: `mkdir -p ~/Library/Application\ Support/Claude`.
 {{< /os-block >}}
 
 {{< os-block os="lin" >}}
+
+If the folder does not exist yet:
+
+```bash
+mkdir -p ~/.config/Claude
+```
 
 ```bash
 # Edit in terminal
@@ -675,13 +707,13 @@ nano ~/.config/Claude/claude_desktop_config.json
 # Or with a GUI editor
 gedit ~/.config/Claude/claude_desktop_config.json
 ```
-
-If the folder does not exist: `mkdir -p ~/.config/Claude`.
 {{< /os-block >}}
 
 {{< /step >}}
 
 {{< step num="C2" title="Paste the Basic Auth configuration" >}}
+
+If this is your only MCP server, you can replace the file contents with the block below. Otherwise, add or update only the `anaplan` entry inside `mcpServers`.
 
 {{< os-block os="win" >}}
 
@@ -784,14 +816,34 @@ Tokens are kept in memory. After 60 minutes idle or a Claude Desktop restart, yo
 
 ## Environment variable reference
 
-| Variable                                    | Auth method  | Description |
-| ------------------------------------------- | ------------ | ----------- |
-| `ANAPLAN_CLIENT_ID`                         | OAuth2       | Your Anaplan OAuth2 client ID (device grant flow) |
-| `ANAPLAN_CERTIFICATE_PATH`                  | Certificate  | Absolute path to your `.pem` certificate file |
-| `ANAPLAN_PRIVATE_KEY_PATH`                  | Certificate  | Absolute path to your private key `.pem` file |
-| `ANAPLAN_CERTIFICATE_ENCODED_DATA_FORMAT`   | Certificate  | Optional. Set `v1` for legacy tenants only. Defaults to `v2` |
-| `ANAPLAN_USERNAME`                          | Basic        | Your Anaplan login email address |
-| `ANAPLAN_PASSWORD`                          | Basic        | Your Anaplan password |
+This section follows the auth selector above and shows only the variables for the currently selected auth method.
+
+{{< auth-block auth="oauth" >}}
+
+| Variable            | Description |
+| ------------------- | ----------- |
+| `ANAPLAN_CLIENT_ID` | Your Anaplan OAuth2 client ID (device grant flow) |
+
+{{< /auth-block >}}
+
+{{< auth-block auth="cert" >}}
+
+| Variable                                  | Description |
+| ----------------------------------------- | ----------- |
+| `ANAPLAN_CERTIFICATE_PATH`                | Absolute path to your `.pem` certificate file |
+| `ANAPLAN_PRIVATE_KEY_PATH`                | Absolute path to your private key `.pem` file |
+| `ANAPLAN_CERTIFICATE_ENCODED_DATA_FORMAT` | Optional. Set `v1` for legacy tenants only. Defaults to `v2` |
+
+{{< /auth-block >}}
+
+{{< auth-block auth="basic" >}}
+
+| Variable            | Description |
+| ------------------- | ----------- |
+| `ANAPLAN_USERNAME`  | Your Anaplan login email address |
+| `ANAPLAN_PASSWORD`  | Your Anaplan password |
+
+{{< /auth-block >}}
 
 ## Troubleshooting
 
