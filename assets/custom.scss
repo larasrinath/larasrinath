@@ -1053,13 +1053,24 @@ html[data-theme="dark"] .page-main a.btn-links:hover {
 
 // -- Typewriter cursor blink --
 .typewriter-cursor {
-  border-right: 2px solid currentColor;
-  padding-right: 3px;
+  position: relative;
+  padding-right: 0.16em;
+}
+
+.typewriter-cursor::after {
+  content: "";
+  display: inline-block;
+  width: 2px;
+  height: 0.9em;
+  margin-left: 0.12em;
+  background: currentColor;
+  border-radius: 1px;
+  vertical-align: -0.08em;
   animation: cursorBlink 0.75s step-end infinite;
 }
 
 @keyframes cursorBlink {
-  50% { border-color: transparent; }
+  50% { opacity: 0; }
 }
 
 // -- Scroll reveal --
@@ -1321,8 +1332,12 @@ html[data-theme="dark"] .page-main a.btn-links:hover {
   }
 
   .typewriter-cursor {
+    padding-right: 0 !important;
+  }
+
+  .typewriter-cursor::after {
     animation: none !important;
-    border-right: none !important;
+    opacity: 0 !important;
   }
 
   .page-exit {
@@ -1438,6 +1453,12 @@ html[data-theme="dark"] .page-main a.btn-links:hover {
 @media (max-width: 30em) {
   .home .page-content img {
     max-width: 85%;
+  }
+
+  .home h2.typewriter-cursor {
+    min-width: 0 !important;
+    width: auto !important;
+    text-align: center !important;
   }
 
   .work-header {
