@@ -1,8 +1,9 @@
 {{ define "main" }}
 {{ $ui := hugo.Data.ui }}
-{{ $summary := .Params.featured_summary | default .Params.summary | default .Params.subtitle | default .Params.excerpt | default .Description }}
+{{ $summary := .Params.hero_summary | default .Params.subtitle | default .Params.excerpt | default .Params.featured_summary | default .Params.summary | default .Description }}
 {{ $titleWords := split .Title " " }}
 {{ $lastTitleWord := sub (len $titleWords) 1 }}
+{{ $structuredBody := .Params.project_body }}
 {{ $next := .NextInSection }}
 {{ if not $next }}{{ $next = .PrevInSection }}{{ end }}
 {{ if $next }}{{ .Store.Set "pageTailMode" "flush" }}{{ end }}
@@ -21,11 +22,13 @@
       </div>
     </header>
 
-    {{ with .Params.featured_image }}
-      <figure class="app-detail-figure app-shell">
-        <div><img class="image-fit-{{ $.Params.featured_image_fit | default "cover" }}" src="{{ . | relURL }}" alt="{{ $.Params.featured_image_alt }}"></div>
-        {{ with $.Params.featured_image_credit }}<figcaption>{{ . }}</figcaption>{{ end }}
-      </figure>
+    {{ if not $structuredBody }}
+      {{ with .Params.featured_image }}
+        <figure class="app-detail-figure app-shell">
+          <div><img class="image-fit-{{ $.Params.featured_image_fit | default "cover" }}" src="{{ . | relURL }}" alt="{{ $.Params.featured_image_alt }}"></div>
+          {{ with $.Params.featured_image_credit }}<figcaption>{{ . }}</figcaption>{{ end }}
+        </figure>
+      {{ end }}
     {{ end }}
 
     <div class="app-detail-body app-shell{{ if not $next }} page-tail-source{{ end }}">
@@ -38,9 +41,13 @@
           {{ end }}
         </div>
       </aside>
-      {{ $content := .Content }}
-      {{ if .Params.featured_image }}{{ $content = replaceRE `(?s)^\s*<p>\s*<img[^>]*>\s*</p>` "" $content }}{{ end }}
-      <div class="article-content app-detail-prose">{{ $content | safeHTML }}</div>
+      {{ if $structuredBody }}
+        <div class="article-content app-detail-prose app-article-blocks app-project-blocks">{{ partial "article/body.html" (dict "page" . "ui" $ui "blocks" $structuredBody) }}</div>
+      {{ else }}
+        {{ $content := .Content }}
+        {{ if .Params.featured_image }}{{ $content = replaceRE `(?s)^\s*<p>\s*<img[^>]*>\s*</p>` "" $content }}{{ end }}
+        <div class="article-content app-detail-prose">{{ $content | safeHTML }}</div>
+      {{ end }}
     </div>
   </article>
 

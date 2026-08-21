@@ -1,0 +1,97 @@
+{{- $page := .page -}}
+{{- $ui := .ui -}}
+{{- $blocks := .blocks | default $page.Params.article_body -}}
+{{- $featuredImageIndex := -1 -}}
+
+{{- range $index, $block := $blocks -}}
+  {{- $type := lower ($block.type | default "paragraph") -}}
+  {{- if and (lt $featuredImageIndex 0) (eq $type "image") $block.src -}}
+    {{- $featuredImageIndex = $index -}}
+  {{- end -}}
+{{- end -}}
+
+{{- /* The opening lead always precedes the featured image. */ -}}
+{{- range $block := $blocks -}}
+  {{- $type := lower ($block.type | default "paragraph") -}}
+  {{- if eq $type "opening" -}}
+    <p class="article-editorial-opening">{{ $page.RenderString (dict "display" "inline") $block.text }}</p>
+  {{- end -}}
+{{- end -}}
+
+{{- /* The first image is the sole featured image and the first media in the body. */ -}}
+{{- if ge $featuredImageIndex 0 -}}
+  {{- $featuredImage := index $blocks $featuredImageIndex -}}
+  {{- partial "article/image.html" (dict "page" $page "block" $featuredImage "featured" true) -}}
+{{- end -}}
+
+{{- range $index, $block := $blocks -}}
+  {{- $type := lower ($block.type | default "paragraph") -}}
+  {{- if or (eq $type "opening") (eq $index $featuredImageIndex) -}}
+  {{- else if eq $type "paragraph" -}}
+    <p>
+      {{- with $block.lines -}}
+        {{- range $index, $line := . }}{{ if $index }}<br>{{ end }}{{ $page.RenderString (dict "display" "inline") $line }}{{ end -}}
+      {{- else -}}
+        {{ $page.RenderString (dict "display" "inline") $block.text }}
+      {{- end -}}
+    </p>
+  {{- else if eq $type "heading" -}}
+    {{- if eq ($block.level | default 2) 3 -}}
+      <h3>{{ $page.RenderString (dict "display" "inline") $block.text }}</h3>
+    {{- else -}}
+      <h2>{{ $page.RenderString (dict "display" "inline") $block.text }}</h2>
+    {{- end -}}
+  {{- else if eq $type "image" -}}
+    {{- partial "article/image.html" (dict "page" $page "block" $block "featured" false) -}}
+  {{- else if eq $type "quote" -}}
+    {{- $style := lower ($block.style | default "standard") -}}
+    <blockquote class="article-editorial-quote article-editorial-quote--{{ $style }}">
+      {{- if eq $style "feature" }}<span class="article-editorial-quote-mark" aria-hidden="true">{{ $ui.article.quote_mark }}</span>{{ end -}}
+      <div>
+        {{- with $block.lines -}}
+          {{- range . }}<p>{{ $page.RenderString (dict "display" "inline") . }}</p>{{ end -}}
+        {{- else -}}
+          <p>{{ $page.RenderString (dict "display" "inline") $block.text }}</p>
+        {{- end -}}
+        {{- with $block.cite }}<cite>{{ . }}</cite>{{ end -}}
+      </div>
+    </blockquote>
+  {{- else if eq $type "list" -}}
+    {{- if $block.ordered -}}
+      <ol class="article-editorial-list article-editorial-list--ordered">
+        {{- range $block.items }}<li>{{ $page.RenderString (dict "display" "inline") . }}</li>{{ end -}}
+      </ol>
+    {{- else -}}
+      <ul class="article-editorial-list">
+        {{- range $block.items }}<li>{{ $page.RenderString (dict "display" "inline") . }}</li>{{ end -}}
+      </ul>
+    {{- end -}}
+  {{- else if eq $type "callout" -}}
+    <aside class="article-editorial-callout">
+      {{- with $block.label }}<span>{{ . }}</span>{{ end -}}
+      {{- with $block.title }}<strong>{{ $page.RenderString (dict "display" "inline") . }}</strong>{{ end -}}
+      {{- with $block.text }}<p>{{ $page.RenderString (dict "display" "inline") . }}</p>{{ end -}}
+    </aside>
+  {{- else if eq $type "equations" -}}
+    <div class="article-editorial-equations"{{ with $block.aria_label }} aria-label="{{ . }}"{{ end }}>
+      {{- range $block.lines }}<code>{{ . }}</code>{{ end -}}
+    </div>
+  {{- else if eq $type "code" -}}
+    <details class="article-editorial-code">
+      <summary>{{ $block.label | default "Code" }}</summary>
+      <pre><code{{ with $block.language }} class="language-{{ . }}"{{ end }}>{{ $block.code }}</code></pre>
+    </details>
+  {{- else if eq $type "chart" -}}
+    {{- if eq (lower ($block.kind | default "")) "lorenz" -}}
+      {{ partial "project/lorenz-chart.html" (dict "block" $block "index" $index) }}
+    {{- end -}}
+  {{- else if eq $type "signoff" -}}
+    <p class="article-editorial-signoff">
+      {{- with $block.lines -}}
+        {{- range $index, $line := . }}{{ if $index }}<br>{{ end }}{{ $page.RenderString (dict "display" "inline") $line }}{{ end -}}
+      {{- else -}}
+        {{ $page.RenderString (dict "display" "inline") $block.text }}
+      {{- end -}}
+    </p>
+  {{- end -}}
+{{- end -}}

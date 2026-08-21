@@ -13,22 +13,30 @@ image:
   focal_point: Smart
 excerpt: "Multi-echelon supply chain optimization"
 links:
-- icon: github
-  icon_pack: fab
-  name: GitHub
-  url: https://github.com/larasrinath/Optimizer
+  - icon: github
+    icon_pack: fab
+    name: GitHub
+    url: https://github.com/larasrinath/Optimizer
 tags:
-- optimization
-- supply-chain
-- ampl
-
+  - optimization
+  - supply-chain
+  - ampl
 title: Supply Chain Optimizer
+project_body:
+  - type: opening
+    text: >-
+      Advanced multi-echelon supply chain optimization model implementing sequential weeks cover methodology for realistic time-to-stockout calculations.
+  - type: image
+    src: /img/portfolio/supply-chain-optimizer.jpg
+    alt: Supply-chain optimization network artwork
+    caption: Coordinating inventory decisions across a multi-echelon network.
+  - type: heading
+    level: 2
+    text: Key Features
+  - type: list
+    items:
+      - "**Sequential Weeks Cover**: Realistic time-to-stockout calculations based on week-by-week consumption."
+      - "**Network Cascade Logic**: Multi-echelon coordination from satellite locations to main DCs and warehouses."
+      - "**Integrated DRP**: Coordinates with production scheduling (Fruit -> Brites -> Finished Goods)."
+      - "**KPI Tracking**: Built-in performance metrics for Service Level, Inventory Turns, and Capacity Utilization."
 ---
-
-Advanced multi-echelon supply chain optimization model implementing sequential weeks cover methodology for realistic time-to-stockout calculations.
-
-### Key Features
-- **Sequential Weeks Cover**: Realistic time-to-stockout calculations based on week-by-week consumption.
-- **Network Cascade Logic**: Multi-echelon coordination from satellite locations to main DCs and warehouses.
-- **Integrated DRP**: Coordinates with production scheduling (Fruit -> Brites -> Finished Goods).
-- **KPI Tracking**: Built-in performance metrics for Service Level, Inventory Turns, and Capacity Utilization.

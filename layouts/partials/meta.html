@@ -6,7 +6,12 @@
   {{- $sharingImage = cond (hasPrefix $candidate "http") $candidate ($candidate | absURL) -}}
 {{- else -}}
   {{- with .Params.featured_image -}}
-    {{- $sharingImage = cond (hasPrefix . "http") . (. | absURL) -}}
+    {{- $candidate := . -}}
+    {{- with $.Resources.GetMatch $candidate -}}
+      {{- $sharingImage = .Permalink -}}
+    {{- else -}}
+      {{- $sharingImage = cond (hasPrefix $candidate "http") $candidate ($candidate | absURL) -}}
+    {{- end -}}
   {{- else -}}
     {{- with .Resources.GetMatch "featured.*" -}}
       {{- $sharingImage = .Permalink -}}

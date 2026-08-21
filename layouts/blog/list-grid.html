@@ -27,7 +27,7 @@
         </div>
         <div class="post-copy"><h2>{{ $post.Title }}</h2>{{ with $summary }}<p>{{ . | truncate 190 }}</p>{{ end }}</div>
         <div class="post-details">
-          <span>{{ $post.ReadingTime }} {{ $.Params.minute_read_label }}</span>
+          <span>{{ $post.Params.reading_time | default $post.ReadingTime }} {{ $.Params.minute_read_label }}</span>
           {{ with $post.Params.tags }}<span>{{ delimit (first 2 .) " · " }}</span>{{ end }}
         </div>
       </a>

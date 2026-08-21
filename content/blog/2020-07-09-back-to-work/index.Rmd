@@ -17,26 +17,40 @@ image:
   focal_point: ''
   preview_only: yes
 projects: []
+reading_time: 2
+featured_image: featured.jpg
+featured_image_alt: A businessperson walking while carrying a briefcase
+featured_image_caption: ''
+article_note:
+  label: Filed under
+  title: Work
+  text: Going back to work after a long time.
+article_body:
+  - type: opening
+    text: >-
+      **AS** the world entered into lockdown to fight the pandemic, IT corporations all over the world moved on to embrace a new working situation. Telecommute or Work from home. It has been more than 100 days since I made myself physically present in client meetings. The long night (yes, a reference to GOT) came to end 3 weeks ago in Malaysia and normality has resumed.
+  - type: image
+    src: featured.jpg
+    alt: A businessperson walking while carrying a briefcase
+    caption: ''
+  - type: paragraph
+    text: >-
+      The Malaysian Government had done a spectacular job of controlling virus (visit my **[CoVID19 Tracker](https://larasrinath.shinyapps.io/covid19/)**), yet I continued to work from home as a precaution to the wide spread pandemic. While it has been fun working from home, I did miss face to face meetings and the friendly chatter with my clients and colleagues.
+  - type: paragraph
+    text: >-
+      As all things should come to end, my work from home has come to an end. I have to be present in office coming Monday (13th Jul, 2020).
+  - type: paragraph
+    text: 'Looking back at the things that kept me entertained during the lockdown:'
+  - type: list
+    ordered: true
+    items:
+      - >-
+        **Stargazing** (tough being in a well-lit city like Kuala Lumpur), but made use what is available. The Crux and Centaurus constellation have always been bright from my home. You can use them to find South. There is a new comet C/2020 F3 NEOWISE, rising East, which has so far evaded from my sight.
+      - '**The Big bang Theory** (on repeat)'
+      - '**Harry Potter** (books & movies)'
+      - '**F.R.I.E.N.D.S**'
+      - '**Twitter**'
+      - '**DARK** A show that completely blew my mind'
+  - type: signoff
+    text: I'll be wearing a mask, to protect myself as well as others and will wash my hands regularly.
 ---
-
-**AS** the world entered into lockdown to fight the pandemic, IT corporations all over the world moved on to embrace a new working situation. Telecommute or Work from home. It has been more than 100 days since I made myself physically present in client meetings. The long night (yes, a reference to GOT) came to end 3 weeks ago in Malaysia and normality has resumed.
-
-The Malaysian Government had done a spectacular job of controlling virus (visit my **[CoVID19 Tracker](https://larasrinath.shinyapps.io/covid19/)**), yet I continued to work from home as a precaution to the wide spread pandemic. While it has been fun working from home, I did miss face to face meetings and the friendly chatter with my clients and colleagues.
-
-As all things should come to end, my work from home has come to an end. I have to be present in office coming Monday (13th Jul, 2020). 
-
-Looking back at the things that kept me entertained during the lockdown:
-
-1. **Stargazing** (tough being in a well-lit city like Kuala Lumpur), but made use what is available. The Crux and Centaurus constellation have always been bright from my home. You can use them to find South. There is a new comet C/2020 F3 NEOWISE, rising East, which has so far evaded from my sight. 
-2. **The Big bang Theory** (on repeat)
-3. **Harry Potter** (books & movies)
-4. **F.R.I.E.N.D.S**
-5. **Twitter**
-6. **DARK** A show that completely blew my mind
-
-
-I'll be wearing a mask, to protect myself as well as others and will wash my hands regularly.
-
-
-
-

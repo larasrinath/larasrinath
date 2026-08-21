@@ -61,6 +61,7 @@ article:
   share_linkedin_prefix: Share
   share_linkedin_suffix: on LinkedIn
   share_x_suffix: on X
+  quote_mark: "“"
 
 project:
   all_projects: ← All projects

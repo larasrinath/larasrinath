@@ -15,22 +15,35 @@ image:
   focal_point: Smart
 excerpt: "Interactive R Shiny pandemic dashboard"
 links:
-- icon: door-open
-  icon_pack: fas
-  name: Live App
-  url: https://larasrinath.shinyapps.io/covid19/
+  - icon: door-open
+    icon_pack: fas
+    name: Live App
+    url: https://larasrinath.shinyapps.io/covid19/
 tags:
-- r-shiny
-- data-visualization
-- dashboard
-- healthcare
+  - r-shiny
+  - data-visualization
+  - dashboard
+  - healthcare
+project_body:
+  - type: opening
+    text: >-
+      This project utilizes **R Shiny** and **Flexdashboard** to create a responsive, interactive visualization of the COVID-19 outbreak.
+  - type: image
+    src: /img/portfolio/covid-tracker.jpg
+    alt: COVID-19 global tracker dashboard
+    caption: An interactive view of the pandemic as it unfolded.
+  - type: callout
+    label: Note
+    text: >-
+      This application was developed to track the spread of COVID-19 during the early stages of the pandemic. As data sources change and hosting services hibernate, the live link may be intermittent.
+  - type: heading
+    level: 2
+    text: Project Overview
+  - type: paragraph
+    text: "Key features included:"
+  - type: list
+    items:
+      - "**Real-time Data Ingestion**: Pulling data from Johns Hopkins University repositories."
+      - "**Geospatial Visualization**: Interactive maps displaying infection rates by region."
+      - "**Trend Analysis**: Time-series plots showing the curve of confirmed cases, recoveries, and fatalities."
 ---
-
-**Note:** This application was developed to track the spread of COVID-19 during the early stages of the pandemic. As data sources change and hosting services hibernate, the live link may be intermittent.
-
-### Project Overview
-This project utilizes **R Shiny** and **Flexdashboard** to create a responsive, interactive visualization of the COVID-19 outbreak. Key features included:
-
-*   **Real-time Data Ingestion**: Pulling data from Johns Hopkins University repositories.
-*   **Geospatial Visualization**: Interactive maps displaying infection rates by region.
-*   **Trend Analysis**: Time-series plots showing the curve of confirmed cases, recoveries, and fatalities.

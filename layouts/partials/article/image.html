@@ -1,0 +1,17 @@
+{{- $page := .page -}}
+{{- $block := .block -}}
+{{- $variant := cond .featured "featured" "secondary" -}}
+{{- with $block.src -}}
+  {{- $source := . -}}
+  {{- $image := $page.Resources.GetMatch $source -}}
+  <figure class="article-editorial-figure article-editorial-figure--{{ $variant }}">
+    <div class="article-editorial-media">
+      {{- if $image -}}
+        <img src="{{ $image.RelPermalink }}" width="{{ $image.Width }}" height="{{ $image.Height }}" alt="{{ $block.alt }}">
+      {{- else -}}
+        <img src="{{ $source | relURL }}" alt="{{ $block.alt }}">
+      {{- end -}}
+    </div>
+    {{- with $block.caption }}<figcaption>{{ . }}</figcaption>{{ end -}}
+  </figure>
+{{- end -}}

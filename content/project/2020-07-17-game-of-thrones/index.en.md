@@ -19,51 +19,28 @@ subtitle: 'A Song of Graph and Number'
 summary: 'A Song of Graph and Number'
 authors: []
 lastmod: '2020-07-17T22:19:02+08:00'
-featured: no
-draft: 
+featured: false
+draft: false
 image:
   caption: ''
-  focal_point: "Right"
-  preview_only: no
+  focal_point: Right
+  preview_only: false
 projects: []
+project_body:
+  - type: opening
+    text: >-
+      **How the King of TV shows fared across the seasons.** A simple visualization of how GOT failed in the much anticipated season finale and did a terrible job of letting its fans down worldwide.
+  - type: image
+    src: images/featured.jpeg
+    alt: Crossed medieval swords representing Game of Thrones
+    caption: A Song of Graph and Number.
+  - type: image
+    src: index.en_files/figure-html/plot-1.png
+    alt: Game of Thrones IMDb ratings by season and episode
+    caption: IMDb ratings of Game of Thrones, season by season.
+  - type: heading
+    level: 3
+    text: Data Source
+  - type: paragraph
+    text: "[Game of Thrones dataset on data.world](https://data.world/rezaghari/game-of-thrones)"
 ---
- ![](images/featured.jpeg)
-
-### How the King of TV shows fared across the seasons
-
-A simple visualization of how GOT failed in the much anticipated season finale and did a terrible job of letting it's fans down worldwide.
-
-
-
-
-
-
-
-
-
-
-<img src="{{< blogdown/postref >}}index.en_files/figure-html/plot-1.png" width="1440" />
-
-<!-- ### Screen time of Characters -->
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-#### Data Source
-
-https://data.world/rezaghari/game-of-thrones

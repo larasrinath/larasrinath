@@ -2,18 +2,13 @@
 {{ $ui := hugo.Data.ui }}
 {{ $summary := .Params.subtitle | default .Description | default .Params.summary | default .Params.excerpt }}
 {{ $terms := .GetTerms "tags" }}
+{{ $structuredBody := .Params.article_body }}
+{{ $readingTime := .Params.reading_time | default .ReadingTime }}
 {{ $titleWords := split .Title " " }}
 {{ $lastTitleWord := sub (len $titleWords) 1 }}
 {{ $next := .NextInSection }}
 {{ if not $next }}{{ $next = .PrevInSection }}{{ end }}
 {{ if $next }}{{ .Store.Set "pageTailMode" "flush" }}{{ end }}
-{{ $featured := .Resources.GetMatch "featured.*" }}
-{{ if not $featured }}{{ $featured = .Resources.GetMatch "images/featured.*" }}{{ end }}
-{{ $featuredURL := "" }}
-{{ with .Params.featured_image }}
-  {{ $specified := . }}
-  {{ with $.Resources.GetMatch $specified }}{{ $featured = . }}{{ else }}{{ $featuredURL = $specified | relURL }}{{ end }}
-{{ end }}
 
 <main id="main-content" class="inner-page app-detail-page" role="main">
   <article>
@@ -29,31 +24,21 @@
       </div>
     </header>
 
-    {{ if or $featured $featuredURL }}
-      <figure class="app-detail-figure app-shell">
-        <div>
-          {{ if $featured }}
-            <img src="{{ $featured.RelPermalink }}" width="{{ $featured.Width }}" height="{{ $featured.Height }}" alt="{{ .Params.featured_image_alt | default .Title }}">
-          {{ else }}
-            <img src="{{ $featuredURL }}" alt="{{ .Params.featured_image_alt | default .Title }}">
-          {{ end }}
-        </div>
-        {{ with .Params.featured_image_caption }}<figcaption>{{ . }}</figcaption>{{ end }}
-      </figure>
-    {{ end }}
-
     <div class="app-detail-body app-shell{{ if not $next }} page-tail-source{{ end }}">
       <aside aria-label="{{ $ui.article.details_aria }}">
         <div>
-          <p>{{ $ui.article.filed_under }}</p>
-          {{ with $terms }}<span>{{ range $index, $term := . }}{{ if $index }} · {{ end }}{{ $term.LinkTitle }}{{ end }}</span>{{ end }}
-          <span>{{ .Date.Format "January 2, 2006" }} · {{ .ReadingTime }} {{ $ui.article.minute_read }}</span>
+          <p>{{ with .Params.article_note.label }}{{ . }}{{ else }}{{ $ui.article.filed_under }}{{ end }}</p>
+          {{ with .Params.article_note.title }}<strong class="app-detail-rail-title">{{ . }}</strong>{{ else }}{{ with $terms }}<strong class="app-detail-rail-title">{{ range $index, $term := . }}{{ if $index }} · {{ end }}{{ $term.LinkTitle }}{{ end }}</strong>{{ end }}{{ end }}
+          {{ with .Params.article_note.text }}<span class="app-detail-rail-note">{{ . }}</span>{{ end }}
+          <span class="app-detail-rail-meta">{{ .Date.Format "January 2, 2006" }} · {{ $readingTime }} {{ $ui.article.minute_read }}</span>
           {{ partial "share-links.html" . }}
         </div>
       </aside>
-      {{ $content := .Content }}
-      {{ if or $featured $featuredURL }}{{ $content = replaceRE `(?s)^\s*<p>\s*<img[^>]*>\s*</p>` "" $content }}{{ end }}
-      <div class="article-content app-detail-prose">{{ $content | safeHTML }}</div>
+      {{ if $structuredBody }}
+        <div class="article-content app-detail-prose app-article-blocks">{{ partial "article/body.html" (dict "page" . "ui" $ui) }}</div>
+      {{ else }}
+        <div class="article-content app-detail-prose">{{ .Content }}</div>
+      {{ end }}
     </div>
   </article>
 
