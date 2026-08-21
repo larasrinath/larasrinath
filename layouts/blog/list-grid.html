@@ -9,26 +9,26 @@
 
   <section class="post-index" aria-label="{{ .Params.posts_label }}">
     {{ $pages := (where .RegularPagesRecursive "Type" "blog").ByDate.Reverse }}
-    {{ $paginator := .Paginate $pages }}
-    {{ range $index, $post := $paginator.Pages }}
+    {{ $displayPages := $pages }}
+    {{ $paginator := false }}
+    {{ if gt (len $pages) .Params.pagination.page_size }}
+      {{ $paginator = .Paginate $pages .Params.pagination.page_size }}
+      {{ $displayPages = $paginator.Pages }}
+    {{ end }}
+    {{ range $index, $post := $displayPages }}
       {{ $summary := $post.Params.subtitle | default $post.Description | default $post.Params.excerpt | default ($post.Summary | plainify) }}
-      <a class="post-row" href="{{ $post.RelPermalink }}">
+      <a class="post-row blog-post-row" href="{{ $post.RelPermalink }}">
         <div class="post-meta">
           <time datetime="{{ $post.Date.Format "2006-01-02" }}">{{ $post.Date.Format "Jan 2006" }}</time>
+        </div>
+        <div class="post-copy"><h2>{{ $post.Title }}</h2>{{ with $summary }}<p>{{ . | truncate 190 }}</p>{{ end }}</div>
+        <div class="post-details">
           <span>{{ $post.ReadingTime }} {{ $.Params.minute_read_label }}</span>
           {{ with $post.Params.tags }}<span>{{ delimit (first 2 .) " · " }}</span>{{ end }}
         </div>
-        <div class="post-copy"><h2>{{ $post.Title }}</h2>{{ with $summary }}<p>{{ . | truncate 190 }}</p>{{ end }}</div>
-        <span class="post-arrow">{{ $.Params.read_label }}</span>
       </a>
     {{ end }}
-    {{ if gt $paginator.TotalPages 1 }}
-      <nav class="pagination" aria-label="{{ hugo.Data.ui.accessibility.blog_pagination }}">
-        {{ with $paginator.Prev }}<a href="{{ .URL }}">{{ $.Params.pagination.newer }}</a>{{ end }}
-        <span>{{ .Params.pagination.page }} {{ $paginator.PageNumber }} {{ .Params.pagination.of }} {{ $paginator.TotalPages }}</span>
-        {{ with $paginator.Next }}<a href="{{ .URL }}">{{ $.Params.pagination.older }}</a>{{ end }}
-      </nav>
-    {{ end }}
+    {{ with $paginator }}{{ partial "shared/pagination.html" (dict "paginator" .) }}{{ end }}
   </section>
 </main>
 {{ end }}

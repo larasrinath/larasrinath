@@ -5,13 +5,9 @@ hero_title: Thinking
 hero_emphasis: aloud.
 description: Thoughts on Anaplan, planning, data, technology and the occasional detour into life beyond the model.
 posts_label: Blog posts
-read_label: Read
 minute_read_label: min read
 pagination:
-  newer: ← Newer
-  older: Older →
-  page: Page
-  of: of
+  page_size: 6
 author: "Lara Srinath"
 show_post_thumbnail: true
 thumbnail_left: true # for list-sidebar only

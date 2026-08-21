@@ -9,13 +9,20 @@
     "copy" (printf "%d %s %s" (len .RegularPages) $entryLabel $ui.taxonomy.archive_suffix)
   ) }}
   <section class="post-index" aria-label="{{ $ui.taxonomy.tagged_prefix }} {{ .Title }}">
-    {{ range $index, $post := .RegularPages.ByDate.Reverse }}
+    {{ $pages := .RegularPages.ByDate.Reverse }}
+    {{ $displayPages := $pages }}
+    {{ $paginator := false }}
+    {{ if gt (len $pages) $ui.pagination.archive_page_size }}
+      {{ $paginator = .Paginate $pages $ui.pagination.archive_page_size }}
+      {{ $displayPages = $paginator.Pages }}
+    {{ end }}
+    {{ range $index, $post := $displayPages }}
       <a class="post-row" href="{{ $post.RelPermalink }}">
         <div class="post-meta"><time datetime="{{ $post.Date.Format "2006-01-02" }}">{{ $post.Date.Format "Jan 2006" }}</time><span>{{ $post.Type }}</span></div>
         <div class="post-copy"><h2>{{ $post.Title }}</h2>{{ with ($post.Params.subtitle | default $post.Params.excerpt | default ($post.Summary | plainify)) }}<p>{{ . | truncate 180 }}</p>{{ end }}</div>
-        <span class="post-arrow">{{ $ui.generic.open_label }}</span>
       </a>
     {{ end }}
+    {{ with $paginator }}{{ partial "shared/pagination.html" (dict "paginator" .) }}{{ end }}
   </section>
 </main>
 {{ end }}

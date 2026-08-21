@@ -4,7 +4,8 @@ eyebrow: Talks
 hero_title: Ideas
 hero_emphasis: out loud.
 list_label: Talks
-view_label: View
+pagination:
+  page_size: 6
 description: |
   Talks, workshops, and other events.
 author: "Lara Srinath"

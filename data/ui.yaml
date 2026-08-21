@@ -2,7 +2,6 @@ accessibility:
   skip_to_content: Skip to content
   primary_navigation: Primary navigation
   article_navigation: Article navigation
-  blog_pagination: Blog pagination
   share_article: Share article
   copy_article_link: Copy article link
   article_link_copied: Article link copied
@@ -21,6 +20,14 @@ share_marks:
   linkedin: in
   x: X
 
+pagination:
+  label: Pagination
+  newer: ← Newer
+  older: Older →
+  page: Page
+  of: of
+  archive_page_size: 10
+
 footer:
   links_label: Footer links
   links:
@@ -32,7 +39,6 @@ footer:
 
 generic:
   collection_label: Collection
-  open_label: Open
   page_fallback: Page
 
 article:
@@ -74,10 +80,6 @@ taxonomy:
   archive_suffix: from the archive.
   filed_under: Filed under
   tagged_prefix: Entries tagged
-
-talk:
-  label: Talks
-  view_label: View
 
 components:
   platform_selector:

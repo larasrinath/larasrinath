@@ -10,11 +10,6 @@ navigation:
   - label: Contact
     href: /contact/
 
-navigation_cta:
-  label: Let's connect
-  href: /contact/
-  icon: ""
-
 hero:
   eyebrow: Enterprise planning — Anaplan + data
   title_lines:
@@ -65,18 +60,8 @@ about:
     - value: "7"
       label: Core certifications
 
-works:
-  label: 02 — Selected Works
-  heading_prefix: Models, tools &
-  heading_emphasis: experiments
-  intro: From enterprise planning and optimization to open-source tools and data storytelling.
-  link_label: Read case study
-  link_icon: →
-  view_label_prefix: Read
-  view_label_suffix: case study
-
 experience:
-  label: 03 — Experience
+  label: 02 — Experience
   heading: Planning across industries
   roles:
     - period: Nov 2025 — Present
@@ -120,20 +105,8 @@ experience:
     href: /resume/
     icon: ""
 
-writing:
-  label: 04 — Writing
-  heading_prefix: Notes on
-  heading_emphasis: life & football
-  post_count: 6
-  row_icon: →
-
 contact:
-  label: 05 — Contact
   social_links_label: Elsewhere
-  heading_prefix: Let's turn complexity into
-  heading_emphasis: clear decisions
-  heading_suffix: .
-  heading_href: https://www.linkedin.com/in/larasrinath/
   links:
     - label: LinkedIn
       href: https://www.linkedin.com/in/larasrinath/

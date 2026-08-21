@@ -1,0 +1,9 @@
+{{- $paginator := .paginator -}}
+{{- $labels := hugo.Data.ui.pagination -}}
+{{- if gt $paginator.TotalPages 1 -}}
+  <nav class="pagination" aria-label="{{ $labels.label }}">
+    {{ with $paginator.Prev }}<a class="pagination-newer" href="{{ .URL }}" rel="prev">{{ $labels.newer }}</a>{{ else }}<span aria-hidden="true"></span>{{ end }}
+    <span class="pagination-status" aria-current="page">{{ $labels.page }} {{ $paginator.PageNumber }} {{ $labels.of }} {{ $paginator.TotalPages }}</span>
+    {{ with $paginator.Next }}<a class="pagination-older" href="{{ .URL }}" rel="next">{{ $labels.older }}</a>{{ else }}<span aria-hidden="true"></span>{{ end }}
+  </nav>
+{{- end -}}

@@ -9,19 +9,30 @@
 
   <section class="project-index" aria-label="{{ .Params.list_label }}">
     {{ $pages := (where .RegularPagesRecursive "Type" "project").ByDate.Reverse }}
-    {{ range $index, $project := $pages }}
+    {{ $displayPages := $pages }}
+    {{ $paginator := false }}
+    {{ if gt (len $pages) .Params.pagination.page_size }}
+      {{ $paginator = .Paginate $pages .Params.pagination.page_size }}
+      {{ $displayPages = $paginator.Pages }}
+    {{ end }}
+    {{ range $project := $displayPages }}
       {{ $summary := $project.Params.featured_summary | default $project.Params.summary | default $project.Params.excerpt | default $project.Params.subtitle | default $project.Description | default ($project.Summary | plainify) }}
       <a class="project-row" href="{{ $project.RelPermalink }}">
-        <span class="project-count" aria-hidden="true">{{ printf "%02d" (add $index 1) }}</span>
         <div class="project-copy">
-          <span class="project-year">{{ $project.Date.Format "2006" }}</span>
+          <time class="project-date" datetime="{{ $project.Date.Format "2006-01" }}">{{ $project.Date.Format "Jan 2006" }}</time>
           <h2>{{ $project.Title }}</h2>
           {{ with $summary }}<p>{{ . | truncate 180 }}</p>{{ end }}
-          <div class="project-tags" aria-label="{{ $.Params.tags_label }}">{{ range first 4 ($project.GetTerms "tags") }}<span>{{ .LinkTitle }}</span>{{ end }}</div>
+          <div class="project-tags" aria-label="{{ $.Params.tags_label }}">
+            {{ range $index, $tag := first 4 ($project.GetTerms "tags") }}
+              {{ if $index }}<span class="project-tag-separator" aria-hidden="true">·</span>{{ end }}
+              <span>{{ $tag.LinkTitle }}</span>
+            {{ end }}
+          </div>
         </div>
         {{ with $project.Params.featured_image }}<figure class="project-thumb"><img class="image-fit-{{ $project.Params.featured_image_fit | default "cover" }}" src="{{ . | relURL }}" alt="{{ $project.Params.featured_image_alt }}" loading="lazy"></figure>{{ end }}
       </a>
     {{ end }}
+    {{ with $paginator }}{{ partial "shared/pagination.html" (dict "paginator" .) }}{{ end }}
   </section>
 </main>
 {{ end }}
