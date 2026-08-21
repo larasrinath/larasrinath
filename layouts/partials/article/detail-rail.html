@@ -1,0 +1,21 @@
+{{- $page := .page -}}
+{{- $ui := .ui -}}
+{{- $note := .note -}}
+{{- $terms := .terms -}}
+
+<div>
+  <p>{{ with $note.label }}{{ . }}{{ else }}{{ .default_label }}{{ end }}</p>
+  {{ with $note.title }}
+    <strong class="app-detail-rail-title">{{ . }}</strong>
+  {{ else }}
+    {{ with $terms }}<strong class="app-detail-rail-title">{{ range $index, $term := . }}{{ if $index }} · {{ end }}{{ $term.LinkTitle }}{{ end }}</strong>{{ end }}
+  {{ end }}
+  {{ with $note.text }}<span class="app-detail-rail-note">{{ . }}</span>{{ end }}
+  <span class="app-detail-rail-meta">{{ $page.Date.Format "January 2, 2006" }}{{ with .reading_time }} · {{ . }} {{ $ui.article.minute_read }}{{ end }}</span>
+  {{ with .links }}
+    <nav{{ with $.links_label }} aria-label="{{ . }}"{{ end }}>
+      {{ range . }}<a href="{{ .url | safeURL }}"{{ if hasPrefix .url "http" }} target="_blank" rel="noopener noreferrer"{{ end }}>{{ .name }}{{ with $ui.project.external_link_icon }} {{ . }}{{ end }}</a>{{ end }}
+    </nav>
+  {{ end }}
+  {{ partial "share-links.html" $page }}
+</div>

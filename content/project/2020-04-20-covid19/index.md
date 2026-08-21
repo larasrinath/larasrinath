@@ -25,6 +25,10 @@ tags:
   - Data Visualization
   - Dashboard
   - Healthcare
+article_note:
+  label: Project note
+  title: Live dashboard
+  text: A live R Shiny view of the pandemic's early global spread.
 project_body:
   - type: opening
     text: >-

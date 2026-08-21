@@ -1,51 +1,30 @@
 {{ define "main" }}
 {{ $home := hugo.Data.home }}
+{{ .Store.Set "pageTailMode" "flush" }}
 
 <main id="main-content" class="lara-home app-home" role="main">
-  <section class="app-hero" aria-labelledby="home-title">
-    <div class="app-shell">
-      <p class="app-kicker">{{ $home.hero.eyebrow }}</p>
-      {{ $lastHeroLine := sub (len $home.hero.title_lines) 1 }}
-      <h1 id="home-title">{{ range $index, $line := $home.hero.title_lines }}{{ if eq $index $home.hero.emphasis_line }}<em>{{ $line }}</em>{{ else }}{{ $line }}{{ end }}{{ if lt $index $lastHeroLine }}<br>{{ end }}{{ end }}</h1>
-      <div class="app-hero-bottom">
-        <div class="app-hero-copy">
-          <p>{{ $home.hero.intro }}</p>
-          <div class="app-actions">
-            {{ range $home.hero.actions }}
-              <a class="app-button app-button-{{ .style }}" href="{{ .href | safeURL }}">{{ .label }} <span aria-hidden="true">{{ .icon }}</span></a>
-            {{ end }}
-          </div>
-        </div>
-      </div>
-    </div>
-    <div class="app-marquee" aria-label="{{ $home.marquee_label }}">
-      <div class="app-marquee-track">
-        <span>{{ range $home.marquee }}<b>{{ . }}</b><i aria-hidden="true">{{ $home.marquee_symbol }}</i>{{ end }}</span>
-        <span aria-hidden="true">{{ range $home.marquee }}<b>{{ . }}</b><i>{{ $home.marquee_symbol }}</i>{{ end }}</span>
-      </div>
+  <section class="home-profile" aria-labelledby="home-title">
+    <div class="app-shell home-profile-grid">
+      <article class="home-profile-copy">
+        {{ $surname := $home.hero.name_emphasis }}
+        <h1 id="home-title">
+          <span>{{ $home.hero.name_prefix }}</span>
+          <em class="home-profile-surname" aria-label="{{ $surname }}"><span class="home-profile-surname-initial" aria-hidden="true">{{ substr $surname 0 1 }}</span><span class="home-profile-surname-rest" aria-hidden="true">{{ substr $surname 1 }}</span></em>
+        </h1>
+      </article>
+
+      <figure class="home-profile-portrait">
+        {{ partial "shared/responsive-image.html" (dict
+          "page" .
+          "src" $home.about.portrait
+          "alt" $home.about.portrait_alt
+          "loading" "eager"
+          "fetchpriority" "high"
+          "sizes" "(max-width: 899px) min(72vw, 320px), (max-width: 1200px) 32vw, 368px"
+          "widths" (slice 360 520 720)
+        ) }}
+      </figure>
     </div>
   </section>
-
-  <section class="app-about" id="about" aria-labelledby="about-heading">
-    <div class="app-shell app-about-grid">
-      <div class="app-portrait-column">
-        <figure class="app-portrait">
-          {{ partial "shared/responsive-image.html" (dict "page" . "src" $home.about.portrait "alt" $home.about.portrait_alt "loading" "lazy" "sizes" "(max-width: 767px) calc(100vw - 48px), 430px" "widths" (slice 360 640 860)) }}
-          {{ with $home.about.portrait_caption }}<figcaption>{{ . }}</figcaption>{{ end }}
-        </figure>
-      </div>
-      <div class="app-about-copy">
-        <p class="app-section-number">{{ $home.about.label }}</p>
-        <h2 id="about-heading">{{ $home.about.heading_prefix }} <em>{{ $home.about.heading_emphasis }}</em>{{ $home.about.heading_suffix }}</h2>
-        <div class="app-prose">
-          {{ range $home.about.paragraphs }}<p>{{ . }}</p>{{ end }}
-        </div>
-        <dl class="app-metrics">
-          {{ range $home.about.metrics }}<div><dt>{{ .value }}</dt><dd>{{ .label }}</dd></div>{{ end }}
-        </dl>
-      </div>
-    </div>
-  </section>
-
 </main>
 {{ end }}

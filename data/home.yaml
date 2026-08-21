@@ -11,55 +11,12 @@ navigation:
     href: /contact/
 
 hero:
-  eyebrow: Enterprise planning - Anaplan + data
-  title_lines:
-    - Plan with
-    - clarity,
-    - build for impact.
-  emphasis_line: 1
-  intro: I'm Lara Srinath - Manager, Anaplan Delivery at GenXAI; a Master Anaplanner and Solution Architect in the US. I turn complex supply-chain and financial-planning processes into clear, scalable systems.
-  actions:
-    - label: Explore projects
-      href: /project/
-      icon: ""
-      style: solid
-    - label: Download résumé
-      href: /pdf/larasrinath.pdf
-      icon: ""
-      style: line
-
-marquee_label: Areas of practice
-marquee_symbol: ✳
-marquee:
-  - Anaplan
-  - Supply Chain
-  - Optimizer
-  - Data Integration
-  - FP&A
-  - Python
-  - R
-  - Generative AI
+  name_prefix: Lara
+  name_emphasis: Srinath
 
 about:
-  label: 01 - About
-  heading_prefix: Turning messy operations into systems people can
-  heading_emphasis: trust
-  heading_suffix: .
   portrait: /img/avatar.png
-  portrait_width: 1896
-  portrait_height: 2654
   portrait_alt: Portrait of Lara Srinath
-  paragraphs:
-    - I'm a Master Anaplanner and Solution Architect with more than ten years of experience across FMCG, retail, energy, chemicals and manufacturing. At GenXAI, I'm Manager, Anaplan Delivery across supply-chain and finance platforms.
-    - My work spans solution architecture, platform operations, governance, data integration and continuous improvement. I lead cross-functional teams and build secure, scalable systems around business-critical planning processes.
-    - Away from planning applications, you'll find me building LEGO, stargazing, cycling, playing chess or keeping the red flag flying high for Manchester United.
-  metrics:
-    - value: 10+
-      label: Years in planning
-    - value: "5"
-      label: Industries served
-    - value: "7"
-      label: Core certifications
 
 contact:
   social_links_label: Elsewhere
@@ -67,19 +24,16 @@ contact:
     - label: LinkedIn
       href: https://www.linkedin.com/in/larasrinath/
       external: true
-      icon: ""
+      icon: fa-brands fa-linkedin-in
     - label: GitHub
       href: https://github.com/larasrinath
       external: true
-      icon: ""
+      icon: fa-brands fa-github
     - label: X / Twitter
       href: https://x.com/larasrinath
       external: true
-      icon: ""
+      icon: fa-brands fa-x-twitter
     - label: Instagram
       href: https://www.instagram.com/larasrinath
       external: true
-      icon: ""
-    - label: Résumé
-      href: /resume/
-      icon: ""
+      icon: fa-brands fa-instagram

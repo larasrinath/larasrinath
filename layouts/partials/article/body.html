@@ -1,6 +1,7 @@
 {{- $page := .page -}}
 {{- $ui := .ui -}}
 {{- $blocks := .blocks | default $page.Params.article_body -}}
+{{- $pageContent := .page_content -}}
 {{- $featuredImageIndex := -1 -}}
 
 {{- range $index, $block := $blocks -}}
@@ -72,6 +73,14 @@
       {{- with $block.title }}<strong>{{ $page.RenderString (dict "display" "inline") . }}</strong>{{ end -}}
       {{- with $block.text }}<p>{{ $page.RenderString (dict "display" "inline") . }}</p>{{ end -}}
     </aside>
+  {{- else if eq $type "cta" -}}
+    <a class="article-editorial-cta" href="{{ $block.url | safeURL }}">
+      <span>
+        {{- with $block.label }}<strong>{{ $page.RenderString (dict "display" "inline") . }}</strong>{{ end -}}
+        {{- with $block.text }}<small>{{ $page.RenderString (dict "display" "inline") . }}</small>{{ end -}}
+      </span>
+      <span class="article-editorial-cta-mark" aria-hidden="true">↓</span>
+    </a>
   {{- else if eq $type "equations" -}}
     <div class="article-editorial-equations"{{ with $block.aria_label }} aria-label="{{ . }}"{{ end }}>
       {{- range $block.lines }}<code>{{ . }}</code>{{ end -}}
@@ -85,6 +94,8 @@
     {{- if eq (lower ($block.kind | default "")) "lorenz" -}}
       {{ partial "project/lorenz-chart.html" (dict "block" $block "index" $index) }}
     {{- end -}}
+  {{- else if eq $type "page_content" -}}
+    <div class="article-editorial-page-content">{{ $pageContent }}</div>
   {{- else if eq $type "signoff" -}}
     <p class="article-editorial-signoff">
       {{- with $block.lines -}}

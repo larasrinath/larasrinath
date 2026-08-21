@@ -27,6 +27,10 @@ image:
   focal_point: Right
   preview_only: false
 projects: []
+article_note:
+  label: Project note
+  title: Data story
+  text: A visual account of the ratings collapse behind a divisive final season.
 project_body:
   - type: opening
     text: >-

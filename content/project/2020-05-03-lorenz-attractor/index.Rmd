@@ -25,6 +25,10 @@ image:
   focal_point: ''
   preview_only: false
 projects: []
+article_note:
+  label: Project note
+  title: Interactive model
+  text: A visual exploration of the butterfly effect and the order hidden inside chaos.
 project_body:
   - type: opening
     text: >-

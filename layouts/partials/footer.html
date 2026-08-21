@@ -1,7 +1,17 @@
 {{ $ui := hugo.Data.ui }}
+{{ $contact := hugo.Data.home.contact }}
 <footer class="site-footer" role="contentinfo">
   <div class="app-shell site-footer-inner">
-    <p>© {{ now.Format "2006" }} {{ $ui.brand.name }}.</p>
+    <nav class="site-footer-socials" aria-label="{{ $contact.social_links_label }}">
+      {{- range $link := $contact.links -}}
+        {{- if and $link.external $link.icon -}}
+          <a href="{{ $link.href | safeURL }}" target="_blank" rel="noopener noreferrer" aria-label="{{ $link.label }}">
+            <i class="{{ $link.icon }} fa-lg fa-fw" aria-hidden="true"></i>
+          </a>
+        {{- end -}}
+      {{- end -}}
+    </nav>
+    <p class="site-footer-copyright">© {{ now.Format "2006" }} {{ $ui.brand.name }}.</p>
     <nav class="site-footer-links" aria-label="{{ $ui.footer.links_label }}">
       {{- range $index, $link := $ui.footer.links -}}
         {{- if $index }}<span aria-hidden="true">·</span>{{ end -}}

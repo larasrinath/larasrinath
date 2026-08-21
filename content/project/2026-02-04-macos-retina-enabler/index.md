@@ -29,6 +29,10 @@ links:
     icon_pack: fab
     name: GitHub
     url: https://github.com/larasrinath/macos-hidpi
+article_note:
+  label: Project note
+  title: macOS utility
+  text: A safer way to enable crisp HiDPI scaling on standard external monitors.
 project_body:
   - type: opening
     text: >-

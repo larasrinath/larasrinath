@@ -68,7 +68,9 @@ article:
 project:
   all_projects: ← All projects
   eyebrow: Project
-  focus_label: Focus
+  details_aria: Project details
+  details_label: Project note
+  links_label: Project links
   external_link_icon: ""
   next_project: Next project
   up_next: Up next

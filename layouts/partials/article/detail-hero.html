@@ -1,0 +1,17 @@
+{{- $page := .page -}}
+{{- $summary := .summary -}}
+{{- $terms := .terms -}}
+{{- $titleWords := split $page.Title " " -}}
+{{- $lastTitleWord := sub (len $titleWords) 1 -}}
+
+<header class="app-detail-hero">
+  <div class="app-shell">
+    <a class="app-detail-back" href="{{ .back_href | relURL }}">{{ .back_label }}</a>
+    <p class="app-detail-eyebrow"><span aria-hidden="true"></span>{{ .eyebrow }} — {{ $page.Date.Format (.date_format | default "January 2006") }}</p>
+    <h1>{{ range $index, $word := $titleWords }}{{ if eq $index $lastTitleWord }}<em>{{ $word }}</em>{{ else }}{{ $word }} {{ end }}{{ end }}</h1>
+    <div class="app-detail-summary">
+      {{ with $summary }}<p>{{ . }}</p>{{ end }}
+      {{ with $terms }}<div class="app-detail-tags">{{ range . }}<span>{{ .LinkTitle }}</span>{{ end }}</div>{{ end }}
+    </div>
+  </div>
+</header>

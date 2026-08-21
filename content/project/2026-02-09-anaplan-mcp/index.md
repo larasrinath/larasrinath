@@ -1,6 +1,7 @@
 ---
 title: "Anaplan MCP"
 subtitle: "Unofficial MCP server for Anaplan"
+hero_summary: "An open-source bridge that lets AI assistants explore Anaplan models, review data and orchestrate Integration API workflows in plain English."
 excerpt: "Power Anaplan through AI"
 featured_summary: "An open-source MCP server that lets AI assistants explore Anaplan models, review data and orchestrate Integration API workflows in plain English."
 featured_home: true
@@ -34,147 +35,85 @@ links:
   icon_pack: fas
   name: Setup Guide
   url: "/project/2026-02-09-anaplan-mcp/#setup-guide"
+article_note:
+  label: Project note
+  title: Open-source integration
+  text: A TypeScript bridge between AI assistants and Anaplan's model and integration APIs.
+project_body:
+  - type: opening
+    text: >-
+      **Anaplan MCP turns a specialist API into a conversation.** It gives AI assistants a structured, permission-aware way to explore models, review data and orchestrate Integration API workflows without asking every user to become an API expert.
+  - type: image
+    src: featured.png
+    alt: Anaplan and AI assistant marks representing the Anaplan MCP bridge
+    caption: A conversational bridge between Anaplan and MCP-compatible AI assistants.
+  - type: heading
+    level: 2
+    text: The Problem
+  - type: paragraph
+    text: >-
+      Anaplan's Integration API is powerful but requires serious technical expertise. Most teams rely on a handful of model builders to navigate complex models, extract data and run imports. Everyone else waits. That bottleneck slows data reviews, onboarding, impact analysis and routine workflows that should be self-serve.
+  - type: heading
+    level: 2
+    text: "The Solution: Anaplan MCP"
+  - type: paragraph
+    text: >-
+      This server wraps the Anaplan Integration API v2 in structured tools that AI assistants like Claude can call on your behalf. Instead of writing API calls or waiting for someone who knows the model, you ask in plain English.
+  - type: quote
+    style: feature
+    lines:
+      - Show me the structure of the Supply Planning model.
+      - Pull the current pricing data for all products.
+      - Run the monthly demand import and show me the result.
+    cite: Example prompts
+  - type: paragraph
+    text: >-
+      Built in **TypeScript** with support for both **stdio** (local) and **Streamable HTTP** (remote) transports. Works with Claude Desktop, Claude Code, claude.ai, and any MCP-compatible client.
+  - type: heading
+    level: 2
+    text: Who It's For
+  - type: list
+    items:
+      - "**Business users**: Stop waiting for someone to pull data or explain how a model works. Ask Claude to show you the numbers, walk you through module structure, or run your regular imports."
+      - "**Model builders & consultants**: Analyze model structure, trace formula dependencies, review line item configurations, and identify performance issues through conversation instead of clicking through hundreds of modules manually."
+      - "**IT & platform teams**: Standard API access using your existing authentication and permissions. No new credentials, no elevated access. Open source for auditability."
+  - type: heading
+    level: 2
+    text: What It Can Do
+  - type: list
+    items:
+      - "**Model Exploration**: Browse workspaces, models, modules, lists, views, and line items. Inspect import, export, and process definitions. Query users, versions, calendar settings, and task history."
+      - "**Bulk Data Operations**: Run imports, exports, processes, and delete actions with automatic task polling. Upload and download files with chunked transfer for large datasets. Manage models and large-volume reads for datasets over 1M cells."
+      - "**Transactional Operations**: Read cell data from module views. Write values to specific cells. Add, update, and delete list items."
+  - type: heading
+    level: 2
+    text: Common Use Cases
+  - type: list
+    items:
+      - "**Model documentation**: Explore structure, list line items with formulas, check dimension usage, and understand how a model is composed."
+      - "**Data review**: Pull current data, identify recently added items, read forecast numbers, and get summaries without building custom exports."
+      - "**Impact analysis**: Find which modules use a specific list as a dimension, trace line-item references, and identify what a change would affect."
+      - "**Automation**: Run monthly imports, export actuals, add batches of new products to master lists, and chain multi-step workflows."
+      - "**Onboarding**: Walk new team members through module structure, explain how the model is organized, and answer questions about what each piece does."
+  - type: callout
+    label: Built-in orchestration guide
+    title: The assistant knows what comes next
+    text: >-
+      The server exposes an MCP resource (`anaplan://orchestration-guide`) that AI assistants read automatically. It teaches the correct tool sequences for every workflow: navigation patterns, read and write prerequisites, bulk import lifecycles, large-volume read pagination, and list mutation flows. Every tool description also includes prerequisite hints and next-step guidance, so the AI always knows what to call and in what order.
+  - type: callout
+    label: API scope
+    title: What it can't do
+    text: >-
+      The Anaplan API does not support creating modules or line items, defining formulas, building model structure from scratch, or configuring the model calendar programmatically. For model building, use Anaplan's UI or Agent Studio. This server covers everything the Integration API v2 exposes.
+  - type: paragraph
+    text: >-
+      For implementation details (internals, module layout, client compatibility matrix, architecture diagrams), see the [GitHub README](https://github.com/larasrinath/anaplan-mcp). That is the canonical technical reference and always reflects the latest release.
+  - type: cta
+    label: Ready to set up?
+    text: Jump to the platform-aware setup guide below.
+    url: "#setup-guide"
+  - type: page_content
 ---
-
-<div class="project--anaplan-mcp page-intro">
-
-## The Problem
-
-Anaplan's Integration API is powerful but requires serious technical expertise. Most teams rely on a handful of model builders to navigate complex models, extract data, and run imports. Everyone else waits. That bottleneck slows down data reviews, onboarding, impact analysis, and routine workflows that should be self-serve.
-
-## The Solution: Anaplan MCP
-
-This server wraps the Anaplan Integration API v2 in structured tools that AI assistants like Claude can call on your behalf. Instead of writing API calls or waiting for someone who knows the model, you ask in plain English:
-
-<div class="card-grid card-grid--quote">
-  <div class="card card--quote">
-    <i class="fas fa-quote-left"></i>
-    <p>Show me the structure of the Supply Planning model</p>
-  </div>
-  <div class="card card--quote">
-    <i class="fas fa-quote-left"></i>
-    <p>Pull the current pricing data for all products</p>
-  </div>
-  <div class="card card--quote">
-    <i class="fas fa-quote-left"></i>
-    <p>Run the monthly demand import and show me the result</p>
-  </div>
-</div>
-
-Built in **TypeScript** with support for both **stdio** (local) and **Streamable HTTP** (remote) transports. Works with Claude Desktop, Claude Code, claude.ai, and any MCP-compatible client.
-
-## Who It's For
-
-<div class="card-grid">
-  <div class="card">
-    <i class="fas fa-chart-line"></i>
-    <div>
-      <strong>Business users</strong>
-      <p>Stop waiting for someone to pull data or explain how a model works. Ask Claude to show you the numbers, walk you through module structure, or run your regular imports.</p>
-    </div>
-  </div>
-  <div class="card">
-    <i class="fas fa-cubes"></i>
-    <div>
-      <strong>Model builders &amp; consultants</strong>
-      <p>Analyze model structure, trace formula dependencies, review line item configurations, and identify performance issues through conversation instead of clicking through hundreds of modules manually.</p>
-    </div>
-  </div>
-  <div class="card">
-    <i class="fas fa-shield-alt"></i>
-    <div>
-      <strong>IT &amp; platform teams</strong>
-      <p>Standard API access using your existing authentication and permissions. No new credentials, no elevated access. Open source for auditability.</p>
-    </div>
-  </div>
-</div>
-
-## What It Can Do
-
-<div class="card-grid">
-  <div class="card">
-    <i class="fas fa-compass"></i>
-    <div>
-      <strong>Model Exploration</strong>
-      <p>Browse workspaces, models, modules, lists, views, and line items. Inspect import, export, and process definitions. Query users, versions, calendar settings, and task history.</p>
-    </div>
-  </div>
-  <div class="card">
-    <i class="fas fa-database"></i>
-    <div>
-      <strong>Bulk Data Operations</strong>
-      <p>Run imports, exports, processes, and delete actions with automatic task polling. Upload and download files with chunked transfer for large datasets. Manage models and large-volume reads for datasets over 1M cells.</p>
-    </div>
-  </div>
-  <div class="card">
-    <i class="fas fa-edit"></i>
-    <div>
-      <strong>Transactional Operations</strong>
-      <p>Read cell data from module views. Write values to specific cells. Add, update, and delete list items.</p>
-    </div>
-  </div>
-</div>
-
-## Common Use Cases
-
-<div class="card-grid">
-  <div class="card">
-    <i class="fas fa-file-alt"></i>
-    <div>
-      <strong>Model documentation</strong>
-      <p>Explore structure, list line items with formulas, check dimension usage, and understand how a model is composed.</p>
-    </div>
-  </div>
-  <div class="card">
-    <i class="fas fa-chart-bar"></i>
-    <div>
-      <strong>Data review</strong>
-      <p>Pull current data, identify recently added items, read forecast numbers, and get summaries without building custom exports.</p>
-    </div>
-  </div>
-  <div class="card">
-    <i class="fas fa-project-diagram"></i>
-    <div>
-      <strong>Impact analysis</strong>
-      <p>Find which modules use a specific list as a dimension, trace line-item references, and identify what a change would affect.</p>
-    </div>
-  </div>
-  <div class="card">
-    <i class="fas fa-bolt"></i>
-    <div>
-      <strong>Automation</strong>
-      <p>Run monthly imports, export actuals, add batches of new products to master lists, and chain multi-step workflows.</p>
-    </div>
-  </div>
-  <div class="card">
-    <i class="fas fa-user-plus"></i>
-    <div>
-      <strong>Onboarding</strong>
-      <p>Walk new team members through module structure, explain how the model is organized, and answer questions about what each piece does.</p>
-    </div>
-  </div>
-</div>
-
-{{< callout type="note" title="Built-in orchestration guide" >}}
-The server exposes an MCP resource (`anaplan://orchestration-guide`) that AI assistants read automatically. It teaches the correct tool sequences for every workflow: navigation patterns, read and write prerequisites, bulk import lifecycles, large-volume read pagination, and list mutation flows. Every tool description also includes prerequisite hints and next-step guidance, so the AI always knows what to call and in what order.
-{{< /callout >}}
-
-{{< callout type="warning" title="What it can't do" >}}
-The Anaplan API does not support creating modules or line items, defining formulas, building model structure from scratch, or configuring the model calendar programmatically. For model building, use Anaplan's UI or Agent Studio. This server covers everything the Integration API v2 exposes.
-{{< /callout >}}
-
-For implementation details (internals, module layout, client compatibility matrix, architecture diagrams), see the [GitHub README](https://github.com/larasrinath/anaplan-mcp). That is the canonical technical reference and always reflects the latest release.
-
-<a href="#setup-guide" class="cta-banner">
-  <span class="cta-banner__label">
-    <i class="fas fa-rocket"></i>
-    <strong>Ready to set up?</strong>
-    Jump to the platform-aware setup guide below.
-  </span>
-  <span class="cta-banner__arrow"><i class="fas fa-arrow-down"></i></span>
-</a>
-
-</div>
 
 <div class="setup-guide">
 
