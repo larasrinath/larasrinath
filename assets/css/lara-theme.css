@@ -91,6 +91,17 @@ input,
 textarea,
 select { font-family: var(--sans); }
 
+/* Keep the shared footer compact and anchored after the page content.
+   Flex is intentional here: the fixed header does not participate in grid
+   auto-placement, which could otherwise assign the flexible row to footer. */
+.site-shell {
+  display: flex;
+  flex-direction: column;
+  min-height: 100svh;
+}
+
+.site-shell > main { flex: 1 0 auto; }
+
 img,
 video,
 canvas,
@@ -345,7 +356,7 @@ summary:focus-visible {
 .app-home .home-profile h1 {
   margin: 0;
   color: var(--ink) !important;
-  font: 400 clamp(5.75rem, 8.8vw, 8.75rem)/0.86 var(--serif) !important;
+  font: 300 clamp(6.25rem, 9.56vw, 9.5rem)/0.86 var(--serif) !important;
   letter-spacing: -0.035em !important;
   text-transform: none !important;
 }
@@ -357,9 +368,9 @@ summary:focus-visible {
   margin-top: 0.08em;
   font-family: var(--serif) !important;
   font-style: italic;
-  font-weight: 300 !important;
+  font-weight: 400 !important;
   font-optical-sizing: auto;
-  font-variation-settings: "opsz" 144, "wght" 250, "SOFT" 100, "WONK" 1;
+  font-variation-settings: "opsz" 144, "wght" 400, "SOFT" 100, "WONK" 1;
 }
 
 .home-profile-surname {
@@ -381,14 +392,15 @@ summary:focus-visible {
 
 .app-home .home-profile h1 em {
   color: var(--accent);
-  font-weight: 300;
+  font-weight: 400;
 }
 
 .home-profile-portrait {
   grid-column: 1;
   grid-row: 1;
   align-self: center;
-  width: min(100%, 22.5rem);
+  width: clamp(22rem, 36vw, 28.125rem);
+  max-width: 100%;
   margin: 0;
   justify-self: center;
 }
@@ -761,8 +773,8 @@ summary:focus-visible {
 .page-tail--deep { background: var(--paper-deep); }
 .page-tail--dark { color: var(--paper); background: var(--ink); }
 .page-tail-inner:empty { min-height: 0; }
-.site-footer { color: var(--muted); background: var(--paper); }
-.site-footer-inner { display: grid; grid-template-columns: minmax(0, 1fr) auto minmax(0, 1fr); align-items: center; gap: 2rem; padding-top: 2rem; padding-bottom: 2.5rem; border-top: 1px solid var(--line); font-size: 0.875rem; line-height: 1.428571; }
+.site-footer { flex: 0 0 auto; min-height: 0; color: var(--muted); background: var(--paper); }
+.site-footer-inner { display: grid; grid-template-columns: minmax(0, 1fr) auto minmax(0, 1fr); align-items: center; min-height: 0; gap: 2rem; padding-top: 2rem; padding-bottom: 2.5rem; border-top: 1px solid var(--line); font-size: 0.875rem; line-height: 1.428571; }
 .site-footer p { margin: 0 !important; color: inherit !important; font: inherit !important; }
 .site-footer-socials,
 .site-footer-links { display: flex; flex-wrap: wrap; gap: 0.5rem; }
@@ -798,28 +810,39 @@ summary:focus-visible {
   .home-profile { min-height: auto; }
   .home-profile-grid {
     grid-template-columns: minmax(0, 1fr);
-    gap: 2.25rem;
+    grid-template-rows: max-content max-content;
+    align-content: center;
+    gap: 2rem;
     min-height: 0;
     padding-top: 5.75rem;
-    padding-bottom: 3.5rem;
+    padding-bottom: clamp(1.5rem, 4vw, 2.5rem);
   }
   .home-profile-copy {
     display: grid;
     grid-column: 1;
-    grid-row: 1;
+    grid-row: 2;
     justify-items: center;
     max-width: 40rem;
     padding-bottom: 0;
     text-align: center;
   }
   .app-home .home-profile h1 {
-    font-size: clamp(3.5rem, 14vw, 6rem) !important;
+    display: flex;
+    align-items: baseline;
+    justify-content: center;
+    gap: 0.28em;
+    font-size: clamp(3rem, 13vw, 4.75rem) !important;
+    line-height: 0.9 !important;
+    white-space: nowrap;
   }
+  .app-home .home-profile h1 > span,
+  .app-home .home-profile h1 > em { display: inline-flex; }
+  .app-home .home-profile h1 > em { margin-top: 0; }
   .home-profile-surname { justify-content: center; }
   .home-profile-portrait {
     grid-column: 1;
-    grid-row: 2;
-    width: min(68vw, 18rem);
+    grid-row: 1;
+    width: min(78vw, 40svh, 24rem);
   }
 }
 
@@ -871,10 +894,19 @@ summary:focus-visible {
   .project-thumb { grid-column: 1; }
   .app-timeline article { display: block; }
   .app-timeline article > div { margin-top: 0.75rem; }
-  .site-footer-inner { grid-template-columns: 1fr; justify-items: start; gap: 1rem; }
-  .site-footer-socials,
-  .site-footer-copyright,
-  .site-footer-links { justify-self: start; text-align: left; }
+  .site-footer-inner {
+    grid-template-columns: minmax(0, 1fr) auto;
+    justify-items: stretch;
+    height: auto;
+    min-height: 0;
+    gap: 0.75rem 1rem;
+    padding-top: 1.5rem;
+    padding-bottom: 1.5rem;
+    font-size: 0.75rem;
+  }
+  .site-footer-socials { grid-column: 1 / -1; justify-self: start; gap: 0.5rem; }
+  .site-footer-copyright { grid-column: 1; justify-self: start; text-align: left; }
+  .site-footer-links { grid-column: 2; justify-self: end; text-align: right; }
 
   /* Shared phone rhythm for every blog and project detail hero. */
   .app-detail-hero { padding-top: 7rem; padding-bottom: 2.5rem; }
