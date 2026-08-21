@@ -1,7 +1,15 @@
 ---
 title: Game of Thrones
+card_title: A Song of Graph and Number
 author: Lara Srinath
 date: '2020-07-17'
+featured_summary: "A visual analysis of Game of Thrones episode ratings and the sharp audience response to its final season."
+featured_home: true
+featured_weight: 6
+featured_image: /img/portfolio/game-of-thrones.jpeg
+featured_image_alt: "Crossed medieval swords representing Game of Thrones"
+featured_image_fit: cover
+featured_meta: "R · Data Storytelling — 2020"
 slug: game-of-thrones
 categories: []
 tags:

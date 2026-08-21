@@ -1,6 +1,29 @@
 ---
 title: "Resume"
 description: "Lara Srinath - Anaplan Solution Architect & Master Anaplanner"
+eyebrow: Curriculum vitae
+hero_title: Résumé.
+hero_summary: Enterprise planning architect and Master Anaplanner, working across supply chain, finance, data and delivery leadership.
+actions:
+  - label: Download PDF
+    href: /pdf/larasrinath.pdf
+    style: primary
+    external: true
+  - label: LinkedIn
+    href: https://www.linkedin.com/in/larasrinath/
+    style: text
+    external: true
+highlights_label: Résumé highlights
+highlights:
+  - label: Experience
+    value: 10 years in enterprise planning
+  - label: Recognition
+    value: 8× Master Anaplanner
+  - label: Focus
+    value: Supply chain, FP&A, architecture and teams
+  - label: Based
+    value: Dallas, Texas
+    note: Working globally
 ---
 
 <div class="resume-header">

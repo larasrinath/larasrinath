@@ -1,0 +1,33 @@
+{{ define "main" }}
+<main id="main-content" class="inner-page" role="main">
+  <header class="page-hero blog-hero">
+    <p class="section-label">{{ .Params.eyebrow }}</p>
+    <h1>{{ .Params.hero_title }} <em>{{ .Params.hero_emphasis }}</em></h1>
+    <p>{{ .Description }}</p>
+  </header>
+
+  <section class="post-index" aria-label="{{ .Params.posts_label }}">
+    {{ $pages := (where .RegularPagesRecursive "Type" "blog").ByDate.Reverse }}
+    {{ $paginator := .Paginate $pages }}
+    {{ range $index, $post := $paginator.Pages }}
+      {{ $summary := $post.Params.subtitle | default $post.Description | default $post.Params.excerpt | default ($post.Summary | plainify) }}
+      <a class="post-row" href="{{ $post.RelPermalink }}">
+        <div class="post-meta">
+          <time datetime="{{ $post.Date.Format "2006-01-02" }}">{{ $post.Date.Format "Jan 2006" }}</time>
+          <span>{{ $post.ReadingTime }} {{ $.Params.minute_read_label }}</span>
+          {{ with $post.Params.tags }}<span>{{ delimit (first 2 .) " · " }}</span>{{ end }}
+        </div>
+        <div class="post-copy"><h2>{{ $post.Title }}</h2>{{ with $summary }}<p>{{ . | truncate 190 }}</p>{{ end }}</div>
+        <span class="post-arrow">{{ $.Params.read_label }}</span>
+      </a>
+    {{ end }}
+    {{ if gt $paginator.TotalPages 1 }}
+      <nav class="pagination" aria-label="{{ site.Data.ui.accessibility.blog_pagination }}">
+        {{ with $paginator.Prev }}<a href="{{ .URL }}">{{ $.Params.pagination.newer }}</a>{{ end }}
+        <span>{{ .Params.pagination.page }} {{ $paginator.PageNumber }} {{ .Params.pagination.of }} {{ $paginator.TotalPages }}</span>
+        {{ with $paginator.Next }}<a href="{{ .URL }}">{{ $.Params.pagination.older }}</a>{{ end }}
+      </nav>
+    {{ end }}
+  </section>
+</main>
+{{ end }}

@@ -1,0 +1,15 @@
+<!doctype html>
+<html lang="{{ .Site.LanguageCode | default "en" }}" dir="ltr">
+  {{- partial "head.html" . -}}
+  <body id="top" class="page page--{{ .Kind }}{{ with .Section }} page--{{ . }}{{ end }}{{ if .IsHome }} page--home{{ end }}">
+    <a class="skip-link" href="#main-content">{{ site.Data.ui.accessibility.skip_to_content }}</a>
+    {{ if and .IsPage (eq .Section "blog") }}
+      <div class="reading-progress" aria-hidden="true"></div>
+    {{ end }}
+    <div class="site-shell">
+      {{- block "header" . }}{{- partial "header.html" . -}}{{- end }}
+      {{- block "main" . }}{{- end }}
+      {{- if not .IsHome }}{{- block "footer" . }}{{- partial "footer.html" . -}}{{- end }}{{- end }}
+    </div>
+  </body>
+</html>

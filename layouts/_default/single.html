@@ -1,0 +1,10 @@
+{{ define "main" }}
+<main id="main-content" class="inner-page content-page" role="main">
+  <header class="page-hero compact-hero">
+    <p class="section-label">{{ .Section | default site.Data.ui.generic.page_fallback }}</p>
+    <h1>{{ .Title }}</h1>
+    {{ with .Description }}<p>{{ . }}</p>{{ end }}
+  </header>
+  <article class="project-content-wrap"><div class="article-content project-content">{{ .Content }}</div></article>
+</main>
+{{ end }}

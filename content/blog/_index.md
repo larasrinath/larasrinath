@@ -1,6 +1,17 @@
 ---
 title: Blog
-description: |
+eyebrow: Writing
+hero_title: Notes from the
+hero_emphasis: workbench.
+description: Thoughts on Anaplan, planning, data, technology and the occasional detour into life beyond the model.
+posts_label: Blog posts
+read_label: Read
+minute_read_label: min read
+pagination:
+  newer: ← Newer
+  older: Older →
+  page: Page
+  of: of
 author: "Lara Srinath"
 show_post_thumbnail: true
 thumbnail_left: true # for list-sidebar only

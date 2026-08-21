@@ -1,7 +1,14 @@
 ---
-title: "MacOS ex-Retina Display"
+title: "macOS ex-Retina Display"
 subtitle: "Enabling High-DPI Retina scaling on external monitors"
 excerpt: "Retina scaling for external monitors"
+featured_summary: "A hardened HiDPI enabler that brings crisp Retina scaling to external monitors with safer permissions and strict input validation."
+featured_home: true
+featured_weight: 3
+featured_image: /img/portfolio/macos-retina.png
+featured_image_alt: "macOS Retina display project artwork"
+featured_image_fit: contain
+featured_meta: "macOS · Open Source · Security — 2026"
 date: 2026-02-04
 author: "Lara Srinath"
 draft: false

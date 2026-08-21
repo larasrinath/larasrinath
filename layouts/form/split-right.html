@@ -1,0 +1,13 @@
+{{ define "main" }}
+<main id="main-content" class="inner-page contact-page" role="main">
+  <section class="page-hero compact-hero">
+    <p class="section-label">{{ .Params.name }}</p>
+    <h1>{{ .Title }}</h1>
+    <p>{{ .Description }}</p>
+  </section>
+  <section class="contact-form-layout">
+    <div>{{ if .Params.show_social_links }}{{ partial "shared/social-links.html" . }}{{ end }}</div>
+    <div>{{ partial "shared/contact-form.html" . }}</div>
+  </section>
+</main>
+{{ end }}

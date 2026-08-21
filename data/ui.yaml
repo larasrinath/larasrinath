@@ -1,0 +1,107 @@
+accessibility:
+  skip_to_content: Skip to content
+  primary_navigation: Primary navigation
+  article_navigation: Article navigation
+  blog_pagination: Blog pagination
+  share_article: Share article
+  copy_article_link: Copy article link
+  article_link_copied: Article link copied
+
+brand:
+  name: Lara Srinath
+  home_label: Lara Srinath home
+
+icons:
+  external: ""
+  forward: →
+  separator: ✦
+  copy: ""
+
+share_marks:
+  linkedin: in
+  x: X
+
+footer:
+  link_label: "Connect on LinkedIn & GitHub"
+  link_href: /#contact
+
+generic:
+  collection_label: Collection
+  open_label: Open
+  page_fallback: Page
+
+article:
+  section_label: Writing
+  all_articles: ← All writing
+  eyebrow: Writing
+  up_next: Up next
+  featured_quote_aria: Featured quote
+  featured_quote_label: In Lara’s words
+  details_aria: Article details
+  filed_under: Filed under
+  minute_read: min read
+  words: words
+  updated: Updated
+  newer_article: Newer article
+  older_article: Older article
+  related_label: Keep exploring
+  related_heading: Related reading
+  related_time_suffix: min
+  share_linkedin_prefix: Share
+  share_linkedin_suffix: on LinkedIn
+  share_x_suffix: on X
+
+project:
+  all_projects: ← All projects
+  eyebrow: Project
+  focus_label: Focus
+  external_link_icon: ""
+  next_project: Next project
+  up_next: Up next
+  view: View
+
+taxonomy:
+  explore: Explore
+  browse_prefix: Browse the archive by
+  topic_fallback: topic
+  entry_singular: entry
+  entry_plural: entries
+  archive_suffix: from the archive.
+  filed_under: Filed under
+  tagged_prefix: Entries tagged
+
+talk:
+  label: Talks
+  view_label: View
+
+components:
+  platform_selector:
+    label: "Pick your platform:"
+    windows: Windows
+    macos: macOS
+    linux: Linux
+  auth_selector:
+    label: "Pick your auth method:"
+    oauth: OAuth2
+    certificate: Certificate
+    basic: Basic Auth
+  code_folding:
+    label: Code
+    show_all: Show all
+    hide_all: Hide all
+
+not_found:
+  code: "404"
+  label: Not found
+  heading: Uh-oh, Roll-back!
+  intro: The page you’re looking for is not available.
+  links_label: Helpful links
+  links:
+    - label: Home
+      href: /
+    - label: About
+      href: /about/
+    - label: Blog
+      href: /blog/
+    - label: Projects
+      href: /project/

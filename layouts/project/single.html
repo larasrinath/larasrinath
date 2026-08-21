@@ -1,0 +1,56 @@
+{{ define "main" }}
+{{ $ui := site.Data.ui }}
+{{ $summary := .Params.featured_summary | default .Params.summary | default .Params.subtitle | default .Params.excerpt | default .Description }}
+{{ $titleWords := split .Title " " }}
+{{ $lastTitleWord := sub (len $titleWords) 1 }}
+
+<main id="main-content" class="inner-page app-detail-page" role="main">
+  <article>
+    <header class="app-detail-hero">
+      <div class="app-shell">
+        <a class="app-detail-back" href="{{ "/project/" | relURL }}">{{ $ui.project.all_projects }}</a>
+        <p class="app-detail-eyebrow"><span aria-hidden="true"></span>{{ $ui.project.eyebrow }} — {{ .Date.Format "2006" }}</p>
+        <h1>{{ range $index, $word := $titleWords }}{{ if eq $index $lastTitleWord }}<em>{{ $word }}</em>{{ else }}{{ $word }} {{ end }}{{ end }}</h1>
+        <div class="app-detail-summary">
+          {{ with $summary }}<p>{{ . }}</p>{{ end }}
+          <div class="app-detail-tags">{{ range .GetTerms "tags" }}<span>{{ .LinkTitle }}</span>{{ end }}</div>
+        </div>
+      </div>
+    </header>
+
+    {{ with .Params.featured_image }}
+      <figure class="app-detail-figure app-shell">
+        <div><img class="image-fit-{{ $.Params.featured_image_fit | default "cover" }}" src="{{ . | relURL }}" alt="{{ $.Params.featured_image_alt }}"></div>
+        {{ with $.Params.featured_image_credit }}<figcaption>{{ . }}</figcaption>{{ end }}
+      </figure>
+    {{ end }}
+
+    <div class="app-detail-body app-shell">
+      <aside>
+        <div>
+          <p>{{ $ui.project.focus_label }}</p>
+          <span>{{ delimit .Params.tags " · " }}</span>
+          {{ with .Params.links }}
+            <nav>{{ range . }}<a href="{{ .url | safeURL }}"{{ if hasPrefix .url "http" }} target="_blank" rel="noopener noreferrer"{{ end }}>{{ .name }} {{ $ui.project.external_link_icon }}</a>{{ end }}</nav>
+          {{ end }}
+        </div>
+      </aside>
+      {{ $content := .Content }}
+      {{ if .Params.featured_image }}{{ $content = replaceRE `(?s)^\s*<p>\s*<img[^>]*>\s*</p>` "" $content }}{{ end }}
+      <div class="article-content app-detail-prose">{{ $content | safeHTML }}</div>
+    </div>
+  </article>
+
+  {{ $next := .NextInSection }}
+  {{ if not $next }}{{ $next = .PrevInSection }}{{ end }}
+  {{ with $next }}
+    <aside class="app-detail-next">
+      <a class="app-shell" href="{{ .RelPermalink }}">
+        <p>{{ $ui.project.up_next }}</p>
+        <div><h2>{{ .Title }}</h2>{{ with (.Params.featured_summary | default .Params.summary | default .Params.excerpt | default .Params.subtitle) }}<span>{{ . }}</span>{{ end }}</div>
+        <b aria-hidden="true">{{ $ui.icons.forward }}</b>
+      </a>
+    </aside>
+  {{ end }}
+</main>
+{{ end }}

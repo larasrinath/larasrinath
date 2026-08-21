@@ -1,0 +1,15 @@
+{{ define "main" }}
+{{ $ui := site.Data.ui }}
+<main id="main-content" class="inner-page" role="main">
+  <header class="page-hero compact-hero">
+    <p class="section-label">{{ $ui.taxonomy.explore }}</p>
+    <h1>{{ .Title }}</h1>
+    <p>{{ $ui.taxonomy.browse_prefix }} {{ .Data.Singular | default $ui.taxonomy.topic_fallback }}.</p>
+  </header>
+  <section class="term-grid" aria-label="{{ .Title }}">
+    {{ range .Pages.ByTitle }}
+      <a href="{{ .RelPermalink }}"><span>{{ len .Pages }} {{ if eq (len .Pages) 1 }}{{ $ui.taxonomy.entry_singular }}{{ else }}{{ $ui.taxonomy.entry_plural }}{{ end }}</span><strong>{{ .Title }}</strong><span aria-hidden="true">{{ $ui.icons.external }}</span></a>
+    {{ end }}
+  </section>
+</main>
+{{ end }}

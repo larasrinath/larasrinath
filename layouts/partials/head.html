@@ -2,26 +2,10 @@
   {{ partial "meta.html" . }}
   {{ template "_internal/schema.html" . }}
   {{ template "_internal/google_analytics.html" . }}
-
-  {{/* Author + OpenGraph image — missing by default in theme. */}}
   <meta name="author" content="Lara Srinath">
   <meta property="article:author" content="Lara Srinath">
+  <link rel="canonical" href="{{ .Permalink }}">
 
-  {{/* Generate a 1200x630 landscape OG image from the portrait avatar.
-       Hugo's .Fill with "top" focus keeps the face in frame. Processed
-       once at build time and cached in resources/_gen/. */}}
-  {{ $ogImg := resources.Get "img/avatar.png" }}
-  {{ if $ogImg }}
-    {{ $ogLandscape := $ogImg.Fill "1200x630 top" }}
-    <meta property="og:image" content="{{ $ogLandscape.Permalink }}">
-    <meta property="og:image:width" content="1200">
-    <meta property="og:image:height" content="630">
-    <meta property="og:image:alt" content="Lara Srinath">
-  {{ end }}
-
-  {{/* JSON-LD Person schema — declares a single entity so Google's
-       knowledge panel doesn't conflate with other "Lara Srinath"s.
-       sameAs links bind these profiles to this identity. */}}
   {{ if .IsHome }}
   <script type="application/ld+json">
   {
@@ -30,7 +14,7 @@
     "name": "Lara Srinath",
     "alternateName": "larasrinath",
     "jobTitle": "Anaplan Solution Architect and Master Anaplanner",
-    "description": "Anaplan Solution Architect, Master Anaplanner and supply chain planning and optimization enthusiast with 9+ years of experience helping businesses make better decisions through data.",
+    "description": "Enterprise planning architect, Master Anaplanner and builder working across supply chain, finance, data and AI.",
     "url": "{{ .Site.BaseURL }}",
     "image": "{{ "img/avatar.png" | absURL }}",
     "sameAs": [
@@ -38,45 +22,27 @@
       "https://github.com/larasrinath",
       "https://x.com/larasrinath",
       "https://www.instagram.com/larasrinath"
-    ],
-    "worksFor": {
-      "@type": "Organization",
-      "name": "GenXAI",
-      "url": "https://www.genxai.com/"
-    },
-    "alumniOf": {
-      "@type": "CollegeOrUniversity",
-      "name": "PSG College of Technology"
-    }
+    ]
   }
   </script>
   {{ end }}
-  {{ `<!--[if IE]><script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script><![endif]-->` | safeHTML }}
+
   <link rel="shortcut icon" href="{{ .Site.Params.favicon }}" type="image/x-icon">
   <link rel="icon" href="{{ .Site.Params.favicon }}" type="image/x-icon">
-  {{ range .AlternativeOutputFormats }}
-    {{ printf `<link rel="%s" type="%s" href="%s" title="%s" />` .Rel .MediaType.Type .Permalink $.Site.Title | safeHTML }}
-  {{ end }}
-
-  <!-- Commissioner weights used across the site: 300 and 500 (home only),
-       400 for body, 700 for emphasis/headings on other pages. -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Commissioner:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,400;0,9..144,500;0,9..144,600;1,9..144,300;1,9..144,400&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+  {{ range .AlternativeOutputFormats }}
+    {{ printf `<link rel="%s" type="%s" href="%s" title="%s">` .Rel .MediaType.Type .Permalink $.Site.Title | safeHTML }}
+  {{ end }}
 
   {{ $styles := resources.Get "scaffold.scss" | resources.ExecuteAsTemplate "style.main.scss" . | toCSS | minify | fingerprint }}
   <link rel="stylesheet" href="{{ $styles.RelPermalink }}" integrity="{{ $styles.Data.Integrity }}" media="screen">
-  <!-- panelset.js -->
+
   {{ $panelsetJs := resources.Get "js/panelset.js" | js.Build "panelset.js" | minify | fingerprint }}
   <script src="{{ $panelsetJs.RelPermalink }}" type="text/javascript"></script>
-  <!-- headroom.js -->
   {{ $mainJs := resources.Get "js/main.js" | js.Build "main.js" | minify | fingerprint }}
   <script src="{{ $mainJs.RelPermalink }}" type="text/javascript"></script>
-  <!-- dark mode: apply before paint to prevent flash -->
-  <script>
-    (function(){var t=localStorage.getItem('theme');var d=t?t==='dark':window.matchMedia('(prefers-color-scheme:dark)').matches;document.documentElement.setAttribute('data-theme',d?'dark':'light');if(d){document.addEventListener('DOMContentLoaded',function(){var b=document.getElementById('dark-mode-toggle');if(b)b.classList.add('theme-toggle--toggled')})}})();
-  </script>
-  <!-- dynamic enhancements -->
   {{ $customJs := resources.Get "js/custom.js" | minify | fingerprint }}
   <script src="{{ $customJs.RelPermalink }}" type="text/javascript" defer></script>
 </head>

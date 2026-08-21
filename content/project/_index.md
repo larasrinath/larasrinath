@@ -1,6 +1,11 @@
 ---
 title: Projects
-description: ""
+eyebrow: Projects
+hero_title: Experiments with
+hero_emphasis: systems.
+description: A collection of planning models, open-source tools, optimization work and data visualizations.
+list_label: Projects
+tags_label: Project tags
 author: ""
 show_post_thumbnail: true
 show_author_byline: false

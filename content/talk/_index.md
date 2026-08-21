@@ -1,5 +1,8 @@
 ---
 title: Talks
+eyebrow: Talks
+list_label: Talks
+view_label: View
 description: |
   Talks, workshops, and other events.
 author: "Lara Srinath"

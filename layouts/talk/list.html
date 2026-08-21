@@ -1,0 +1,6 @@
+{{ define "main" }}
+<main id="main-content" class="inner-page" role="main">
+  <header class="page-hero compact-hero"><p class="section-label">{{ .Params.eyebrow }}</p><h1>{{ .Title }}</h1>{{ with .Description }}<p>{{ . }}</p>{{ end }}</header>
+  <section class="post-index" aria-label="{{ .Params.list_label }}">{{ range $index, $talk := .RegularPages.ByDate.Reverse }}<a class="post-row generic-row" href="{{ $talk.RelPermalink }}"><span class="post-count" aria-hidden="true">{{ printf "%02d" (add $index 1) }}</span><div class="post-copy"><h2>{{ $talk.Title }}</h2>{{ with ($talk.Summary | plainify) }}<p>{{ . | truncate 180 }}</p>{{ end }}</div><span class="post-arrow">{{ $.Params.view_label }}</span></a>{{ end }}</section>
+</main>
+{{ end }}

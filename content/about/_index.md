@@ -1,6 +1,9 @@
 ---
 title: "About"
 description:
+eyebrow: About Lara
+headline_fallback: Hello, I’m Lara!
+portrait_alt: Lara Srinath
 show_header: true
 sidebar_left: false
 ---

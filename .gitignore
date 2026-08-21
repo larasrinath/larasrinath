@@ -9,3 +9,4 @@ public/
 *.key
 *.pem
 credentials*
+.DS_Store

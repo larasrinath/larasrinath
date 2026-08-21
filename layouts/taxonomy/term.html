@@ -1,0 +1,19 @@
+{{ define "main" }}
+{{ $ui := site.Data.ui }}
+<main id="main-content" class="inner-page" role="main">
+  <header class="page-hero compact-hero">
+    <p class="section-label">{{ $ui.taxonomy.filed_under }}</p>
+    <h1>{{ .Title }}</h1>
+    <p>{{ len .RegularPages }} {{ if eq (len .RegularPages) 1 }}{{ $ui.taxonomy.entry_singular }}{{ else }}{{ $ui.taxonomy.entry_plural }}{{ end }} {{ $ui.taxonomy.archive_suffix }}</p>
+  </header>
+  <section class="post-index" aria-label="{{ $ui.taxonomy.tagged_prefix }} {{ .Title }}">
+    {{ range $index, $post := .RegularPages.ByDate.Reverse }}
+      <a class="post-row" href="{{ $post.RelPermalink }}">
+        <div class="post-meta"><time datetime="{{ $post.Date.Format "2006-01-02" }}">{{ $post.Date.Format "Jan 2006" }}</time><span>{{ $post.Type }}</span></div>
+        <div class="post-copy"><h2>{{ $post.Title }}</h2>{{ with ($post.Params.subtitle | default $post.Params.excerpt | default ($post.Summary | plainify)) }}<p>{{ . | truncate 180 }}</p>{{ end }}</div>
+        <span class="post-arrow">{{ $ui.generic.open_label }}</span>
+      </a>
+    {{ end }}
+  </section>
+</main>
+{{ end }}

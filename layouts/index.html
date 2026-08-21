@@ -1,22 +1,135 @@
 {{ define "main" }}
-{{ $page := . }}
-<main class="page-main" role="main">
-  <section class="page-content mw9 center">
-    <div class="flex-ns items-center justify-center">
-      <div class="w-50-ns">
-      {{ with .Params.images }}
-        {{ range first 1 . }}<img class="db mv0 center" src="{{ . | relURL }}"/>{{ end }}
-      {{ end }}
-      </div>
-      <div class="w-50-ns home-hero-copy {{ if not .Params.text_align_left }}tr{{ end }}">
-        <div class="home-hero-heading">
-          {{ with .Params.title }}<h1 class="f2 f1-m f-subheadline-l fw5-ns mv4 lh-solid">{{ . }}</h1>{{ end }}
-          {{ with .Params.subtitle }}<h2 class="f5 fw7 mt0 mb4 ttu tracked">{{ . }}</h2>{{ end }}
+{{ $home := site.Data.home }}
+{{ $works := where (where site.RegularPages "Section" "project") "Params.featured_home" true }}
+{{ $works = sort $works "Params.featured_weight" "asc" }}
+
+<main id="main-content" class="lara-home app-home" role="main">
+  <section class="app-hero" aria-labelledby="home-title">
+    <div class="app-shell">
+      <p class="app-kicker">{{ $home.hero.eyebrow }}</p>
+      {{ $lastHeroLine := sub (len $home.hero.title_lines) 1 }}
+      <h1 id="home-title">{{ range $index, $line := $home.hero.title_lines }}{{ if eq $index $home.hero.emphasis_line }}<em>{{ $line }}</em>{{ else }}{{ $line }}{{ end }}{{ if lt $index $lastHeroLine }}<br>{{ end }}{{ end }}</h1>
+      <div class="app-hero-bottom">
+        <div class="app-hero-copy">
+          <p>{{ $home.hero.intro }}</p>
+          <div class="app-actions">
+            {{ range $home.hero.actions }}
+              <a class="app-button app-button-{{ .style }}" href="{{ .href | safeURL }}">{{ .label }} <span aria-hidden="true">{{ .icon }}</span></a>
+            {{ end }}
+          </div>
         </div>
-        {{ if .Params.show_social_links }}{{ partial "shared/social-links.html" . }}{{ end }}
-        {{ with .Params.description }}<p class="f4 mt4 lh-copy">{{ . | markdownify }}</p>{{ end }}
-        {{ if .Params.show_action_link }}<a class="mt4 action {{ .Params.action_type }}" href="{{ .Params.action_link | relURL }}">{{ .Params.action_label | safeHTML }}</a>{{ end }}
       </div>
+    </div>
+    <div class="app-marquee" aria-label="{{ $home.marquee_label }}">
+      <div class="app-marquee-track">
+        <span>{{ range $home.marquee }}<b>{{ . }}</b><i aria-hidden="true">{{ $home.marquee_symbol }}</i>{{ end }}</span>
+        <span aria-hidden="true">{{ range $home.marquee }}<b>{{ . }}</b><i>{{ $home.marquee_symbol }}</i>{{ end }}</span>
+      </div>
+    </div>
+  </section>
+
+  <section class="app-about" id="about" aria-labelledby="about-heading">
+    <div class="app-shell app-about-grid">
+      <div class="app-portrait-column">
+        <figure class="app-portrait">
+          <img src="{{ $home.about.portrait | relURL }}" alt="{{ $home.about.portrait_alt }}" width="1024" height="1365">
+          <figcaption>{{ $home.about.portrait_caption }}</figcaption>
+        </figure>
+      </div>
+      <div class="app-about-copy">
+        <p class="app-section-number">{{ $home.about.label }}</p>
+        <h2 id="about-heading">{{ $home.about.heading_prefix }} <em>{{ $home.about.heading_emphasis }}</em>{{ $home.about.heading_suffix }}</h2>
+        <div class="app-prose">
+          {{ range $home.about.paragraphs }}<p>{{ . }}</p>{{ end }}
+        </div>
+        <dl class="app-metrics">
+          {{ range $home.about.metrics }}<div><dt>{{ .value }}</dt><dd>{{ .label }}</dd></div>{{ end }}
+        </dl>
+      </div>
+    </div>
+  </section>
+
+  <section class="selected-works" id="works" aria-labelledby="works-heading">
+    <div class="app-shell">
+      <div class="app-section-intro">
+        <div>
+          <p class="app-section-number">{{ $home.works.label }}</p>
+          <h2 id="works-heading">{{ $home.works.heading_prefix }} <em>{{ $home.works.heading_emphasis }}</em></h2>
+        </div>
+        <p>{{ $home.works.intro }}</p>
+      </div>
+
+      <div class="selected-work-list">
+        {{ range $index, $page := $works }}
+          <article class="selected-work-row">
+            <span class="selected-work-count">{{ printf "(%02d)" (add $index 1) }}</span>
+            <div class="selected-work-copy">
+              <h3><a href="{{ $page.RelPermalink }}">{{ $page.Params.card_title | default $page.Title }}</a></h3>
+              <p>{{ $page.Params.featured_summary | default $page.Params.summary | default $page.Params.excerpt }}</p>
+              <span>{{ with $page.Params.featured_meta }}{{ . }}{{ else }}{{ delimit (first 3 $page.Params.tags) " · " }} — {{ $page.Date.Format "2006" }}{{ end }}</span>
+              <a class="selected-work-link" href="{{ $page.RelPermalink }}">{{ $home.works.link_label }} <span aria-hidden="true">{{ $home.works.link_icon }}</span></a>
+            </div>
+            <a class="selected-work-visual" href="{{ $page.RelPermalink }}" aria-label="{{ $home.works.view_label_prefix }} {{ $page.Title }} {{ $home.works.view_label_suffix }}">
+              <img class="image-fit-{{ $page.Params.featured_image_fit | default "cover" }}" src="{{ $page.Params.featured_image | relURL }}" alt="{{ $page.Params.featured_image_alt }}" loading="lazy">
+            </a>
+          </article>
+        {{ end }}
+      </div>
+    </div>
+  </section>
+
+  <section class="app-experience" id="experience" aria-labelledby="experience-heading">
+    <div class="app-shell app-experience-grid">
+      <div class="app-experience-main">
+        <p class="app-section-number">{{ $home.experience.label }}</p>
+        <h2 id="experience-heading">{{ $home.experience.heading }}</h2>
+        <div class="app-timeline">
+          {{ range $home.experience.roles }}
+            <article><time>{{ .period }}</time><div><h3>{{ .title }}</h3><span>{{ .place }}</span><p>{{ .note }}</p></div></article>
+          {{ end }}
+        </div>
+      </div>
+      <aside class="app-capabilities" aria-label="{{ $home.experience.capabilities_label }}">
+        <p class="app-section-number">{{ $home.experience.capabilities_label }}</p>
+        {{ range $home.experience.capabilities }}
+          <div><h3>{{ .title }}</h3><ul>{{ range .items }}<li>{{ . }}</li>{{ end }}</ul></div>
+        {{ end }}
+        <a class="app-button app-button-line" href="{{ $home.experience.resume_link.href | relURL }}">{{ $home.experience.resume_link.label }} <span aria-hidden="true">{{ $home.experience.resume_link.icon }}</span></a>
+      </aside>
+    </div>
+  </section>
+
+  <section class="app-writing" id="writing" aria-labelledby="writing-heading">
+    <div class="app-shell">
+      <div class="app-section-intro">
+        <div>
+          <p class="app-section-number">{{ $home.writing.label }}</p>
+          <h2 id="writing-heading">{{ $home.writing.heading_prefix }} <em>{{ $home.writing.heading_emphasis }}</em></h2>
+        </div>
+      </div>
+      <div class="app-writing-list">
+        {{ $posts := where site.RegularPages "Section" "blog" }}
+        {{ range first $home.writing.post_count $posts.ByDate.Reverse }}
+          <a href="{{ .RelPermalink }}">
+            <time datetime="{{ .Date.Format "2006-01-02" }}">{{ .Date.Format "January 2006" }}</time>
+            <div><h3>{{ .Title }}</h3><p>{{ with .Params.summary }}{{ . }}{{ else }}{{ .Summary | plainify | truncate 150 }}{{ end }}</p></div>
+            <span>{{ with first 1 (.GetTerms "tags") }}{{ range . }}{{ .LinkTitle }} {{ end }}{{ end }}<i aria-hidden="true">{{ $home.writing.row_icon }}</i></span>
+          </a>
+        {{ end }}
+      </div>
+    </div>
+  </section>
+
+  <section class="app-contact" id="contact" aria-labelledby="contact-heading">
+    <div class="app-shell">
+      <p class="app-section-number">{{ $home.contact.label }}</p>
+      <h2 id="contact-heading"><a href="{{ $home.contact.heading_href }}" target="_blank" rel="me noreferrer">{{ $home.contact.heading_prefix }} <em>{{ $home.contact.heading_emphasis }}</em>{{ $home.contact.heading_suffix }}</a></h2>
+      <div class="app-contact-links">
+        {{ range $home.contact.links }}
+          <a href="{{ .href | safeURL }}"{{ if .external }} target="_blank" rel="me noreferrer"{{ end }}>{{ .label }} <span aria-hidden="true">{{ .icon }}</span></a>
+        {{ end }}
+      </div>
+      <div class="app-contact-bottom"><span>© {{ now.Format "2006" }} {{ $home.brand }}. {{ $home.contact.footer_note }}</span><span>{{ $home.contact.location_note }}</span></div>
     </div>
   </section>
 </main>

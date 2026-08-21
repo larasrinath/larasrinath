@@ -1,0 +1,19 @@
+{{ define "main" }}
+{{ $ui := site.Data.ui }}
+<main id="main-content" class="inner-page" role="main">
+  <header class="page-hero compact-hero">
+    <p class="section-label">{{ $ui.generic.collection_label }}</p>
+    <h1>{{ .Title }}</h1>
+    {{ with .Description }}<p>{{ . }}</p>{{ end }}
+  </header>
+  <section class="post-index" aria-label="{{ .Title }}">
+    {{ range $index, $page := .RegularPages.ByTitle }}
+      <a class="post-row generic-row" href="{{ $page.RelPermalink }}">
+        <span class="post-count" aria-hidden="true">{{ printf "%02d" (add $index 1) }}</span>
+        <div class="post-copy"><h2>{{ $page.Title }}</h2>{{ with ($page.Description | default ($page.Summary | plainify)) }}<p>{{ . | truncate 180 }}</p>{{ end }}</div>
+        <span class="post-arrow">{{ $ui.generic.open_label }}</span>
+      </a>
+    {{ end }}
+  </section>
+</main>
+{{ end }}

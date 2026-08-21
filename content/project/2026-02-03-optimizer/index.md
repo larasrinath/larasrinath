@@ -1,6 +1,13 @@
 ---
 date: "2026-02-03"
 external_link: https://github.com/larasrinath/Optimizer
+featured_summary: "A multi-echelon optimization model using sequential weeks cover, cascade logic, integrated DRP and operational KPI tracking."
+featured_home: true
+featured_weight: 2
+featured_image: /img/portfolio/supply-chain-optimizer.jpg
+featured_image_alt: "Supply-chain optimization network artwork"
+featured_image_fit: cover
+featured_meta: "Optimization · Supply Chain · AMPL — 2026"
 image:
   caption: Supply Chain Optimization
   focal_point: Smart
