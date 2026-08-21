@@ -2,9 +2,9 @@
 {{ $ui := hugo.Data.ui }}
 <main id="main-content" class="inner-page" role="main">
   {{ partial "shared/page-hero.html" (dict
-    "class" "page-hero compact-hero index-hero"
-    "eyebrow" $ui.generic.collection_label
-    "title" .Title
+    "eyebrow" (.Params.eyebrow | default $ui.generic.collection_label)
+    "title" (.Params.hero_title | default .Title)
+    "emphasis" .Params.hero_emphasis
     "copy" .Description
   ) }}
   <section class="post-index" aria-label="{{ .Title }}">

@@ -4,7 +4,6 @@
 {{ if eq (len .RegularPages) 1 }}{{ $entryLabel = $ui.taxonomy.entry_singular }}{{ end }}
 <main id="main-content" class="inner-page" role="main">
   {{ partial "shared/page-hero.html" (dict
-    "class" "page-hero compact-hero index-hero"
     "eyebrow" $ui.taxonomy.filed_under
     "title" .Title
     "copy" (printf "%d %s %s" (len .RegularPages) $entryLabel $ui.taxonomy.archive_suffix)

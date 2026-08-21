@@ -1,6 +1,8 @@
 ---
 title: Talks
 eyebrow: Talks
+hero_title: Ideas
+hero_emphasis: out loud.
 list_label: Talks
 view_label: View
 description: |

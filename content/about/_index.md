@@ -1,8 +1,9 @@
 ---
 title: "About"
-description:
+description: Anaplan Solution Architect, Master Anaplanner and supply chain planning and optimization enthusiast with 9+ years of experience helping businesses make better decisions through data.
 eyebrow: About Lara
-headline_fallback: Hello, I’m Lara!
+hero_title: Hello, I'm
+hero_emphasis: Lara.
 portrait_alt: Lara Srinath
 show_header: true
 sidebar_left: false

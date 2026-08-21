@@ -1,8 +1,8 @@
 ---
 title: Blog
 eyebrow: Writing
-hero_title: Notes from the
-hero_emphasis: workbench.
+hero_title: Thinking
+hero_emphasis: aloud.
 description: Thoughts on Anaplan, planning, data, technology and the occasional detour into life beyond the model.
 posts_label: Blog posts
 read_label: Read

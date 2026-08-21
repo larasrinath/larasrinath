@@ -5,12 +5,12 @@ The site is a multi-page blogdown/Hugo site with one presentation system derived
 ## Where content lives
 
 - `data/home.yaml` — homepage navigation, hero, marquee, about, selected-work labels, experience, writing preview settings, and contact content.
-- `data/ui.yaml` — the compact non-home footer, accessibility labels, article controls, taxonomy labels, and other reusable interface copy.
+- `data/ui.yaml` — the shared site footer, accessibility labels, article controls, taxonomy labels, and other reusable interface copy.
 - `content/blog/<slug>/index.md` — one blog post per page bundle. YAML front matter controls title, date, summary, tags, featured media, and optional display overrides; the Markdown body is the article.
 - `content/project/<slug>/index.md` — one project per page bundle. YAML front matter controls listing cards, homepage selection, featured media, tags, links, and optional display overrides; the Markdown body is the case study.
 - Section files such as `content/blog/_index.md` and `content/project/_index.md` — listing-page headings, descriptions, labels, and pagination copy.
 
-Every section landing page renders its header through `layouts/partials/shared/page-hero.html`. Page front matter supplies the eyebrow, title, emphasis, summary, and optional actions; the partial owns the shared structure, with standard, compact, and split résumé variants controlled by the calling layout.
+Every section landing page renders its header through `layouts/partials/shared/page-hero.html`. Page front matter supplies the eyebrow, title, optional emphasis, and supporting sentence. The partial always renders the same eyebrow, headline, and summary structure; page-specific controls such as résumé actions live below the shared hero.
 
 ## Adding a blog post
 

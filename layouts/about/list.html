@@ -1,14 +1,12 @@
 {{ define "main" }}
-{{ $header := site.GetPage "/about/header" }}
 {{ $main := site.GetPage "/about/main" }}
 {{ $sidebar := site.GetPage "/about/sidebar" }}
 <main id="main-content" class="inner-page about-page" role="main">
   {{ partial "shared/page-hero.html" (dict
-    "class" "page-hero about-page-hero"
     "eyebrow" .Params.eyebrow
-    "title" ($header.Params.headline | default .Params.headline_fallback)
-    "copy" $header.Content
-    "copy_html" true
+    "title" .Params.hero_title
+    "emphasis" .Params.hero_emphasis
+    "copy" .Description
   ) }}
   <section class="about-detail">
     <aside class="about-portrait">

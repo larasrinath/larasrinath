@@ -129,7 +129,6 @@
           <a href="{{ .href | safeURL }}"{{ if .external }} target="_blank" rel="me noreferrer"{{ end }}>{{ .label }} <span aria-hidden="true">{{ .icon }}</span></a>
         {{ end }}
       </div>
-      <div class="app-contact-bottom"><span>© {{ now.Format "2006" }} {{ $home.brand }}. {{ $home.contact.footer_note }}</span><span>{{ $home.contact.location_note }}</span></div>
     </div>
   </section>
 </main>

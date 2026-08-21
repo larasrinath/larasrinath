@@ -9,7 +9,7 @@
     <div class="site-shell">
       {{- block "header" . }}{{- partial "header.html" . -}}{{- end }}
       {{- block "main" . }}{{- end }}
-      {{- if not .IsHome }}{{- block "footer" . }}{{- partial "footer.html" . -}}{{- end }}{{- end }}
+      {{- block "footer" . }}{{- partial "footer.html" . -}}{{- end }}
     </div>
   </body>
 </html>

@@ -1,10 +1,13 @@
 {{ define "main" }}
 {{ $notFound := hugo.Data.ui.not_found }}
 <main id="main-content" class="inner-page not-found-page" role="main">
-  <section class="app-shell not-found-content">
-    <p class="section-label">{{ $notFound.code }} — {{ $notFound.label }}</p>
-    <h1>{{ $notFound.heading }}</h1>
-    <p>{{ $notFound.intro }}</p>
+  {{ partial "shared/page-hero.html" (dict
+    "eyebrow" (printf "%s — %s" $notFound.code $notFound.label)
+    "title" $notFound.hero_title
+    "emphasis" $notFound.hero_emphasis
+    "copy" $notFound.intro
+  ) }}
+  <section class="not-found-actions">
     <nav aria-label="{{ $notFound.links_label }}">
       {{ range $notFound.links }}<a href="{{ .href | relURL }}" class="app-button app-button-line">{{ .label }}</a>{{ end }}
     </nav>

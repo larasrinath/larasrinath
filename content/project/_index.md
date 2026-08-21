@@ -1,8 +1,8 @@
 ---
 title: Projects
 eyebrow: Projects
-hero_title: Experiments with
-hero_emphasis: systems.
+hero_title: Built to
+hero_emphasis: solve.
 description: A collection of planning models, open-source tools, optimization work and data visualizations.
 list_label: Projects
 tags_label: Project tags

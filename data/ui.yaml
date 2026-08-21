@@ -22,8 +22,13 @@ share_marks:
   x: X
 
 footer:
-  link_label: "Connect on LinkedIn & GitHub"
-  link_href: /#contact
+  links_label: Footer links
+  links:
+    - label: Source code
+      href: https://github.com/larasrinath/larasrinath
+      external: true
+    - label: MIT License
+      href: /license/
 
 generic:
   collection_label: Collection
@@ -93,7 +98,8 @@ components:
 not_found:
   code: "404"
   label: Not found
-  heading: Uh-oh, Roll-back!
+  hero_title: Uh-oh,
+  hero_emphasis: roll back!
   intro: The page you’re looking for is not available.
   links_label: Helpful links
   links:

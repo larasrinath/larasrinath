@@ -1,7 +1,12 @@
 {{ $ui := hugo.Data.ui }}
-<footer class="detail-footer" role="contentinfo">
-  <div class="app-shell">
+<footer class="site-footer" role="contentinfo">
+  <div class="app-shell site-footer-inner">
     <p>© {{ now.Format "2006" }} {{ $ui.brand.name }}.</p>
-    <a href="{{ $ui.footer.link_href | safeURL }}">{{ $ui.footer.link_label }}</a>
+    <nav class="site-footer-links" aria-label="{{ $ui.footer.links_label }}">
+      {{- range $index, $link := $ui.footer.links -}}
+        {{- if $index }}<span aria-hidden="true">·</span>{{ end -}}
+        <a href="{{ $link.href | safeURL }}"{{ if $link.external }} target="_blank" rel="noopener noreferrer"{{ end }}>{{ $link.label }}</a>
+      {{- end -}}
+    </nav>
   </div>
 </footer>
