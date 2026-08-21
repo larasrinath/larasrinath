@@ -33,9 +33,6 @@ pagination:
 footer:
   links_label: Footer links
   links:
-    - label: Source code
-      href: https://github.com/larasrinath/larasrinath
-      external: true
     - label: MIT License
       href: /license/
 

@@ -27,6 +27,8 @@ contact:
       icon: fa-brands fa-linkedin-in
     - label: GitHub
       href: https://github.com/larasrinath
+      footer_href: https://github.com/larasrinath/larasrinath
+      footer_label: Website source code on GitHub
       external: true
       icon: fa-brands fa-github
     - label: X / Twitter

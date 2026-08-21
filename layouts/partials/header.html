@@ -1,5 +1,6 @@
 {{ $home := hugo.Data.home }}
 {{ $ui := hugo.Data.ui }}
+{{ $currentPath := .RelPermalink }}
 <header class="topbar{{ if .IsHome }} app-topbar{{ end }}" role="banner">
   <div class="topbar-inner">
     <a class="wordmark" href="{{ "/" | relURL }}" aria-label="{{ $ui.brand.home_label }}">
@@ -12,7 +13,10 @@
     </button>
     <nav id="primary-navigation" class="primary-navigation" aria-label="{{ $ui.accessibility.primary_navigation }}" data-menu>
       <ul class="primary-nav">
-        {{ range $home.navigation }}<li><a href="{{ .href }}">{{ .label }}</a></li>{{ end }}
+        {{ range $home.navigation }}
+          {{- $isCurrent := or (eq $currentPath .href) (and (ne .href "/") (hasPrefix $currentPath .href)) -}}
+          <li><a href="{{ .href }}"{{ if $isCurrent }} aria-current="page"{{ end }}>{{ .label }}</a></li>
+        {{ end }}
       </ul>
     </nav>
   </div>
