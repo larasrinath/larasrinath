@@ -1,11 +1,14 @@
 {{ define "main" }}
 {{ $ui := hugo.Data.ui }}
+{{ .Store.Set "pageTailTone" "dark" }}
 <main id="main-content" class="inner-page" role="main">
-  {{ partial "shared/page-hero.html" (dict
+  {{ partial "shared/page-head.html" (dict
     "eyebrow" (.Params.eyebrow | default $ui.generic.collection_label)
     "title" (.Params.hero_title | default .Title)
     "emphasis" .Params.hero_emphasis
     "copy" .Description
+    "content_tone" "dark"
+    "content_mode" "compact"
   ) }}
   <section class="post-index" aria-label="{{ .Title }}">
     {{ range $index, $page := .RegularPages.ByTitle }}

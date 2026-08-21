@@ -47,26 +47,5 @@
     </div>
   </section>
 
-  <section class="app-experience" id="experience" aria-labelledby="experience-heading">
-    <div class="app-shell app-experience-grid">
-      <div class="app-experience-main">
-        <p class="app-section-number">{{ $home.experience.label }}</p>
-        <h2 id="experience-heading">{{ $home.experience.heading }}</h2>
-        <div class="app-timeline">
-          {{ range $home.experience.roles }}
-            <article><time>{{ .period }}</time><div><h3>{{ .title }}</h3><span>{{ .place }}</span><p>{{ .note }}</p></div></article>
-          {{ end }}
-        </div>
-      </div>
-      <aside class="app-capabilities" aria-label="{{ $home.experience.capabilities_label }}">
-        <p class="app-section-number">{{ $home.experience.capabilities_label }}</p>
-        {{ range $home.experience.capabilities }}
-          <div><h3>{{ .title }}</h3><ul>{{ range .items }}<li>{{ . }}</li>{{ end }}</ul></div>
-        {{ end }}
-        <a class="app-button app-button-line" href="{{ $home.experience.resume_link.href | relURL }}">{{ $home.experience.resume_link.label }} <span aria-hidden="true">{{ $home.experience.resume_link.icon }}</span></a>
-      </aside>
-    </div>
-  </section>
-
 </main>
 {{ end }}

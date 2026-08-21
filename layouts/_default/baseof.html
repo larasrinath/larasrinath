@@ -9,6 +9,7 @@
     <div class="site-shell">
       {{- block "header" . }}{{- partial "header.html" . -}}{{- end }}
       {{- block "main" . }}{{- end }}
+      {{- partial "shared/page-tail.html" . -}}
       {{- block "footer" . }}{{- partial "footer.html" . -}}{{- end }}
     </div>
   </body>

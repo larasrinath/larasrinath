@@ -1,0 +1,10 @@
+{{- $mode := .Store.Get "pageTailMode" | default "standard" -}}
+{{- if ne $mode "flush" -}}
+  {{- $paginator := .Store.Get "pageTailPaginator" -}}
+  {{- $tone := .Store.Get "pageTailTone" | default "light" -}}
+  <div class="page-tail page-tail--{{ $tone }}{{ with $paginator }} page-tail--paginated{{ end }}">
+    <div class="app-shell page-tail-inner">
+      {{- with $paginator }}{{ partial "shared/pagination.html" (dict "paginator" .) }}{{ end -}}
+    </div>
+  </div>
+{{- end -}}

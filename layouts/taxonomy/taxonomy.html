@@ -2,11 +2,12 @@
 {{ $ui := hugo.Data.ui }}
 {{ $topic := .Data.Singular | default $ui.taxonomy.topic_fallback }}
 <main id="main-content" class="inner-page" role="main">
-  {{ partial "shared/page-hero.html" (dict
+  {{ partial "shared/page-head.html" (dict
     "eyebrow" (.Params.eyebrow | default $ui.taxonomy.explore)
     "title" (.Params.hero_title | default .Title)
     "emphasis" .Params.hero_emphasis
     "copy" (.Description | default (printf "%s %s." $ui.taxonomy.browse_prefix $topic))
+    "content_tone" "line"
   ) }}
   <section class="term-grid" aria-label="{{ .Title }}">
     {{ range .Pages.ByTitle }}

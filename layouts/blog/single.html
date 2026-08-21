@@ -4,6 +4,9 @@
 {{ $terms := .GetTerms "tags" }}
 {{ $titleWords := split .Title " " }}
 {{ $lastTitleWord := sub (len $titleWords) 1 }}
+{{ $next := .NextInSection }}
+{{ if not $next }}{{ $next = .PrevInSection }}{{ end }}
+{{ if $next }}{{ .Store.Set "pageTailMode" "flush" }}{{ end }}
 {{ $featured := .Resources.GetMatch "featured.*" }}
 {{ if not $featured }}{{ $featured = .Resources.GetMatch "images/featured.*" }}{{ end }}
 {{ $featuredURL := "" }}
@@ -39,7 +42,7 @@
       </figure>
     {{ end }}
 
-    <div class="app-detail-body app-shell">
+    <div class="app-detail-body app-shell{{ if not $next }} page-tail-source{{ end }}">
       <aside aria-label="{{ $ui.article.details_aria }}">
         <div>
           <p>{{ $ui.article.filed_under }}</p>
@@ -54,8 +57,6 @@
     </div>
   </article>
 
-  {{ $next := .NextInSection }}
-  {{ if not $next }}{{ $next = .PrevInSection }}{{ end }}
   {{ with $next }}
     <aside class="app-detail-next">
       <a class="app-shell" href="{{ .RelPermalink }}">

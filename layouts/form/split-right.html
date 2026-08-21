@@ -1,6 +1,6 @@
 {{ define "main" }}
 <main id="main-content" class="inner-page contact-page" role="main">
-  {{ partial "shared/page-hero.html" (dict
+  {{ partial "shared/page-head.html" (dict
     "eyebrow" .Params.name
     "title" (.Params.hero_title | default .Title)
     "emphasis" .Params.hero_emphasis

@@ -1,12 +1,15 @@
 {{ define "main" }}
 {{ $ui := hugo.Data.ui }}
+{{ .Store.Set "pageTailTone" "dark" }}
 {{ $entryLabel := $ui.taxonomy.entry_plural }}
 {{ if eq (len .RegularPages) 1 }}{{ $entryLabel = $ui.taxonomy.entry_singular }}{{ end }}
 <main id="main-content" class="inner-page" role="main">
-  {{ partial "shared/page-hero.html" (dict
+  {{ partial "shared/page-head.html" (dict
     "eyebrow" $ui.taxonomy.filed_under
     "title" .Title
     "copy" (printf "%d %s %s" (len .RegularPages) $entryLabel $ui.taxonomy.archive_suffix)
+    "content_tone" "dark"
+    "content_mode" "compact"
   ) }}
   <section class="post-index" aria-label="{{ $ui.taxonomy.tagged_prefix }} {{ .Title }}">
     {{ $pages := .RegularPages.ByDate.Reverse }}
@@ -16,13 +19,13 @@
       {{ $paginator = .Paginate $pages $ui.pagination.archive_page_size }}
       {{ $displayPages = $paginator.Pages }}
     {{ end }}
+    {{ with $paginator }}{{ $.Store.Set "pageTailPaginator" . }}{{ end }}
     {{ range $index, $post := $displayPages }}
       <a class="post-row" href="{{ $post.RelPermalink }}">
         <div class="post-meta"><time datetime="{{ $post.Date.Format "2006-01-02" }}">{{ $post.Date.Format "Jan 2006" }}</time><span>{{ $post.Type }}</span></div>
         <div class="post-copy"><h2>{{ $post.Title }}</h2>{{ with ($post.Params.subtitle | default $post.Params.excerpt | default ($post.Summary | plainify)) }}<p>{{ . | truncate 180 }}</p>{{ end }}</div>
       </a>
     {{ end }}
-    {{ with $paginator }}{{ partial "shared/pagination.html" (dict "paginator" .) }}{{ end }}
   </section>
 </main>
 {{ end }}

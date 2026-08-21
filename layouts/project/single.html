@@ -3,6 +3,9 @@
 {{ $summary := .Params.featured_summary | default .Params.summary | default .Params.subtitle | default .Params.excerpt | default .Description }}
 {{ $titleWords := split .Title " " }}
 {{ $lastTitleWord := sub (len $titleWords) 1 }}
+{{ $next := .NextInSection }}
+{{ if not $next }}{{ $next = .PrevInSection }}{{ end }}
+{{ if $next }}{{ .Store.Set "pageTailMode" "flush" }}{{ end }}
 
 <main id="main-content" class="inner-page app-detail-page" role="main">
   <article>
@@ -25,7 +28,7 @@
       </figure>
     {{ end }}
 
-    <div class="app-detail-body app-shell">
+    <div class="app-detail-body app-shell{{ if not $next }} page-tail-source{{ end }}">
       <aside>
         <div>
           <p>{{ $ui.project.focus_label }}</p>
@@ -41,8 +44,6 @@
     </div>
   </article>
 
-  {{ $next := .NextInSection }}
-  {{ if not $next }}{{ $next = .PrevInSection }}{{ end }}
   {{ with $next }}
     <aside class="app-detail-next">
       <a class="app-shell" href="{{ .RelPermalink }}">

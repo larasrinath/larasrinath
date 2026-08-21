@@ -1,23 +1,31 @@
 {{ define "main" }}
+{{/* The About page is rendered from structured front matter, not embedded presentation markup. */}}
 {{ $main := site.GetPage "/about/main" }}
 {{ $sidebar := site.GetPage "/about/sidebar" }}
+{{ $home := hugo.Data.home }}
 <main id="main-content" class="inner-page about-page" role="main">
-  {{ partial "shared/page-hero.html" (dict
+  {{ partial "shared/page-head.html" (dict
     "eyebrow" .Params.eyebrow
     "title" .Params.hero_title
     "emphasis" .Params.hero_emphasis
     "copy" .Description
   ) }}
   <section class="about-detail">
-    <aside class="about-portrait">
-      {{ with $sidebar.Resources.GetMatch "avatar*" }}<img src="{{ .RelPermalink }}" alt="{{ $.Params.portrait_alt }}" width="{{ .Width }}" height="{{ .Height }}">{{ end }}
-      <p class="section-label">{{ $sidebar.Params.role }}</p>
-      <div class="about-sidebar-copy">{{ $sidebar.Params.outro | markdownify }}</div>
-    </aside>
-    <article class="article-content about-content">
-      {{ with $main.Params.intro }}{{ . | markdownify }}{{ end }}
-      {{ with $main.Params.outro }}{{ . | markdownify }}{{ end }}
+    <article class="about-content">
+      <p class="section-label">{{ $main.Params.story_label }}</p>
+      <div class="about-intro">
+        {{ range $main.Params.intro }}<p>{{ . | markdownify }}</p>{{ end }}
+      </div>
     </article>
+    <aside class="about-profile" aria-labelledby="about-interests">
+      <h2 id="about-interests" class="section-label">{{ $sidebar.Params.interests_label }}</h2>
+      <ul class="about-interest-list">
+        {{ range $sidebar.Params.interests }}
+          <li><i class="fa-solid {{ .icon }} about-interest-icon" aria-hidden="true"></i><span>{{ .label }}</span></li>
+        {{ end }}
+      </ul>
+    </aside>
   </section>
+  {{ partial "shared/experience.html" (dict "experience" $home.experience "label" $main.Params.experience_label "class" "about-experience") }}
 </main>
 {{ end }}

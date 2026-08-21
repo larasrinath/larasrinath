@@ -66,34 +66,42 @@ experience:
   roles:
     - period: Nov 2025 — Present
       title: Manager — Anaplan Delivery
-      place: GenXAI Analytics · Texas, USA
+      company: GenXAI
+      location: Texas, USA
       note: Leading enterprise Anaplan delivery for demand, supply, material replenishment and FP&A teams while scaling modelling standards across functions.
     - period: May 2021 — Oct 2025
       title: Senior Solution Architect
-      place: Vuealta Consulting · Singapore
+      company: Vuealta
+      location: Singapore
       note: Owned full-lifecycle supply-chain planning programs, including multi-echelon optimization, forecasting, DRP, MPS and MRP, while leading data integration and technical mentoring.
     - period: Aug 2018 — Apr 2021
       title: Consultant / Analyst
-      place: Deloitte Consulting Southeast Asia · Manila & Kuala Lumpur
+      company: Deloitte
+      location: Manila & Kuala Lumpur
       note: Designed forecasting, procurement and inventory-planning solutions; facilitated requirements, led data preparation and delivered scalable DISCO-aligned Anaplan models.
     - period: Jul 2016 — Jun 2018
       title: Anaplan Developer
-      place: Solvanni Technologies · Coimbatore, India
+      company: Solvanni
+      location: Coimbatore, India
       note: Transformed Excel planning into governed multidimensional models, improved performance and published an inventory-planning model to the Anaplan App Hub.
   capabilities_label: Capabilities
   capabilities:
     - title: Planning
       items:
         - Anaplan ALM, NUX & CloudWorks
+        - Supply chain planning
         - DRP, MRP, MPS & S&OP
         - FP&A
         - Multi-echelon optimization
+        - Pigment
     - title: Data & modelling
       items:
         - Python
         - R
+        - SQL
         - AMPL
-        - EDA & data visualization
+        - Data analysis & visualization
+        - Generative AI
     - title: Delivery
       items:
         - Solution architecture

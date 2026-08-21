@@ -1,10 +1,13 @@
 {{ define "main" }}
+{{ .Store.Set "pageTailTone" "deep" }}
 <main id="main-content" class="inner-page" role="main">
-  {{ partial "shared/page-hero.html" (dict
+  {{ partial "shared/page-head.html" (dict
     "eyebrow" .Params.eyebrow
     "title" .Params.hero_title
     "emphasis" .Params.hero_emphasis
     "copy" .Description
+    "content_tone" "deep"
+    "content_mode" "compact"
   ) }}
 
   <section class="project-index" aria-label="{{ .Params.list_label }}">
@@ -15,6 +18,7 @@
       {{ $paginator = .Paginate $pages .Params.pagination.page_size }}
       {{ $displayPages = $paginator.Pages }}
     {{ end }}
+    {{ with $paginator }}{{ $.Store.Set "pageTailPaginator" . }}{{ end }}
     {{ range $project := $displayPages }}
       {{ $summary := $project.Params.featured_summary | default $project.Params.summary | default $project.Params.excerpt | default $project.Params.subtitle | default $project.Description | default ($project.Summary | plainify) }}
       <a class="project-row" href="{{ $project.RelPermalink }}">
@@ -32,7 +36,6 @@
         {{ with $project.Params.featured_image }}<figure class="project-thumb"><img class="image-fit-{{ $project.Params.featured_image_fit | default "cover" }}" src="{{ . | relURL }}" alt="{{ $project.Params.featured_image_alt }}" loading="lazy"></figure>{{ end }}
       </a>
     {{ end }}
-    {{ with $paginator }}{{ partial "shared/pagination.html" (dict "paginator" .) }}{{ end }}
   </section>
 </main>
 {{ end }}

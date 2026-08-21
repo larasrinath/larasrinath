@@ -1,0 +1,5 @@
+{{- partial "shared/page-hero.html" . -}}
+{{- partial "shared/page-content-start.html" (dict
+  "tone" (.content_tone | default "light")
+  "mode" (.content_mode | default "standard")
+) -}}

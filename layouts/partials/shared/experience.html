@@ -1,0 +1,29 @@
+{{ $experience := .experience }}
+{{ $label := .label | default $experience.label }}
+<section class="app-experience{{ with .class }} {{ . }}{{ end }}" id="experience" aria-labelledby="experience-heading">
+  <div class="app-shell app-experience-grid">
+    <div class="app-experience-main">
+      <p class="app-section-number">{{ $label }}</p>
+      <h2 id="experience-heading">{{ $experience.heading }}</h2>
+      <div class="app-timeline">
+        {{ range $experience.roles }}
+          <article>
+            <time>{{ .period }}</time>
+            <div>
+              <h3>{{ .title }}</h3>
+              <div class="app-timeline-meta"><span>{{ .company }}</span><span>{{ .location }}</span></div>
+              <p class="app-timeline-note">{{ .note }}</p>
+            </div>
+          </article>
+        {{ end }}
+      </div>
+    </div>
+    <aside class="app-capabilities" aria-label="{{ $experience.capabilities_label }}">
+      <p class="app-section-number">{{ $experience.capabilities_label }}</p>
+      {{ range $experience.capabilities }}
+        <div><h3>{{ .title }}</h3><ul>{{ range .items }}<li>{{ . }}</li>{{ end }}</ul></div>
+      {{ end }}
+      <a class="app-button app-button-line" href="{{ $experience.resume_link.href | relURL }}">{{ $experience.resume_link.label }} <span aria-hidden="true">{{ $experience.resume_link.icon }}</span></a>
+    </aside>
+  </div>
+</section>

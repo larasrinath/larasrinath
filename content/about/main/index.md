@@ -4,74 +4,16 @@ build:
   render: never
 ## Configure page content in wide column
 title: "About Me"
-number_featured: 0
-use_featured: false
-number_categories: 0
-show_intro: true
-intro: |
-
-  I'm an Anaplan Delivery Manager at [GenXAI](https://www.genxai.com/), specializing in supply chain and financial planning across multiple industries. With over nine years of experience building [Anaplan](https://anaplan.com) applications, I'm a certified **Master Anaplanner** and **Solution Architect**.
-
-  I help businesses design and model their operations, turning complex data into timely, actionable decisions. My passion is taking messy real-world processes and building elegant planning solutions on the Anaplan platform.
-
-  When I'm not building planning applications and optimizing businesses, you'll find me building LEGO sets, stargazing, or rooting for the world's greatest football club - Manchester United (Keep the Red Flag flying high, We'll never die!)
-
-  I currently live in the US.
-
-show_outro: true
-outro: |
-
-  ### Work Experience
-
-  <div class="work-item">
-  <div class="work-header">
-  <strong><i class="fa fa-briefcase pr1 gray"></i>Manager - Anaplan Delivery</strong>
-  <span class="work-date">Nov 2025 - Present</span>
-  </div>
-  <div class="work-role">GenXAI <span class="work-date">US</span></div>
-  </div>
-
-  <div class="work-item">
-  <div class="work-header">
-  <strong><i class="fa fa-briefcase pr1 gray"></i>Senior Solution Architect</strong>
-  <span class="work-date">May 2021 - Oct 2025</span>
-  </div>
-  <div class="work-role">Vuealta Consulting <span class="work-date">Singapore</span></div>
-  </div>
-
-  <div class="work-item">
-  <div class="work-header">
-  <strong><i class="fa fa-briefcase pr1 gray"></i>Consultant</strong>
-  <span class="work-date">Sep 2019 - Apr 2021</span>
-  </div>
-  <div class="work-role">Deloitte Southeast Asia <span class="work-date">Malaysia</span></div>
-  </div>
-
-  <div class="work-item">
-  <div class="work-header">
-  <strong><i class="fa fa-briefcase pr1 gray"></i>Analyst</strong>
-  <span class="work-date">Sep 2018 - Aug 2019</span>
-  </div>
-  <div class="work-role">Deloitte Southeast Asia <span class="work-date">Philippines</span></div>
-  </div>
-
-  <div class="work-item">
-  <div class="work-header">
-  <strong><i class="fa fa-briefcase pr1 gray"></i>Anaplan Developer</strong>
-  <span class="work-date">Feb 2016 - Jun 2018</span>
-  </div>
-  <div class="work-role">Solvanni Technologies <span class="work-date">India</span></div>
-  </div>
-
-  ### Education
-
-  <div class="work-item">
-  <div class="work-header">
-  <strong><i class="fas fa-graduation-cap pr1 gray"></i>B.E. in Electrical & Electronics Engineering</strong>
-  <span class="work-date">2011 - 2016</span>
-  </div>
-  <div class="work-role">PSG College of Technology <span class="work-date">India</span></div>
-  </div>
+story_label: In brief
+intro:
+  - >-
+    I'm an Anaplan Delivery Manager at [GenXAI](https://www.genxai.com/), specializing in supply chain and financial planning across multiple industries. With over nine years of experience building [Anaplan](https://anaplan.com) applications, I'm a certified **Master Anaplanner** and **Solution Architect**.
+  - >-
+    I help businesses design and model their operations, turning complex data into timely, actionable decisions. My passion is taking messy real-world processes and building elegant planning solutions on the Anaplan platform.
+  - >-
+    When I'm not building planning applications and optimizing businesses, you'll find me building LEGO sets, stargazing, or rooting for the world's greatest football club—Manchester United. Keep the Red Flag flying high; we'll never die.
+  - I currently live in the US.
+experience_label: Experience
 
 ---
 
