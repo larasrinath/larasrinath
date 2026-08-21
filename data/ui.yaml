@@ -1,6 +1,8 @@
 accessibility:
   skip_to_content: Skip to content
   primary_navigation: Primary navigation
+  open_menu: Open menu
+  close_menu: Close menu
   article_navigation: Article navigation
   share_article: Share article
   copy_article_link: Copy article link

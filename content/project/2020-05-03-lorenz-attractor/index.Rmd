@@ -5,7 +5,7 @@ date: '2020-05-03'
 featured_summary: "An interactive 3D exploration of the Lorenz system, mapping how tiny changes in initial conditions produce beautifully chaotic outcomes."
 featured_home: true
 featured_weight: 5
-featured_image: /img/portfolio/lorenz-attractor.jpg
+featured_image: featured.jpg
 featured_image_alt: "Three-dimensional Lorenz attractor visualization"
 featured_image_fit: cover
 featured_meta: "R · Plotly · Data Visualization — 2020"
@@ -29,7 +29,7 @@ project_body:
     text: >-
       Edward Lorenz was an American meteorologist and mathematician, working on a model to predict the climate. He had 12 parameters (temperature, pressure, humidity, etc.) and 12 sets of equations and used a vacuum tube computer to run the model and printed out the result of each iteration as a row of 12 numbers and studied the parameters as it evolved over time.
   - type: image
-    src: images/featured.jpg
+    src: featured.jpg
     alt: Three-dimensional Lorenz attractor visualization
     caption: Mapping the order hidden inside a chaotic system.
   - type: paragraph

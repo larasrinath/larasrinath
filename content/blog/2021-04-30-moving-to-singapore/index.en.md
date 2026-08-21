@@ -17,7 +17,7 @@ image:
   preview_only: no
 projects: []
 reading_time: 4
-featured_image: images/featured.jpg
+featured_image: featured.jpg
 featured_image_alt: Night view of Marina Bay Sands and the Merlion in Singapore
 featured_image_caption: ''
 article_note:
@@ -29,7 +29,7 @@ article_body:
     text: >-
       I thought moving countries would be easy, since I have already moved twice in the span of 4 years. From India to the Philippines and from the Philippines to Malaysia. The processes were smooth and simple, except for the verbal arguments with the Philippines Consulate in Chennai when I was applying for the entry visa. Not exactly your friendly Indian government official (Yes, an Indian, not a Filipino. Trust me, all Filipinos are friendly and sweet). Most Indian officials are grumpy. No, all of them.
   - type: image
-    src: images/featured.jpg
+    src: featured.jpg
     alt: Night view of Marina Bay Sands and the Merlion in Singapore
     caption: ''
   - type: paragraph

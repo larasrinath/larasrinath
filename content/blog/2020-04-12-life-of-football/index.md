@@ -10,7 +10,6 @@ summary: 'Living life like a football game'
 authors: []
 lastmod: '2020-04-20T00:34:06+08:00'
 featured: no
-disable_jquery: no
 image:
   caption: 'Photo by Tevarak Phanduang on Unsplash'
   focal_point: 'Left'

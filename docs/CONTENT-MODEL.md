@@ -26,7 +26,7 @@ Edit the generated YAML, add any bundle images beside `index.md`, and change `dr
 
 New posts start with this structured YAML model automatically. The shared `layouts/partials/article/body.html` renderer supports `opening`, `paragraph`, `heading`, `image`, `quote`, `list`, and `signoff` blocks. Image blocks accept `src`, `alt`, and `caption`; quote blocks accept `style` (`feature`, `chant`, or `standard`), `text` or `lines`, and `cite`. Paragraph and signoff blocks may also use `lines` when deliberate line breaks matter. Lists are unordered by default; set `ordered: true` for numbered lists. Use `article_note` for the sticky rail and `reading_time` when the article body is stored in YAML. If `article_body` is absent, the blog template renders the Markdown body unchanged for existing content.
 
-Blog heroes are always text-only. `featured_image` supplies the page and social metadata. The shared article renderer treats the first populated `image` block as the sole featured image, moves it directly after the opening lead, and gives only that image the theme backplate. Later image blocks remain in their authored positions and render as plain secondary media. Leave the image block's `src` empty when an article has no featured image.
+Blog heroes are always text-only. Store the featured asset once at the page-bundle root (normally `featured.jpg` or `featured.png`) and use that same path for `featured_image` and the first populated `image` block. `featured_image` supplies the page and social metadata. The shared article renderer moves the first image directly after the opening lead and gives only that image the theme backplate. Later image blocks remain in their authored positions and render as plain secondary media. Leave the image block's `src` empty when an article has no featured image.
 
 ## Adding a project
 
@@ -36,7 +36,9 @@ hugo new content project/my-new-project/index.md
 
 Edit the generated YAML. Set `featured_home: true` to include it on the homepage and use `featured_weight` to control its position. The project index updates automatically for every published project.
 
-Normal Project pages use `project_body` and the same shared block renderer as Blog articles. In addition to text, headings, images, quotes, lists, and signoffs, Project bodies may use `callout`, `equations`, `code`, and supported `chart` blocks. Project heroes stay text-only. The first populated `image` block becomes the sole featured image directly after the opening lead; later images and interactive charts remain plain secondary media without a backplate. The legacy Markdown fallback remains only for explicitly deferred special cases.
+Normal Project pages use `project_body` and the same shared block renderer as Blog articles. In addition to text, headings, images, quotes, lists, and signoffs, Project bodies may use `callout`, `equations`, `code`, and supported `chart` blocks. Store the featured asset once at the page-bundle root and use that same relative path for cards, metadata, and the first `image` block. Project heroes stay text-only. The renderer makes that first image the sole featured image directly after the opening lead; later images and interactive charts remain plain secondary media without a backplate. The legacy Markdown fallback remains only for explicitly deferred special cases.
+
+Keep page-specific media inside its page bundle. Put global images that Hugo should optimize, such as the homepage/sharing portrait, in `assets/img`; reserve `static/img` for files served byte-for-byte, such as the favicon. Do not duplicate Project featured images in either location.
 
 ## Special scenarios
 

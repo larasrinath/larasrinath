@@ -33,7 +33,19 @@
             {{ end }}
           </div>
         </div>
-        {{ with $project.Params.featured_image }}<figure class="project-thumb"><img class="image-fit-{{ $project.Params.featured_image_fit | default "cover" }}" src="{{ . | relURL }}" alt="{{ $project.Params.featured_image_alt }}" loading="lazy"></figure>{{ end }}
+        {{ with $project.Params.featured_image }}
+          <figure class="project-thumb">
+            {{ partial "shared/responsive-image.html" (dict
+              "page" $project
+              "src" .
+              "alt" $project.Params.featured_image_alt
+              "class" (printf "image-fit-%s" ($project.Params.featured_image_fit | default "cover"))
+              "loading" "lazy"
+              "sizes" "(max-width: 760px) calc(100vw - 40px), (max-width: 1280px) 38vw, 520px"
+              "widths" (slice 320 520 760 1040)
+            ) }}
+          </figure>
+        {{ end }}
       </a>
     {{ end }}
   </section>

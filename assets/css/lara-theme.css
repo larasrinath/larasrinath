@@ -173,6 +173,33 @@ summary:focus-visible {
 
 .wordmark span { color: var(--accent); }
 
+.menu-toggle {
+  display: none;
+  position: relative;
+  width: 44px;
+  height: 44px;
+  padding: 0;
+  border: 0;
+  color: var(--ink);
+  background: transparent;
+  cursor: pointer;
+}
+
+.menu-toggle span {
+  position: absolute;
+  left: 10px;
+  width: 24px;
+  height: 1px;
+  background: currentColor;
+  transition: transform 0.3s cubic-bezier(0.22, 1, 0.36, 1), top 0.3s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.menu-toggle span:first-child { top: 17px; }
+.menu-toggle span:last-child { top: 26px; }
+
+.menu-open .menu-toggle span:first-child { top: 21px; transform: rotate(45deg); }
+.menu-open .menu-toggle span:last-child { top: 21px; transform: rotate(-45deg); }
+
 .primary-nav {
   display: flex;
   gap: 2rem;
@@ -711,7 +738,40 @@ summary:focus-visible {
 
 @media (max-width: 767px) {
   :root { --page-content-start-space: 3rem; --page-content-start-compact-space: 2.25rem; --page-content-start-detail-space: 1.5rem; --page-tail-space: 1.5rem; }
-  .primary-nav { display: none; }
+  .menu-toggle { display: block; }
+  .topbar[data-menu-ready] .primary-navigation {
+    position: absolute;
+    top: 100%;
+    right: 0;
+    left: 0;
+    border-bottom: 1px solid var(--line);
+    background: rgba(245, 240, 232, 0.98);
+    opacity: 0;
+    visibility: hidden;
+    transform: translateY(-0.75rem);
+    transition: opacity 0.25s ease, transform 0.3s cubic-bezier(0.22, 1, 0.36, 1), visibility 0.25s;
+    pointer-events: none;
+  }
+  .topbar[data-menu-ready].menu-open .primary-navigation {
+    opacity: 1;
+    visibility: visible;
+    transform: translateY(0);
+    pointer-events: auto;
+  }
+  .primary-nav {
+    display: grid;
+    gap: 0;
+    width: 100%;
+    max-width: var(--shell);
+    margin: 0 auto;
+    padding: 1rem 24px 1.5rem;
+  }
+  .primary-nav a {
+    display: block;
+    padding: 0.75rem 0;
+    font-size: 0.875rem;
+  }
+  .primary-nav a::after { bottom: 0.55rem; }
   .app-hero { padding-top: 9rem; }
   .app-home .app-hero h1,
   .app-detail-hero h1,
@@ -993,6 +1053,7 @@ summary:focus-visible {
 #auth-global-basic:checked ~ * .auth-block[data-auth~="basic"] { display: block; }
 
 .app-home .app-portrait img { height: auto !important; }
+.app-home .app-portrait picture { display: block; }
 
 @media (max-width: 640px) {
   .os-selector-choices,

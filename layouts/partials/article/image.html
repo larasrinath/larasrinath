@@ -3,14 +3,17 @@
 {{- $variant := cond .featured "featured" "secondary" -}}
 {{- with $block.src -}}
   {{- $source := . -}}
-  {{- $image := $page.Resources.GetMatch $source -}}
   <figure class="article-editorial-figure article-editorial-figure--{{ $variant }}">
     <div class="article-editorial-media">
-      {{- if $image -}}
-        <img src="{{ $image.RelPermalink }}" width="{{ $image.Width }}" height="{{ $image.Height }}" alt="{{ $block.alt }}">
-      {{- else -}}
-        <img src="{{ $source | relURL }}" alt="{{ $block.alt }}">
-      {{- end -}}
+      {{- partial "shared/responsive-image.html" (dict
+        "page" $page
+        "src" $source
+        "alt" $block.alt
+        "loading" (cond $.featured "eager" "lazy")
+        "fetchpriority" (cond $.featured "high" "auto")
+        "sizes" "(max-width: 760px) calc(100vw - 40px), (max-width: 1280px) calc(100vw - 96px), 1180px"
+        "widths" (slice 360 640 960 1280 1600)
+      ) -}}
     </div>
     {{- with $block.caption }}<figcaption>{{ . }}</figcaption>{{ end -}}
   </figure>

@@ -45,9 +45,10 @@ about:
   heading_prefix: Turning messy operations into systems people can
   heading_emphasis: trust
   heading_suffix: .
-  portrait: /img/portfolio/lara-portrait.png
+  portrait: /img/avatar.png
+  portrait_width: 1896
+  portrait_height: 2654
   portrait_alt: Portrait of Lara Srinath
-  portrait_caption: planning since 2016
   paragraphs:
     - I'm a Master Anaplanner and Solution Architect with more than ten years of experience across FMCG, retail, energy, chemicals and manufacturing. At GenXAI, I'm Manager, Anaplan Delivery across supply-chain and finance platforms.
     - My work spans solution architecture, platform operations, governance, data integration and continuous improvement. I lead cross-functional teams and build secure, scalable systems around business-critical planning processes.

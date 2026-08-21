@@ -2,6 +2,42 @@
 (function () {
   'use strict';
 
+  document.documentElement.classList.add('js');
+
+  function initNavigation() {
+    var header = document.querySelector('.topbar');
+    var toggle = document.querySelector('[data-menu-toggle]');
+    var menu = document.querySelector('[data-menu]');
+    if (!header || !toggle || !menu) return;
+
+    header.setAttribute('data-menu-ready', '');
+
+    function setOpen(open, restoreFocus) {
+      header.classList.toggle('menu-open', open);
+      toggle.setAttribute('aria-expanded', String(open));
+      toggle.setAttribute('aria-label', toggle.getAttribute(open ? 'data-close-label' : 'data-open-label'));
+      if (!open && restoreFocus) toggle.focus();
+    }
+
+    toggle.addEventListener('click', function () {
+      setOpen(toggle.getAttribute('aria-expanded') !== 'true');
+    });
+
+    menu.addEventListener('click', function (event) {
+      if (event.target.closest('a')) setOpen(false);
+    });
+
+    document.addEventListener('keydown', function (event) {
+      if (event.key === 'Escape' && toggle.getAttribute('aria-expanded') === 'true') {
+        setOpen(false, true);
+      }
+    });
+
+    window.matchMedia('(min-width: 768px)').addEventListener('change', function (event) {
+      if (event.matches) setOpen(false);
+    });
+  }
+
   function initReadingProgress() {
     var progress = document.querySelector('.reading-progress');
     if (!progress) return;
@@ -39,6 +75,7 @@
   }
 
   document.addEventListener('DOMContentLoaded', function () {
+    initNavigation();
     initReadingProgress();
     initCopyLinks();
   });

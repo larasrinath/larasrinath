@@ -5,7 +5,7 @@ excerpt: "Retina scaling for external monitors"
 featured_summary: "A hardened HiDPI enabler that brings crisp Retina scaling to external monitors with safer permissions and strict input validation."
 featured_home: true
 featured_weight: 3
-featured_image: /img/portfolio/macos-retina.png
+featured_image: featured.png
 featured_image_alt: "macOS Retina display project artwork"
 featured_image_fit: contain
 featured_meta: "macOS · Open Source · Security — 2026"
@@ -34,7 +34,7 @@ project_body:
     text: >-
       **The Problem with External Displays.** If you've ever connected a standard 1080p or 1440p monitor to a Mac, you've likely noticed that the text looks "blurry" compared to the built-in Retina display. This is because macOS often fails to recognize non-Apple displays as High-DPI, denying you the crisp scaling that makes Retina displays so beautiful.
   - type: image
-    src: /img/portfolio/macos-retina.png
+    src: featured.png
     alt: macOS Retina display project artwork
     caption: Retina scaling makes every pixel count.
   - type: heading

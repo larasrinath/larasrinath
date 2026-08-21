@@ -5,7 +5,7 @@ excerpt: "Power Anaplan through AI"
 featured_summary: "An open-source MCP server that lets AI assistants explore Anaplan models, review data and orchestrate Integration API workflows in plain English."
 featured_home: true
 featured_weight: 1
-featured_image: /img/portfolio/anaplan-mcp.png
+featured_image: featured.png
 featured_image_alt: "Anaplan MCP server project artwork"
 featured_image_fit: contain
 featured_meta: "Anaplan · AI · TypeScript — 2026"

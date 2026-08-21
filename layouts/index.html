@@ -30,8 +30,8 @@
     <div class="app-shell app-about-grid">
       <div class="app-portrait-column">
         <figure class="app-portrait">
-          <img src="{{ $home.about.portrait | relURL }}" alt="{{ $home.about.portrait_alt }}" width="1024" height="1365">
-          <figcaption>{{ $home.about.portrait_caption }}</figcaption>
+          {{ partial "shared/responsive-image.html" (dict "page" . "src" $home.about.portrait "alt" $home.about.portrait_alt "loading" "lazy" "sizes" "(max-width: 767px) calc(100vw - 48px), 430px" "widths" (slice 360 640 860)) }}
+          {{ with $home.about.portrait_caption }}<figcaption>{{ . }}</figcaption>{{ end }}
         </figure>
       </div>
       <div class="app-about-copy">

@@ -1,0 +1,47 @@
+{{- $page := .page -}}
+{{- $source := .src -}}
+{{- $alt := .alt | default "" -}}
+{{- $class := .class | default "" -}}
+{{- $loading := .loading | default "lazy" -}}
+{{- $sizes := .sizes | default "100vw" -}}
+{{- $widths := .widths | default (slice 360 640 960 1280 1600) -}}
+{{- $image := .resource | default false -}}
+{{- if not $image -}}
+  {{- with $page -}}
+    {{- $image = .Resources.GetMatch $source -}}
+  {{- end -}}
+{{- end -}}
+{{- if not $image -}}
+  {{- $image = resources.Get (strings.TrimPrefix "/" $source) -}}
+{{- end -}}
+
+{{- if $image -}}
+  {{- $targetWidths := slice -}}
+  {{- $largestTarget := 0 -}}
+  {{- range $widths -}}
+    {{- if le . $image.Width -}}
+      {{- $targetWidths = $targetWidths | append . -}}
+      {{- $largestTarget = . -}}
+    {{- end -}}
+  {{- end -}}
+  {{- $largestRequested := index $widths (sub (len $widths) 1) -}}
+  {{- if and (lt $image.Width $largestRequested) (lt $largestTarget $image.Width) -}}
+    {{- $targetWidths = $targetWidths | append $image.Width -}}
+  {{- end -}}
+  {{- if eq (len $targetWidths) 0 -}}
+    {{- $targetWidths = $targetWidths | append $image.Width -}}
+  {{- end -}}
+
+  {{- $srcset := slice -}}
+  {{- range $targetWidths -}}
+    {{- $variant := $image.Resize (printf "%dx webp q82" .) -}}
+    {{- $srcset = $srcset | append (printf "%s %dw" $variant.RelPermalink .) -}}
+  {{- end -}}
+
+  <picture>
+    <source type="image/webp" srcset="{{ delimit $srcset ", " }}" sizes="{{ $sizes }}">
+    <img{{ with $class }} class="{{ . }}"{{ end }} src="{{ $image.RelPermalink }}" width="{{ $image.Width }}" height="{{ $image.Height }}" alt="{{ $alt }}" loading="{{ $loading }}" decoding="async"{{ with .fetchpriority }} fetchpriority="{{ . }}"{{ end }}>
+  </picture>
+{{- else -}}
+  <img{{ with $class }} class="{{ . }}"{{ end }} src="{{ $source | relURL }}" alt="{{ $alt }}" loading="{{ $loading }}" decoding="async"{{ with .fetchpriority }} fetchpriority="{{ . }}"{{ end }}>
+{{- end -}}

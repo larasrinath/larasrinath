@@ -1,6 +1,9 @@
 {{- $pageTitle := cond .IsHome .Title (printf "%s | %s" .Title site.Title) -}}
 {{- $description := .Params.description | default .Params.subtitle | default .Params.excerpt | default site.Params.description -}}
 {{- $sharingImage := site.Params.sharing_image | absURL -}}
+{{- with resources.Get (strings.TrimPrefix "/" site.Params.sharing_image) -}}
+  {{- $sharingImage = .Permalink -}}
+{{- end -}}
 {{- with .Params.images -}}
   {{- $candidate := index . 0 -}}
   {{- $sharingImage = cond (hasPrefix $candidate "http") $candidate ($candidate | absURL) -}}

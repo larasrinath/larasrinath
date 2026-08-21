@@ -17,7 +17,7 @@ image:
   preview_only: no
 projects: []
 reading_time: 3
-featured_image: images/featured.jpg
+featured_image: featured.jpg
 featured_image_alt: Old Trafford stadium with the Manchester United crest and The Reds Go Marching On banner
 featured_image_caption: Ole Gunnar Solskjaer’s departure closed a hopeful, complicated chapter at Manchester United.
 article_note:
@@ -28,7 +28,7 @@ article_body:
   - type: opening
     text: It has been a while...
   - type: image
-    src: images/featured.jpg
+    src: featured.jpg
     alt: Old Trafford stadium with the Manchester United crest and The Reds Go Marching On banner
     caption: Ole Gunnar Solskjaer’s departure closed a hopeful, complicated chapter at Manchester United.
   - type: paragraph
