@@ -2,7 +2,7 @@
 {{/* The About page is rendered from structured front matter, not embedded presentation markup. */}}
 {{ $main := site.GetPage "/about/main" }}
 {{ $sidebar := site.GetPage "/about/sidebar" }}
-{{ $home := hugo.Data.home }}
+{{ $experience := hugo.Data.experience }}
 <main id="main-content" class="inner-page about-page" role="main">
   {{ partial "shared/page-head.html" (dict
     "eyebrow" .Params.eyebrow
@@ -26,6 +26,6 @@
       </ul>
     </aside>
   </section>
-  {{ partial "shared/experience.html" (dict "experience" $home.experience "label" $main.Params.experience_label "class" "about-experience") }}
+  {{ partial "shared/experience.html" (dict "experience" $experience "label" $main.Params.experience_label "class" "about-experience") }}
 </main>
 {{ end }}

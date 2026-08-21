@@ -1,0 +1,85 @@
+label: Experience
+heading: Planning across industries
+roles:
+  - period: Nov 2025 — Present
+    title: Manager - Anaplan Delivery
+    company: GenXAI Analytics
+    company_short: GenXAI
+    location: Dallas, United States
+    location_short: United States
+    note: Leading platform support, enhancements and governance across enterprise Anaplan and Pigment solutions for supply-chain and finance teams.
+    bullets:
+      - Lead platform support, enhancement delivery and governance across enterprise **Anaplan and Pigment** planning solutions.
+      - Partner with business stakeholders to define requirements, develop user stories and prioritize improvements to planning platforms.
+      - Drive access governance and **SOX controls**, strengthening security, auditability and segregation of duties.
+      - Manage development teams across supply chain and finance while overseeing production support, root-cause analysis and platform stability.
+  - period: May 2021 — Oct 2025
+    title: Senior Solution Architect
+    company: Vuealta Consulting
+    company_short: Vuealta
+    location: Singapore
+    location_short: Singapore
+    note: Designed, delivered and operated enterprise Anaplan platforms across supply chain and finance, combining solution architecture with integration, release governance and team leadership.
+    bullets:
+      - Designed, implemented and supported a portfolio of **10+ production models** serving more than 75 planners and business leaders across supply chain and finance.
+      - Reduced model open and calculation times by **up to 80%**, maintained **99% availability** and cut support-ticket volume by **25%** through architecture and continuous-improvement initiatives.
+      - Led data integration and oversaw **15+ enterprise integrations** using Anaplan Connect, certificate authentication and scheduled pipelines.
+      - Managed and mentored up to **8 direct reports and 15 cross-functional resources** across discovery, design, delivery, hypercare and production support.
+      - Implemented multi-echelon inventory optimization, replenishment planning, MPS and material planning with Anaplan Optimizer; developed Polaris and standard supply-chain application accelerators.
+      - "**Del Monte:** Extended the planning horizon from 3 to 24 months and reduced the planning cycle from 3 weeks to 1 week by unifying statistical forecasting, DRP, MPS and MRP with SAP execution."
+  - period: Aug 2018 — Apr 2021
+    title: Consultant
+    company: Deloitte Consulting Southeast Asia
+    company_short: Deloitte
+    location: Manila, Philippines & Kuala Lumpur, Malaysia
+    location_short: Philippines & Malaysia
+    note: Delivered demand, inventory, procurement and financial material-planning solutions for multinational clients across Southeast Asia.
+    bullets:
+      - Designed forecasting solutions using statistical algorithms, outlier detection, demand-history correction and manual overrides.
+      - "**Tenaga Nasional Berhad:** Delivered demand and inventory planning across Distribution, Generation and Corporate business units during a 12-month transformation."
+      - "**Denka Chemicals:** Implemented BOM-driven material planning and actual-versus-budget financial planning for operations and finance teams."
+      - Led discovery workshops, data preparation in R, scalable DISCO-based architecture, UAT, training and solution documentation.
+  - period: Jul 2016 — Jun 2018
+    title: Anaplan Developer
+    company: Solvanni Technologies
+    company_short: Solvanni
+    location: Coimbatore, India
+    location_short: India
+    note: Transformed spreadsheet planning into governed multidimensional models, improved performance and published an inventory-planning application to the Anaplan App Hub.
+    bullets:
+      - Designed, developed, and **published an Inventory Planning model** to the Anaplan App Hub.
+      - Transformed Excel-based manual planning into **real-time, multi-dimensional Anaplan models**, enabling faster decisions and fewer errors.
+      - Applied **ALM** to build, deploy, and maintain models across Dev/Test/Prod, with rollback safety.
+      - Improved performance by **monitoring and reducing sparsity**, ensuring scalability and responsiveness on large datasets.
+
+capabilities_label: Capabilities
+capabilities:
+  - title: Planning
+    items:
+      - Anaplan Classic, Polaris, ALM & Data Hub
+      - CloudWorks & Optimizer
+      - Demand, supply & inventory planning
+      - DRP, MRP, MPS & S&OP
+      - FP&A, revenue & workforce planning
+      - Pigment
+  - title: Data & integration
+    items:
+      - Anaplan Connect & certificate authentication
+      - Enterprise integrations & ETL
+      - Data governance
+      - Python & R
+      - Statistical forecasting
+      - Data analytics
+  - title: Platform operations
+    items:
+      - Solution architecture
+      - Platform governance & production support
+      - Release management
+      - Security, selective access & SOX
+      - Technical product ownership
+      - Team leadership & mentoring
+
+resume_link:
+  label: Full résumé
+  href: /resume/
+  icon: ""

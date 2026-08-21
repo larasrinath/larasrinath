@@ -4,11 +4,11 @@ The site is a multi-page blogdown/Hugo site with one project-owned presentation 
 
 ## Where content lives
 
-- `data/home.yaml` — homepage navigation, hero, marquee, about, experience, and contact content.
-- `data/ui.yaml` — the shared site footer, accessibility labels, article controls, taxonomy labels, and other reusable interface copy.
-- `content/blog/<slug>/index.md` — one blog post per page bundle. YAML front matter controls title, date, summary, tags, featured media, and optional display overrides; the Markdown body is the article.
-- `content/project/<slug>/index.md` — one project per page bundle. YAML front matter controls listing cards, homepage selection, featured media, tags, links, and optional display overrides; the Markdown body is the case study.
-- Section files such as `content/blog/_index.md` and `content/project/_index.md` — listing-page headings, descriptions, labels, and pagination copy.
+- `data/home.yaml` - homepage navigation, hero, marquee, about, experience, and contact content.
+- `data/ui.yaml` - the shared site footer, accessibility labels, article controls, taxonomy labels, and other reusable interface copy.
+- `content/blog/<slug>/index.md` - one blog post per page bundle. YAML front matter controls title, date, summary, tags, featured media, and optional display overrides; the Markdown body is the article.
+- `content/project/<slug>/index.md` - one project per page bundle. YAML front matter controls listing cards, homepage selection, featured media, tags, links, and optional display overrides; the Markdown body is the case study.
+- Section files such as `content/blog/_index.md` and `content/project/_index.md` - listing-page headings, descriptions, labels, and pagination copy.
 
 Collection page sizes are controlled by `pagination.page_size` in each section file. Pagination labels and the taxonomy archive page size live in `data/ui.yaml`; every paginated collection renders through the shared pagination partial.
 

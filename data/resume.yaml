@@ -1,0 +1,77 @@
+overview_label: Summary
+summary:
+  - Lara Srinath is a **Master Anaplanner** and **Solution Architect** with more than ten years of experience delivering, optimizing and supporting enterprise planning platforms across supply chain and finance.
+  - His work spans solution architecture, platform operations, governance, data integration and continuous improvement. He has led cross-functional teams and business-critical platforms, partnering with executive stakeholders to build scalable, secure and high-performing planning systems.
+
+actions:
+  - label: Download PDF
+    href: /pdf/larasrinath.pdf
+    style: primary
+    external: true
+  - label: LinkedIn
+    href: https://www.linkedin.com/in/larasrinath/
+    style: text
+    external: true
+
+highlights_label: Résumé highlights
+highlights:
+  - label: Experience
+    value: 10 years in enterprise planning
+  - label: Recognition
+    value: 8× Master Anaplanner
+  - label: Focus
+    value: Supply chain, FP&A, architecture and teams
+  - label: Based
+    value: Dallas, Texas
+
+skills_label: Skills
+skills:
+  - category: Platforms
+    items:
+      - Anaplan - Classic, Polaris, ALM, Data Hub, CloudWorks & Optimizer
+      - Pigment
+  - category: Planning
+    items:
+      - Demand, supply & inventory planning
+      - DRP, MRP, MPS & S&OP
+      - FP&A, revenue, workforce, OPEX & cost-centre planning
+  - category: Operations
+    items:
+      - Platform governance, production support & release management
+      - Security, selective access & SOX controls
+      - Anaplan Connect, certificate authentication, ETL & data governance
+  - category: Leadership & analytics
+    items:
+      - Technical product ownership, requirements & stakeholder management
+      - Python, R, statistical forecasting & data analytics
+
+projects_label: Selected work
+projects:
+  - category: Supply-chain transformation
+    clients:
+      - Del Monte (PH)
+      - Wilmar International (EU)
+  - category: Enterprise planning
+    clients:
+      - Tenaga Nasional Berhad (MY)
+      - Denka Chemicals (SG)
+  - category: Open source
+    clients:
+      - Anaplan MCP Server - a standards-based Anaplan integration for AI assistants
+
+certifications_label: Certifications
+certifications:
+  - Master Anaplanner
+  - Anaplan Solution Architect
+  - Anaplan Pre-Sales Certified
+  - Anaplan Model Builder
+  - The Anaplan Way
+  - Pigment Modeler
+  - R Programming
+
+education_label: Education
+education:
+  degree: B.E. in Electrical & Electronics Engineering (SW)
+  period: May 2011 — Jun 2016
+  school: PSG College of Technology
+  location: Coimbatore, India

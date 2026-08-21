@@ -2,7 +2,7 @@
 {{ $notFound := hugo.Data.ui.not_found }}
 <main id="main-content" class="inner-page not-found-page" role="main">
   {{ partial "shared/page-head.html" (dict
-    "eyebrow" (printf "%s — %s" $notFound.code $notFound.label)
+    "eyebrow" (printf "%s - %s" $notFound.code $notFound.label)
     "title" $notFound.hero_title
     "emphasis" $notFound.hero_emphasis
     "copy" $notFound.intro

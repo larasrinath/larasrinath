@@ -1,4 +1,6 @@
 {{ define "main" }}
+{{ $resume := hugo.Data.resume }}
+{{ $experience := hugo.Data.experience }}
 <main id="main-content" class="inner-page resume-page-shell" role="main">
   {{ partial "shared/page-head.html" (dict
     "eyebrow" .Params.eyebrow
@@ -6,12 +8,104 @@
     "emphasis" .Params.hero_emphasis
     "copy" .Params.hero_summary
   ) }}
-  <section class="resume-body">
-    <aside aria-label="{{ .Params.highlights_label }}">
-      {{ with .Params.actions }}<div class="resume-actions">{{ range . }}<a class="{{ if eq .style "primary" }}round-link primary-link{{ else }}text-link{{ end }}" href="{{ .href | safeURL }}"{{ if .external }} target="_blank" rel="noopener noreferrer"{{ end }}>{{ .label }}</a>{{ end }}</div>{{ end }}
-      {{ range .Params.highlights }}<div class="resume-aside-block"><span>{{ .label }}</span><strong>{{ .value }}{{ with .note }}<small>{{ . }}</small>{{ end }}</strong></div>{{ end }}
+
+  <section class="resume-overview app-shell" aria-labelledby="resume-summary-heading">
+    <div class="resume-overview-copy">
+      <h2 id="resume-summary-heading" class="section-label">{{ $resume.overview_label }}</h2>
+      <div class="resume-summary">{{ range $resume.summary }}<p>{{ . | markdownify }}</p>{{ end }}</div>
+    </div>
+    <aside class="resume-overview-aside" aria-label="{{ $resume.highlights_label }}">
+      <div class="resume-actions">
+        {{ range $resume.actions }}
+          <a class="{{ if eq .style "primary" }}app-button app-button-solid{{ else }}app-button app-button-line{{ end }}" href="{{ .href | safeURL }}"{{ if .external }} target="_blank" rel="noopener noreferrer"{{ end }}>{{ .label }}</a>
+        {{ end }}
+      </div>
+      <div class="resume-highlights">
+        {{ range $resume.highlights }}
+          <div class="resume-highlight">
+            <span>{{ .label }}</span>
+            <strong>{{ .value }}</strong>
+            {{ with .note }}<small>{{ . }}</small>{{ end }}
+          </div>
+        {{ end }}
+      </div>
     </aside>
-    <div class="resume-main"><article class="resume-page">{{ .Content }}</article></div>
+  </section>
+
+  <section class="resume-section resume-experience" aria-labelledby="resume-experience-heading">
+    <div class="app-shell">
+      <header class="resume-section-heading">
+        <p class="section-label">{{ $experience.label }}</p>
+        <h2 id="resume-experience-heading">{{ $experience.heading }}</h2>
+      </header>
+      <div class="resume-timeline">
+        {{ range $experience.roles }}
+          <article class="resume-role">
+            <time>{{ .period }}</time>
+            <div class="resume-role-content">
+              <h3>{{ .title }}</h3>
+              <div class="resume-role-meta"><span>{{ .company_short | default .company }}</span><span>{{ .location }}</span></div>
+              <ul class="resume-bullets">
+                {{ range .bullets }}<li><div>{{ . | markdownify }}</div></li>{{ end }}
+              </ul>
+            </div>
+          </article>
+        {{ end }}
+      </div>
+    </div>
+  </section>
+
+  <section class="resume-section resume-skills-section" aria-labelledby="resume-skills-heading">
+    <div class="app-shell resume-skills-shell">
+      <header class="resume-section-heading">
+        <h2 id="resume-skills-heading">{{ $resume.skills_label }}</h2>
+      </header>
+      <div class="resume-skill-groups">
+        {{ range $resume.skills }}
+          <article class="resume-skill-group">
+            <h3>{{ .category }}</h3>
+            <ul class="resume-clean-list resume-skills-list">
+              {{ range .items }}<li>{{ . }}</li>{{ end }}
+            </ul>
+          </article>
+        {{ end }}
+      </div>
+    </div>
+  </section>
+
+  <section class="resume-section resume-projects-section" aria-labelledby="resume-projects-heading">
+    <div class="app-shell resume-section-grid">
+      <header class="resume-section-heading">
+        <h2 id="resume-projects-heading">{{ $resume.projects_label }}</h2>
+      </header>
+      <div class="resume-project-groups">
+        {{ range $resume.projects }}
+          <article>
+            <h3>{{ .category }}</h3>
+            <p>{{ delimit .clients " · " }}</p>
+          </article>
+        {{ end }}
+      </div>
+    </div>
+  </section>
+
+  <section class="resume-section resume-credentials" aria-label="Résumé credentials">
+    <div class="app-shell resume-credentials-grid">
+      <div>
+        <h2>{{ $resume.certifications_label }}</h2>
+        <ul class="resume-clean-list">
+          {{ range $resume.certifications }}<li>{{ . }}</li>{{ end }}
+        </ul>
+      </div>
+      <div>
+        <h2>{{ $resume.education_label }}</h2>
+        <article class="resume-education">
+          <time>{{ $resume.education.period }}</time>
+          <h3>{{ $resume.education.degree }}</h3>
+          <p><span>{{ $resume.education.school }}</span><span>{{ $resume.education.location }}</span></p>
+        </article>
+      </div>
+    </div>
   </section>
 </main>
 {{ end }}

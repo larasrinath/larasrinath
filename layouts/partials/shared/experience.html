@@ -11,7 +11,7 @@
             <time>{{ .period }}</time>
             <div>
               <h3>{{ .title }}</h3>
-              <div class="app-timeline-meta"><span>{{ .company }}</span><span>{{ .location }}</span></div>
+              <div class="app-timeline-meta"><span>{{ .company_short | default .company }}</span><span>{{ .location_short | default .location }}</span></div>
               <p class="app-timeline-note">{{ .note }}</p>
             </div>
           </article>

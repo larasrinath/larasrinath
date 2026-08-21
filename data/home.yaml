@@ -11,13 +11,13 @@ navigation:
     href: /contact/
 
 hero:
-  eyebrow: Enterprise planning — Anaplan + data
+  eyebrow: Enterprise planning - Anaplan + data
   title_lines:
     - Plan with
     - clarity,
     - build for impact.
   emphasis_line: 1
-  intro: I'm Lara Srinath — an Anaplan Delivery Manager, Solution Architect and Master Anaplanner in the US. I turn complex supply-chain and financial-planning processes into clear, scalable systems.
+  intro: I'm Lara Srinath - Manager, Anaplan Delivery at GenXAI; a Master Anaplanner and Solution Architect in the US. I turn complex supply-chain and financial-planning processes into clear, scalable systems.
   actions:
     - label: Explore projects
       href: /project/
@@ -41,7 +41,7 @@ marquee:
   - Generative AI
 
 about:
-  label: 01 — About
+  label: 01 - About
   heading_prefix: Turning messy operations into systems people can
   heading_emphasis: trust
   heading_suffix: .
@@ -49,69 +49,16 @@ about:
   portrait_alt: Portrait of Lara Srinath
   portrait_caption: planning since 2016
   paragraphs:
-    - I'm an Anaplan Delivery Manager at GenXAI, specializing in supply chain and financial planning across FMCG, chemicals, energy and retail. For more than nine years, I've helped teams turn complex data and real-world processes into timely, actionable decisions.
-    - My work spans model design, implementation, optimization and data integration. I lead cross-functional delivery teams, establish governance and modelling standards, and mentor consultants as they grow their craft.
+    - I'm a Master Anaplanner and Solution Architect with more than ten years of experience across FMCG, retail, energy, chemicals and manufacturing. At GenXAI, I'm Manager, Anaplan Delivery across supply-chain and finance platforms.
+    - My work spans solution architecture, platform operations, governance, data integration and continuous improvement. I lead cross-functional teams and build secure, scalable systems around business-critical planning processes.
     - Away from planning applications, you'll find me building LEGO, stargazing, cycling, playing chess or keeping the red flag flying high for Manchester United.
   metrics:
-    - value: 9+
+    - value: 10+
       label: Years in planning
-    - value: "4"
+    - value: "5"
       label: Industries served
     - value: "7"
       label: Core certifications
-
-experience:
-  label: 02 — Experience
-  heading: Planning across industries
-  roles:
-    - period: Nov 2025 — Present
-      title: Manager — Anaplan Delivery
-      company: GenXAI
-      location: Texas, USA
-      note: Leading enterprise Anaplan delivery for demand, supply, material replenishment and FP&A teams while scaling modelling standards across functions.
-    - period: May 2021 — Oct 2025
-      title: Senior Solution Architect
-      company: Vuealta
-      location: Singapore
-      note: Owned full-lifecycle supply-chain planning programs, including multi-echelon optimization, forecasting, DRP, MPS and MRP, while leading data integration and technical mentoring.
-    - period: Aug 2018 — Apr 2021
-      title: Consultant / Analyst
-      company: Deloitte
-      location: Manila & Kuala Lumpur
-      note: Designed forecasting, procurement and inventory-planning solutions; facilitated requirements, led data preparation and delivered scalable DISCO-aligned Anaplan models.
-    - period: Jul 2016 — Jun 2018
-      title: Anaplan Developer
-      company: Solvanni
-      location: Coimbatore, India
-      note: Transformed Excel planning into governed multidimensional models, improved performance and published an inventory-planning model to the Anaplan App Hub.
-  capabilities_label: Capabilities
-  capabilities:
-    - title: Planning
-      items:
-        - Anaplan ALM, NUX & CloudWorks
-        - Supply chain planning
-        - DRP, MRP, MPS & S&OP
-        - FP&A
-        - Multi-echelon optimization
-        - Pigment
-    - title: Data & modelling
-      items:
-        - Python
-        - R
-        - SQL
-        - AMPL
-        - Data analysis & visualization
-        - Generative AI
-    - title: Delivery
-      items:
-        - Solution architecture
-        - Data integration
-        - Project governance
-        - Team leadership & mentoring
-  resume_link:
-    label: Full résumé
-    href: /resume/
-    icon: ""
 
 contact:
   social_links_label: Elsewhere

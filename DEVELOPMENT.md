@@ -27,15 +27,15 @@ This command treats Hugo deprecations and other warnings as failures and removes
 
 ## Project structure
 
-- `assets/css/lara-theme.css` — the complete project-owned visual system.
-- `assets/js/custom.js` — small progressive enhancements.
-- `data/home.yaml` — homepage copy, navigation, work, experience, and contact data.
-- `data/ui.yaml` — reusable interface labels and accessibility copy.
-- `content/` — Markdown and R Markdown page bundles.
-- `layouts/` — all active Hugo templates, partials, and shortcodes.
-- `static/` — fonts, images, PDFs, and generated R Markdown dependencies.
-- `config.toml` — current Hugo configuration.
-- `netlify.toml` — deployment build configuration and Hugo version pin.
+- `assets/css/lara-theme.css` - the complete project-owned visual system.
+- `assets/js/custom.js` - small progressive enhancements.
+- `data/home.yaml` - homepage copy, navigation, work, experience, and contact data.
+- `data/ui.yaml` - reusable interface labels and accessibility copy.
+- `content/` - Markdown and R Markdown page bundles.
+- `layouts/` - all active Hugo templates, partials, and shortcodes.
+- `static/` - fonts, images, PDFs, and generated R Markdown dependencies.
+- `config.toml` - current Hugo configuration.
+- `netlify.toml` - deployment build configuration and Hugo version pin.
 
 See `docs/CONTENT-MODEL.md` for the authoring model and instructions for adding projects or articles.
 

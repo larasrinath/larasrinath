@@ -13,7 +13,7 @@ I help businesses design and model their operations, turning complex data into t
 
 ### Experience
 
-- **Manager - Anaplan Delivery** at GenXAI, US (2025 - Present)
+- **Manager - Anaplan Delivery** at GenXAI, US (2025–Present)
 - **Senior Solution Architect** at Vuealta Consulting, Singapore (2021 - 2025)
 - **Consultant** at Deloitte Southeast Asia, Malaysia (2019 - 2021)
 - **Analyst** at Deloitte Southeast Asia, Philippines (2018 - 2019)
