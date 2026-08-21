@@ -12,8 +12,9 @@ featured_meta: "R · Plotly · Data Visualization — 2020"
 slug: lorenz-attractor
 categories: []
 tags:
-  - dataviz
   - R
+  - Plotly
+  - Data Visualization
 subtitle: 'Mapping the Chaos'
 summary: 'Mapping the Chaos'
 authors: []

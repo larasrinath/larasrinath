@@ -8,7 +8,7 @@ featured_weight: 4
 featured_image: featured.jpg
 featured_image_alt: "COVID-19 global tracker dashboard"
 featured_image_fit: cover
-featured_meta: "R Shiny · Data Visualization — 2020"
+featured_meta: "R · Shiny · Data Visualization — 2020"
 external_link: https://larasrinath.shinyapps.io/covid19/
 image:
   caption: Lara Srinath
@@ -20,10 +20,11 @@ links:
     name: Live App
     url: https://larasrinath.shinyapps.io/covid19/
 tags:
-  - r-shiny
-  - data-visualization
-  - dashboard
-  - healthcare
+  - R
+  - Shiny
+  - Data Visualization
+  - Dashboard
+  - Healthcare
 project_body:
   - type: opening
     text: >-

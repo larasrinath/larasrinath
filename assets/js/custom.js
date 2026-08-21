@@ -23,6 +23,12 @@
       setOpen(toggle.getAttribute('aria-expanded') !== 'true');
     });
 
+    document.addEventListener('click', function (event) {
+      if (toggle.getAttribute('aria-expanded') === 'true' && !toggle.contains(event.target)) {
+        setOpen(false);
+      }
+    });
+
     menu.addEventListener('click', function (event) {
       if (event.target.closest('a')) setOpen(false);
     });

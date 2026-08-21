@@ -13,8 +13,9 @@ featured_meta: "R · Data Storytelling — 2020"
 slug: game-of-thrones
 categories: []
 tags:
-  - dataviz
-  - tvshows
+  - R
+  - Data Visualization
+  - TV Shows
 subtitle: 'A Song of Graph and Number'
 summary: 'A Song of Graph and Number'
 authors: []
