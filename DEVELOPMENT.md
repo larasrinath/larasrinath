@@ -1,6 +1,6 @@
 # Local development
 
-This is a Hugo and blogdown portfolio using a project-owned presentation layer. The active site no longer loads the bundled `hugo-apero` theme at runtime; its older source remains in `themes/hugo-apero/` only as a historical reference while the migration is reviewed.
+This is a Hugo and blogdown portfolio using a fully project-owned presentation layer. The site does not load an external Hugo theme at runtime; layouts, assets, and interface data live in this repository.
 
 ## Requirements
 

@@ -1,6 +1,6 @@
 # Content model
 
-The site is a multi-page blogdown/Hugo site with one presentation system derived from `demowebsite`. Templates are responsible only for structure, loops, conditions, and presentation. Visible interface copy belongs in YAML data or page front matter; long-form page content belongs in the Markdown body.
+The site is a multi-page blogdown/Hugo site with one project-owned presentation system. Templates are responsible only for structure, loops, conditions, and presentation. Visible interface copy belongs in YAML data or page front matter; long-form page content belongs in the Markdown body.
 
 ## Where content lives
 

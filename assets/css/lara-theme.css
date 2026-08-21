@@ -1,6 +1,6 @@
 /* ==================================================================
    LARA PERSONAL THEME
-   One visual system, translated directly from demowebsite.
+   One project-owned visual system for the Hugo site.
    Hugo owns rendering; YAML/front matter owns visible copy.
    ================================================================== */
 
@@ -416,7 +416,7 @@ summary:focus-visible {
 .project-index .pagination a { color: var(--ink) !important; }
 .project-index .pagination a:hover { color: var(--accent) !important; }
 
-/* Project and blog detail: one shared demowebsite template ------- */
+/* Project and blog detail: one shared editorial template -------- */
 
 .app-detail-page { color: var(--ink); background: var(--paper); }
 .app-detail-hero { padding: 11rem 0 4rem; }
