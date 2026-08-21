@@ -1,14 +1,7 @@
-{{ $ui := site.Data.ui }}
+{{ $ui := hugo.Data.ui }}
 <footer class="detail-footer" role="contentinfo">
   <div class="app-shell">
     <p>© {{ now.Format "2006" }} {{ $ui.brand.name }}.</p>
     <a href="{{ $ui.footer.link_href | safeURL }}">{{ $ui.footer.link_label }}</a>
   </div>
-  {{ with site.Params.math }}
-    {{ partial "shared/math-preprocess.html" }}
-    {{ with .renderer }}
-      {{ if eq . "mathjax" }}{{ partial "shared/math-render-mathjax.html" }}{{ end }}
-      {{ if eq . "katex" }}{{ partial "shared/math-render-katex.html" }}{{ end }}
-    {{ end }}
-  {{ end }}
 </footer>

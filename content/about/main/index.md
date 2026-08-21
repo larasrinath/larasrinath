@@ -1,4 +1,7 @@
 ---
+build:
+  list: never
+  render: never
 ## Configure page content in wide column
 title: "About Me"
 number_featured: 0

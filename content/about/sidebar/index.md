@@ -1,4 +1,8 @@
 ---
+build:
+  list: never
+  publishResources: false
+  render: never
 ## Configure sidebar content in narrow column
 author: "Lara Srinath"
 role: "Solution Architect & Master Anaplanner"

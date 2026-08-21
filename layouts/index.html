@@ -1,5 +1,5 @@
 {{ define "main" }}
-{{ $home := site.Data.home }}
+{{ $home := hugo.Data.home }}
 {{ $works := where (where site.RegularPages "Section" "project") "Params.featured_home" true }}
 {{ $works = sort $works "Params.featured_weight" "asc" }}
 

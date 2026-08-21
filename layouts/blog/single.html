@@ -1,5 +1,5 @@
 {{ define "main" }}
-{{ $ui := site.Data.ui }}
+{{ $ui := hugo.Data.ui }}
 {{ $summary := .Params.subtitle | default .Description | default .Params.summary | default .Params.excerpt }}
 {{ $terms := .GetTerms "tags" }}
 {{ $titleWords := split .Title " " }}

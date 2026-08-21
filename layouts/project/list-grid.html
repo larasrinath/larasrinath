@@ -1,10 +1,12 @@
 {{ define "main" }}
 <main id="main-content" class="inner-page" role="main">
-  <header class="page-hero">
-    <p class="section-label">{{ .Params.eyebrow }}</p>
-    <h1>{{ .Params.hero_title }} <em>{{ .Params.hero_emphasis }}</em></h1>
-    <p>{{ .Description }}</p>
-  </header>
+  {{ partial "shared/page-hero.html" (dict
+    "class" "page-hero index-hero"
+    "eyebrow" .Params.eyebrow
+    "title" .Params.hero_title
+    "emphasis" .Params.hero_emphasis
+    "copy" .Description
+  ) }}
 
   <section class="project-index" aria-label="{{ .Params.list_label }}">
     {{ $pages := (where .RegularPagesRecursive "Type" "project").ByDate.Reverse }}

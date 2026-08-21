@@ -1,8 +1,8 @@
 <!doctype html>
-<html lang="{{ .Site.LanguageCode | default "en" }}" dir="ltr">
+<html lang="{{ .Site.Language.Locale | default "en-US" }}" dir="ltr">
   {{- partial "head.html" . -}}
   <body id="top" class="page page--{{ .Kind }}{{ with .Section }} page--{{ . }}{{ end }}{{ if .IsHome }} page--home{{ end }}">
-    <a class="skip-link" href="#main-content">{{ site.Data.ui.accessibility.skip_to_content }}</a>
+    <a class="skip-link" href="#main-content">{{ hugo.Data.ui.accessibility.skip_to_content }}</a>
     {{ if and .IsPage (eq .Section "blog") }}
       <div class="reading-progress" aria-hidden="true"></div>
     {{ end }}

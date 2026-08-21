@@ -1,17 +1,14 @@
 {{ define "main" }}
 <main id="main-content" class="inner-page resume-page-shell" role="main">
-  <header class="resume-hero">
-    <div>
-      <p class="section-label">{{ .Params.eyebrow }}</p>
-      <h1>{{ .Params.hero_title }}</h1>
-    </div>
-    <div class="resume-summary">
-      <p>{{ .Params.hero_summary }}</p>
-      <div class="resume-actions">
-        {{ range .Params.actions }}<a class="{{ if eq .style "primary" }}round-link primary-link{{ else }}text-link{{ end }}" href="{{ .href | safeURL }}"{{ if .external }} target="_blank" rel="noopener noreferrer"{{ end }}>{{ .label }}</a>{{ end }}
-      </div>
-    </div>
-  </header>
+  {{ partial "shared/page-hero.html" (dict
+    "class" "page-hero resume-hero"
+    "layout" "split"
+    "eyebrow" .Params.eyebrow
+    "title" .Params.hero_title
+    "copy" .Params.hero_summary
+    "copy_class" "resume-summary"
+    "actions" .Params.actions
+  ) }}
   <section class="resume-body">
     <aside aria-label="{{ .Params.highlights_label }}">
       {{ range .Params.highlights }}<div class="resume-aside-block"><span>{{ .label }}</span><strong>{{ .value }}{{ with .note }}<small>{{ . }}</small>{{ end }}</strong></div>{{ end }}

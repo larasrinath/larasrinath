@@ -1,0 +1,11 @@
+{{ $contact := hugo.Data.home.contact }}
+<nav class="contact-social-links" aria-label="{{ $contact.social_links_label }}">
+  <p class="section-label">{{ $contact.social_links_label }}</p>
+  <ul>
+    {{ range $contact.links }}
+      {{ if .external }}
+        <li><a href="{{ .href | safeURL }}" target="_blank" rel="noopener noreferrer">{{ .label }}</a></li>
+      {{ end }}
+    {{ end }}
+  </ul>
+</nav>

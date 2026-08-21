@@ -10,6 +10,8 @@ The site is a multi-page blogdown/Hugo site with one presentation system derived
 - `content/project/<slug>/index.md` — one project per page bundle. YAML front matter controls listing cards, homepage selection, featured media, tags, links, and optional display overrides; the Markdown body is the case study.
 - Section files such as `content/blog/_index.md` and `content/project/_index.md` — listing-page headings, descriptions, labels, and pagination copy.
 
+Every section landing page renders its header through `layouts/partials/shared/page-hero.html`. Page front matter supplies the eyebrow, title, emphasis, summary, and optional actions; the partial owns the shared structure, with standard, compact, and split résumé variants controlled by the calling layout.
+
 ## Adding a blog post
 
 ```sh

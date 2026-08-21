@@ -1,10 +1,12 @@
 {{ define "main" }}
 <main id="main-content" class="inner-page" role="main">
-  <header class="page-hero blog-hero">
-    <p class="section-label">{{ .Params.eyebrow }}</p>
-    <h1>{{ .Params.hero_title }} <em>{{ .Params.hero_emphasis }}</em></h1>
-    <p>{{ .Description }}</p>
-  </header>
+  {{ partial "shared/page-hero.html" (dict
+    "class" "page-hero blog-hero index-hero"
+    "eyebrow" .Params.eyebrow
+    "title" .Params.hero_title
+    "emphasis" .Params.hero_emphasis
+    "copy" .Description
+  ) }}
 
   <section class="post-index" aria-label="{{ .Params.posts_label }}">
     {{ $pages := (where .RegularPagesRecursive "Type" "blog").ByDate.Reverse }}
@@ -22,7 +24,7 @@
       </a>
     {{ end }}
     {{ if gt $paginator.TotalPages 1 }}
-      <nav class="pagination" aria-label="{{ site.Data.ui.accessibility.blog_pagination }}">
+      <nav class="pagination" aria-label="{{ hugo.Data.ui.accessibility.blog_pagination }}">
         {{ with $paginator.Prev }}<a href="{{ .URL }}">{{ $.Params.pagination.newer }}</a>{{ end }}
         <span>{{ .Params.pagination.page }} {{ $paginator.PageNumber }} {{ .Params.pagination.of }} {{ $paginator.TotalPages }}</span>
         {{ with $paginator.Next }}<a href="{{ .URL }}">{{ $.Params.pagination.older }}</a>{{ end }}

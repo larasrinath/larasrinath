@@ -1,72 +1,44 @@
-[![Netlify Status](https://api.netlify.com/api/v1/badges/fc5d6f35-a801-4093-8e21-fac53734805b/deploy-status)](https://app.netlify.com/projects/larasrinath/deploys) [![LinkedIn](https://img.shields.io/badge/LinkedIn-Lara_Srinath-blue?logo=linkedin)](https://www.linkedin.com/in/larasrinath)
+# Local development
 
-![Hugo](https://img.shields.io/badge/Hugo-Start-blue?logo=hugo) ![R](https://img.shields.io/badge/R-276DC3?logo=r&logoColor=white) ![Netlify](https://img.shields.io/badge/Netlify-00C7B7?logo=netlify&logoColor=white)
+This is a Hugo and blogdown portfolio using a project-owned presentation layer. The active site no longer loads the bundled `hugo-apero` theme at runtime; its older source remains in `themes/hugo-apero/` only as a historical reference while the migration is reviewed.
 
-# Lara Srinath – Personal Website
+## Requirements
 
-This repository contains the source code for the personal website of **Lara Srinath**, built with [Hugo](https://gohugo.io/) and [blogdown](https://bookdown.org/yihui/blogdown/).  
-The site uses the [hugo-apéro](https://github.com/hugo-apero/hugo-apero) theme.
+- Hugo Extended 0.165.0
+- R and blogdown 1.24 or newer only when editing or rebuilding `.Rmd` sources
 
----
+The Hugo version is pinned consistently in `.Rprofile` and `netlify.toml`.
 
-## 🚀 Features
-- Static website powered by **Hugo** and **R blogdown**
-- Customizable with **config.toml**
-- Responsive design via **hugo-apéro** theme
-- Deployed via **Netlify**
+## Run locally
 
----
+```sh
+hugo server
+```
 
-## 📂 Repository Structure
-- `content/` → Website content (posts, pages)
-- `layouts/` → Custom layouts and templates
-- `static/` → Static files (images, PDFs, CSS overrides)
-- `themes/hugo-apero/` → Theme files
-- `config.toml` → Site configuration
-- `index.Rmd` → Homepage source
-- `netlify.toml` → Netlify deployment configuration
+Open [http://localhost:1313/](http://localhost:1313/). Draft content can be included with `hugo server --buildDrafts`.
 
----
+## Validate a production build
 
-## ⚙️ Setup
+```sh
+hugo --gc --cleanDestinationDir --minify --printPathWarnings --panicOnWarning
+```
 
-1. **Install Hugo**  
-   Follow instructions: [Install Hugo](https://gohugo.io/getting-started/installing/)
+This command treats Hugo deprecations and other warnings as failures and removes stale files from the generated `public/` directory.
 
-2. **Clone the Repository**  
-   ```bash
-   git clone https://github.com/larasrinath/larasrinath.git
-   cd larasrinath
-   ```
+## Project structure
 
-3. **Run Locally**  
-hugo server -D
-   Then open [http://localhost:1313](http://localhost:1313).
+- `assets/css/lara-theme.css` — the complete project-owned visual system.
+- `assets/js/custom.js` — small progressive enhancements.
+- `data/home.yaml` — homepage copy, navigation, work, experience, and contact data.
+- `data/ui.yaml` — reusable interface labels and accessibility copy.
+- `content/` — Markdown and R Markdown page bundles.
+- `layouts/` — all active Hugo templates, partials, and shortcodes.
+- `static/` — fonts, images, PDFs, and generated R Markdown dependencies.
+- `config.toml` — current Hugo configuration.
+- `netlify.toml` — deployment build configuration and Hugo version pin.
 
----
+See `docs/CONTENT-MODEL.md` for the authoring model and instructions for adding projects or articles.
 
-## 📝 Deployment
-The site is deployed automatically via **Netlify**.  
-To deploy updates:
-1. Commit changes to the `master` branch.
-2. Push to GitHub.
-3. Netlify will build and publish the latest version.
+## Version upgrades
 
----
-
-## 🔗 Links
-- Live Website: [larasrinath.com](https://www.larasrinath.com)
-- Theme: [hugo-apéro](https://github.com/hugo-apero/hugo-apero)
-- Blogdown Documentation: [bookdown.org/yihui/blogdown](https://bookdown.org/yihui/blogdown/)
-
----
-
-## 📄 License
-This project is licensed under the [MIT License](LICENSE).
-
----
-
-## 👤 Author
-**Lara Srinath**
-Manager - Anaplan Delivery at GenXAI | Certified Master Anaplanner & Anaplan Solution Architect
-[LinkedIn](https://www.linkedin.com/in/larasrinath) | [GitHub](https://github.com/larasrinath)
+Before changing the Hugo pin, install the candidate Extended release locally and run the production validation command above. Keep the versions in `.Rprofile` and every Netlify context synchronized.

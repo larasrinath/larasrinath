@@ -1,5 +1,5 @@
-{{ $home := site.Data.home }}
-{{ $ui := site.Data.ui }}
+{{ $home := hugo.Data.home }}
+{{ $ui := hugo.Data.ui }}
 <header class="topbar{{ if .IsHome }} app-topbar{{ end }}" role="banner">
   <div class="topbar-inner">
     <a class="wordmark" href="{{ "/" | relURL }}" aria-label="{{ $ui.brand.home_label }}">

@@ -1,5 +1,5 @@
 {{ define "main" }}
-{{ $notFound := site.Data.ui.not_found }}
+{{ $notFound := hugo.Data.ui.not_found }}
 <main id="main-content" class="inner-page not-found-page" role="main">
   <section class="app-shell not-found-content">
     <p class="section-label">{{ $notFound.code }} — {{ $notFound.label }}</p>

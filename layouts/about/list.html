@@ -3,11 +3,13 @@
 {{ $main := site.GetPage "/about/main" }}
 {{ $sidebar := site.GetPage "/about/sidebar" }}
 <main id="main-content" class="inner-page about-page" role="main">
-  <header class="page-hero about-page-hero">
-    <p class="section-label">{{ .Params.eyebrow }}</p>
-    <h1>{{ $header.Params.headline | default .Params.headline_fallback }}</h1>
-    <div>{{ $header.Content }}</div>
-  </header>
+  {{ partial "shared/page-hero.html" (dict
+    "class" "page-hero about-page-hero"
+    "eyebrow" .Params.eyebrow
+    "title" ($header.Params.headline | default .Params.headline_fallback)
+    "copy" $header.Content
+    "copy_html" true
+  ) }}
   <section class="about-detail">
     <aside class="about-portrait">
       {{ with $sidebar.Resources.GetMatch "avatar*" }}<img src="{{ .RelPermalink }}" alt="{{ $.Params.portrait_alt }}" width="{{ .Width }}" height="{{ .Height }}">{{ end }}

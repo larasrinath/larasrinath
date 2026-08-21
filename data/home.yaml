@@ -3,12 +3,12 @@ brand: Lara Srinath
 navigation:
   - label: About
     href: /about/
-  - label: Works
+  - label: Projects
     href: /project/
-  - label: Experience
-    href: /resume/
-  - label: Writing
+  - label: Blog
     href: /blog/
+  - label: Résumé
+    href: /resume/
   - label: Contact
     href: /contact/
 
@@ -131,6 +131,7 @@ writing:
 
 contact:
   label: 05 — Contact
+  social_links_label: Elsewhere
   heading_prefix: Let's turn complexity into
   heading_emphasis: clear decisions
   heading_suffix: .

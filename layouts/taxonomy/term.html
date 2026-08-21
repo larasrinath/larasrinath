@@ -1,11 +1,14 @@
 {{ define "main" }}
-{{ $ui := site.Data.ui }}
+{{ $ui := hugo.Data.ui }}
+{{ $entryLabel := $ui.taxonomy.entry_plural }}
+{{ if eq (len .RegularPages) 1 }}{{ $entryLabel = $ui.taxonomy.entry_singular }}{{ end }}
 <main id="main-content" class="inner-page" role="main">
-  <header class="page-hero compact-hero">
-    <p class="section-label">{{ $ui.taxonomy.filed_under }}</p>
-    <h1>{{ .Title }}</h1>
-    <p>{{ len .RegularPages }} {{ if eq (len .RegularPages) 1 }}{{ $ui.taxonomy.entry_singular }}{{ else }}{{ $ui.taxonomy.entry_plural }}{{ end }} {{ $ui.taxonomy.archive_suffix }}</p>
-  </header>
+  {{ partial "shared/page-hero.html" (dict
+    "class" "page-hero compact-hero index-hero"
+    "eyebrow" $ui.taxonomy.filed_under
+    "title" .Title
+    "copy" (printf "%d %s %s" (len .RegularPages) $entryLabel $ui.taxonomy.archive_suffix)
+  ) }}
   <section class="post-index" aria-label="{{ $ui.taxonomy.tagged_prefix }} {{ .Title }}">
     {{ range $index, $post := .RegularPages.ByDate.Reverse }}
       <a class="post-row" href="{{ $post.RelPermalink }}">

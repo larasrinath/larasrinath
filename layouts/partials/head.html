@@ -1,10 +1,7 @@
 <head>
   {{ partial "meta.html" . }}
   {{ template "_internal/schema.html" . }}
-  {{ template "_internal/google_analytics.html" . }}
-  <meta name="author" content="Lara Srinath">
-  <meta property="article:author" content="Lara Srinath">
-  <link rel="canonical" href="{{ .Permalink }}">
+  {{ partial "google_analytics.html" . }}
 
   {{ if .IsHome }}
   <script type="application/ld+json">
@@ -29,20 +26,14 @@
 
   <link rel="shortcut icon" href="{{ .Site.Params.favicon }}" type="image/x-icon">
   <link rel="icon" href="{{ .Site.Params.favicon }}" type="image/x-icon">
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,400;0,9..144,500;0,9..144,600;1,9..144,300;1,9..144,400&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
   {{ range .AlternativeOutputFormats }}
     {{ printf `<link rel="%s" type="%s" href="%s" title="%s">` .Rel .MediaType.Type .Permalink $.Site.Title | safeHTML }}
   {{ end }}
 
-  {{ $styles := resources.Get "scaffold.scss" | resources.ExecuteAsTemplate "style.main.scss" . | toCSS | minify | fingerprint }}
-  <link rel="stylesheet" href="{{ $styles.RelPermalink }}" integrity="{{ $styles.Data.Integrity }}" media="screen">
-
-  {{ $panelsetJs := resources.Get "js/panelset.js" | js.Build "panelset.js" | minify | fingerprint }}
-  <script src="{{ $panelsetJs.RelPermalink }}" type="text/javascript"></script>
-  {{ $mainJs := resources.Get "js/main.js" | js.Build "main.js" | minify | fingerprint }}
-  <script src="{{ $mainJs.RelPermalink }}" type="text/javascript"></script>
-  {{ $customJs := resources.Get "js/custom.js" | minify | fingerprint }}
-  <script src="{{ $customJs.RelPermalink }}" type="text/javascript" defer></script>
+  {{ with resources.Get "css/lara-theme.css" | minify | fingerprint }}
+    <link rel="stylesheet" href="{{ .RelPermalink }}" integrity="{{ .Data.Integrity }}" crossorigin="anonymous">
+  {{ end }}
+  {{ with resources.Get "js/custom.js" | minify | fingerprint }}
+    <script src="{{ .RelPermalink }}" integrity="{{ .Data.Integrity }}" crossorigin="anonymous" defer></script>
+  {{ end }}
 </head>

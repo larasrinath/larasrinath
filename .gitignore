@@ -10,3 +10,6 @@ public/
 *.pem
 credentials*
 .DS_Store
+demowebsite/
+graphify-out/
+.hugo_build.lock

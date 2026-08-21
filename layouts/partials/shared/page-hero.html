@@ -1,0 +1,22 @@
+{{- $class := .class | default "page-hero" -}}
+{{- $layout := .layout | default "standard" -}}
+<header class="{{ $class }}">
+  {{- if eq $layout "split" }}
+    {{- with .eyebrow }}<p class="section-label">{{ . }}</p>{{ end }}
+    <h1>{{ .title }}{{ with .emphasis }} <em>{{ . }}</em>{{ end }}</h1>
+    <div{{ with .copy_class }} class="{{ . }}"{{ end }}>
+      {{- with .copy }}<p>{{ . }}</p>{{ end }}
+      {{- with .actions }}
+        <div class="resume-actions">
+          {{- range . }}<a class="{{ if eq .style "primary" }}round-link primary-link{{ else }}text-link{{ end }}" href="{{ .href | safeURL }}"{{ if .external }} target="_blank" rel="noopener noreferrer"{{ end }}>{{ .label }}</a>{{ end }}
+        </div>
+      {{- end }}
+    </div>
+  {{- else }}
+    {{- with .eyebrow }}<p class="section-label">{{ . }}</p>{{ end }}
+    <h1>{{ .title }}{{ with .emphasis }} <em>{{ . }}</em>{{ end }}</h1>
+    {{- with .copy }}
+      {{- if $.copy_html }}<div>{{ . }}</div>{{ else }}<p>{{ . }}</p>{{ end }}
+    {{- end }}
+  {{- end }}
+</header>

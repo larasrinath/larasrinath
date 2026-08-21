@@ -1,11 +1,12 @@
 {{ define "main" }}
-{{ $ui := site.Data.ui }}
+{{ $ui := hugo.Data.ui }}
 <main id="main-content" class="inner-page" role="main">
-  <header class="page-hero compact-hero">
-    <p class="section-label">{{ $ui.generic.collection_label }}</p>
-    <h1>{{ .Title }}</h1>
-    {{ with .Description }}<p>{{ . }}</p>{{ end }}
-  </header>
+  {{ partial "shared/page-hero.html" (dict
+    "class" "page-hero compact-hero index-hero"
+    "eyebrow" $ui.generic.collection_label
+    "title" .Title
+    "copy" .Description
+  ) }}
   <section class="post-index" aria-label="{{ .Title }}">
     {{ range $index, $page := .RegularPages.ByTitle }}
       <a class="post-row generic-row" href="{{ $page.RelPermalink }}">
