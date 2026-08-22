@@ -4,8 +4,7 @@
 {{ $terms := .GetTerms "tags" }}
 {{ $structuredBody := .Params.project_body }}
 {{ $pageContent := .Content }}
-{{ $next := .NextInSection }}
-{{ if not $next }}{{ $next = .PrevInSection }}{{ end }}
+{{ $next := .PrevInSection }}
 {{ if $next }}{{ .Store.Set "pageTailMode" "flush" }}{{ end }}
 
 <main id="main-content" class="inner-page app-detail-page" role="main">

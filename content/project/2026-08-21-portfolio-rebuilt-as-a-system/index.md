@@ -24,7 +24,7 @@ categories:
   - Web Design
 layout: single
 links:
-  - icon: globe
+  - icon: link
     icon_pack: fas
     name: Live Site
     url: https://www.larasrinath.com/

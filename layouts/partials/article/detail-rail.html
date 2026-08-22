@@ -13,8 +13,15 @@
   {{ with $note.text }}<span class="app-detail-rail-note">{{ . }}</span>{{ end }}
   <span class="app-detail-rail-meta">{{ $page.Date.Format "January 2, 2006" }}{{ with .reading_time }} · {{ . }} {{ $ui.article.minute_read }}{{ end }}</span>
   {{ with .links }}
-    <nav{{ with $.links_label }} aria-label="{{ . }}"{{ end }}>
-      {{ range . }}<a href="{{ .url | safeURL }}"{{ if hasPrefix .url "http" }} target="_blank" rel="noopener noreferrer"{{ end }}>{{ .name }}{{ with $ui.project.external_link_icon }} {{ . }}{{ end }}</a>{{ end }}
+    <nav class="app-detail-actions"{{ with $.links_label }} aria-label="{{ . }}"{{ end }}>
+      {{ range . }}
+        {{- $iconFamily := "fa-solid" -}}
+        {{- if eq (.icon_pack | default "fas") "fab" }}{{ $iconFamily = "fa-brands" }}{{ end -}}
+        <a class="app-detail-action" href="{{ .url | safeURL }}"{{ if hasPrefix .url "http" }} target="_blank" rel="noopener noreferrer"{{ end }}>
+          {{ with .icon }}<i class="{{ $iconFamily }} fa-{{ . }}" aria-hidden="true"></i>{{ end }}
+          <span>{{ .name }}</span>
+        </a>
+      {{ end }}
     </nav>
   {{ end }}
   {{ partial "share-links.html" $page }}

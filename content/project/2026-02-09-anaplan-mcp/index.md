@@ -31,7 +31,7 @@ links:
   icon_pack: fab
   name: GitHub
   url: https://github.com/larasrinath/anaplan-mcp
-- icon: rocket
+- icon: book-open
   icon_pack: fas
   name: Setup Guide
   url: "/project/2026-02-09-anaplan-mcp/#setup-guide"

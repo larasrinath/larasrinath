@@ -15,7 +15,7 @@ image:
   focal_point: Smart
 excerpt: "Interactive R Shiny pandemic dashboard"
 links:
-  - icon: door-open
+  - icon: link
     icon_pack: fas
     name: Live App
     url: https://larasrinath.shinyapps.io/covid19/

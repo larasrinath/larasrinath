@@ -575,8 +575,12 @@ summary:focus-visible {
 .app-detail-rail-title { display: block; margin-top: 1.25rem; color: var(--ink); font: 600 1rem/1.5 var(--sans); }
 .app-detail-body > aside .app-detail-rail-note { margin-top: 0.75rem; color: var(--muted); font-size: 0.9rem; line-height: 1.65; }
 .app-detail-body > aside .app-detail-rail-meta { margin-top: 1.5rem; padding-top: 1.25rem; border-top: var(--site-divider); color: var(--muted); font-size: 0.8rem; line-height: 1.5; }
-.app-detail-body > aside nav { display: flex; flex-direction: column; align-items: flex-start; gap: 0.75rem; margin-top: 2rem; }
-.app-detail-body > aside a { color: var(--accent) !important; font-size: 0.875rem; font-weight: 600; line-height: 1.428571; text-decoration: none !important; }
+.app-detail-body > aside .app-detail-actions { display: flex; flex-wrap: wrap; align-items: center; gap: 0.5rem; width: 100%; margin-top: 2rem; }
+.app-detail-body > aside .app-detail-action { display: inline-flex; align-items: center; gap: 0.4rem; width: auto; min-height: 0; padding: 0.5rem 1rem; border: 1.5px solid var(--line); border-radius: 6px; color: var(--ink) !important; background: transparent; font-size: 0.8125rem; font-weight: 500; line-height: 1.4; letter-spacing: 0.08em; text-decoration: none !important; text-transform: uppercase; white-space: nowrap; transition: color 0.2s ease, border-color 0.2s ease, background-color 0.2s ease; }
+.app-detail-body > aside .app-detail-action span { display: inline; margin: 0; color: inherit; font: inherit; }
+.app-detail-action i { flex: 0 0 auto; width: 1.1rem; color: var(--accent); text-align: center; }
+.app-detail-action:hover { color: var(--ink) !important; border-color: var(--muted); background: var(--paper); }
+.app-detail-action:hover i { color: var(--accent); }
 .app-detail-prose { grid-column: 5 / span 8; max-width: var(--reading); min-width: 0; }
 
 .article-content.app-detail-prose > *:first-child { margin-top: 0 !important; }
@@ -886,7 +890,7 @@ summary:focus-visible {
 }
 
 @media (max-width: 767px) {
-  :root { --page-content-start-space: 3rem; --page-content-start-compact-space: 2.25rem; --page-content-start-detail-space: 1.5rem; --page-tail-space: 1.5rem; }
+  :root { --site-divider-width: 1px; --page-content-start-space: 3rem; --page-content-start-compact-space: 2.25rem; --page-content-start-detail-space: 1.5rem; --page-tail-space: 1.5rem; }
   .topbar-inner { position: relative; }
   .wordmark {
     position: absolute;
@@ -1274,4 +1278,44 @@ body:has(.setup-guide #os-global-lin:checked) .app-detail-page { --accent: var(-
   .auth-selector-choices { grid-template-columns: 1fr; }
   .article-content.app-detail-prose .step-card { display: block; }
   .article-content.app-detail-prose .step-num { width: fit-content; margin-bottom: 1rem; }
+}
+
+/* Touch interfaces keep the same static visual hierarchy without sticky
+   hover states. Keep this final so later component rules cannot reintroduce
+   hover-only treatments on touch devices. Keyboard focus remains visible. */
+@media (hover: none), (pointer: coarse) {
+  .primary-nav a,
+  .round-link,
+  .app-button,
+  .project-row h2,
+  .project-thumb img,
+  .post-row h2,
+  .app-article-blocks .article-editorial-cta-mark,
+  .app-detail-action,
+  .about-social-links a,
+  .site-footer-socials a,
+  .site-footer-links a::after { transition: none; }
+
+  .primary-nav a:hover { color: inherit !important; transform: none; }
+  .primary-nav a[aria-current="page"]:hover { color: var(--accent) !important; }
+  .round-link:hover,
+  .app-button-line:hover { color: var(--ink) !important; border-color: var(--ink); background: transparent; transform: none; }
+  .app-button-solid:hover,
+  .primary-link:hover { color: var(--paper) !important; background: var(--ink); transform: none; }
+  .project-row:hover h2,
+  .post-row:hover h2 { color: var(--ink) !important; transform: none; }
+  .project-row:hover .project-thumb img { transform: none; }
+  .pagination a:hover,
+  .page-tail--light .pagination a:hover,
+  .page-tail--deep .pagination a:hover { color: var(--ink) !important; }
+  .app-article-blocks .article-editorial-cta:hover .article-editorial-cta-mark { transform: none; }
+  .share-links a:hover,
+  .share-links button:hover { color: var(--ink) !important; border-color: var(--line); background: transparent; }
+  .app-detail-action:hover { color: var(--ink) !important; border-color: var(--line); background: transparent; }
+  .app-detail-action:hover i { color: var(--accent); }
+  .about-social-links a:hover,
+  .site-footer-socials a:hover { color: var(--muted) !important; transform: none; }
+  .term-grid a:hover { background: var(--paper); }
+  .site-footer-links a:hover::after { transform: scaleX(0); }
+  .article-content.app-detail-prose .setup-guide table tr:hover td { background: transparent; }
 }
