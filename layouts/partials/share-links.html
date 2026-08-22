@@ -2,5 +2,7 @@
 <div class="share-links" aria-label="{{ $ui.accessibility.share_article }}">
   <a href="https://www.linkedin.com/sharing/share-offsite/?url={{ .Permalink | urlquery }}" target="_blank" rel="noopener noreferrer" aria-label="{{ $ui.article.share_linkedin_prefix }} {{ .Title }} {{ $ui.article.share_linkedin_suffix }}">{{ $ui.share_marks.linkedin }}</a>
   <a href="https://x.com/intent/post?url={{ .Permalink | urlquery }}&text={{ .Title | urlquery }}" target="_blank" rel="noopener noreferrer" aria-label="{{ $ui.article.share_linkedin_prefix }} {{ .Title }} {{ $ui.article.share_x_suffix }}">{{ $ui.share_marks.x }}</a>
-  <button class="copy-link" type="button" data-copy-url="{{ .Permalink }}" data-copy-success-label="{{ $ui.accessibility.article_link_copied }}" data-copy-reset-label="{{ $ui.accessibility.copy_article_link }}">{{ $ui.accessibility.copy_article_link }}</button>
+  <button class="copy-link" type="button" data-copy-url="{{ .Permalink }}" data-copy-success-label="{{ $ui.accessibility.article_link_copied }}" data-copy-reset-label="{{ $ui.accessibility.copy_article_link }}" aria-label="{{ $ui.accessibility.copy_article_link }}" title="{{ $ui.accessibility.copy_article_link }}">
+    <i class="fa-solid fa-{{ $ui.icons.copy | default "copy" }}" data-copy-icon data-copy-icon-default="fa-{{ $ui.icons.copy | default "copy" }}" data-copy-icon-success="fa-{{ $ui.icons.copied | default "check" }}" aria-hidden="true"></i>
+  </button>
 </div>

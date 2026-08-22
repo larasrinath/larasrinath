@@ -16,7 +16,8 @@ icons:
   external: ""
   forward: →
   separator: ✦
-  copy: ""
+  copy: copy
+  copied: check
 
 share_marks:
   linkedin: in

@@ -60,20 +60,62 @@
   }
 
   function initCopyLinks() {
+    function copyText(value) {
+      function copyWithSelection() {
+        return new Promise(function (resolve, reject) {
+          var field = document.createElement('textarea');
+          field.value = value;
+          field.setAttribute('readonly', '');
+          field.style.position = 'fixed';
+          field.style.opacity = '0';
+          document.body.appendChild(field);
+          field.select();
+
+          try {
+            if (!document.execCommand('copy')) throw new Error('Copy command failed');
+            resolve();
+          } catch (error) {
+            reject(error);
+          } finally {
+            field.remove();
+          }
+        });
+      }
+
+      if (navigator.clipboard && window.isSecureContext) {
+        return navigator.clipboard.writeText(value).catch(function () {
+          return copyWithSelection();
+        });
+      }
+
+      return copyWithSelection();
+    }
+
     var buttons = document.querySelectorAll('[data-copy-url]');
     buttons.forEach(function (button) {
       button.addEventListener('click', function () {
         var url = button.getAttribute('data-copy-url');
-        if (!url || !navigator.clipboard) return;
+        if (!url) return;
 
-        navigator.clipboard.writeText(url).then(function () {
-          var previous = button.textContent;
+        copyText(url).then(function () {
           var successLabel = button.getAttribute('data-copy-success-label');
-          button.textContent = successLabel;
+          var resetLabel = button.getAttribute('data-copy-reset-label');
+          var icon = button.querySelector('[data-copy-icon]');
+
           button.setAttribute('aria-label', successLabel);
+          button.setAttribute('title', successLabel);
+          if (icon) {
+            icon.classList.remove(icon.getAttribute('data-copy-icon-default'));
+            icon.classList.add(icon.getAttribute('data-copy-icon-success'));
+          }
+
           window.setTimeout(function () {
-            button.textContent = previous;
-            button.setAttribute('aria-label', button.getAttribute('data-copy-reset-label'));
+            button.setAttribute('aria-label', resetLabel);
+            button.setAttribute('title', resetLabel);
+            if (icon) {
+              icon.classList.remove(icon.getAttribute('data-copy-icon-success'));
+              icon.classList.add(icon.getAttribute('data-copy-icon-default'));
+            }
           }, 1800);
         });
       });

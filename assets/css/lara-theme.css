@@ -73,6 +73,11 @@
   --page-content-start-compact-space: 3rem;
   --page-content-start-detail-space: 2rem;
   --page-tail-space: 2rem;
+  --detail-resource-inline-size: 12rem;
+  --detail-resource-block-size: 3rem;
+  --detail-share-size: 2.75rem;
+  --detail-action-border-width: 1px;
+  --detail-action-radius: 6px;
 
   /* Compatibility aliases for existing Markdown components. */
   --cream: var(--paper);
@@ -576,11 +581,9 @@ summary:focus-visible {
 .app-detail-body > aside .app-detail-rail-note { margin-top: 0.75rem; color: var(--muted); font-size: 0.9rem; line-height: 1.65; }
 .app-detail-body > aside .app-detail-rail-meta { margin-top: 1.5rem; padding-top: 1.25rem; border-top: var(--site-divider); color: var(--muted); font-size: 0.8rem; line-height: 1.5; }
 .app-detail-body > aside .app-detail-actions { display: flex; flex-wrap: wrap; align-items: center; gap: 0.5rem; width: 100%; margin-top: 2rem; }
-.app-detail-body > aside .app-detail-action { display: inline-flex; align-items: center; gap: 0.4rem; width: auto; min-height: 0; padding: 0.5rem 1rem; border: 1.5px solid var(--line); border-radius: 6px; color: var(--ink) !important; background: transparent; font-size: 0.8125rem; font-weight: 500; line-height: 1.4; letter-spacing: 0.08em; text-decoration: none !important; text-transform: uppercase; white-space: nowrap; transition: color 0.2s ease, border-color 0.2s ease, background-color 0.2s ease; }
-.app-detail-body > aside .app-detail-action span { display: inline; margin: 0; color: inherit; font: inherit; }
-.app-detail-action i { flex: 0 0 auto; width: 1.1rem; color: var(--accent); text-align: center; }
-.app-detail-action:hover { color: var(--ink) !important; border-color: var(--muted); background: var(--paper); }
-.app-detail-action:hover i { color: var(--accent); }
+.app-detail-body > aside .app-detail-action { display: grid; grid-template-columns: 1.25rem minmax(0, 1fr) 1.25rem; align-items: center; column-gap: 0.5rem; width: min(100%, var(--detail-resource-inline-size)); height: var(--detail-resource-block-size); padding: 0 0.75rem; border: var(--detail-action-border-width) solid var(--line); border-radius: var(--detail-action-radius); color: var(--ink) !important; background: transparent; font-size: 0.8125rem; font-weight: 500; line-height: 1.4; letter-spacing: 0.08em; text-align: center; text-decoration: none !important; text-transform: uppercase; white-space: nowrap; transition: color 0.2s ease, border-color 0.2s ease, background-color 0.2s ease; }
+.app-detail-body > aside .app-detail-action span { grid-column: 2; display: block; min-width: 0; margin: 0; color: inherit; font: inherit; }
+.app-detail-action i { grid-column: 3; grid-row: 1; width: 1.1rem; color: var(--accent); text-align: center; }
 .app-detail-prose { grid-column: 5 / span 8; max-width: var(--reading); min-width: 0; }
 
 .article-content.app-detail-prose > *:first-child { margin-top: 0 !important; }
@@ -656,11 +659,10 @@ summary:focus-visible {
 .article-editorial-chart canvas { position: relative; z-index: 1; display: block; width: 100%; aspect-ratio: 16 / 10; background: var(--ink); touch-action: none; }
 .article-editorial-chart figcaption { margin-top: 1rem; color: var(--muted); font: 400 0.78rem/1.6 var(--sans); }
 
-.share-links { display: flex; flex-wrap: wrap; gap: 0.5rem; margin-top: 1.5rem; }
+.share-links { display: flex; flex-wrap: wrap; justify-content: center; gap: 0.5rem; width: min(100%, var(--detail-resource-inline-size)); margin-top: 1.5rem; }
 .share-links a,
-.share-links button { display: inline-grid; place-items: center; min-width: 42px; min-height: 42px; padding: 0 0.8rem; border: 1px solid var(--line); border-radius: 999px; color: var(--ink) !important; background: transparent; font-size: 0.7rem; font-weight: 600; text-decoration: none !important; cursor: pointer; }
-.share-links a:hover,
-.share-links button:hover { color: var(--paper) !important; border-color: var(--ink); background: var(--ink); }
+.share-links button { display: inline-grid; place-items: center; width: var(--detail-share-size); height: var(--detail-share-size); min-width: var(--detail-share-size); min-height: var(--detail-share-size); padding: 0; border: var(--detail-action-border-width) solid var(--line); border-radius: 999px; color: var(--ink) !important; background: transparent; font: 600 0.7rem/1 var(--sans); text-decoration: none !important; cursor: pointer; transition: color 0.2s ease, border-color 0.2s ease, background-color 0.2s ease; }
+.share-links button i { font-size: 0.8rem; }
 
 .app-detail-next { border-block: var(--site-divider); background: var(--canvas); }
 .app-detail-next > a { display: grid; grid-template-columns: repeat(12, minmax(0, 1fr)); align-items: end; gap: 1.5rem; padding-top: 6rem; padding-bottom: 6rem; color: var(--ink) !important; text-decoration: none !important; }
@@ -966,6 +968,8 @@ summary:focus-visible {
   .app-detail-tags { justify-content: flex-start; margin-top: 1.25rem; }
   .app-detail-figure img.image-fit-contain { padding: 2rem; }
   .app-detail-body > aside > div { position: static; }
+  .app-detail-body > aside .app-detail-actions { justify-content: center; }
+  .app-detail-body > aside .share-links { margin-inline: auto; }
   .app-detail-prose { margin-top: 3.5rem; }
   .article-content.app-detail-prose h2 { font-size: 1.875rem !important; line-height: 1.25 !important; }
   .article-content.app-detail-prose blockquote p { font-size: 1.5rem !important; line-height: 1.333333 !important; }
@@ -1104,6 +1108,16 @@ summary:focus-visible {
 /* The MCP guide keeps the site typography and layout while the selected
    platform supplies the page accent and component tints. */
 .setup-guide {
+  --os-accent: var(--accent);
+  --os-bg: var(--paper-deep);
+  --os-bg-hover: var(--canvas);
+  --os-border: var(--line);
+  --os-text: var(--ink);
+  --os-code-tint: var(--paper-deep);
+  --os-code-color: var(--ink);
+}
+
+.setup-guide:has(#os-global-win:checked) {
   --os-accent: var(--platform-windows);
   --os-bg: #e8f2fc;
   --os-bg-hover: #d4e7fa;
@@ -1302,6 +1316,8 @@ body:has(.setup-guide #os-global-lin:checked) .app-detail-page { --accent: var(-
   .post-row h2,
   .app-article-blocks .article-editorial-cta-mark,
   .app-detail-action,
+  .share-links a,
+  .share-links button,
   .about-social-links a,
   .site-footer-socials a,
   .site-footer-links a::after { transition: none; }
@@ -1320,12 +1336,26 @@ body:has(.setup-guide #os-global-lin:checked) .app-detail-page { --accent: var(-
   .page-tail--deep .pagination a:hover { color: var(--ink) !important; }
   .app-article-blocks .article-editorial-cta:hover .article-editorial-cta-mark { transform: none; }
   .share-links a:hover,
-  .share-links button:hover { color: var(--ink) !important; border-color: var(--line); background: transparent; }
-  .app-detail-action:hover { color: var(--ink) !important; border-color: var(--line); background: transparent; }
+  .share-links button:hover { color: var(--ink) !important; border-color: var(--line); background: transparent; transform: none; }
+  .app-detail-body > aside .app-detail-action:hover { color: var(--ink) !important; border-color: var(--line); background: transparent; transform: none; }
   .app-detail-action:hover i { color: var(--accent); }
   .about-social-links a:hover,
   .site-footer-socials a:hover { color: var(--muted) !important; transform: none; }
   .term-grid a:hover { background: var(--paper); }
   .site-footer-links a:hover::after { transform: scaleX(0); }
   .article-content.app-detail-prose .setup-guide table tr:hover td { background: transparent; }
+}
+
+/* Keep pointer hover final so hybrid devices with a real fine pointer receive
+   the desktop highlight while touch-only devices retain the static treatment. */
+@media (hover: hover) and (pointer: fine) {
+  .app-detail-body > aside .app-detail-action:hover,
+  .share-links a:hover,
+  .share-links button:hover {
+    color: var(--paper) !important;
+    border-color: var(--accent);
+    background: var(--accent);
+  }
+
+  .app-detail-action:hover i { color: currentColor; }
 }
