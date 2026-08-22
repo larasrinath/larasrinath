@@ -4,15 +4,17 @@ build:
   render: never
 ## Configure page content in wide column
 title: "About Me"
-story_label: In brief
+story_label: Background
 intro:
   - >-
-    I'm a **Master Anaplanner** and **Solution Architect** with more than ten years of experience across supply chain and finance. Today, I'm **Manager, Anaplan Delivery** at [GenXAI](https://www.genxai.com/), working across platform operations, governance and continuous improvement.
+    I’ve spent more than a decade designing and leading enterprise planning solutions across supply chain and FP&A. Today, I’m Manager, Anaplan Delivery at [GenXAI](https://www.genxai.com/), where I work across solution architecture, platform governance, delivery and continuous improvement. I’m also a certified Master Anaplanner and Solution Architect.
   - >-
-    I help businesses turn messy processes and complex data into planning systems people can trust. My work spans solution architecture, data integration, production support and team leadership - always with an eye on making the platform secure, scalable and useful.
+    I help businesses turn messy processes and complex data into planning systems people can trust. My work spans enterprise architecture, data integration, planning model design, production operations and team leadership, with a focus on building platforms that are secure, scalable and genuinely useful to the people running the business.
   - >-
-    When I'm not building planning applications and optimizing businesses, you'll find me building LEGO sets, stargazing, or rooting for the world's greatest football club - Manchester United. Keep the Red Flag flying high; we'll never die.
-  - I currently live in the US.
+    My work is rooted in supply chain, spanning demand planning, supply planning, material planning, production planning and integrated business planning. I also work across FP&A and workforce planning, helping organizations move from fragmented processes and spreadsheets toward connected, enterprise-scale planning.
+  - >-
+    When I’m not building planning applications or figuring out how to make planning processes work better, you’ll usually find me building LEGO sets, stargazing, or supporting the world’s greatest football club, Manchester United. *Keep the Red Flag flying high.*
+  - I’m currently based in the United States.
 experience_label: Experience
 
 ---

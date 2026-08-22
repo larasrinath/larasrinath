@@ -9,7 +9,7 @@
     "eyebrow" .Params.eyebrow
     "title" .Params.hero_title
     "emphasis" .Params.hero_emphasis
-    "copy" .Description
+    "copy" (.Params.hero_copy | default .Description)
   ) }}
   <section class="about-detail">
     <article class="about-content">

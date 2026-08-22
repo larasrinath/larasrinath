@@ -1,5 +1,13 @@
 <header class="page-hero">
   {{- with .eyebrow }}<p class="section-label">{{ . }}</p>{{ end }}
   <h1>{{ .title }}{{ with .emphasis }} <em>{{ . }}</em>{{ end }}</h1>
-  {{- with .copy }}<p>{{ . }}</p>{{ end }}
+  {{- with .copy }}
+    {{- if reflect.IsSlice . }}
+      <p class="page-hero-copy">
+        {{- range . }}<span>{{ . }}</span>{{ end }}
+      </p>
+    {{- else }}
+      <p>{{ . }}</p>
+    {{- end }}
+  {{- end }}
 </header>
