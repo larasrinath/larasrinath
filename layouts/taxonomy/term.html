@@ -1,6 +1,6 @@
 {{ define "main" }}
 {{ $ui := hugo.Data.ui }}
-{{ .Store.Set "pageTailTone" "dark" }}
+{{ .Store.Set "pageTailTone" "light" }}
 {{ $entryLabel := $ui.taxonomy.entry_plural }}
 {{ if eq (len .RegularPages) 1 }}{{ $entryLabel = $ui.taxonomy.entry_singular }}{{ end }}
 <main id="main-content" class="inner-page" role="main">
@@ -8,7 +8,7 @@
     "eyebrow" $ui.taxonomy.filed_under
     "title" .Title
     "copy" (printf "%d %s %s" (len .RegularPages) $entryLabel $ui.taxonomy.archive_suffix)
-    "content_tone" "dark"
+    "content_tone" "light"
     "content_mode" "compact"
   ) }}
   <section class="post-index" aria-label="{{ $ui.taxonomy.tagged_prefix }} {{ .Title }}">

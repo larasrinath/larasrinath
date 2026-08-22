@@ -1,4 +1,4 @@
-# Hey there! I'm [Lara](https://www.larasrinath.com)
+# Hey there! I'm [Lara](https://www.larasrinath.com/)
 
 **Manager - Anaplan Delivery** at [GenXAI](https://www.genxai.com/) | Certified **Master Anaplanner** & **Anaplan Solution Architect**
 
@@ -13,7 +13,7 @@ I help businesses design and model their operations, turning complex data into t
 
 ### Experience
 
-- **Manager - Anaplan Delivery** at GenXAI, US (2025–Present)
+- **Manager - Anaplan Delivery** at GenXAI, US (2025 - Present)
 - **Senior Solution Architect** at Vuealta Consulting, Singapore (2021 - 2025)
 - **Consultant** at Deloitte Southeast Asia, Malaysia (2019 - 2021)
 - **Analyst** at Deloitte Southeast Asia, Philippines (2018 - 2019)
@@ -27,6 +27,6 @@ I help businesses design and model their operations, turning complex data into t
 
 Anaplan · Pigment · Supply Chain · Python · R · SQL · AMPL · PowerBI · Data Analysis · Generative AI
 
-[Website](https://www.larasrinath.com) · [LinkedIn](https://www.linkedin.com/in/larasrinath/)
+[Website](https://www.larasrinath.com/) · [LinkedIn](https://www.linkedin.com/in/larasrinath/)
 
-This repository contains the source code for my personal website. For setup and technical details, see [DEVELOPMENT.md](./DEVELOPMENT.md).
+This repository contains the source code for my personal website. For setup and technical details, see [DEVELOPMENT.md](https://github.com/larasrinath/larasrinath/blob/master/DEVELOPMENT.md).

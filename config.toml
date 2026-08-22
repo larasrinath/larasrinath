@@ -5,11 +5,14 @@ locale = "en-US"
 title = "Lara Srinath"
 author = "Lara Srinath"
 copyright = "" # set to override the auto generated copyright using org info and now year
-ignoreFiles = ["\\.Rmd$", "\\.Rmarkdown$", "_cache$", "\\.knit\\.md$", "\\.utf8\\.md$"]
 enableEmoji = true
 
 [pagination]
   pagerSize = 5
+
+[caches]
+  [caches.images]
+    dir = ':cacheDir/images'
 
 [markup]
   defaultMarkdownHandler = "goldmark"

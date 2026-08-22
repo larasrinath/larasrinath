@@ -1,12 +1,12 @@
 {{ define "main" }}
-{{ .Store.Set "pageTailTone" "deep" }}
+{{ .Store.Set "pageTailTone" "light" }}
 <main id="main-content" class="inner-page" role="main">
   {{ partial "shared/page-head.html" (dict
     "eyebrow" .Params.eyebrow
     "title" .Params.hero_title
     "emphasis" .Params.hero_emphasis
     "copy" .Description
-    "content_tone" "deep"
+    "content_tone" "light"
     "content_mode" "compact"
   ) }}
 

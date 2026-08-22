@@ -1,10 +1,12 @@
 # Content model
 
-The site is a multi-page blogdown/Hugo site with one project-owned presentation system. Templates are responsible only for structure, loops, conditions, and presentation. Visible interface copy and long-form page content belong in YAML data or page front matter and render through shared templates; Markdown-body rendering is retained only for explicitly deferred special cases.
+The site is a multi-page Hugo site with one project-owned presentation system. Templates are responsible only for structure, loops, conditions, and presentation. Visible interface copy and long-form page content belong in YAML data or page front matter and render through shared templates; Markdown-body rendering is retained only for explicitly deferred special cases.
 
 ## Where content lives
 
-- `data/home.yaml` - homepage navigation, hero, marquee, about, experience, and contact content.
+- `data/home.yaml` - shared navigation, homepage identity, portrait, and social links.
+- `data/experience.yaml` - experience and capability content shared by the About and Résumé pages.
+- `data/resume.yaml` - résumé summary, highlights, skills, selected work, certifications, and education.
 - `data/ui.yaml` - the shared site footer, accessibility labels, article controls, taxonomy labels, and other reusable interface copy.
 - `content/blog/<slug>/index.md` - one blog post per page bundle. YAML front matter controls title, date, summary, tags, featured media, the optional article rail, and structured editorial body blocks. Legacy posts can still use the Markdown body.
 - `content/project/<slug>/index.md` - one project per page bundle. YAML front matter controls the short detail-page `hero_summary`, longer listing-card `featured_summary`, homepage selection, featured media, tags, links, optional display overrides, and the structured `project_body` case study.
