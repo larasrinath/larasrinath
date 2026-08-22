@@ -35,8 +35,7 @@
   <section class="resume-section resume-experience" aria-labelledby="resume-experience-heading">
     <div class="app-shell">
       <header class="resume-section-heading">
-        <p class="section-label">{{ $experience.label }}</p>
-        <h2 id="resume-experience-heading">{{ $experience.heading }}</h2>
+        <h2 id="resume-experience-heading" class="resume-section-title">{{ $experience.label }}</h2>
       </header>
       <div class="resume-timeline">
         {{ range $experience.roles }}
@@ -58,7 +57,7 @@
   <section class="resume-section resume-skills-section" aria-labelledby="resume-skills-heading">
     <div class="app-shell resume-skills-shell">
       <header class="resume-section-heading">
-        <h2 id="resume-skills-heading">{{ $resume.skills_label }}</h2>
+        <h2 id="resume-skills-heading" class="resume-section-title">{{ $resume.skills_label }}</h2>
       </header>
       <div class="resume-skill-groups">
         {{ range $resume.skills }}
@@ -76,7 +75,7 @@
   <section class="resume-section resume-projects-section" aria-labelledby="resume-projects-heading">
     <div class="app-shell resume-section-grid">
       <header class="resume-section-heading">
-        <h2 id="resume-projects-heading">{{ $resume.projects_label }}</h2>
+        <h2 id="resume-projects-heading" class="resume-section-title">{{ $resume.projects_label }}</h2>
       </header>
       <div class="resume-project-groups">
         {{ range $resume.projects }}
@@ -92,13 +91,13 @@
   <section class="resume-section resume-credentials" aria-label="Résumé credentials">
     <div class="app-shell resume-credentials-grid">
       <div>
-        <h2>{{ $resume.certifications_label }}</h2>
+        <h2 class="resume-section-title">{{ $resume.certifications_label }}</h2>
         <ul class="resume-clean-list">
           {{ range $resume.certifications }}<li>{{ . }}</li>{{ end }}
         </ul>
       </div>
       <div>
-        <h2>{{ $resume.education_label }}</h2>
+        <h2 class="resume-section-title">{{ $resume.education_label }}</h2>
         <article class="resume-education">
           <time>{{ $resume.education.period }}</time>
           <h3>{{ $resume.education.degree }}</h3>
