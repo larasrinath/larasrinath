@@ -3,14 +3,17 @@ summary:
   - Lara Srinath is a **Master Anaplanner** and **Solution Architect** with more than ten years of experience delivering, optimizing and supporting enterprise planning platforms across supply chain and finance.
   - His work spans solution architecture, platform operations, governance, data integration and continuous improvement. He has led cross-functional teams and business-critical platforms, partnering with executive stakeholders to build scalable, secure and high-performing planning systems.
 
+actions_label: Résumé links
 actions:
   - label: Download PDF
     href: /pdf/larasrinath.pdf
-    style: primary
-    external: true
+    icon: download
+    icon_pack: fas
+    download: true
   - label: LinkedIn
     href: https://www.linkedin.com/in/larasrinath/
-    style: text
+    icon: linkedin-in
+    icon_pack: fab
     external: true
 
 highlights_label: Résumé highlights
@@ -23,6 +26,7 @@ highlights:
     value: Supply chain, FP&A, architecture and teams
   - label: Based
     value: Dallas, Texas
+    actions: true
 
 skills_label: Skills
 skills:

@@ -59,65 +59,59 @@
     window.addEventListener('resize', update, { passive: true });
   }
 
-  function initCopyLinks() {
-    function copyText(value) {
-      function copyWithSelection() {
-        return new Promise(function (resolve, reject) {
-          var field = document.createElement('textarea');
-          field.value = value;
-          field.setAttribute('readonly', '');
-          field.style.position = 'fixed';
-          field.style.opacity = '0';
-          document.body.appendChild(field);
-          field.select();
+  function initShareMenus() {
+    var menus = document.querySelectorAll('[data-share-menu]');
+    if (!menus.length) return;
 
-          try {
-            if (!document.execCommand('copy')) throw new Error('Copy command failed');
-            resolve();
-          } catch (error) {
-            reject(error);
-          } finally {
-            field.remove();
-          }
-        });
-      }
+    function setOpen(menu, open, restoreFocus) {
+      var toggle = menu.querySelector('[data-share-toggle]');
+      var options = menu.querySelector('[data-share-options]');
+      if (!toggle || !options) return;
 
-      if (navigator.clipboard && window.isSecureContext) {
-        return navigator.clipboard.writeText(value).catch(function () {
-          return copyWithSelection();
-        });
-      }
-
-      return copyWithSelection();
+      toggle.setAttribute('aria-expanded', String(open));
+      options.hidden = !open;
+      if (!open && restoreFocus) toggle.focus();
     }
 
-    var buttons = document.querySelectorAll('[data-copy-url]');
-    buttons.forEach(function (button) {
-      button.addEventListener('click', function () {
-        var url = button.getAttribute('data-copy-url');
-        if (!url) return;
+    menus.forEach(function (menu) {
+      var toggle = menu.querySelector('[data-share-toggle]');
+      if (!toggle) return;
 
-        copyText(url).then(function () {
-          var successLabel = button.getAttribute('data-copy-success-label');
-          var resetLabel = button.getAttribute('data-copy-reset-label');
-          var icon = button.querySelector('[data-copy-icon]');
+      toggle.addEventListener('click', function (event) {
+        event.stopPropagation();
+        var open = toggle.getAttribute('aria-expanded') !== 'true';
 
-          button.setAttribute('aria-label', successLabel);
-          button.setAttribute('title', successLabel);
-          if (icon) {
-            icon.classList.remove(icon.getAttribute('data-copy-icon-default'));
-            icon.classList.add(icon.getAttribute('data-copy-icon-success'));
-          }
-
-          window.setTimeout(function () {
-            button.setAttribute('aria-label', resetLabel);
-            button.setAttribute('title', resetLabel);
-            if (icon) {
-              icon.classList.remove(icon.getAttribute('data-copy-icon-success'));
-              icon.classList.add(icon.getAttribute('data-copy-icon-default'));
-            }
-          }, 1800);
+        menus.forEach(function (otherMenu) {
+          if (otherMenu !== menu) setOpen(otherMenu, false);
         });
+        setOpen(menu, open);
+      });
+
+      menu.addEventListener('click', function (event) {
+        event.stopPropagation();
+      });
+
+      menu.querySelectorAll('[data-share-options] a').forEach(function (link) {
+        link.addEventListener('click', function () {
+          setOpen(menu, false);
+        });
+      });
+    });
+
+    document.addEventListener('click', function () {
+      menus.forEach(function (menu) {
+        setOpen(menu, false);
+      });
+    });
+
+    document.addEventListener('keydown', function (event) {
+      if (event.key !== 'Escape') return;
+
+      menus.forEach(function (menu) {
+        var toggle = menu.querySelector('[data-share-toggle]');
+        if (toggle && toggle.getAttribute('aria-expanded') === 'true') {
+          setOpen(menu, false, true);
+        }
       });
     });
   }
@@ -125,6 +119,6 @@
   document.addEventListener('DOMContentLoaded', function () {
     initNavigation();
     initReadingProgress();
-    initCopyLinks();
+    initShareMenus();
   });
 })();

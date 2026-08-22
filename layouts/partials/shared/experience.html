@@ -23,7 +23,9 @@
       {{ range $experience.capabilities }}
         <div><h3>{{ .title }}</h3><ul>{{ range .items }}<li>{{ . }}</li>{{ end }}</ul></div>
       {{ end }}
-      <a class="app-button app-button-line" href="{{ $experience.resume_link.href | relURL }}">{{ $experience.resume_link.label }} <span aria-hidden="true">{{ $experience.resume_link.icon }}</span></a>
+      {{ with $experience.resume_link }}
+        <a class="app-button app-button-line" href="{{ .href | relURL }}">{{ .label }}{{ with .icon }} <span aria-hidden="true">{{ . }}</span>{{ end }}</a>
+      {{ end }}
     </aside>
   </div>
 </section>

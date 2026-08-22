@@ -1,0 +1,7 @@
+{{- $url := .url | default .href -}}
+{{- $iconFamily := "fa-solid" -}}
+{{- if eq (.icon_pack | default "fas") "fab" }}{{ $iconFamily = "fa-brands" }}{{ end -}}
+<a class="app-resource-action" href="{{ $url | safeURL }}"{{ if or .external (hasPrefix $url "http") }} target="_blank" rel="noopener noreferrer"{{ end }}>
+  <span>{{ .name | default .label }}</span>
+  {{ with .icon }}<i class="{{ $iconFamily }} fa-{{ . }}" aria-hidden="true"></i>{{ end }}
+</a>

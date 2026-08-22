@@ -29,7 +29,7 @@
         <p class="section-label">{{ $sidebar.Params.socials_label }}</p>
         <div class="about-social-links">
           {{ range $contact.links }}
-            {{ if and .external .icon }}
+            {{ if and .external .icon (in $sidebar.Params.socials .label) }}
               <a href="{{ .href | safeURL }}" target="_blank" rel="noopener noreferrer" aria-label="{{ .label }}">
                 <i class="{{ .icon }} fa-lg fa-fw" aria-hidden="true"></i>
               </a>

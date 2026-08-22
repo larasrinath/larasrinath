@@ -16,17 +16,28 @@
     </div>
     <aside class="resume-overview-aside" aria-label="{{ $resume.highlights_label }}">
       <div class="resume-highlights">
-        {{ range $resume.highlights }}
+        {{ range $highlight := $resume.highlights }}
           <div class="resume-highlight">
-            <span>{{ .label }}</span>
-            <strong>{{ .value }}</strong>
-            {{ with .note }}<small>{{ . }}</small>{{ end }}
+            {{ if $highlight.actions }}
+              <div class="resume-highlight-action-row">
+                <div class="resume-highlight-copy">
+                  <span>{{ $highlight.label }}</span>
+                  <strong>{{ $highlight.value }}</strong>
+                  {{ with $highlight.note }}<small>{{ . }}</small>{{ end }}
+                </div>
+                {{ partial "article/detail-actions.html" (dict
+                  "links" $resume.actions
+                  "links_label" $resume.actions_label
+                  "show_share" false
+                  "class" "resume-actions"
+                ) }}
+              </div>
+            {{ else }}
+              <span>{{ $highlight.label }}</span>
+              <strong>{{ $highlight.value }}</strong>
+              {{ with $highlight.note }}<small>{{ . }}</small>{{ end }}
+            {{ end }}
           </div>
-        {{ end }}
-      </div>
-      <div class="resume-actions">
-        {{ range $resume.actions }}
-          <a class="{{ if eq .style "primary" }}app-button app-button-solid{{ else }}app-button app-button-line{{ end }}" href="{{ .href | safeURL }}"{{ if .external }} target="_blank" rel="noopener noreferrer"{{ end }}>{{ .label }}</a>
         {{ end }}
       </div>
     </aside>

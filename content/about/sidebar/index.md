@@ -7,6 +7,11 @@ build:
 author: "Lara Srinath"
 interests_label: Interests
 socials_label: Socials
+socials:
+  - LinkedIn
+  - GitHub
+  - X / Twitter
+  - Instagram
 interests:
   - label: Cycling
     icon: fa-bicycle
