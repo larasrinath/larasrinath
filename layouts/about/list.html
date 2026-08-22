@@ -3,6 +3,7 @@
 {{ $main := site.GetPage "/about/main" }}
 {{ $sidebar := site.GetPage "/about/sidebar" }}
 {{ $experience := hugo.Data.experience }}
+{{ $contact := hugo.Data.home.contact }}
 <main id="main-content" class="inner-page about-page" role="main">
   {{ partial "shared/page-head.html" (dict
     "eyebrow" .Params.eyebrow
@@ -24,6 +25,18 @@
           <li><i class="fa-solid {{ .icon }} about-interest-icon" aria-hidden="true"></i><span>{{ .label }}</span></li>
         {{ end }}
       </ul>
+      <nav class="about-socials" aria-label="{{ $sidebar.Params.socials_label }}">
+        <p class="section-label">{{ $sidebar.Params.socials_label }}</p>
+        <div class="about-social-links">
+          {{ range $contact.links }}
+            {{ if and .external .icon }}
+              <a href="{{ .href | safeURL }}" target="_blank" rel="noopener noreferrer" aria-label="{{ .label }}">
+                <i class="{{ .icon }} fa-lg fa-fw" aria-hidden="true"></i>
+              </a>
+            {{ end }}
+          {{ end }}
+        </div>
+      </nav>
     </aside>
   </section>
   {{ partial "shared/experience.html" (dict "experience" $experience "label" $main.Params.experience_label "class" "about-experience") }}

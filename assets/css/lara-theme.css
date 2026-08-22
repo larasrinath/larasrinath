@@ -74,6 +74,7 @@
 html {
   scroll-behavior: smooth;
   scroll-padding-top: 88px;
+  scrollbar-gutter: stable;
 }
 
 body {
@@ -186,14 +187,19 @@ summary:focus-visible {
 }
 
 .wordmark {
+  display: inline-flex;
+  align-items: baseline;
+  gap: 0.04rem;
   justify-self: start;
   color: var(--ink) !important;
-  font: 400 1.25rem/1.4 var(--serif);
-  letter-spacing: -0.025em;
+  line-height: 1;
   text-decoration: none !important;
 }
 
-.wordmark span { color: var(--accent); }
+.wordmark-initial {
+  color: var(--accent);
+  font: normal 600 1.55rem/0.8 "Lara Mea Culpa", cursive;
+}
 
 .menu-toggle {
   display: none;
@@ -638,6 +644,13 @@ summary:focus-visible {
 .about-interest-list { display: grid; gap: 0; margin: 0; padding: 0; list-style: none; }
 .about-interest-list li { display: flex; align-items: center; gap: 0.65rem; }
 .about-interest-icon { flex: 0 0 1.5rem; width: 1.5rem; color: var(--muted); font-size: 1.25rem; line-height: 1; text-align: center; }
+.about-socials { margin-top: 2.5rem; }
+.about-socials .section-label { margin-bottom: 1rem !important; }
+.about-social-links { display: flex; align-items: center; gap: 0.75rem; }
+.about-social-links a { display: inline-flex; align-items: center; justify-content: center; width: 2rem; height: 2rem; color: var(--muted) !important; text-decoration: none !important; transition: color 0.25s ease, transform 0.25s ease; }
+.about-social-links a:hover,
+.about-social-links a:focus-visible { color: var(--accent) !important; transform: translateY(-2px); }
+.about-social-links i { display: block; }
 .about-content { grid-column: 1 / span 7; min-width: 0; }
 .about-intro { margin-top: 1.5rem; }
 .about-intro p { margin: 0 0 1.35rem !important; color: var(--ink-soft) !important; font: 400 1.0625rem/1.8 var(--sans) !important; }
@@ -841,7 +854,13 @@ summary:focus-visible {
 
 @media (max-width: 767px) {
   :root { --page-content-start-space: 3rem; --page-content-start-compact-space: 2.25rem; --page-content-start-detail-space: 1.5rem; --page-tail-space: 1.5rem; }
-  .menu-toggle { display: block; }
+  .topbar-inner { position: relative; }
+  .wordmark {
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+  }
+  .menu-toggle { display: block; margin-left: auto; }
   .topbar[data-menu-ready] .primary-navigation {
     position: absolute;
     top: 100%;

@@ -6,6 +6,7 @@ build:
 ## Configure sidebar content in narrow column
 author: "Lara Srinath"
 interests_label: Interests
+socials_label: Socials
 interests:
   - label: Cycling
     icon: fa-bicycle
