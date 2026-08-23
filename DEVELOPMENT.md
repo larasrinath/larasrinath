@@ -52,6 +52,8 @@ The generated `public/` and `resources/` directories are ignored by Git. Do not 
 
 See `docs/CONTENT-MODEL.md` for the authoring model and instructions for adding projects or articles.
 
+See `docs/SITE-DESIGN-SYSTEM.md` for the broader design language, template architecture, spacing and responsive rules, maintenance guardrails, and lessons from the site rebuild.
+
 ## Netlify deployment
 
 Netlify publishes `public/`. Production builds use the canonical Netlify site URL, while deploy previews and branch deploys override Hugo's base URL with the URL for that deployment. The deploy-preview command also includes future-dated content so scheduled work can be reviewed before publication.
