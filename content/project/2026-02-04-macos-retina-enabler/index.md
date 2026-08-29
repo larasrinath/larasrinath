@@ -29,14 +29,10 @@ links:
     icon_pack: fab
     name: GitHub
     url: https://github.com/larasrinath/macos-hidpi
-article_note:
-  label: Project note
-  title: macOS utility
-  text: A safer way to enable crisp HiDPI scaling on standard external monitors.
 project_body:
   - type: opening
     text: >-
-      **The Problem with External Displays.** If you've ever connected a standard 1080p or 1440p monitor to a Mac, you've likely noticed that the text looks "blurry" compared to the built-in Retina display. This is because macOS often fails to recognize non-Apple displays as High-DPI, denying you the crisp scaling that makes Retina displays so beautiful.
+      Connect a standard 1080p or 1440p monitor to a Mac and the **text can look blurry** beside the built-in Retina display. macOS often fails to recognize non-Apple displays as High-DPI, denying them the crisp scaling that makes Retina displays so clear.
   - type: image
     src: featured.png
     alt: macOS Retina display project artwork

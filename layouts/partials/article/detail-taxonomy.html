@@ -1,0 +1,8 @@
+{{- with .terms -}}
+  <footer class="app-detail-taxonomy">
+    <p>{{ $.label }}</p>
+    <div class="app-detail-tags">
+      {{- range . }}<a href="{{ .RelPermalink }}">{{ .LinkTitle }}</a>{{ end -}}
+    </div>
+  </footer>
+{{- end -}}

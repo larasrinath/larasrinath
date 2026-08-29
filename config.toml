@@ -2,6 +2,7 @@
 baseURL = "https://www.larasrinath.com/"
 locale = "en-US"
 title = "Lara Srinath"
+enableRobotsTXT = true
 
 # Required by named emoji shortcodes in long-form content.
 enableEmoji = true

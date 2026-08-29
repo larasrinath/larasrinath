@@ -35,14 +35,10 @@ links:
   icon_pack: fas
   name: Setup Guide
   url: "/project/2026-02-09-anaplan-mcp/#setup-guide"
-article_note:
-  label: Project note
-  title: Open-source integration
-  text: A TypeScript bridge between AI assistants and Anaplan's model and integration APIs.
 project_body:
   - type: opening
     text: >-
-      **Anaplan MCP turns a specialist API into a conversation.** It gives AI assistants a structured, permission-aware way to explore models, review data and orchestrate Integration API workflows without asking every user to become an API expert.
+      Anaplan MCP turns a specialist API into **a conversation**. It gives AI assistants a structured, permission-aware way to explore models, review data and orchestrate Integration API workflows without asking every user to become an API expert.
   - type: image
     src: featured.png
     alt: Anaplan and AI assistant marks representing the Anaplan MCP bridge
@@ -59,13 +55,12 @@ project_body:
   - type: paragraph
     text: >-
       This server wraps the Anaplan Integration API v2 in structured tools that AI assistants like Claude can call on your behalf. Instead of writing API calls or waiting for someone who knows the model, you ask in plain English.
-  - type: quote
-    style: feature
-    lines:
+  - type: prompt_list
+    label: Example prompts
+    items:
       - Show me the structure of the Supply Planning model.
       - Pull the current pricing data for all products.
       - Run the monthly demand import and show me the result.
-    cite: Example prompts
   - type: paragraph
     text: >-
       Built in **TypeScript** with support for both **stdio** (local) and **Streamable HTTP** (remote) transports. Works with Claude Desktop, Claude Code, claude.ai, and any MCP-compatible client.
@@ -119,7 +114,7 @@ project_body:
 
 <h2 class="section-heading" id="setup-guide"><i class="fas fa-rocket"></i> Setup Guide</h2>
 
-{{< callout type="note" >}}
+{{< callout type="instruction" >}}
 This guide is <strong>platform-aware</strong>. Pick your operating system below and the commands, file paths, and troubleshooting will switch to match. In <strong>Phase 2</strong> you will also pick an authentication method: <strong>OAuth2</strong> (recommended), <strong>Certificate</strong>, or <strong>Basic Auth</strong>. Both pickers stay in sync throughout the page.
 {{< /callout >}}
 

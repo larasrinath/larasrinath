@@ -9,7 +9,6 @@
     "title" .Title
     "copy" (printf "%d %s %s" (len .RegularPages) $entryLabel $ui.taxonomy.archive_suffix)
     "content_tone" "light"
-    "content_mode" "compact"
   ) }}
   <section class="post-index" aria-label="{{ $ui.taxonomy.tagged_prefix }} {{ .Title }}">
     {{ $pages := .RegularPages.ByDate.Reverse }}

@@ -13,39 +13,31 @@
       "page" .
       "back_href" "/blog/"
       "back_label" $ui.article.all_articles
-      "eyebrow" $ui.article.eyebrow
-      "date_format" "January 2006"
+      "date_format" "January 2, 2006"
       "summary" $summary
-      "terms" $terms
+      "utility" (dict
+        "page" .
+        "ui" $ui
+        "reading_time" $readingTime
+      )
     ) }}
 
-    <div class="app-detail-body app-shell{{ if not $next }} page-tail-source{{ end }}">
-      <aside aria-label="{{ $ui.article.details_aria }}">
-        {{ partial "article/detail-rail.html" (dict
-          "page" .
-          "ui" $ui
-          "note" .Params.article_note
-          "terms" $terms
-          "default_label" $ui.article.filed_under
-          "reading_time" $readingTime
-        ) }}
-      </aside>
-      {{ if $structuredBody }}
-        <div class="article-content app-detail-prose app-article-blocks">{{ partial "article/body.html" (dict "page" . "ui" $ui) }}</div>
-      {{ else }}
-        <div class="article-content app-detail-prose">{{ .Content }}</div>
-      {{ end }}
+    <div class="app-detail-content">
+      <div class="app-detail-body app-shell{{ if not $next }} page-tail-source{{ end }}">
+        {{ if $structuredBody }}
+          <div class="article-content app-detail-prose app-article-blocks">{{ partial "article/body.html" (dict "page" . "ui" $ui) }}</div>
+        {{ else }}
+          <div class="article-content app-detail-prose">{{ .Content }}</div>
+        {{ end }}
+        {{ partial "article/detail-taxonomy.html" (dict "terms" $terms "label" $ui.article.filed_under) }}
+      </div>
     </div>
   </article>
 
-  {{ with $next }}
-    <aside class="app-detail-next">
-      <a class="app-shell" href="{{ .RelPermalink }}">
-        <p>{{ $ui.article.up_next }}</p>
-        <div><h2>{{ .Title }}</h2>{{ with (.Params.subtitle | default .Description | default .Params.summary | default .Params.excerpt) }}<span>{{ . }}</span>{{ end }}</div>
-        <b aria-hidden="true">{{ $ui.icons.forward }}</b>
-      </a>
-    </aside>
-  {{ end }}
+  {{ partial "article/detail-next.html" (dict
+    "next" $next
+    "label" $ui.article.up_next
+    "icon" $ui.icons.forward
+  ) }}
 </main>
 {{ end }}

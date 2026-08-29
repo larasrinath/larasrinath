@@ -1,0 +1,9 @@
+{{- with .next -}}
+  <aside class="app-detail-next" aria-label="{{ $.label }}">
+    <a href="{{ .RelPermalink }}">
+      <span class="app-detail-next-label">{{ $.label }}</span>
+      <strong class="app-detail-next-title">{{ .Title }}</strong>
+      <b class="app-detail-next-arrow" aria-hidden="true">{{ $.icon }}</b>
+    </a>
+  </aside>
+{{- end -}}

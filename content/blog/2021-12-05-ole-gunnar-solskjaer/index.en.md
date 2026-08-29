@@ -20,10 +20,6 @@ reading_time: 3
 featured_image: featured.jpg
 featured_image_alt: Old Trafford stadium with the Manchester United crest and The Reds Go Marching On banner
 featured_image_caption: Ole Gunnar Solskjaer’s departure closed a hopeful, complicated chapter at Manchester United.
-article_note:
-  label: Filed under
-  title: Football
-  text: A personal note on Manchester United, memory and the end of an era.
 article_body:
   - type: opening
     text: It has been a while...
@@ -48,7 +44,7 @@ article_body:
     text: >-
       Most of all for the best signings United have closed in recent memory - Sancho, Varane and "that boy" Cristiano Ronaldo.
   - type: quote
-    style: chant
+    style: standard
     lines:
       - He plays on the left...
       - He plays on the right...

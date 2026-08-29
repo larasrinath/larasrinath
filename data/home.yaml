@@ -1,9 +1,9 @@
 navigation:
   - label: About
     href: /about/
-  - label: Projects
+  - label: Work
     href: /project/
-  - label: Blog
+  - label: Notes
     href: /blog/
   - label: Résumé
     href: /resume/

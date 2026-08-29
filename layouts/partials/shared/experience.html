@@ -3,15 +3,14 @@
 <section class="app-experience{{ with .class }} {{ . }}{{ end }}" id="experience" aria-labelledby="experience-heading">
   <div class="app-shell app-experience-grid">
     <div class="app-experience-main">
-      <p class="app-section-number">{{ $label }}</p>
-      <h2 id="experience-heading">{{ $experience.heading }}</h2>
+      <p class="app-section-number" id="experience-heading">{{ $label }}</p>
       <div class="app-timeline">
         {{ range $experience.roles }}
           <article>
             <time>{{ .period }}</time>
             <div>
               <h3>{{ .title }}</h3>
-              <div class="app-timeline-meta"><span>{{ .company_short | default .company }}</span><span>{{ .location_short | default .location }}</span></div>
+              <div class="app-timeline-meta"><span>{{ partial "shared/experience-company.html" . }}</span><span>{{ .location_short | default .location }}</span></div>
               <p class="app-timeline-note">{{ .note }}</p>
             </div>
           </article>

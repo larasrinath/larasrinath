@@ -1,9 +1,9 @@
 ---
-title: Blog
-eyebrow: Writing
+title: Notes
+eyebrow: Notes
 hero_title: Thinking
-hero_emphasis: aloud.
-description: Thoughts on Anaplan, planning, data, technology and the occasional detour into life beyond the model.
+hero_emphasis: aloud!
+description: Loose notes on work, football, moving countries and whatever else I cannot stop thinking about.
 posts_label: Blog posts
 minute_read_label: min read
 pagination:

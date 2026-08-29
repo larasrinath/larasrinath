@@ -4,6 +4,7 @@ roles:
     title: Manager - Anaplan Delivery
     company: GenXAI Analytics
     company_short: GenXAI
+    company_url: https://www.genxai.com/
     location: Dallas, United States
     location_short: United States
     note: Leading platform support, enhancements and governance across enterprise Anaplan and Pigment solutions for supply-chain and finance teams.
@@ -16,6 +17,7 @@ roles:
     title: Senior Solution Architect
     company: Vuealta Consulting
     company_short: Vuealta
+    company_url: https://vuealta.com/
     location: Singapore
     location_short: Singapore
     note: Designed, delivered and operated enterprise Anaplan platforms across supply chain and finance, combining solution architecture with integration, release governance and team leadership.
@@ -30,6 +32,7 @@ roles:
     title: Consultant
     company: Deloitte Consulting Southeast Asia
     company_short: Deloitte
+    company_url: https://www.deloitte.com/southeast-asia/en.html
     location: Manila, Philippines & Kuala Lumpur, Malaysia
     location_short: Philippines & Malaysia
     note: Delivered demand, inventory, procurement and financial material-planning solutions for multinational clients across Southeast Asia.
@@ -53,27 +56,18 @@ roles:
 
 capabilities_label: Capabilities
 capabilities:
-  - title: Planning
+  - title: Enterprise planning
     items:
-      - Anaplan Classic, Polaris, ALM & Data Hub
-      - CloudWorks & Optimizer
-      - Demand, supply & inventory planning
-      - DRP, MRP, MPS & S&OP
+      - Supply chain & inventory planning
       - FP&A, revenue & workforce planning
-      - Pigment
-  - title: Data & integration
+      - Anaplan & Pigment solution design
+  - title: Architecture & operations
     items:
-      - Anaplan Connect & certificate authentication
-      - Enterprise integrations & ETL
-      - Data governance
-      - Python & R
-      - Statistical forecasting
-      - Data analytics
-  - title: Platform operations
+      - Solution & integration architecture
+      - Platform governance, security & controls
+      - Performance, releases & production support
+  - title: Technical leadership
     items:
-      - Solution architecture
-      - Platform governance & production support
-      - Release management
-      - Security, selective access & SOX
-      - Technical product ownership
+      - Technical product ownership & prioritization
+      - Stakeholder alignment & cross-functional delivery
       - Team leadership & mentoring

@@ -19,10 +19,6 @@ reading_time: 1
 featured_image: featured.jpg
 featured_image_alt: A football resting on grass
 featured_image_caption: Photo by Tevarak Phanduang on Unsplash
-article_note:
-  label: Filed under
-  title: Football
-  text: Living life like a football game.
 article_body:
   - type: opening
     text: Live life like a game of Football

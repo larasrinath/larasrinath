@@ -1,9 +1,9 @@
 ---
-title: Projects
-eyebrow: Projects
-hero_title: Built to
-hero_emphasis: solve.
-description: A collection of planning models, open-source tools, optimization work and data visualizations.
+title: Work
+eyebrow: Work
+hero_title: Built from
+hero_emphasis: curiosity.
+description: Models, tools and visual experiments I built to make complicated things a little less complicated.
 list_label: Projects
 tags_label: Project tags
 pagination:
@@ -18,9 +18,9 @@ layout: list-grid # list, list-sidebar, list-grid
 
 # for list-sidebar layout
 sidebar: 
-  title: Projects
+  title: Work
   description: |
-    A collection of optimization models, data visualizations, and tools.
+    Models, tools and visual experiments I built to make complicated things a little less complicated.
   text_link_label: ""
   text_link_url: ""
   show_sidebar_adunit: false # show ad container

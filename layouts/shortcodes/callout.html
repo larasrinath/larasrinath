@@ -1,9 +1,15 @@
-{{ $type := .Get "type" | default "note" }}
-{{ $title := .Get "title" }}
-{{ $icon := dict "note" "info-circle" "tip" "check-circle" "warning" "exclamation-triangle" "danger" "ban" }}
-<div class="callout callout-{{ $type }}">
-  {{ with $title }}<div class="callout-title"><i class="fas fa-{{ index $.Params "icon" | default (index $icon $type) }}"></i> {{ . }}</div>{{ end }}
+{{- $type := .Get "type" | default "note" | lower -}}
+{{- $title := .Get "title" -}}
+{{- $icons := dict "instruction" "tasks" "note" "info-circle" "tip" "check-circle" "warning" "exclamation-triangle" "danger" "ban" -}}
+{{- $labels := dict "instruction" "Instruction" "note" "Note" "tip" "Tip" "warning" "Warning" "danger" "Danger" -}}
+{{- $icon := .Get "icon" | default (index $icons $type) | default "info-circle" -}}
+{{- $kind := index $labels $type | default "Note" -}}
+<aside class="callout callout-{{ $type }}">
+  <header class="callout-header">
+    <span class="callout-kind"><i class="fas fa-{{ $icon }}" aria-hidden="true"></i>{{ $kind }}</span>
+    {{ with $title }}<strong class="callout-title">{{ . }}</strong>{{ end }}
+  </header>
   <div class="callout-body">
   {{ .Inner | markdownify }}
   </div>
-</div>
+</aside>

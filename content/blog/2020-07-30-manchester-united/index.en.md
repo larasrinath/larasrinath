@@ -20,10 +20,6 @@ reading_time: 2
 featured_image: featured.jpg
 featured_image_alt: Panoramic view inside Old Trafford stadium
 featured_image_caption: ''
-article_note:
-  label: Filed under
-  title: Football
-  text: The Red Devils produced a Miracle.
 article_body:
   - type: opening
     text: >-

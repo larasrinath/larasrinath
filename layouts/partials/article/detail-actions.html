@@ -3,32 +3,36 @@
 {{- $links := .links -}}
 {{- $showShare := true -}}
 {{- if isset . "show_share" }}{{ $showShare = .show_share }}{{ end -}}
+{{- $showLabels := false -}}
+{{- if isset . "show_labels" }}{{ $showLabels = .show_labels }}{{ end -}}
 {{- $actionsLabel := .links_label -}}
 {{- if not $actionsLabel }}{{ $actionsLabel = $ui.accessibility.share_article }}{{ end -}}
 {{- $menuID := "" -}}
 {{- if $showShare }}{{ $menuID = printf "share-menu-%s" (md5 $page.RelPermalink) }}{{ end -}}
 
-<nav class="detail-icon-actions{{ with .class }} {{ . }}{{ end }}" aria-label="{{ $actionsLabel }}">
+<nav class="icon-link-group detail-icon-actions{{ with .class }} {{ . }}{{ end }}" aria-label="{{ $actionsLabel }}">
   {{- range $links }}
     {{- $url := .url | default .href -}}
     {{- $label := .name | default .label -}}
     {{- $iconFamily := "fa-solid" -}}
     {{- if eq (.icon_pack | default "fas") "fab" }}{{ $iconFamily = "fa-brands" }}{{ end -}}
-    <a class="detail-icon-action" href="{{ $url | safeURL }}" aria-label="{{ $label }}" title="{{ $label }}"{{ if .download }} download{{ else if or .external (hasPrefix $url "http") }} target="_blank" rel="noopener noreferrer"{{ end }}>
+    <a class="icon-link detail-icon-action{{ if $showLabels }} detail-icon-action--labelled{{ end }}" href="{{ $url | safeURL }}" aria-label="{{ $label }}" title="{{ $label }}"{{ if .download }} download{{ else if or .external (hasPrefix $url "http") }} target="_blank" rel="noopener noreferrer"{{ end }}>
       <i class="{{ $iconFamily }} fa-{{ .icon | default "link" }}" aria-hidden="true"></i>
+      {{- if $showLabels }}<span>{{ $label }}</span>{{ end }}
     </a>
   {{- end }}
 
   {{- if $showShare }}
     <div class="detail-share" data-share-menu>
-      <button class="detail-icon-action detail-share-toggle" type="button" aria-label="{{ $ui.accessibility.share_article }}" title="{{ $ui.accessibility.share_article }}" aria-expanded="false" aria-controls="{{ $menuID }}" data-share-toggle>
+      <button class="icon-link detail-icon-action detail-share-toggle{{ if $showLabels }} detail-icon-action--labelled{{ end }}" type="button" aria-label="{{ $ui.accessibility.share_article }}" title="{{ $ui.accessibility.share_article }}" aria-expanded="false" aria-controls="{{ $menuID }}" data-share-toggle>
         <i class="fa-solid fa-{{ $ui.icons.share | default "arrow-up-from-bracket" }}" aria-hidden="true"></i>
+        {{- if $showLabels }}<span>{{ $ui.article.share_short | default "Share" }}</span>{{ end }}
       </button>
       <div class="detail-share-menu" id="{{ $menuID }}" data-share-options hidden>
-        <a class="detail-icon-action" href="https://www.linkedin.com/sharing/share-offsite/?url={{ $page.Permalink | urlquery }}" target="_blank" rel="noopener noreferrer" aria-label="{{ $ui.article.share_linkedin_prefix }} {{ $page.Title }} {{ $ui.article.share_linkedin_suffix }}" title="LinkedIn">
+        <a class="icon-link detail-icon-action" href="https://www.linkedin.com/sharing/share-offsite/?url={{ $page.Permalink | urlquery }}" target="_blank" rel="noopener noreferrer" aria-label="{{ $ui.article.share_linkedin_prefix }} {{ $page.Title }} {{ $ui.article.share_linkedin_suffix }}" title="LinkedIn">
           <i class="fa-brands fa-linkedin-in" aria-hidden="true"></i>
         </a>
-        <a class="detail-icon-action" href="https://x.com/intent/post?url={{ $page.Permalink | urlquery }}&amp;text={{ $page.Title | urlquery }}" target="_blank" rel="noopener noreferrer" aria-label="{{ $ui.article.share_linkedin_prefix }} {{ $page.Title }} {{ $ui.article.share_x_suffix }}" title="X">
+        <a class="icon-link detail-icon-action" href="https://x.com/intent/post?url={{ $page.Permalink | urlquery }}&amp;text={{ $page.Title | urlquery }}" target="_blank" rel="noopener noreferrer" aria-label="{{ $ui.article.share_linkedin_prefix }} {{ $page.Title }} {{ $ui.article.share_x_suffix }}" title="X">
           <i class="fa-brands fa-x-twitter" aria-hidden="true"></i>
         </a>
       </div>

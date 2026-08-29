@@ -1,6 +1,6 @@
 overview_label: Summary
 summary:
-  - Lara Srinath is a **Master Anaplanner** and **Solution Architect** with more than ten years of experience delivering, optimizing and supporting enterprise planning platforms across supply chain and finance.
+  - Lara Srinath is a **[Master Anaplanner](https://community.anaplan.com/categories/certified-master-anaplanner-program-information)** and **Solution Architect** with more than ten years of experience delivering, optimizing and supporting enterprise planning platforms across supply chain and finance.
   - His work spans solution architecture, platform operations, governance, data integration and continuous improvement. He has led cross-functional teams and business-critical platforms, partnering with executive stakeholders to build scalable, secure and high-performing planning systems.
 
 actions_label: Résumé links
@@ -22,6 +22,7 @@ highlights:
     value: 10 years in enterprise planning
   - label: Recognition
     value: 8× Master Anaplanner
+    href: https://community.anaplan.com/categories/certified-master-anaplanner-program-information
   - label: Focus
     value: Supply chain, FP&A, architecture and teams
   - label: Based
@@ -49,29 +50,16 @@ skills:
       - Technical product ownership, requirements & stakeholder management
       - Python, R, statistical forecasting & data analytics
 
-projects_label: Selected work
-projects:
-  - category: Supply-chain transformation
-    clients:
-      - Del Monte (PH)
-      - Wilmar International (EU)
-  - category: Enterprise planning
-    clients:
-      - Tenaga Nasional Berhad (MY)
-      - Denka Chemicals (SG)
-  - category: Open source
-    clients:
-      - Anaplan MCP Server - a standards-based Anaplan integration for AI assistants
-
 certifications_label: Certifications
 certifications:
-  - Master Anaplanner
-  - Anaplan Solution Architect
-  - Anaplan Pre-Sales Certified
-  - Anaplan Model Builder
-  - The Anaplan Way
-  - Pigment Modeler
-  - R Programming
+  - label: Master Anaplanner
+    href: https://community.anaplan.com/categories/certified-master-anaplanner-program-information
+  - label: Anaplan Solution Architect
+  - label: Anaplan Pre-Sales Certified
+  - label: Anaplan Model Builder
+  - label: The Anaplan Way
+  - label: Pigment Modeler
+  - label: R Programming
 
 education_label: Education
 education:

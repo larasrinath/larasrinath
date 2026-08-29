@@ -20,10 +20,6 @@ reading_time: 4
 featured_image: featured.jpg
 featured_image_alt: Night view of Marina Bay Sands and the Merlion in Singapore
 featured_image_caption: ''
-article_note:
-  label: Filed under
-  title: Life
-  text: Relocating to Singapore during the pandemic.
 article_body:
   - type: opening
     text: >-

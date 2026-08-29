@@ -17,7 +17,7 @@ interests:
     icon: fa-bicycle
   - label: Football
     icon: fa-futbol
-  - label: Astronomy
+  - label: Astronomical events
     icon: fa-star
   - label: Chess
     icon: fa-chess

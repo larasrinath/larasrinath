@@ -3,6 +3,8 @@ accessibility:
   primary_navigation: Primary navigation
   open_menu: Open menu
   close_menu: Close menu
+  use_light_theme: Switch to light theme
+  use_dark_theme: Switch to dark theme
   article_navigation: Article navigation
   share_article: Share article
 
@@ -35,14 +37,12 @@ generic:
   page_fallback: Page
 
 article:
-  section_label: Writing
-  all_articles: ← All writing
-  eyebrow: Writing
+  section_label: Notes
+  all_articles: ← All notes
   up_next: Up next
   featured_quote_aria: Featured quote
   featured_quote_label: In Lara’s words
-  details_aria: Article details
-  filed_under: Filed under
+  filed_under: Topics
   minute_read: min read
   words: words
   updated: Updated
@@ -54,13 +54,11 @@ article:
   share_linkedin_prefix: Share
   share_linkedin_suffix: on LinkedIn
   share_x_suffix: on X
+  share_short: Share
   quote_mark: "“"
 
 project:
-  all_projects: ← All projects
-  eyebrow: Project
-  details_aria: Project details
-  details_label: Project note
+  all_projects: ← All works
   links_label: Project links
   external_link_icon: ""
   next_project: Next project
@@ -74,7 +72,7 @@ taxonomy:
   entry_singular: entry
   entry_plural: entries
   archive_suffix: from the archive.
-  filed_under: Filed under
+  filed_under: Topics
   tagged_prefix: Entries tagged
 
 components:
@@ -105,7 +103,7 @@ not_found:
       href: /
     - label: About
       href: /about/
-    - label: Blog
+    - label: Notes
       href: /blog/
-    - label: Projects
+    - label: Work
       href: /project/

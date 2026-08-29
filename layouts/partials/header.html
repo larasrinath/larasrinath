@@ -4,21 +4,31 @@
 <header class="topbar{{ if .IsHome }} app-topbar{{ end }}" role="banner">
   <div class="topbar-inner">
     <a class="wordmark" href="{{ "/" | relURL }}" aria-label="{{ $ui.brand.home_label }}">
-      <span class="wordmark-initial" aria-hidden="true">{{ substr $home.hero.name_prefix 0 1 }}</span>
       <span class="wordmark-initial" aria-hidden="true">{{ substr $home.hero.name_emphasis 0 1 }}</span>
     </a>
-    <button class="menu-toggle" type="button" aria-expanded="false" aria-controls="primary-navigation" aria-label="{{ $ui.accessibility.open_menu }}" data-menu-toggle data-open-label="{{ $ui.accessibility.open_menu }}" data-close-label="{{ $ui.accessibility.close_menu }}">
-      <span aria-hidden="true"></span>
-      <span aria-hidden="true"></span>
-      <span aria-hidden="true"></span>
-    </button>
-    <nav id="primary-navigation" class="primary-navigation" aria-label="{{ $ui.accessibility.primary_navigation }}" data-menu>
-      <ul class="primary-nav">
-        {{ range $home.navigation }}
-          {{- $isCurrent := or (eq $currentPath .href) (and (ne .href "/") (hasPrefix $currentPath .href)) -}}
-          <li><a href="{{ .href }}"{{ if $isCurrent }} aria-current="page"{{ end }}>{{ .label }}</a></li>
-        {{ end }}
-      </ul>
-    </nav>
+    <div class="topbar-actions">
+      <nav id="primary-navigation" class="primary-navigation" aria-label="{{ $ui.accessibility.primary_navigation }}" data-menu>
+        <ul class="primary-nav">
+          {{ range $home.navigation }}
+            {{- $isCurrent := or (eq $currentPath .href) (and (ne .href "/") (hasPrefix $currentPath .href)) -}}
+            <li><a href="{{ .href }}"{{ if $isCurrent }} aria-current="page"{{ end }}>{{ .label }}</a></li>
+          {{ end }}
+        </ul>
+        <div class="theme-control">
+          <span class="theme-control-label">Theme</span>
+          <button class="theme-toggle" type="button" aria-pressed="false" aria-label="{{ $ui.accessibility.use_dark_theme }}" data-theme-toggle data-light-label="{{ $ui.accessibility.use_light_theme }}" data-dark-label="{{ $ui.accessibility.use_dark_theme }}">
+            <span class="theme-toggle-thumb" aria-hidden="true">
+              <i class="fa-solid fa-sun theme-toggle-sun"></i>
+              <i class="fa-solid fa-moon theme-toggle-moon"></i>
+            </span>
+          </button>
+        </div>
+      </nav>
+      <button class="menu-toggle" type="button" aria-expanded="false" aria-controls="primary-navigation" aria-label="{{ $ui.accessibility.open_menu }}" data-menu-toggle data-open-label="{{ $ui.accessibility.open_menu }}" data-close-label="{{ $ui.accessibility.close_menu }}">
+        <span aria-hidden="true"></span>
+        <span aria-hidden="true"></span>
+        <span aria-hidden="true"></span>
+      </button>
+    </div>
   </div>
 </header>

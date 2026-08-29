@@ -1,0 +1,6 @@
+{{- $name := .company_short | default .company -}}
+{{- with .company_url -}}
+  <a class="experience-company-link" href="{{ . | safeURL }}" target="_blank" rel="noopener noreferrer">{{ $name }}</a>
+{{- else -}}
+  {{- $name -}}
+{{- end -}}

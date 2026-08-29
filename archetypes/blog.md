@@ -11,10 +11,6 @@ featured_image: ""
 featured_image_alt: ""
 featured_image_caption: ""
 reading_time: 1
-article_note:
-  label: Filed under
-  title: ""
-  text: ""
 article_body:
   - type: opening
     text: Write the article introduction here.

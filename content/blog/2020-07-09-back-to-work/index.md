@@ -21,10 +21,6 @@ reading_time: 2
 featured_image: featured.jpg
 featured_image_alt: A businessperson walking while carrying a briefcase
 featured_image_caption: ''
-article_note:
-  label: Filed under
-  title: Work
-  text: Going back to work after a long time.
 article_body:
   - type: opening
     text: >-

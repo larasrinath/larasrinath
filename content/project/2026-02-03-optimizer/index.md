@@ -22,10 +22,6 @@ tags:
   - supply-chain
   - ampl
 title: Supply Chain Optimizer
-article_note:
-  label: Project note
-  title: Supply chain optimization
-  text: A planning model for coordinating inventory decisions across a multi-echelon supply network.
 project_body:
   - type: opening
     text: >-

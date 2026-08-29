@@ -25,14 +25,10 @@ tags:
   - Data Visualization
   - Dashboard
   - Healthcare
-article_note:
-  label: Project note
-  title: Live dashboard
-  text: A live R Shiny view of the pandemic's early global spread.
 project_body:
   - type: opening
     text: >-
-      This project utilizes **R Shiny** and **Flexdashboard** to create a responsive, interactive visualization of the COVID-19 outbreak.
+      This project uses R Shiny and Flexdashboard to create a responsive **interactive visualization** of the COVID-19 outbreak.
   - type: image
     src: featured.jpg
     alt: COVID-19 global tracker dashboard

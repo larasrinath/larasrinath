@@ -7,13 +7,15 @@
     <div class="app-shell home-profile-grid">
       <article class="home-profile-copy">
         {{ $surname := $home.hero.name_emphasis }}
-        <h1 id="home-title">
-          <span>{{ $home.hero.name_prefix }}</span>
-          <em class="home-profile-surname" aria-label="{{ $surname }}"><span class="home-profile-surname-initial" aria-hidden="true">{{ substr $surname 0 1 }}</span><span class="home-profile-surname-rest" aria-hidden="true">{{ substr $surname 1 }}</span></em>
-        </h1>
+        <a class="home-profile-name-link" href="{{ "/about/" | relURL }}" aria-label="About Lara Srinath">
+          <h1 id="home-title">
+            <span>{{ $home.hero.name_prefix }}</span>
+            <em class="home-profile-surname" aria-label="{{ $surname }}"><span class="home-profile-surname-initial" aria-hidden="true">{{ substr $surname 0 1 }}</span><span class="home-profile-surname-rest" aria-hidden="true">{{ substr $surname 1 }}</span></em>
+          </h1>
+        </a>
       </article>
 
-      <figure class="home-profile-portrait">
+      <a class="home-profile-portrait" href="{{ "/about/" | relURL }}" aria-label="About Lara Srinath">
         {{ partial "shared/responsive-image.html" (dict
           "page" .
           "src" $home.about.portrait
@@ -23,7 +25,7 @@
           "sizes" "(max-width: 899px) 78vw, (max-width: 1200px) 36vw, 450px"
           "widths" (slice 360 520 720)
         ) }}
-      </figure>
+      </a>
     </div>
   </section>
 </main>

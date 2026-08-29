@@ -1,7 +1,7 @@
 # Lara Srinath — Site Design, Architecture, and Rebuild Notes
 
 **Status:** Living project reference  
-**Last audited:** August 23, 2026  
+**Last audited:** August 28, 2026
 **Applies to:** The Hugo site in this repository
 
 This document explains what the site became, why it is built this way, how its content and presentation fit together, and what we learned while rebuilding it. It is deliberately broader than a visual style guide. It is also a content-model guide, template map, maintenance handbook, and record of the design decisions that stopped the site from drifting.
@@ -88,12 +88,13 @@ The important boundary is between the inputs and the generated site. All durable
 | Global UI labels and pagination language | `data/ui.yaml` | Also contains footer, accessibility, article, project, selector, and 404 labels. |
 | Navigation, home name, portrait, social links | `data/home.yaml` | Shared header and footer both consume this data. |
 | Professional experience and capabilities | `data/experience.yaml` | Reused where experience is presented. |
-| Résumé summary, highlights, skills, selected work, credentials | `data/resume.yaml` | The résumé is data-driven rather than a standalone HTML document. |
+| Résumé summary, highlights, skills, credentials | `data/resume.yaml` | The résumé is data-driven rather than a standalone HTML document. |
 | About copy | `content/about/` | The main and sidebar content are separate Hugo content records. |
 | Blog and project content | `content/blog/`, `content/project/` | Page bundles keep content and relevant media together. |
 | Shared page grammar | `layouts/partials/shared/` | Hero, content start, tail, pagination, and shared experience. |
-| Article/project grammar | `layouts/partials/article/` | Detail hero, rail, structured body, images, actions. |
+| Article/project grammar | `layouts/partials/article/` | Detail hero, utility row, centered body, footer taxonomy, images, and actions. |
 | Visual system | `assets/css/lara-theme.css` | Master palette, typography, dimensions, spacing, dividers, and responsive rules. |
+| Typography and page anatomy | `docs/PAGE-ANATOMY.md` | Semantic typography roles mapped to every rendered page family and structured-content block. |
 | Site behavior | `assets/js/custom.js` | Mobile navigation, progress, and share-menu behavior. |
 | Build and deployment | `DEVELOPMENT.md`, `netlify.toml` | Hugo version and production commands live here. |
 
@@ -108,7 +109,7 @@ The site has several page families, but they share a vocabulary.
 | Home | Minimal identity landing page | `layouts/index.html` | Portrait and name only; intentionally not a dashboard. |
 | Section home | Projects, Blog, Talks, taxonomies | `layouts/*/list*.html` | Shared hero, repeatable list rows/cards, optional pagination. |
 | Informational page | About, Résumé, 404 | Section-specific layout plus shared page head/tail | Uses the same page rhythm without pretending all content is the same. |
-| Detail page | A blog post or project | `layouts/blog/single.html`, `layouts/project/single.html` | Text-only detail hero, editorial rail, structured body, next entry. |
+| Detail page | A blog post or project | `layouts/blog/single.html`, `layouts/project/single.html` | Text-only detail hero, compact utility row, centered structured body, linked taxonomy, next entry. |
 | Declared exception | A project with real interactive needs | Shared detail system plus named component | Must be content-declared and documented. |
 
 ### One system does not mean one identical template
@@ -139,19 +140,49 @@ The site avoids:
 
 The palette is centralized in `:root` inside `assets/css/lara-theme.css`.
 
-| Token | Current value | Role |
-|---|---:|---|
-| `--paper` | `#f5f0e8` | Light surface, detail areas, content bands. |
-| `--paper-deep` | `#ede6d9` | Global canvas and slightly deeper listing areas. |
-| `--canvas` | `var(--paper-deep)` | Default page background. |
-| `--surface` | `var(--paper)` | Raised or contrasting page section. |
-| `--ink` | `#1b1712` | Primary text. |
-| `--ink-soft` | `#4d463c` | Body and secondary text. |
-| `--muted` | `#6c6459` | Metadata and low-emphasis text. |
-| `--accent` | `#9c3d1e` | Terracotta emphasis, links, italic display words. |
-| `--line` | `#d8cfc0` | Dividers and outlines. |
+| Token | Light | Dark | Role |
+|---|---:|---:|---|
+| `--paper` | `#fcfbf7` | `#252420` | Warm light-mode page tone and compatibility token. |
+| `--paper-deep` | `#f6f5f1` | `#1c1b18` | Quiet light field and restrained dark page tone. |
+| `--canvas` | `var(--paper)` | `var(--paper-deep)` | Hero and outer page background. |
+| `--surface` | `var(--canvas)` | `var(--canvas)` | Main content background; continuous in both themes. |
+| `--ink` | `#30302f` | `#c2bfba` | Primary body text and display titles. |
+| `--ink-heading` | `#353532` | `#d4d1cc` | Section and editorial headings. |
+| `--ink-soft` | `#73706d` | `#a8a5a0` | Navigation, metadata, labels, and supporting text. |
+| `--muted` | `#8e8f94` | `#8e8f94` | Captions, copyright, inactive icons, and genuinely tertiary text. |
+| `--accent` | `#aa0022` | `#b2707b` | Deep-crimson light emphasis and restrained muted-rose dark emphasis. |
+| `--line` | `#e6e3e1` | `#3e3a35` | Dividers and outlines. |
+| `--media-surface` | `var(--canvas)` | `#302e29` | Neutral backing for contained or transparent imagery. |
+| `--media-frame-thumbnail` | `#aa0022` | `#b2707b` | Solid project-index thumbnail frame. |
+| `--media-frame-feature` | `#aa0022` | `#b2707b` | Solid featured-image frame. |
 
-The palette was intentionally reduced to two warm surfaces plus ink, muted text, accent, and line. Page variety comes from composition and typography rather than unrelated background colors.
+The typography hierarchy does not change meaning between themes; only these
+semantic tokens resolve to the mode-appropriate values. Media frames consume
+their dedicated tokens at full opacity, so their rendered color is exact rather
+than the accidental result of blending an accent over a background.
+The
+initial theme follows the operating-system preference; the header control stores
+an explicit visitor choice in `localStorage` under `lara-color-theme`. The small
+inline script in `layouts/partials/head.html` applies that choice before the
+stylesheet loads so pages do not flash through the wrong theme. Both routes set
+the same `data-theme` attribute, so the entire site consumes one universal dark
+palette from `html[data-theme="dark"]`; individual page templates do not define
+their own dark colors.
+
+Heroes, outer page backgrounds and editorial content all use `--canvas` through
+the shared `--surface: var(--canvas)` mapping. The hero and a flat content-entry
+spacer divide one section-entry interval, preserving the vertical rhythm without
+introducing a gradient, a fade, or a content band. This continuous-surface rule
+is identical in light and dark modes.
+
+About follows the same surface grammar as every other standard page: its hero,
+biography, experience, and page tail all resolve to the same canvas. There are no
+page-specific background overrides.
+
+Semantic HTML sections remain present, but typography and whitespace still carry
+the hierarchy instead of alternating bands, cards, and divider lines. The palette
+is intentionally limited to these two neighboring surfaces plus ink, muted text,
+accent, and line.
 
 #### Platform colors
 
@@ -163,30 +194,77 @@ The Anaplan MCP project has a declared platform-aware setup guide. Its OS select
 
 This is a functional exception, not permission for ordinary pages to invent new palettes. The page defaults to the project’s intended selector state and changes only through an explicit user selection.
 
+#### Admonition colors
+
+Instructions and warnings use a small semantic palette that remains distinct
+without competing with the site accent:
+
+| Token | Light | Dark |
+|---|---:|---:|
+| `--admonition-instruction` | `#516f84` | `#8ba8ba` |
+| `--admonition-note` | `#4f7891` | `#84a9bf` |
+| `--admonition-tip` | `#557860` | `#8aae92` |
+| `--admonition-warning` | `#8a652d` | `#c4a065` |
+| `--admonition-danger` | `#93464d` | `#ca8188` |
+
 ### 7.3 Typography
 
 The site self-hosts its fonts and gives each one a specific role.
 
 | Family | CSS name | Role |
 |---|---|---|
-| Fraunces | `Lara Demo Fraunces` | Display titles, editorial headings, serif emphasis. |
-| Inter | `Lara Demo Inter` | Navigation, metadata, controls, body copy. |
-| Mea Culpa | `Lara Mea Culpa` | The distinctive scripted surname/initial accent only. |
+| Fraunces | `Lara Demo Fraunces` | T01 home display, T02 page titles, T03 section titles, T06 category headings, T11 quotations/signoffs, and T14 dates. |
+| Lora | `Lara Lora` | T04, T05, T07, T09 body copy, and the remaining assigned editorial roles. |
+| Inter | `Lara Demo Inter` | Navigation, metadata, controls, summaries, and supporting copy. |
+| Mea Culpa | `Lara Mea Culpa` | T16 header wordmark and homepage/About surname-initial flourish only. |
 
 The governing typography rules are:
 
-- Use Fraunces for identity and major editorial hierarchy.
-- Use Inter for readable content and interface language.
-- Use the script face sparingly; its rarity gives it meaning.
+- Use Fraunces for T01–T03, T06, T11, and T14.
+- Use Lora for T09 continuous body copy and the other assigned editorial roles.
+- Use Inter for interface and supporting language.
+- Use Mea Culpa only for T16; its rarity gives the brand flourish meaning.
 - Use weight before adding another typeface.
 - Do not approximate the system with a similar web font on one page.
-- Preserve italics and emphasis from content; they are part of the editorial voice.
+- Fraunces supplies the italic treatments in T01, T02, T06, T11, and T14; active Lora roles stay Roman.
 
-The shared editorial italic token is:
+The shared editorial experiment tokens are centralized so the family can be
+reverted without editing component selectors:
 
 ```css
---editorial-italic: italic 400 1.5rem/1.333333 var(--serif);
+--display-serif: "Lara Demo Fraunces", Georgia, serif;
+--serif: "Lara Lora", Georgia, serif;
+--script: "Lara Mea Culpa", cursive;
+--type-home-weight: 300;
+--type-home-surname-weight: 300;
+--type-page-title-weight: 400;
+--type-page-title-accent-weight: 400;
+--type-page-title-size: clamp(3.5rem, 6.7vw, 5.3rem);
+--type-page-title-tracking: 0.005em;
+--type-section-title-weight: 400;
+--type-section-title-size: clamp(1.875rem, calc(1.208rem + 1.389vw), 2.25rem);
+--type-record-title-size: clamp(1.25rem, calc(1.107rem + 0.595vw), 1.5rem);
+--type-heading-weight: 500; /* T04–T05 */
+--type-category-weight: 400; /* T06 */
+--type-category-size: clamp(1.3rem, calc(0.994rem + 0.741vw), 1.5rem);
+--type-category-style: italic;
+--type-date-weight: 400; /* T14 */
+--type-date-size: clamp(0.875rem, calc(0.818rem + 0.284vw), 1rem);
+--type-date-style: italic;
+--type-lead-weight: 400;
+--type-editorial-weight: 400;
+--type-structured-copy: 400 clamp(0.9375rem, 1vw, 1rem)/1.625 var(--sans); /* T08 */
+--type-body-family: var(--serif); /* T09 */
+--type-body-size: 1.125rem; /* T09 */
+--type-quote-signoff: italic 400 clamp(1.5rem, 2vw, 2rem)/1.25 var(--display-serif); /* T11 */
+--type-display-accent-style: italic;
 ```
+
+T01 is the deliberate display exception: both visible name words use light
+Fraunces italics at weight 300, while the surname initial receives the small
+T16 Mea Culpa flourish. Standard T02 titles use Fraunces 400 upright with a
+Fraunces 400 italic accent. The About H1 is a named exception: its Fraunces
+title and accent stay at weight 300, with the same T16 initial flourish.
 
 Excessive bold text was removed during the rebuild because it made every sentence compete for attention. Bold should identify a key phrase, not act as default decoration.
 
@@ -197,12 +275,13 @@ The site uses a small set of width tokens:
 ```css
 --shell: 1152px;
 --shell-content: 1104px;
---shell-gutter: 24px;
+--shell-gutter: clamp(1rem, calc(0.8075rem + 0.96vw), 1.5rem);
 --listing-content: 1000px;
 --reading: 800px;
 ```
 
 - `--shell` controls the main alignment frame.
+- `--shell-gutter` continuously adapts the frame inset from phone to desktop.
 - `--listing-content` keeps archive pages readable instead of stretching across wide monitors.
 - `--reading` protects long-form body copy from becoming tiring.
 - Header and footer dividers are full-bleed even when their inner content uses the shell.
@@ -211,23 +290,36 @@ This last distinction matters: content aligns to a centered shell; structural di
 
 ### 7.5 Spacing rhythm
 
-Spacing is semantic. The current master content transitions are:
+Spacing is semantic. The current master content-entry measurements are:
 
 ```css
---page-content-start-space: 4rem;
---page-content-start-compact-space: 3rem;
---page-content-start-detail-space: 2rem;
---page-tail-space: 2rem;
+--section-entry-space: clamp(3rem, calc(2.715rem + 1.19vw), 3.5rem);
+--content-entry-size: clamp(2rem, calc(1.857rem + 0.595vw), 2.25rem);
+--hero-end-space: calc(var(--section-entry-space) - var(--content-entry-size));
+--page-hero-top-space: clamp(9rem, calc(7.857rem + 2.381vw), 10rem);
+--detail-hero-top-space: clamp(7rem, calc(4.714rem + 4.762vw), 9rem);
+--content-end-space: clamp(5rem, calc(2.714rem + 4.762vw), 7rem);
+--page-tail-space: clamp(1.5rem, calc(1.215rem + 1.19vw), 2rem);
 ```
 
-On small screens they reduce to approximately:
+The clamps continuously interpolate between the phone and desktop limits:
 
-- standard content start: `3rem`;
-- compact content start: `2.25rem`;
-- detail content start: `1.5rem`;
+- section-entry interval: `3rem`;
+- flat content-entry spacer within that interval: `2rem`;
 - page tail: `1.5rem`.
 
-These are not empty spacer sections with arbitrary height. They are shared transition tokens applied by `page-content-start.html` and `page-tail.html`.
+These are shared rhythm tokens applied by `page-content-start.html`
+and `page-tail.html`. The shared detail CSS consumes the same entry token. Every
+later top-level semantic section is selected automatically by
+`.inner-page > section ~ section`: the entering section owns
+`--section-entry-space`, while `.inner-page > section:not(:last-child)` prevents
+the preceding section from contributing a second interval. Non-section regions
+opt in with `page-section-entry`; project/blog “Up next” uses this route. This
+covers About and every Résumé section automatically.
+Archive and generic pages have only one content section, so their shared flat
+entry spacer is their sole entry boundary. Neither standard nor detail heroes have
+a fixed height, so one-line and wrapped titles use the same end spacing and grow
+only by their actual line height.
 
 #### Spacing tests
 
@@ -250,12 +342,15 @@ All structural dividers use one master definition:
 --site-divider: var(--site-divider-width) solid var(--site-divider-color);
 ```
 
-The site-header divider is the baseline. Section, pagination, and footer dividers should match it unless a component has a documented semantic reason not to.
+The translucent site header and the footer deliberately have no dividers; both
+resolve into the continuous page canvas. Interior page sections likewise rely on
+type and whitespace. A component may still use a line where it communicates
+structure or interaction.
 
 Rules:
 
-- Use one divider between adjacent repeated items, not one on every side of every item.
-- Preserve the section divider below a list-page hero.
+- Do not use divider lines simply to announce a new top-level section.
+- Repeated editorial items should read as one flow unless a line communicates necessary structure.
 - Do not make dividers thicker on mobile.
 - Do not stop global header/footer rules at the content shell on wide monitors.
 - Media backplates are not dividers; their color and opacity are controlled separately.
@@ -273,7 +368,7 @@ They may contain:
 - eyebrow;
 - concise display title with one emphasized word;
 - supporting copy aligned within the shared grid;
-- a full-width section divider.
+- generous whitespace before the following content.
 
 The headline should be short enough to remain composed. Supporting copy should not become a second competing headline.
 
@@ -284,27 +379,30 @@ Rendered through `layouts/partials/article/detail-hero.html`.
 They contain:
 
 - back link;
-- content type and date;
+- full publication date;
 - title;
-- summary and tags.
+- summary aligned to the centered reading column.
 
 They are always text-only. A feature image never appears inside the hero.
+Project and blog details use this exact sequence; the shared hero API does not
+accept a content-type prefix, so one family cannot introduce a different metadata
+line. The back link already supplies the collection context.
 
-Current desktop detail-hero rhythm is approximately `9rem` top, `3.5rem` bottom, with a responsive `7rem`/`2.5rem` mobile treatment. Any further adjustment should happen in the shared detail-hero rules, not in one post.
+The detail hero now scales continuously from approximately `7rem` top on phones to `9rem` on wide screens. Its bottom space is derived from the same shared section-entry tokens as standard pages. Any further adjustment should happen in the shared detail-hero rules, not in one post.
 
 ### 7.8 Body content
 
-The editorial detail layout is a 12-column grid:
+The editorial detail layout moves from the full hero shell into one centered reading spine:
 
-- the rail occupies the left columns;
-- the prose occupies the main reading columns;
-- prose remains capped near `800px`;
-- the rail may be sticky when the viewport allows it;
-- mobile collapses into a single readable flow.
+- the summary and utility row form one compact full-shell hero deck: T08 supporting copy aligns with the H1 on the left, while the circular controls anchor to the hero's right edge with a restrained `0.75rem` gap; both stack to one left edge below `900px`;
+- project links and sharing use compact circular icon actions with accessible labels;
+- article reading time occupies the same utility-row slot;
+- tags move to the article footer and render as real taxonomy links;
+- mobile wraps the utility row without changing the reading order.
 
 Typical long-form body settings:
 
-- body paragraph: Inter at roughly `1.125rem` with a generous `1.85` line height;
+- body paragraph: Lora at roughly `1.125rem` with a generous `1.85` line height;
 - second-level heading: about `4rem` top separation;
 - third-level heading: about `3rem` top separation;
 - prominent quote: about `3rem` vertical space.
@@ -331,9 +429,15 @@ The backplate is controlled by shared media tokens. When the palette changes, in
 
 Motion is small and informative.
 
-- Header links shift by the global `--header-link-shift: .2rem` on hover.
-- Repeated list titles may use the same family of subtle movement.
-- Resource and share controls use a solid highlight state rather than a positional jump.
+- Links use one restrained `--link-jump: -0.125rem` upward hover/focus motion.
+- Project and Blog archive rows are the sole directional exception: their titles
+  shift right by `--archive-link-shift: 0.75rem` while the row itself stays still.
+- Generic archives, navigation, inline text, pagination, footer links, resource
+  actions, and full-width calls to action all use the upward jump.
+- Circular icon links combine the same upward jump with their solid highlight state.
+- Links are never underlined. Inline links use the accent color at rest; contextual
+  links change to the accent color on hover/focus. Buttons and icons retain their
+  filled interaction states instead of adding text decoration.
 - Touch devices disable hover behavior to avoid sticky post-tap states.
 - `prefers-reduced-motion` is respected.
 
@@ -365,7 +469,16 @@ Desktop composition:
 
 Small-screen composition intentionally becomes three rows, not an accidental two-row wrap. GitHub serves both as a profile link and the link to the site source; a redundant “Source code” text link was removed.
 
-The top divider is full-bleed and uses the global divider token.
+The footer has no top divider; spacing and its three-part composition close the
+document without drawing a new band.
+
+Footer socials consume the same universal icon-link system as project, blog,
+résumé, and About actions: `2.75rem` circles, `1.2rem` glyphs, `0.75rem`
+group spacing, accent-filled hover/focus highlighting, and the footer's original
+`-2px` upward interaction. The resting `1px` border is transparent, preserving
+the hit-area geometry without drawing a faded ring. Only its resting color is
+footer-specific: `--muted`, matching the copyright and text links. Touch and
+reduced-motion modes suppress the lift.
 
 ## 8. Content architecture
 
@@ -397,7 +510,6 @@ Use front matter when a value belongs to one page:
 - tags and categories;
 - feature image and caption;
 - resource links;
-- detail-rail note;
 - article body blocks;
 - an explicitly declared special behavior.
 
@@ -410,6 +522,7 @@ The shared article renderer understands the following block types:
 - `heading`
 - `image`
 - `quote`
+- `prompt_list`
 - `list`
 - `callout`
 - `cta`
@@ -435,7 +548,10 @@ Examples:
 - résumé PDF → download icon;
 - share → platform-native share glyph with LinkedIn/X choices in its menu.
 
-This prevents each page from inventing a different button size or icon alignment.
+The renderer emits the universal `.icon-link-group` / `.icon-link` component,
+also used by résumé actions, footer socials, and About socials. This prevents
+each page from inventing a different circle size, glyph weight, spacing,
+highlight, or motion treatment.
 
 ### 8.5 Tags and taxonomy
 
@@ -450,7 +566,7 @@ Taxonomies are declared in `config.toml` and rendered through shared taxonomy la
 
 Global pagination is configured in `config.toml`; a section may declare its display size in front matter when appropriate. Shared pagination markup and labels live in the shared partials and `data/ui.yaml`.
 
-Detail navigation moves from newer content toward older content. It must not fall back in the opposite direction at the end of the sequence, because that creates a two-page loop.
+Detail navigation moves from newer content toward older content. It is rendered through one shared compact row for projects and articles: metadata label, accent item title, and adjacent arrow, without repeating the item summary. It must not fall back in the opposite direction at the end of the sequence, because that creates a two-page loop.
 
 ### 8.7 Legitimate exceptions
 
@@ -463,7 +579,7 @@ Current examples:
 
 An exception must still:
 
-- use the shared page shell, typography, palette, rail, and actions;
+- use the shared page shell, typography, palette, utility row, reading spine, and actions;
 - be invoked from content or a named component;
 - degrade sensibly on mobile;
 - be documented;
@@ -493,7 +609,9 @@ The MCP page also uses `page_content`/Markdown for a long technical guide. That 
 ### Editorial/detail grammar
 
 - `layouts/partials/article/detail-hero.html`
-- `layouts/partials/article/detail-rail.html`
+- `layouts/partials/article/detail-utility.html`
+- `layouts/partials/article/detail-taxonomy.html`
+- `layouts/partials/article/detail-next.html`
 - `layouts/partials/article/detail-actions.html`
 - `layouts/partials/article/body.html`
 - `layouts/partials/article/image.html`
@@ -541,7 +659,7 @@ When describing professional work:
 ### Typography in copy
 
 - Do not bold an entire inventory of capabilities.
-- Use italics for voice, quotations, and a restrained personal aside.
+- Use size, spacing, and accent color for voice, quotations, and restrained personal asides.
 - Use the accent link color sparingly.
 - Prefer a concise “in brief” section over a full biography before the page begins.
 - Personal references should feel natural, not like taglines added to every surface.
@@ -562,7 +680,7 @@ When describing professional work:
 | Hover remained after a tap | Hover styles had no coarse-pointer override | Disable hover treatments for touch/coarse pointers. |
 | Action links had different boxes and overlapping icons | Each action was styled individually and icons were positioned ad hoc | Shared resource-action component with one size contract. |
 | “Up next” bounced between two pages | End-of-sequence fallback reversed direction | One-way newer-to-older navigation with no reverse fallback. |
-| Icons declared in YAML did not render | The shared rail ignored `icon`/`icon_pack` | Action renderer consumes the content schema directly. |
+| Icons declared in YAML did not render | The old detail rail ignored `icon`/`icon_pack` | Shared action rendering consumes the content schema directly. |
 | Header identity shifted between pages | Home and internal pages used different frame measurements | One shared header template and shell. |
 | Footer became two accidental lines | Natural wrapping was treated as the mobile layout | Explicit one-row desktop and three-row mobile compositions. |
 | Tags such as Data Viz/Data Visualization duplicated | Taxonomy values grew without normalization | Normalize tags in front matter and audit terms. |
@@ -582,7 +700,7 @@ When describing professional work:
 
 ### Change global page spacing
 
-1. Decide whether it is a content start, compact start, detail start, tail, section, or component gap.
+1. Decide whether it is a universal content start, detail start, tail, section, or component gap.
 2. Edit the semantic token/shared class.
 3. Test short and long pages.
 4. Test wide desktop and narrow mobile.

@@ -11,7 +11,7 @@
 
   <section class="resume-overview app-shell" aria-labelledby="resume-summary-heading">
     <div class="resume-overview-copy">
-      <h2 id="resume-summary-heading" class="section-label">{{ $resume.overview_label }}</h2>
+      <h2 id="resume-summary-heading" class="section-label resume-t13">{{ $resume.overview_label }}</h2>
       <div class="resume-summary">{{ range $resume.summary }}<p>{{ . | markdownify }}</p>{{ end }}</div>
     </div>
     <aside class="resume-overview-aside" aria-label="{{ $resume.highlights_label }}">
@@ -21,8 +21,8 @@
             {{ if $highlight.actions }}
               <div class="resume-highlight-action-row">
                 <div class="resume-highlight-copy">
-                  <span>{{ $highlight.label }}</span>
-                  <strong>{{ $highlight.value }}</strong>
+                  <span class="resume-t13">{{ $highlight.label }}</span>
+                  <strong>{{ with $highlight.href }}<a href="{{ . | safeURL }}" target="_blank" rel="noopener noreferrer">{{ $highlight.value }}</a>{{ else }}{{ $highlight.value }}{{ end }}</strong>
                   {{ with $highlight.note }}<small>{{ . }}</small>{{ end }}
                 </div>
                 {{ partial "article/detail-actions.html" (dict
@@ -33,8 +33,8 @@
                 ) }}
               </div>
             {{ else }}
-              <span>{{ $highlight.label }}</span>
-              <strong>{{ $highlight.value }}</strong>
+              <span class="resume-t13">{{ $highlight.label }}</span>
+              <strong>{{ with $highlight.href }}<a href="{{ . | safeURL }}" target="_blank" rel="noopener noreferrer">{{ $highlight.value }}</a>{{ else }}{{ $highlight.value }}{{ end }}</strong>
               {{ with $highlight.note }}<small>{{ . }}</small>{{ end }}
             {{ end }}
           </div>
@@ -46,7 +46,7 @@
   <section class="resume-section resume-experience" aria-labelledby="resume-experience-heading">
     <div class="app-shell">
       <header class="resume-section-heading">
-        <h2 id="resume-experience-heading" class="resume-section-title">{{ $experience.label }}</h2>
+        <h2 id="resume-experience-heading" class="section-label resume-t13">{{ $experience.label }}</h2>
       </header>
       <div class="resume-timeline">
         {{ range $experience.roles }}
@@ -54,7 +54,7 @@
             <time>{{ .period }}</time>
             <div class="resume-role-content">
               <h3>{{ .title }}</h3>
-              <div class="resume-role-meta"><span>{{ .company_short | default .company }}</span><span>{{ .location }}</span></div>
+              <div class="resume-role-meta resume-t13"><span>{{ partial "shared/experience-company.html" . }}</span><span>{{ .location }}</span></div>
               <ul class="resume-bullets">
                 {{ range .bullets }}<li><div>{{ . | markdownify }}</div></li>{{ end }}
               </ul>
@@ -68,7 +68,7 @@
   <section class="resume-section resume-skills-section" aria-labelledby="resume-skills-heading">
     <div class="app-shell resume-skills-shell">
       <header class="resume-section-heading">
-        <h2 id="resume-skills-heading" class="resume-section-title">{{ $resume.skills_label }}</h2>
+        <h2 id="resume-skills-heading" class="section-label resume-t13">{{ $resume.skills_label }}</h2>
       </header>
       <div class="resume-skill-groups">
         {{ range $resume.skills }}
@@ -83,36 +83,22 @@
     </div>
   </section>
 
-  <section class="resume-section resume-projects-section" aria-labelledby="resume-projects-heading">
-    <div class="app-shell resume-section-grid">
-      <header class="resume-section-heading">
-        <h2 id="resume-projects-heading" class="resume-section-title">{{ $resume.projects_label }}</h2>
-      </header>
-      <div class="resume-project-groups">
-        {{ range $resume.projects }}
-          <article>
-            <h3>{{ .category }}</h3>
-            <p>{{ delimit .clients " · " }}</p>
-          </article>
-        {{ end }}
-      </div>
-    </div>
-  </section>
-
   <section class="resume-section resume-credentials" aria-label="Résumé credentials">
     <div class="app-shell resume-credentials-grid">
       <div>
-        <h2 class="resume-section-title">{{ $resume.certifications_label }}</h2>
+        <h2 class="section-label resume-t13">{{ $resume.certifications_label }}</h2>
         <ul class="resume-clean-list">
-          {{ range $resume.certifications }}<li>{{ . }}</li>{{ end }}
+          {{ range $certification := $resume.certifications }}<li>{{ with $certification.href }}<a href="{{ . | safeURL }}" target="_blank" rel="noopener noreferrer">{{ $certification.label }}</a>{{ else }}{{ $certification.label }}{{ end }}</li>{{ end }}
         </ul>
       </div>
       <div>
-        <h2 class="resume-section-title">{{ $resume.education_label }}</h2>
+        <h2 class="section-label resume-t13">{{ $resume.education_label }}</h2>
         <article class="resume-education">
-          <time>{{ $resume.education.period }}</time>
           <h3>{{ $resume.education.degree }}</h3>
-          <p><span>{{ $resume.education.school }}</span><span>{{ $resume.education.location }}</span></p>
+          <div class="resume-education-meta">
+            <p class="resume-t13"><span>{{ $resume.education.school }}</span><span>{{ $resume.education.location }}</span></p>
+            <time>{{ $resume.education.period }}</time>
+          </div>
         </article>
       </div>
     </div>

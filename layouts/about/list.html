@@ -2,13 +2,15 @@
 {{/* The About page is rendered from structured front matter, not embedded presentation markup. */}}
 {{ $main := site.GetPage "/about/main" }}
 {{ $sidebar := site.GetPage "/about/sidebar" }}
-{{ $experience := hugo.Data.experience }}
 {{ $contact := hugo.Data.home.contact }}
+{{ $experience := hugo.Data.experience }}
 <main id="main-content" class="inner-page about-page" role="main">
   {{ partial "shared/page-head.html" (dict
     "eyebrow" .Params.eyebrow
     "title" .Params.hero_title
+    "title_italic" true
     "emphasis" .Params.hero_emphasis
+    "emphasis_flourish" true
     "copy" (.Params.hero_copy | default .Description)
   ) }}
   <section class="about-detail">
@@ -27,10 +29,10 @@
       </ul>
       <nav class="about-socials" aria-label="{{ $sidebar.Params.socials_label }}">
         <p class="section-label">{{ $sidebar.Params.socials_label }}</p>
-        <div class="about-social-links">
+        <div class="icon-link-group about-social-links">
           {{ range $contact.links }}
             {{ if and .external .icon (in $sidebar.Params.socials .label) }}
-              <a href="{{ .href | safeURL }}" target="_blank" rel="noopener noreferrer" aria-label="{{ .label }}">
+              <a class="icon-link" href="{{ .href | safeURL }}" target="_blank" rel="noopener noreferrer" aria-label="{{ .label }}">
                 <i class="{{ .icon }} fa-lg fa-fw" aria-hidden="true"></i>
               </a>
             {{ end }}
@@ -40,5 +42,13 @@
     </aside>
   </section>
   {{ partial "shared/experience.html" (dict "experience" $experience "label" $main.Params.experience_label "class" "about-experience") }}
+  {{ with $main.Params.history }}
+    <section class="about-history app-shell" aria-labelledby="about-history-heading">
+      <h2 id="about-history-heading" class="section-label">{{ $main.Params.history_label }}</h2>
+      <div class="about-history-copy">
+        {{ range . }}<p>{{ . | markdownify }}</p>{{ end }}
+      </div>
+    </section>
+  {{ end }}
 </main>
 {{ end }}

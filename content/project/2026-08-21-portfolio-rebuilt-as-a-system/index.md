@@ -32,69 +32,86 @@ links:
     icon_pack: fab
     name: GitHub
     url: https://github.com/larasrinath/larasrinath
-article_note:
-  label: Project note
-  title: Portfolio as a system
-  text: A personal site rebuilt around reusable templates, structured content and one coherent visual language.
 project_body:
   - type: opening
     text: >-
-      **This portfolio redesign began as a visual refresh and became a small publishing system.** One Hugo presentation layer now connects YAML-driven content, responsive editorial templates and a shared set of design decisions.
+      This redesign began as a visual refresh and became a small publishing system. Content, templates and visual rules now work together, so the site can grow without slowly becoming inconsistent again.
   - type: image
     src: featured.jpg
     alt: Lara Srinath portfolio homepage with a portrait and editorial wordmark
-    caption: The redesigned homepage reduces the portfolio to its most personal elements - portrait, name and navigation.
+    caption: "The homepage keeps the essentials: portrait, name, a short introduction and a clear path into the work."
   - type: heading
     level: 2
-    text: Why Rebuild It?
+    text: Why I Rebuilt It
   - type: paragraph
     text: >-
-      Over six years, what began as a simple, fun project grew into a disorganized mix-and-match of themes, Blogdown content, pages rendered through RStudio, Python-generated output and one-off overrides. Individual pages ended up with different font weights, padding, spacing and visual rules. Meanwhile, files, duplicate assets and folders accumulated without a clear structure. Each fix solved an immediate problem, but the site as a whole became a patchwork of band-aids over deeper cracks. The redesign therefore had to be more than a new look; it needed a content model and a visual system that could grow without drifting.
+      Over six years, the old portfolio accumulated themes, Blogdown pages, RStudio output, generated files and one-off CSS fixes. A change that looked correct on one page could alter the spacing, font weight or color somewhere else. The problem was no longer one untidy stylesheet. The site had no dependable boundary between content, structure and presentation.
+  - type: paragraph
+    text: >-
+      I wanted the new version to feel quieter and more personal, but the real goal was durability: publishing a project or note should not require redesigning a page, and changing a visual rule should not mean hunting through several templates.
   - type: heading
     level: 2
-    text: The System Behind the Surface
+    text: The Design Direction
+  - type: paragraph
+    text: >-
+      The visual language grew from subtraction. Heavy cards, section dividers, fixed-height blocks and unnecessary outlines were removed. A continuous page surface lets typography, rhythm and negative space establish the hierarchy. Light mode uses a warm near-white canvas with deep crimson emphasis; dark mode keeps the same structure but shifts the accent to a restrained muted rose.
+  - type: paragraph
+    text: >-
+      The type system is deliberately multi-font rather than decorative for its own sake. Fraunces carries display titles, dates and expressive emphasis. Lora handles sustained editorial reading. Inter keeps navigation, metadata and controls precise. Mea Culpa appears only as the small signature flourish, so it remains distinctive instead of becoming a repeated effect.
+  - type: paragraph
+    text: >-
+      Those choices became named typography roles rather than page-specific styles. A page title, editorial lead, body paragraph, date or label now has one intended treatment and one purpose wherever it appears.
+  - type: heading
+    level: 2
+    text: The System Behind It
   - type: list
     items:
-      - "**Shared page grammar**: One header, footer, hero system, divider language and set of content-start and page-tail rules across the site."
-      - "**YAML-first content**: Navigation, profile copy, résumé entries, projects, blog metadata and editorial body blocks live in structured content rather than standalone HTML pages."
-      - "**Editorial templates**: Projects and writing share a body renderer for opening leads, featured media, quotes, callouts, lists, code, charts and sign-offs."
-      - "**Responsive by design**: Adaptive images, deliberate desktop and mobile layouts, a keyboard-friendly menu and standardized spacing replace one-off viewport fixes."
-      - "**Centralized design tokens**: Palette, typography, spacing, divider weights and interaction distances are controlled from one design layer."
+      - "**Structured content** keeps navigation, résumé entries, projects, notes and editorial blocks in YAML or front matter rather than standalone HTML."
+      - "**Shared page grammar** gives every page the same header, footer, hero logic, content entry and page tail while allowing each page family to arrange its content appropriately."
+      - "**Reusable editorial blocks** render openings, images, quotations, callouts, lists, code and sign-offs from the same presentation layer."
+      - "**Centralized design tokens** control palette, type roles, spacing, icon sizing, focus states and interaction distances from one system."
+      - "**Responsive rules** use fluid type and spacing with deliberate breakpoints, so desktop and mobile adapt without a separate design for every page."
   - type: quote
     style: feature
     lines:
-      - Content changes in YAML.
+      - Content changes in data.
       - Structure changes in templates.
       - Visual decisions change once, in the design system.
-    cite: The governing rule
+    cite: The rule that keeps the site coherent
   - type: heading
     level: 2
-    text: A Personal Editorial Language
+    text: Designed Through Inspection
   - type: paragraph
     text: >-
-      The system is intentionally quiet but not anonymous. Cormorant Garamond provides the editorial backbone, a single Mea Culpa initial adds the signature flourish, warm neutrals keep the pages tactile and a restrained rust accent carries emphasis. The homepage is reduced to portrait and name, while deeper pages reveal the work through a consistent reading experience.
+      The hardest inconsistencies were often small: two roles that looked almost identical, dates aligned to different baselines, fixed gaps that became enormous on shorter pages, or hover effects that worked on desktop but made mobile elements jump. Solving them required looking at the whole system rather than polishing screenshots one by one.
+  - type: paragraph
+    text: >-
+      I built a private Anatomy mode that labels each live typography role and reports the browser's rendered family, size, weight, spacing and color. It makes drift visible on the actual page and turns the design system into an inspection tool rather than a document that can quietly fall out of date.
   - type: heading
     level: 2
-    text: What Changed Technically
+    text: Under the Hood
   - type: list
     items:
-      - "The site runs on **Hugo Extended** without a runtime dependency on an external theme."
-      - "Page bundles keep content and relevant media together, while Hugo generates responsive WebP image sets at build time."
-      - "Shared metadata, sitemap, 404, navigation and footer templates keep infrastructure and presentation consistent."
-      - "Netlify preview and production builds use the same Hugo configuration, with environment-specific settings kept outside the content."
-      - "Legacy Blogdown and RStudio scaffolding was removed so the repository reflects the current workflow."
+      - "**Hugo Extended** builds the site without a runtime dependency on an external theme."
+      - "Page bundles keep content and media together, while Hugo generates responsive WebP image sets during the build."
+      - "A small pre-paint script applies the saved theme before the page appears, preventing a light-to-dark flash."
+      - "Shared metadata, sitemap, social-image, navigation and footer rules keep the supporting infrastructure consistent."
+      - "The same build configuration powers local previews and deployment, so what is reviewed locally is what gets published."
   - type: callout
     label: Outcome
     title: A portfolio that behaves like a product
     text: >-
-      A new project or article now begins with a content bundle and YAML fields. The templates decide how it is presented, and the design system keeps every page recognizably part of the same site.
+      A new project or note begins with content. Templates decide how it is presented, and the shared system keeps it recognizably part of the same site.
   - type: heading
     level: 2
     text: What I Learned
   - type: paragraph
     text: >-
-      Consistency does not come from checking the same values on every page. It comes from defining the right boundaries: content belongs in data, structure belongs in templates and reusable visual decisions belong in one shared layer. Once those boundaries were clear, typography, spacing, responsive behavior and performance became easier to improve together.
+      Consistency does not come from forcing every page into the same layout. It comes from agreeing on the boundaries. Content belongs in data, repeated structure belongs in templates and reusable visual decisions belong in one shared layer. Within those boundaries, the About page, résumé, project archive and long-form articles can keep their own character.
+  - type: paragraph
+    text: >-
+      The redesign also changed how I evaluate the site. Instead of asking whether one page looks finished, I now ask whether the decision still works across page families, color modes, content lengths and screen sizes. That shift made the portfolio easier to improve as a whole.
   - type: signoff
     text: >-
-      The result is deliberately quieter: a personal front door, richer editorial pages and a content model that can keep growing without adding another CMS.
+      The result is deliberately quieter on the surface and far more structured underneath.
 ---

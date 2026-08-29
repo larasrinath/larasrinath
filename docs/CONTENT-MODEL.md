@@ -5,10 +5,11 @@ The site is a multi-page Hugo site with one project-owned presentation system. T
 ## Where content lives
 
 - `data/home.yaml` - shared navigation, homepage identity, portrait, and social links.
-- `data/experience.yaml` - experience and capability content shared by the About and Résumé pages.
-- `data/resume.yaml` - résumé summary, highlights, skills, selected work, certifications, and education.
+- `data/experience.yaml` - experience and capability content shared by the About and Résumé pages. A role may declare `company_url`; the shared company-link partial renders it consistently in both views.
+- `data/resume.yaml` - résumé summary, highlights, skills, certifications, and education. Highlights and certification records may declare an external `href`.
 - `data/ui.yaml` - the shared site footer, accessibility labels, article controls, taxonomy labels, and other reusable interface copy.
-- `content/blog/<slug>/index.md` - one blog post per page bundle. YAML front matter controls title, date, summary, tags, featured media, the optional article rail, and structured editorial body blocks. Legacy posts can still use the Markdown body.
+- `content/about/main/index.md` - the About page’s structured “What I do” lead and “How I got here” narrative; the career timeline remains shared through `data/experience.yaml`.
+- `content/blog/<slug>/index.md` - one blog post per page bundle. YAML front matter controls title, date, summary, tags, featured media, reading time, and structured editorial body blocks. Legacy posts can still use the Markdown body.
 - `content/project/<slug>/index.md` - one project per page bundle. YAML front matter controls the short detail-page `hero_summary`, longer listing-card `featured_summary`, homepage selection, featured media, tags, links, optional display overrides, and the structured `project_body` case study.
 - Section files such as `content/blog/_index.md` and `content/project/_index.md` - listing-page headings, descriptions, labels, and pagination copy.
 
@@ -16,7 +17,7 @@ Collection page sizes are controlled by `pagination.page_size` in each section f
 
 Every section landing page renders its header through `layouts/partials/shared/page-hero.html`. Page front matter supplies the eyebrow, title, optional emphasis, and supporting sentence. The partial always renders the same eyebrow, headline, and summary structure; page-specific controls such as résumé actions live below the shared hero.
 
-Blog and project detail pages keep their editorial hero and share the reduced `--page-content-start-detail-space` token through `.app-detail-body`; this avoids presentational spacer markup. Their body ending uses the same shared page-tail spacing token as every other page; when an adjacent-entry panel is present, that panel remains the final page section.
+Blog and project detail pages share one editorial spine: a text-only hero containing the summary and compact utility row, centered reading column, linked footer taxonomy, and optional next-entry panel. Their body ending uses the same shared page-tail spacing token as every other page.
 
 ## Adding a blog post
 
@@ -26,7 +27,7 @@ hugo new content blog/my-new-post/index.md
 
 Edit the generated YAML, add any bundle images beside `index.md`, and change `draft` to `false` when ready. The blog index updates automatically.
 
-New posts start with this structured YAML model automatically. The shared `layouts/partials/article/body.html` renderer supports `opening`, `paragraph`, `heading`, `image`, `quote`, `list`, and `signoff` blocks. Image blocks accept `src`, `alt`, and `caption`; quote blocks accept `style` (`feature`, `chant`, or `standard`), `text` or `lines`, and `cite`. Paragraph and signoff blocks may also use `lines` when deliberate line breaks matter. Lists are unordered by default; set `ordered: true` for numbered lists. Use `article_note` for the sticky rail and `reading_time` when the article body is stored in YAML. If `article_body` is absent, the blog template renders the Markdown body unchanged for existing content.
+New posts start with this structured YAML model automatically. The shared `layouts/partials/article/body.html` renderer supports `opening`, `paragraph`, `heading`, `image`, `quote`, `list`, and `signoff` blocks. Image blocks accept `src`, `alt`, and `caption`; quote blocks accept `style` (`feature`, `chant`, or `standard`), `text` or `lines`, and `cite`. Paragraph and signoff blocks may also use `lines` when deliberate line breaks matter. Lists are unordered by default; set `ordered: true` for numbered lists. Use `reading_time` when the article body is stored in YAML. If `article_body` is absent, the blog template renders the Markdown body unchanged for existing content.
 
 Blog heroes are always text-only. Store the featured asset once at the page-bundle root (normally `featured.jpg` or `featured.png`) and use that same path for `featured_image` and the first populated `image` block. `featured_image` supplies the page and social metadata. The shared article renderer moves the first image directly after the opening lead and gives only that image the theme backplate. Later image blocks remain in their authored positions and render as plain secondary media. Leave the image block's `src` empty when an article has no featured image.
 

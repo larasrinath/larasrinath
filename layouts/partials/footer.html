@@ -2,12 +2,12 @@
 {{ $contact := hugo.Data.home.contact }}
 <footer class="site-footer" role="contentinfo">
   <div class="app-shell site-footer-inner">
-    <nav class="site-footer-socials" aria-label="{{ $contact.social_links_label }}">
+    <nav class="icon-link-group site-footer-socials" aria-label="{{ $contact.social_links_label }}">
       {{- range $link := $contact.links -}}
         {{- if and $link.external $link.icon -}}
           {{- $href := default $link.href $link.footer_href -}}
           {{- $label := default $link.label $link.footer_label -}}
-          <a href="{{ $href | safeURL }}" target="_blank" rel="noopener noreferrer" aria-label="{{ $label }}">
+          <a class="icon-link" href="{{ $href | safeURL }}" target="_blank" rel="noopener noreferrer" aria-label="{{ $label }}">
             <i class="{{ $link.icon }} fa-lg fa-fw" aria-hidden="true"></i>
           </a>
         {{- end -}}

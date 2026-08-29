@@ -1,6 +1,12 @@
 <header class="page-hero">
   {{- with .eyebrow }}<p class="section-label">{{ . }}</p>{{ end }}
-  <h1>{{ .title }}{{ with .emphasis }} <em>{{ . }}</em>{{ end }}</h1>
+  <h1>
+    {{- if .title_italic }}
+      <span class="page-hero-title-italic">{{ .title }}</span>
+    {{- else }}{{ .title }}{{ end }}{{ with .emphasis }}
+    {{- if $.emphasis_flourish }} <em class="page-hero-emphasis-flourish" aria-label="{{ . }}"><span class="home-profile-surname-initial" aria-hidden="true">{{ substr . 0 1 }}</span><span class="home-profile-surname-rest" aria-hidden="true">{{ substr . 1 }}</span></em>
+    {{- else }} <em>{{ . }}</em>{{ end }}
+  {{- end }}</h1>
   {{- with .copy }}
     {{- if reflect.IsSlice . }}
       <p class="page-hero-copy">

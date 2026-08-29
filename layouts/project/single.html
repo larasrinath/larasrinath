@@ -13,62 +13,54 @@
       "page" .
       "back_href" "/project/"
       "back_label" $ui.project.all_projects
-      "eyebrow" $ui.project.eyebrow
-      "date_format" "January 2006"
+      "date_format" "January 2, 2006"
       "summary" $summary
-      "terms" $terms
+      "utility" (dict
+        "page" .
+        "ui" $ui
+        "links" .Params.links
+        "links_label" $ui.project.links_label
+      )
     ) }}
 
-    {{ if not $structuredBody }}
-      {{ with .Params.featured_image }}
-        <figure class="app-detail-figure app-shell">
-          <div>
-            {{ partial "shared/responsive-image.html" (dict
-              "page" $
-              "src" .
-              "alt" $.Params.featured_image_alt
-              "class" (printf "image-fit-%s" ($.Params.featured_image_fit | default "cover"))
-              "loading" "eager"
-              "fetchpriority" "high"
-              "sizes" "(max-width: 760px) calc(100vw - 40px), (max-width: 1280px) calc(100vw - 96px), 1232px"
-              "widths" (slice 360 640 960 1280 1600)
-            ) }}
-          </div>
-          {{ with $.Params.featured_image_credit }}<figcaption>{{ . }}</figcaption>{{ end }}
-        </figure>
+    <div class="app-detail-content">
+      {{ if not $structuredBody }}
+        {{ with .Params.featured_image }}
+          <figure class="app-detail-figure app-shell">
+            <div>
+              {{ partial "shared/responsive-image.html" (dict
+                "page" $
+                "src" .
+                "alt" $.Params.featured_image_alt
+                "class" (printf "image-fit-%s" ($.Params.featured_image_fit | default "cover"))
+                "loading" "eager"
+                "fetchpriority" "high"
+                "sizes" "(max-width: 760px) calc(100vw - 40px), (max-width: 1280px) calc(100vw - 96px), 1232px"
+                "widths" (slice 360 640 960 1280 1600)
+              ) }}
+            </div>
+            {{ with $.Params.featured_image_credit }}<figcaption>{{ . }}</figcaption>{{ end }}
+          </figure>
+        {{ end }}
       {{ end }}
-    {{ end }}
 
-    <div class="app-detail-body app-shell{{ if not $next }} page-tail-source{{ end }}">
-      <aside aria-label="{{ $ui.project.details_aria }}">
-        {{ partial "article/detail-rail.html" (dict
-          "page" .
-          "ui" $ui
-          "note" .Params.article_note
-          "terms" $terms
-          "default_label" $ui.project.details_label
-          "links" .Params.links
-          "links_label" $ui.project.links_label
-        ) }}
-      </aside>
-      {{ if $structuredBody }}
-        <div class="article-content app-detail-prose app-article-blocks app-project-blocks">{{ partial "article/body.html" (dict "page" . "ui" $ui "blocks" $structuredBody "page_content" $pageContent) }}</div>
-      {{ else }}
-        {{ $content := $pageContent }}
-        {{ if .Params.featured_image }}{{ $content = replaceRE `(?s)^\s*<p>\s*<img[^>]*>\s*</p>` "" $content }}{{ end }}
-        <div class="article-content app-detail-prose">{{ $content | safeHTML }}</div>
-      {{ end }}
+      <div class="app-detail-body app-shell{{ if not $next }} page-tail-source{{ end }}">
+        {{ if $structuredBody }}
+          <div class="article-content app-detail-prose app-article-blocks app-project-blocks">{{ partial "article/body.html" (dict "page" . "ui" $ui "blocks" $structuredBody "page_content" $pageContent) }}</div>
+        {{ else }}
+          {{ $content := $pageContent }}
+          {{ if .Params.featured_image }}{{ $content = replaceRE `(?s)^\s*<p>\s*<img[^>]*>\s*</p>` "" $content }}{{ end }}
+          <div class="article-content app-detail-prose">{{ $content | safeHTML }}</div>
+        {{ end }}
+        {{ partial "article/detail-taxonomy.html" (dict "terms" $terms "label" $ui.taxonomy.filed_under) }}
+      </div>
     </div>
   </article>
 
-  {{ with $next }}
-    <aside class="app-detail-next">
-      <a class="app-shell" href="{{ .RelPermalink }}">
-        <p>{{ $ui.project.up_next }}</p>
-        <div><h2>{{ .Title }}</h2>{{ with (.Params.featured_summary | default .Params.summary | default .Params.excerpt | default .Params.subtitle) }}<span>{{ . }}</span>{{ end }}</div>
-        <b aria-hidden="true">{{ $ui.icons.forward }}</b>
-      </a>
-    </aside>
-  {{ end }}
+  {{ partial "article/detail-next.html" (dict
+    "next" $next
+    "label" $ui.project.up_next
+    "icon" $ui.icons.forward
+  ) }}
 </main>
 {{ end }}

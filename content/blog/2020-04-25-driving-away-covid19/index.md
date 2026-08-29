@@ -23,10 +23,6 @@ reading_time: 2
 featured_image: featured.jpg
 featured_image_alt: Prescription pills spilling from a medicine bottle
 featured_image_caption: ''
-article_note:
-  label: Filed under
-  title: Life
-  text: 'How India and US are trying to "shoo" COVID19?'
 article_body:
   - type: opening
     text: The whole world is in lock down.

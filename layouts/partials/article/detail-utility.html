@@ -1,0 +1,16 @@
+{{- $page := .page -}}
+{{- $ui := .ui -}}
+
+<div class="app-detail-utility">
+  <div class="app-detail-utility-inner">
+    {{ with .reading_time }}<p class="app-detail-utility-meta">{{ . }} {{ $ui.article.minute_read }}</p>{{ end }}
+    {{ partial "article/detail-actions.html" (dict
+      "page" $page
+      "ui" $ui
+      "links" .links
+      "links_label" .links_label
+      "show_labels" false
+      "class" "app-detail-utility-actions"
+    ) }}
+  </div>
+</div>

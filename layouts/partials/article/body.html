@@ -44,8 +44,24 @@
     {{- end -}}
   {{- else if eq $type "image" -}}
     {{- partial "article/image.html" (dict "page" $page "block" $block "featured" false) -}}
+  {{- else if or (eq $type "prompt_list") (eq $type "prompt-list") (eq $type "prompts") -}}
+    {{- $promptID := printf "article-prompts-%d" $index -}}
+    <aside class="article-editorial-prompts" aria-labelledby="{{ $promptID }}">
+      <p class="article-editorial-prompts-label" id="{{ $promptID }}">{{ $block.label | default "Example prompts" }}</p>
+      <ol>
+        {{- range $promptIndex, $prompt := $block.items -}}
+          <li class="article-editorial-prompt">
+            <span class="article-editorial-prompt-index" aria-hidden="true">{{ printf "%02d" (add $promptIndex 1) }}</span>
+            <span class="article-editorial-prompt-text">{{ $page.RenderString (dict "display" "inline") $prompt }}</span>
+          </li>
+        {{- end -}}
+      </ol>
+    </aside>
   {{- else if eq $type "quote" -}}
-    {{- $style := lower ($block.style | default "standard") -}}
+    {{- $style := "standard" -}}
+    {{- if eq (lower ($block.style | default "standard")) "feature" -}}
+      {{- $style = "feature" -}}
+    {{- end -}}
     <blockquote class="article-editorial-quote article-editorial-quote--{{ $style }}">
       {{- if eq $style "feature" }}<span class="article-editorial-quote-mark" aria-hidden="true">{{ $ui.article.quote_mark }}</span>{{ end -}}
       <div>
