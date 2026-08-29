@@ -126,9 +126,9 @@ These regions appear across page families.
 
 | Region | Role | Implementation |
 |---|---|---|
-| Header wordmark | `T16 Brand flourish` | `.wordmark-initial`; a single compact S uses a heavier 700 treatment with a subtle `0.35px` stroke because Mea Culpa supplies one native weight. |
+| Header wordmark | `T16 Brand flourish` | `.wordmark-initial`; a single compact S uses a heavier 700 treatment with a subtle `0.35px` stroke because Mea Culpa supplies one native weight. At mobile widths it is anchored to the optical center of the bar independently of the right-aligned hamburger control. |
 | Primary navigation | `T12 Navigation or action` | `.primary-nav` |
-| Theme/mobile controls | Compact flat icon toggle; no border, shadow, visible wording, or menu divider. The opened menu is one continuous glass sheet spanning behind both the bar and menu contents, rather than two adjoining translucent layers. At mobile widths, header links and controls never use positional hover/focus movement, even when previewed with a fine pointer. | `.theme-toggle`, `.menu-toggle` |
+| Theme/mobile controls | Compact flat icon toggle; no border, shadow, visible wording, or menu divider. The header uses a lightly translucent `0.92` canvas with an `18px` backdrop blur so scrolling copy is masked instead of appearing partially cut off. The opened menu is one continuous viewport-height glass sheet spanning behind both the bar and menu contents, rather than two adjoining translucent layers or a panel edge cutting through the page below. At mobile widths, header links and controls never use positional hover/focus movement, even when previewed with a fine pointer. | `.theme-toggle`, `.menu-toggle` |
 | Standard page eyebrow | `T13 Label/metadata/tag` | `.page-hero .section-label` |
 | Standard page H1 | `T02 Page/detail title` | `.page-hero h1` |
 | Standard hero supporting copy | `T08 Supporting copy` | `.page-hero > p:last-child` |
@@ -245,8 +245,8 @@ Template: `layouts/blog/list-grid.html`
 | Post date | `T14 Date/annotation` | Fraunces 400 italic. |
 | Post title | `T03 Section/list title` | Fraunces. |
 | Post summary | `T08 Supporting copy` | Archive preview using the soft color. |
-| Reading time and tags | `T13 Label/metadata/tag` | Inter. |
-| Entry rhythm | Archive layout | Content-led row height with fluid `1.5rem–2rem` block padding; no fixed desktop minimum height. |
+| Reading time and tags | `T13 Label/metadata/tag` | Inter. Below 900px these sit beneath the preview, aligned to the same left edge and separated by a middle dot. |
+| Entry rhythm | Archive layout | Content-led row height with fluid `1.5rem–2rem` block padding; no fixed desktop minimum height. The desktop three-column composition collapses into one coherent stack on wide phones and small tablets. |
 | Pagination | `T13 Label/metadata/tag` | Compact archive controls. |
 
 ### 5.7 Blog article `/blog/{slug}/`

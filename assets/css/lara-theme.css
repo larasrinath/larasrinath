@@ -68,7 +68,7 @@
   --section-entry-space: clamp(3rem, calc(2.715rem + 1.19vw), 3.5rem);
   --content-entry-size: clamp(2rem, calc(1.857rem + 0.595vw), 2.25rem);
   --hero-end-space: calc(var(--section-entry-space) - var(--content-entry-size));
-  --canvas-glass: rgba(252, 251, 247, 0.76);
+  --canvas-glass: rgba(252, 251, 247, 0.92);
   --canvas-overlay: rgba(252, 251, 247, 0.98);
   --link-jump: -0.125rem;
   --archive-link-shift: 0.75rem;
@@ -161,7 +161,7 @@ html[data-theme="dark"] {
   --paper: #252420;
   --paper-deep: #1c1b18;
   --canvas: var(--paper-deep);
-  --canvas-glass: rgba(28, 27, 24, 0.78);
+  --canvas-glass: rgba(28, 27, 24, 0.92);
   --canvas-overlay: rgba(28, 27, 24, 0.98);
   --ink: #c2bfba;
   --ink-heading: #d4d1cc;
@@ -293,8 +293,8 @@ summary:focus-visible {
   z-index: 100;
   inset: 0 0 auto;
   background: var(--canvas-glass);
-  -webkit-backdrop-filter: blur(12px);
-  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(18px);
+  backdrop-filter: blur(18px);
 }
 
 .topbar-inner {
@@ -1194,6 +1194,34 @@ html[data-theme="dark"] .app-detail-figure img.image-fit-contain {
     grid-row: 1;
     width: min(78vw, 40svh, 24rem);
   }
+
+  /* Notes become one readable unit before the three-column archive starts
+     feeling cramped on wide phones and small tablets. */
+  .blog-post-row {
+    grid-template-columns: minmax(0, 1fr);
+    align-items: start;
+    gap: 0;
+  }
+  .blog-post-row .post-meta,
+  .blog-post-row .post-copy,
+  .blog-post-row .post-details {
+    grid-column: 1;
+    justify-self: stretch;
+    text-align: left;
+  }
+  .blog-post-row .post-copy { margin-top: 0.55rem; }
+  .blog-post-row .post-details {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: baseline;
+    gap: 0.25rem 0.75rem;
+    margin-top: 0.75rem;
+  }
+  .blog-post-row .post-details span + span::before {
+    content: "\00b7";
+    margin-right: 0.75rem;
+    color: var(--muted);
+  }
 }
 
 @media (max-width: 900px) {
@@ -1219,9 +1247,11 @@ html[data-theme="dark"] .app-detail-figure img.image-fit-contain {
   }
   .topbar-actions { gap: 0.5rem; }
   .wordmark {
-    position: relative;
+    position: absolute;
     z-index: 2;
-    transform: none;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
   }
   .wordmark-initial { font-size: 1.7rem; line-height: 0.8; }
   .menu-toggle { z-index: 2; display: block; }
@@ -1232,10 +1262,12 @@ html[data-theme="dark"] .app-detail-figure img.image-fit-contain {
     top: 0;
     right: 0;
     left: 0;
+    min-height: 100dvh;
     padding-top: 4rem;
     background: var(--canvas-glass);
-    -webkit-backdrop-filter: blur(12px);
-    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(18px);
+    backdrop-filter: blur(18px);
+    overflow-y: auto;
     opacity: 0;
     visibility: hidden;
     transform: translateY(-0.75rem);
@@ -1267,12 +1299,9 @@ html[data-theme="dark"] .app-detail-figure img.image-fit-contain {
      with a mouse. Keep every header control on a fixed optical baseline;
      only its color may change. The menu panel and toggle thumb retain their
      own state animations. */
-  .topbar .wordmark,
   .topbar .primary-nav a,
   .topbar .theme-toggle,
   .topbar .menu-toggle,
-  .topbar .wordmark:hover,
-  .topbar .wordmark:focus-visible,
   .topbar .primary-nav a:hover,
   .topbar .primary-nav a:focus-visible,
   .topbar .theme-toggle:hover,
@@ -1281,6 +1310,12 @@ html[data-theme="dark"] .app-detail-figure img.image-fit-contain {
   .topbar .menu-toggle:focus-visible {
     top: 0 !important;
     transform: none !important;
+  }
+  .topbar .wordmark,
+  .topbar .wordmark:hover,
+  .topbar .wordmark:focus-visible {
+    top: 50% !important;
+    transform: translate(-50%, -50%) !important;
   }
   .theme-control {
     justify-content: flex-start;
