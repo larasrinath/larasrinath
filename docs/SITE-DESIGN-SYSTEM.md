@@ -217,6 +217,7 @@ The site self-hosts its fonts and gives each one a specific role.
 | Lora | `Lara Lora` | T04, T05, T07, T09 body copy, and the remaining assigned editorial roles. |
 | Inter | `Lara Demo Inter` | Navigation, metadata, controls, summaries, and supporting copy. |
 | Mea Culpa | `Lara Mea Culpa` | T16 header wordmark and homepage/About surname-initial flourish only. |
+| Mea Culpa S derivative | `Lara Mea Culpa S` | Available S-only, optically thinned 350-weight asset; currently unused. |
 
 The governing typography rules are:
 
@@ -261,10 +262,14 @@ reverted without editing component selectors:
 ```
 
 T01 is the deliberate display exception: both visible name words use light
-Fraunces italics at weight 300, while the surname initial receives the small
+Fraunces italics at weight 300 in the active accent, while the surname initial receives the small
 T16 Mea Culpa flourish. Standard T02 titles use Fraunces 400 upright with a
-Fraunces 400 italic accent. The About H1 is a named exception: its Fraunces
-title and accent stay at weight 300, with the same T16 initial flourish.
+Fraunces 400 italic accent. The About H1 is a named, page-scoped exception:
+both name words use Fraunces italic at weight 300 and a larger fluid
+`3.75rem–6.25rem` scale in the active accent, while the surname keeps a
+T16 initial flourish at 95% of the title size with a small About-only upward optical offset. The supporting copy is vertically centered against this
+larger display line instead of sharing the standard hero's bottom alignment. No
+other page hero inherits this exception.
 
 Excessive bold text was removed during the rebuild because it made every sentence compete for attention. Bold should identify a key phrase, not act as default decoration.
 

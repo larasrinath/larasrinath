@@ -28,6 +28,14 @@
   src: url("/fonts/MeaCulpa-Regular.woff2") format("woff2");
 }
 
+@font-face {
+  font-family: "Lara Mea Culpa S";
+  font-style: normal;
+  font-weight: 350;
+  font-display: swap;
+  src: url("/fonts/MeaCulpa-S-350.woff2") format("woff2");
+}
+
 /* Fraunces supplies T01–T03 plus the italic T06, T11, and T14 treatments. Lora
    remains the supporting editorial serif for the other assigned roles. */
 @font-face {
@@ -334,11 +342,22 @@ summary:focus-visible {
 }
 
 .wordmark-initial {
+  display: inline-block;
   color: var(--accent);
-  font: normal 700 1.9rem/0.72 var(--script);
-  -webkit-text-stroke: 0.35px currentColor;
+  font: normal 400 2.15rem/0.72 var(--script);
+  -webkit-text-stroke: 0.15px currentColor;
   paint-order: stroke fill;
+  transform-origin: center;
+  transition: transform 0.25s cubic-bezier(0.22, 1, 0.36, 1);
 }
+
+.wordmark-initial::before { content: attr(data-letter); }
+
+.wordmark:hover,
+.wordmark:focus-visible { top: 0 !important; }
+
+.wordmark:hover .wordmark-initial,
+.wordmark:focus-visible .wordmark-initial { transform: scale(1.15); }
 
 .menu-toggle {
   display: none;
@@ -570,7 +589,7 @@ html[data-theme="dark"] .theme-toggle-thumb {
 
 .app-home .home-profile h1 {
   margin: 0;
-  color: var(--ink) !important;
+  color: var(--accent) !important;
   font: var(--type-home-weight) clamp(6.25rem, 9.56vw, 9.5rem)/0.86 var(--display-serif) !important;
   letter-spacing: -0.035em !important;
   text-transform: none !important;
@@ -598,7 +617,7 @@ html[data-theme="dark"] .theme-toggle-thumb {
   display: inline-block;
   margin-right: 0.035em;
   font: normal 400 1.13em/0.62 var(--script);
-  transform: translateY(0.08em);
+  transform: translateY(-0.03em);
 }
 
 .home-profile-surname-rest {
@@ -915,7 +934,11 @@ html[data-theme="dark"] .app-detail-figure img.image-fit-contain {
 
 .about-detail,
 .contact-form-layout { display: grid; grid-template-columns: repeat(12, minmax(0, 1fr)); gap: 3.5rem; width: 100%; max-width: var(--shell); margin: 0 auto; padding: 0 var(--shell-gutter) var(--content-end-space); }
-.about-page .page-hero h1 { font-weight: 300 !important; }
+.about-page .page-hero h1 {
+  font-size: clamp(3.75rem, 7.75vw, 6.25rem) !important;
+  font-weight: 300 !important;
+}
+.about-page .page-hero > p:last-child { align-self: center; }
 .about-detail {
   grid-template-columns: minmax(0, 1fr) minmax(300px, 0.48fr);
   align-items: start;
@@ -929,8 +952,12 @@ html[data-theme="dark"] .app-detail-figure img.image-fit-contain {
   font-style: var(--type-display-accent-style);
   font-weight: 300;
 }
+.about-page .page-hero h1 .page-hero-emphasis-flourish .home-profile-surname-initial {
+  font-size: 0.95em;
+  transform: translateY(-0.03em);
+}
 .about-page .page-hero h1 .page-hero-title-italic {
-  color: var(--ink);
+  color: var(--accent) !important;
   font-family: var(--display-serif);
   font-style: italic;
   font-weight: 300;
@@ -1253,7 +1280,7 @@ html[data-theme="dark"] .app-detail-figure img.image-fit-contain {
     left: 50%;
     transform: translate(-50%, -50%);
   }
-  .wordmark-initial { font-size: 1.7rem; line-height: 0.8; }
+  .wordmark-initial { font-size: 2rem; line-height: 0.8; }
   .menu-toggle { z-index: 2; display: block; }
   .topbar[data-menu-ready] .primary-navigation {
     display: block;

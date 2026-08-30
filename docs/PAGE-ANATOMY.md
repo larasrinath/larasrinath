@@ -63,7 +63,7 @@ it appears on another page.
 
 | Role | Use for | Typeface | Current treatment | Color role | Never use for |
 |---|---|---|---|---|---|
-| `T01 Home display` | Homepage name. | Fraunces | 300 italic throughout; fluid `6.25rem–9.5rem`; surname initial adds the T16 flourish. | `--ink`; surname `--accent` | Page titles, headings, or repeated branding. |
+| `T01 Home display` | Homepage name. | Fraunces | 300 italic throughout; fluid `6.25rem–9.5rem`; surname initial adds the T16 flourish. | `--accent` throughout | Page titles, headings, or repeated branding. |
 | `T02 Page title` | Single page, project, or article H1. | Fraunces | 400 upright; emphasis 400 italic; fluid `3.5rem–5.3rem`; `0.005em` tracking. | `--ink`; emphasis `--accent` | Sections or archive-entry titles. |
 | `T03 Section title` | Major sections and archive titles. | Fraunces | 400 upright; normally fluid `1.875rem–2.25rem`; the shared experience title uses `2.25rem–3rem`. | `--ink-heading` | Prose subheads, records, categories, or metadata. |
 | `T04 Editorial subheading` | H3/H4 divisions inside long-form editorial content. | Lora | 500 upright; generally `1.5rem` with compact leading. | `--ink-heading` | Résumé records, archive entries, or UI labels. |
@@ -126,7 +126,7 @@ These regions appear across page families.
 
 | Region | Role | Implementation |
 |---|---|---|
-| Header wordmark | `T16 Brand flourish` | `.wordmark-initial`; a single compact S uses a heavier 700 treatment with a subtle `0.35px` stroke because Mea Culpa supplies one native weight. At mobile widths it is anchored to the optical center of the bar independently of the right-aligned hamburger control. |
+| Header wordmark | `T16 Brand flourish` | `.wordmark-initial`; a single compact S uses the original 400-weight Mea Culpa face at `2.15rem` desktop and `2rem` mobile, with a subtle `0.15px` optical stroke for legibility at header size. The glyph is generated separately while the link retains “Lara Srinath” as its real text, so dragged links receive the full name. Hover and keyboard focus magnify only the glyph by 15% without shifting the link or top bar. At mobile widths it is anchored to the optical center of the bar independently of the right-aligned hamburger control. |
 | Primary navigation | `T12 Navigation or action` | `.primary-nav` |
 | Theme/mobile controls | Compact flat icon toggle; no border, shadow, visible wording, or menu divider. The header uses a lightly translucent `0.92` canvas with an `18px` backdrop blur so scrolling copy is masked instead of appearing partially cut off. The opened menu is one continuous viewport-height glass sheet spanning behind both the bar and menu contents, rather than two adjoining translucent layers or a panel edge cutting through the page below. At mobile widths, header links and controls never use positional hover/focus movement, even when previewed with a fine pointer. | `.theme-toggle`, `.menu-toggle` |
 | Standard page eyebrow | `T13 Label/metadata/tag` | `.page-hero .section-label` |
@@ -156,7 +156,7 @@ Template: `layouts/about/list.html`
 
 | Visible region | Role | Notes |
 |---|---|---|
-| Page eyebrow, H1, hero copy | Shared page head | `T13`, `T02`, `T08`; the About H1 is the named T02 exception: Fraunces 300 italic for both name words, accent on the surname, and the T16 Mea Culpa surname initial. |
+| Page eyebrow, H1, hero copy | Shared page head | `T13`, `T02`, `T08`; the About H1 is the named, page-scoped T02 exception: Fraunces 300 italic, a larger fluid `3.75rem–6.25rem` scale, the active accent on both name words, and a T16 Mea Culpa surname initial at 95% of the title size with an About-only upward optical offset. Its three-line supporting copy is optically centered against the name rather than bottom-aligned. Other page heroes retain their standard treatment. |
 | “What I do” label | `T13 Label/metadata/tag` | Professional-context locator. |
 | “What I do” paragraphs | `T07 Editorial lead` | Lora lead treatment; primary ink. |
 | “How I got here” label | `T13 Label/metadata/tag` | Personal-history locator. |

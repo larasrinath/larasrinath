@@ -4,7 +4,8 @@
 <header class="topbar{{ if .IsHome }} app-topbar{{ end }}" role="banner">
   <div class="topbar-inner">
     <a class="wordmark" href="{{ "/" | relURL }}" aria-label="{{ $ui.brand.home_label }}">
-      <span class="wordmark-initial" aria-hidden="true">{{ substr $home.hero.name_emphasis 0 1 }}</span>
+      <span class="wordmark-initial" data-letter="{{ substr $home.hero.name_emphasis 0 1 }}" aria-hidden="true"></span>
+      <span class="visually-hidden">{{ $home.hero.name_prefix }} {{ $home.hero.name_emphasis }}</span>
     </a>
     <div class="topbar-actions">
       <nav id="primary-navigation" class="primary-navigation" aria-label="{{ $ui.accessibility.primary_navigation }}" data-menu>
