@@ -38,6 +38,7 @@ The generated `public/` and `resources/` directories are ignored by Git. Do not 
 
 - `assets/css/lara-theme.css` - the complete project-owned visual system.
 - `assets/js/custom.js` - progressive enhancements, including the mobile navigation.
+- `assets/js/anatomy.js` and `assets/css/anatomy.css` - typography inspector assets, loaded only with `?anatomy=1`.
 - `assets/img/` - global source images processed by Hugo.
 - `data/home.yaml` - shared navigation, homepage identity, portrait, and social links.
 - `data/experience.yaml` - experience and capability data shared by the About and Résumé pages.

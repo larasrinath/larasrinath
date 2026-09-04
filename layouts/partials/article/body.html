@@ -3,6 +3,8 @@
 {{- $blocks := .blocks | default $page.Params.article_body -}}
 {{- $pageContent := .page_content -}}
 {{- $featuredImageIndex := -1 -}}
+{{- $hasTOC := false -}}
+{{- range $blocks }}{{ if eq .type "toc" }}{{ $hasTOC = true }}{{ end }}{{ end -}}
 
 {{- range $index, $block := $blocks -}}
   {{- $type := lower ($block.type | default "paragraph") -}}
@@ -38,10 +40,12 @@
     </p>
   {{- else if eq $type "heading" -}}
     {{- if eq ($block.level | default 2) 3 -}}
-      <h3>{{ $page.RenderString (dict "display" "inline") $block.text }}</h3>
+      <h3{{ if $hasTOC }} id="article-heading-{{ $index }}"{{ end }}>{{ $page.RenderString (dict "display" "inline") $block.text }}</h3>
     {{- else -}}
-      <h2>{{ $page.RenderString (dict "display" "inline") $block.text }}</h2>
+      <h2{{ if $hasTOC }} id="article-heading-{{ $index }}"{{ end }}>{{ $page.RenderString (dict "display" "inline") $block.text }}</h2>
     {{- end -}}
+  {{- else if in (slice "figure" "gallery" "video" "diagram" "toc") $type -}}
+    {{ partial "article/media.html" (dict "page" $page "block" $block) }}
   {{- else if eq $type "image" -}}
     {{- partial "article/image.html" (dict "page" $page "block" $block "featured" false) -}}
   {{- else if or (eq $type "prompt_list") (eq $type "prompt-list") (eq $type "prompts") -}}

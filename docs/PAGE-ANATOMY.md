@@ -417,3 +417,5 @@ In anatomy mode:
 
 The inspector is opt-in. Without the query parameter, the normal site receives
 no panels or anatomy highlighting.
+
+The inspector JavaScript and CSS are separate assets fetched only when `anatomy=1` is present. Ordinary page loads fetch neither inspector asset.

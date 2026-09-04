@@ -107,3 +107,8 @@ not_found:
       href: /blog/
     - label: Work
       href: /project/
+
+media:
+  table_of_contents: Table of contents
+  open_image: Open full-size image
+  download_video: Download video

@@ -47,7 +47,9 @@
   {{ with resources.Get "css/lara-theme.css" | minify | fingerprint }}
     <link rel="stylesheet" href="{{ .RelPermalink }}" integrity="{{ .Data.Integrity }}" crossorigin="anonymous">
   {{ end }}
+  {{ $anatomyScript := resources.Get "js/anatomy.js" | minify | fingerprint }}
+  {{ $anatomyStyle := resources.Get "css/anatomy.css" | minify | fingerprint }}
   {{ with resources.Get "js/custom.js" | minify | fingerprint }}
-    <script src="{{ .RelPermalink }}" integrity="{{ .Data.Integrity }}" crossorigin="anonymous" defer></script>
+    <script src="{{ .RelPermalink }}" integrity="{{ .Data.Integrity }}" crossorigin="anonymous" data-anatomy-script="{{ $anatomyScript.RelPermalink }}" data-anatomy-style="{{ $anatomyStyle.RelPermalink }}" defer></script>
   {{ end }}
 </head>

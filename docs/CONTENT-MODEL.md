@@ -27,7 +27,7 @@ hugo new content blog/my-new-post/index.md
 
 Edit the generated YAML, add any bundle images beside `index.md`, and change `draft` to `false` when ready. The blog index updates automatically.
 
-New posts start with this structured YAML model automatically. The shared `layouts/partials/article/body.html` renderer supports `opening`, `paragraph`, `heading`, `image`, `quote`, `list`, and `signoff` blocks. Image blocks accept `src`, `alt`, and `caption`; quote blocks accept `style` (`feature`, `chant`, or `standard`), `text` or `lines`, and `cite`. Paragraph and signoff blocks may also use `lines` when deliberate line breaks matter. Lists are unordered by default; set `ordered: true` for numbered lists. Use `reading_time` when the article body is stored in YAML. If `article_body` is absent, the blog template renders the Markdown body unchanged for existing content.
+New posts start with this structured YAML model automatically. The shared `layouts/partials/article/body.html` renderer supports `opening`, `paragraph`, `heading`, `image`, `quote`, `list`, and `signoff` blocks. Image blocks accept `src`, `alt`, and `caption`; quote blocks accept `style` (`feature` or `standard`), `text` or `lines`, and `cite`. Paragraph and signoff blocks may also use `lines` when deliberate line breaks matter. Lists are unordered by default; set `ordered: true` for numbered lists. Use `reading_time` when the article body is stored in YAML. If `article_body` is absent, the blog template renders the Markdown body unchanged for existing content.
 
 Blog heroes are always text-only. Store the featured asset once at the page-bundle root (normally `featured.jpg` or `featured.png`) and use that same path for `featured_image` and the first populated `image` block. `featured_image` supplies the page and social metadata. The shared article renderer moves the first image directly after the opening lead and gives only that image the theme backplate. Later image blocks remain in their authored positions and render as plain secondary media. Leave the image block's `src` empty when an article has no featured image.
 
@@ -46,3 +46,52 @@ Keep page-specific media inside its page bundle. Put global images that Hugo sho
 ## Special scenarios
 
 Use a front-matter `layout` override only when a page genuinely needs a one-off presentation. The default blog and project layouts should handle normal new entries without template or stylesheet edits.
+
+## Optional media and navigation blocks
+
+Blog `article_body` and project `project_body` support these blocks through the
+shared `article/media.html` partial. All labels and captions are authored in YAML;
+default interface labels live in `data/ui.yaml` under `media`.
+
+```yaml
+article_body:
+  - type: toc
+    label: On this page
+  - type: heading
+    text: The process
+  - type: figure
+    src: process.jpg
+    alt: Planning team reviewing the weekly forecast
+    caption: Weekly planning review.
+  - type: gallery
+    items:
+      - src: screenshots/overview.png
+        alt: Planning overview
+        caption: The overview screen.
+      - src: screenshots/detail.png
+        alt: Individual forecast detail
+  - type: diagram
+    src: process.svg
+    alt: Demand feeds inventory planning, then replenishment
+    caption: The planning sequence.
+  - type: video
+    src: walkthrough.mp4
+    poster: walkthrough.jpg
+    label: Watch the planning walkthrough
+    caption: A short demonstration.
+```
+
+Media paths may reference page-bundle files, root-relative static files, or remote
+URLs. Images use native lazy loading and link to the full-size file; no lightbox
+library is required. Galleries use responsive columns. Videos have native controls,
+never autoplay, and accept an optional poster. Diagrams use supplied SVG or raster
+images; Mermaid source text is not supported. `toc` links to structured heading
+blocks, including repeated heading names, using unique IDs based on block position.
+
+Five shortcode adapters remain available for the existing Markdown exceptions:
+`figure`, `gallery`, `video`, `diagram`, and `toc`. They call the same renderer.
+Figure, diagram, and video accept `src` and `caption`; images also accept `alt`,
+and video accepts `poster` and `label`. `gallery` reads images from a page-bundle
+`gallery/` folder, or the folder named by `album`. Prefer YAML gallery items when
+individual alt text and captions are needed. The Markdown `toc` uses Hugo's heading
+anchors. New pages continue to use YAML body blocks.

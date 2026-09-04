@@ -1,2 +1,1 @@
-<h2>{{ i18n "table_of_contents" }}</h2>
-{{ $.Page.TableOfContents }}
+{{ partial "article/media.html" (dict "page" .Page "block" (dict "type" "toc" "label" (.Get "label"))) }}

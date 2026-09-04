@@ -2,7 +2,7 @@
 
 **Manager - Anaplan Delivery** at [GenXAI](https://www.genxai.com/) | Certified **Master Anaplanner** & **Anaplan Solution Architect**
 
-I help businesses design and model their operations, turning complex data into timely, actionable decisions. With over nine years of experience building Anaplan applications across FMCG, chemical, energy, and retail industries, my passion is taking messy real-world processes and building elegant planning solutions.
+I design and lead the delivery of enterprise planning solutions that connect supply chain operations with financial decisions. With over ten years of experience across FMCG, chemical, energy, and retail industries, my work spans Anaplan architecture, demand forecasting, inventory optimization, and integrated business planning. I work with business and technology teams from discovery through production support, translating operational requirements into planning models and building the integrations, governance, and team capabilities needed to sustain them.
 
 ### What I Do
 

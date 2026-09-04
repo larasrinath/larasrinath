@@ -1,0 +1,51 @@
+{{- $page := .page -}}
+{{- $block := .block -}}
+{{- $type := $block.type -}}
+{{- if eq $type "toc" -}}
+  <nav aria-label="{{ $block.label | default hugo.Data.ui.media.table_of_contents }}">
+    <p>{{ $block.label | default hugo.Data.ui.media.table_of_contents }}</p>
+    {{- $blocks := $page.Params.article_body | default $page.Params.project_body -}}
+    {{- if $blocks -}}
+      <ul>
+      {{- range $index, $item := $blocks -}}
+        {{- if eq $item.type "heading" -}}
+          <li><a href="#article-heading-{{ $index }}">{{ $page.RenderString (dict "display" "inline") $item.text }}</a></li>
+        {{- end -}}
+      {{- end -}}
+      </ul>
+    {{- else -}}
+      {{ $page.TableOfContents }}
+    {{- end -}}
+  </nav>
+{{- else if eq $type "gallery" -}}
+  <div class="article-media-gallery">
+    {{- range $block.items -}}
+      {{ partial "article/media.html" (dict "page" $page "block" (merge . (dict "type" "figure"))) }}
+    {{- else -}}
+      {{ errorf "Gallery needs items in %s" $page.Path }}
+    {{- end -}}
+  </div>
+{{- else -}}
+  {{- $src := $block.src -}}
+  {{- if not $src }}{{ errorf "%s needs src in %s" $type $page.Path }}{{ end -}}
+  {{- with $page.Resources.GetMatch $src }}{{ $src = .RelPermalink }}{{ end -}}
+  <figure class="article-editorial-figure article-editorial-figure--secondary">
+    {{- if eq $type "video" -}}
+      {{- $poster := $block.poster -}}
+      {{- with $page.Resources.GetMatch ($poster | default "__no_poster__") }}{{ $poster = .RelPermalink }}{{ end -}}
+      <video controls playsinline preload="metadata" style="display:block;max-width:100%;height:auto"{{ with $poster }} poster="{{ . | relURL }}"{{ end }}{{ with $block.label }} aria-label="{{ . }}"{{ end }}>
+        <source src="{{ $src | relURL }}">
+        <a href="{{ $src | relURL }}">{{ $block.label | default hugo.Data.ui.media.download_video }}</a>
+      </video>
+    {{- else -}}
+      <a href="{{ $src | relURL }}" aria-label="{{ $block.alt | default hugo.Data.ui.media.open_image }}">
+      {{- if eq (lower (path.Ext $src)) ".svg" -}}
+        <img src="{{ $src | relURL }}" alt="{{ $block.alt | default "" }}" loading="lazy" style="display:block;max-width:100%;height:auto">
+      {{- else -}}
+        {{ partial "shared/responsive-image.html" (dict "page" $page "src" $block.src "alt" $block.alt "sizes" "(max-width: 760px) 100vw, 800px") }}
+      {{- end -}}
+      </a>
+    {{- end -}}
+    {{- with $block.caption }}<figcaption>{{ $page.RenderString (dict "display" "inline") . }}</figcaption>{{ end -}}
+  </figure>
+{{- end -}}
