@@ -3,7 +3,7 @@ title: Work
 eyebrow: Work
 hero_title: Built from
 hero_emphasis: curiosity.
-description: Models, tools and visual experiments I built to make complicated things a little less complicated.
+description: Things I’ve built while exploring, learning and following ideas that caught my interest.
 list_label: Projects
 tags_label: Project tags
 pagination:
@@ -20,7 +20,7 @@ layout: list-grid # list, list-sidebar, list-grid
 sidebar: 
   title: Work
   description: |
-    Models, tools and visual experiments I built to make complicated things a little less complicated.
+    Things I’ve built while exploring, learning and following ideas that caught my interest.
   text_link_label: ""
   text_link_url: ""
   show_sidebar_adunit: false # show ad container

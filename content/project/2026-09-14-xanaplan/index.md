@@ -1,13 +1,13 @@
 ---
 title: "Xanaplan: Planning Assistant"
 subtitle: "A page-aware AI assistant alongside Anaplan"
-hero_summary: "A Chrome side-panel assistant that connects planning questions to the current Anaplan page, verified model data and business context."
-excerpt: "Planning questions, grounded in the page"
-featured_summary: "A local Chrome assistant for Anaplan that combines page context, read-only model access and saved conversations to help explain planning data."
+hero_summary: "An AI assistant that helps Anaplan users find planning data, understand model logic and ask follow-up questions in plain language."
+excerpt: "Making planning data easier to understand and use"
+featured_summary: "An assistant beside Anaplan that helps users find data and understand the logic behind a plan through plain-language questions."
 featured_home: false
 featured_weight: 99
 featured_image: featured.png
-featured_image_alt: "Xanaplan logo with interwoven blue, lavender and cream ribbons"
+featured_image_alt: "Xanaplan logo"
 featured_image_fit: contain
 featured_meta: "Anaplan · AI · Chrome Extension — 2026"
 date: "2026-09-14"
@@ -34,29 +34,47 @@ links:
 project_body:
   - type: opening
     text: >-
-      A planning question depends on more than a number. The page, period, product selection and business definition all shape what that number means. I built **Xanaplan** to bring those pieces into a conversation beside the Anaplan page where the question starts.
-  - type: image
+      A planner needs to understand what the numbers mean and how they relate to the business. **Xanaplan** lets users ask about planning data and model logic in plain language, alongside the Anaplan page they are working on.
+  - type: figure
     src: featured.png
-    alt: Xanaplan logo with interwoven blue, lavender and cream ribbons
-    caption: The Xanaplan mark supplies the blue, lavender and cream palette used throughout the assistant.
+    alt: Xanaplan logo
+    caption: Ask planning questions alongside Anaplan, using the current page, selected filters and your business definitions.
   - type: heading
     level: 2
     text: The Problem
   - type: paragraph
     text: >-
-      Asking an AI assistant about a planning model usually means reconstructing the context: which page is open, what the selectors mean, where a metric comes from and how the business defines it. Copying a table into a chat can lose those connections. An answer may sound plausible while referring to the wrong period, model or slice of data.
+      Having access to a planning model does not make every business question easy to answer. A user may need to find a value for a particular product and period, understand which products belong to a category, or explain the rules behind a metric. Doing that can require knowing where the data lives, how the hierarchies are organized and how the calculations work.
+  - type: paragraph
+    text: >-
+      A question such as "Which products are under Shampoo?" can become a search through pages and selections. Explaining a calculation may require documentation or help from someone who knows the model. That extra work interrupts the planning task, especially for users who work with the results but did not build the model.
+  - type: paragraph
+    text: >-
+      Xanaplan addresses this by giving users a way to ask directly for the information or explanation they need. The assistant uses the relevant model data and business definitions to answer, with sources the user can inspect.
   - type: heading
     level: 2
     text: A Conversation Beside the Plan
   - type: paragraph
     text: >-
       Xanaplan runs in a Chrome side panel. It follows an enabled Anaplan app and its published board or worksheet, or stays pinned to a page I choose. Saved business definitions give the assistant context for interpreting the model, while starter questions draw on verified page cards and selections.
+  - type: figure
+    src: anaplan-assistant.png
+    alt: Xanaplan explaining a product hierarchy beside the Anaplan worksheet
+    caption: Xanaplan explains a product hierarchy alongside the Anaplan worksheet, keeping the model and conversation in view.
   - type: list
     items:
       - "**Page-aware questions:** use the current page and confirmed selections as the starting point for an answer."
       - "**Inspectable sources:** answers include model sources, effective filters and read limits, so the evidence can be checked."
       - "**A visible working state:** activity shows when the assistant is finding data or preparing an answer, with a Stop control available throughout."
       - "**Conversations that carry forward:** completed chats are saved locally and can continue on the current page or with re-verified saved selections."
+  - type: gallery
+    items:
+      - src: admin-setup.png
+        alt: Xanaplan Admin setup showing AI access, Anaplan access and enabled planning apps
+        caption: Connect AI and Anaplan access, enable apps and add their business definitions.
+      - src: starter-questions.png
+        alt: Xanaplan starter questions for the Product Hierarchy Admin page
+        caption: Start with a question drawn from the current page, or ask your own.
   - type: heading
     level: 2
     text: Keeping the Context Attached
@@ -66,6 +84,10 @@ project_body:
   - type: paragraph
     text: >-
       The same principle applies to history. Reopening a conversation does not make yesterday's evidence current. Xanaplan re-verifies the selected context before continuing, preserves the sources on earlier answers and keeps unresolved selections explicit.
+  - type: figure
+    src: saved-chats.png
+    alt: Xanaplan saved chats showing a search field and previous planning questions with their app and page context
+    caption: Find earlier questions by chat, app or page and reopen the conversation.
   - type: heading
     level: 2
     text: How It Works
