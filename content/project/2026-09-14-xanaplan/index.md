@@ -1,9 +1,9 @@
 ---
-title: "Xanaplan: Planning Assistant"
-subtitle: "A page-aware AI assistant alongside Anaplan"
-hero_summary: "An AI assistant that helps Anaplan users find planning data, understand model logic and ask follow-up questions in plain language."
-excerpt: "Making planning data easier to understand and use"
-featured_summary: "An assistant beside Anaplan that helps users find data and understand the logic behind a plan through plain-language questions."
+title: "Xanaplan: Business Assistant"
+subtitle: "A business assistant alongside Anaplan"
+hero_summary: "A business assistant that answers questions using your Anaplan data and business context."
+excerpt: "Business questions, answered alongside Anaplan"
+featured_summary: "A local business assistant alongside Anaplan for asking questions about your data, with business context and sources you can inspect."
 featured_home: false
 featured_weight: 99
 featured_image: featured.png
@@ -12,7 +12,7 @@ featured_image_fit: contain
 featured_meta: "Anaplan · AI · Chrome Extension — 2026"
 date: "2026-09-14"
 author: "Lara Srinath"
-draft: false
+draft: true
 tags:
   - Anaplan
   - Generative AI
@@ -34,7 +34,7 @@ links:
 project_body:
   - type: opening
     text: >-
-      A planner needs to understand what the numbers mean and how they relate to the business. **Xanaplan** lets users ask about planning data and model logic in plain language, alongside the Anaplan page they are working on.
+      **Xanaplan** is a business assistant that sits alongside Anaplan. Ask questions in plain language, using your app's data and business definitions, and inspect the sources behind the answers.
   - type: figure
     src: featured.png
     alt: Xanaplan logo
