@@ -152,7 +152,7 @@ The palette is centralized in `:root` inside `assets/css/lara-theme.css`.
 | `--muted` | `#8e8f94` | `#8e8f94` | Captions, copyright, inactive icons, and genuinely tertiary text. |
 | `--accent` | `#aa0022` | `#b2707b` | Deep-crimson light emphasis and restrained muted-rose dark emphasis. |
 | `--line` | `#e6e3e1` | `#3e3a35` | Dividers and outlines. |
-| `--media-surface` | `var(--canvas)` | `#302e29` | Neutral backing for contained or transparent imagery. |
+| `--media-surface` | `#eeece7` | `#302e29` | Distinct neutral backing for contained or transparent imagery. |
 | `--media-frame-thumbnail` | `#aa0022` | `#b2707b` | Solid project-index thumbnail frame. |
 | `--media-frame-feature` | `#aa0022` | `#b2707b` | Solid featured-image frame. |
 
@@ -160,6 +160,8 @@ The typography hierarchy does not change meaning between themes; only these
 semantic tokens resolve to the mode-appropriate values. Media frames consume
 their dedicated tokens at full opacity, so their rendered color is exact rather
 than the accidental result of blending an accent over a background.
+Contained project images use an inset border from `--line` in both themes, so
+transparent logos sit on a visible panel in light mode as well as dark mode.
 The
 initial theme follows the operating-system preference; the header control stores
 an explicit visitor choice in `localStorage` under `lara-color-theme`. The small

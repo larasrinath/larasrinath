@@ -84,7 +84,7 @@
   --site-divider-width: 1px;
   --site-divider-color: var(--line);
   --site-divider: var(--site-divider-width) solid var(--site-divider-color);
-  --media-surface: var(--canvas);
+  --media-surface: #eeece7;
   --media-frame-thumbnail: #aa0022;
   --media-frame-feature: #aa0022;
   --ink: #30302f;
@@ -729,8 +729,8 @@ html[data-theme="dark"] .theme-toggle-thumb {
 .project-thumb picture { position: relative; z-index: 1; display: block; width: 100%; aspect-ratio: 3 / 2; overflow: hidden; background: var(--media-surface); }
 .project-thumb img { display: block; width: 100%; height: 100%; object-fit: cover; transition: transform 0.7s ease; }
 .project-thumb img.image-fit-contain { padding: 1.5rem; object-fit: contain; }
-html[data-theme="dark"] .project-thumb img.image-fit-contain,
-html[data-theme="dark"] .app-detail-figure img.image-fit-contain {
+.project-thumb img.image-fit-contain,
+.app-detail-figure img.image-fit-contain {
   background: var(--media-surface);
   box-shadow: inset 0 0 0 1px var(--line);
 }
