@@ -9,6 +9,7 @@ The site is a multi-page Hugo site with one project-owned presentation system. T
 - `data/resume.yaml` - résumé summary, highlights, skills, certifications, and education. Highlights and certification records may declare an external `href`.
 - `data/ui.yaml` - the shared site footer, accessibility labels, article controls, taxonomy labels, and other reusable interface copy.
 - `content/about/main/index.md` - the About page’s structured “What I do” lead and “How I got here” narrative; the career timeline remains shared through `data/experience.yaml`.
+- `content/form/contact.md` - the Contact page’s heading and introduction. The `contact` layout renders a single column of social links from `data/home.yaml`; there is no contact form.
 - `content/blog/<slug>/index.md` - one blog post per page bundle. YAML front matter controls title, date, summary, tags, featured media, reading time, and structured editorial body blocks. Legacy posts can still use the Markdown body.
 - `content/project/<slug>/index.md` - one project per page bundle. YAML front matter controls the short detail-page `hero_summary`, longer listing-card `featured_summary`, homepage selection, featured media, tags, links, optional display overrides, and the structured `project_body` case study.
 - Section files such as `content/blog/_index.md` and `content/project/_index.md` - listing-page headings, descriptions, labels, and pagination copy.

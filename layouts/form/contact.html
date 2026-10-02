@@ -6,9 +6,8 @@
     "emphasis" .Params.hero_emphasis
     "copy" .Description
   ) }}
-  <section class="contact-form-layout">
-    <div>{{ if .Params.show_social_links }}{{ partial "shared/social-links.html" . }}{{ end }}</div>
-    <div>{{ partial "shared/contact-form.html" . }}</div>
+  <section class="contact-links-layout">
+    {{ if .Params.show_social_links }}{{ partial "shared/social-links.html" . }}{{ end }}
   </section>
 </main>
 {{ end }}

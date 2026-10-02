@@ -34,7 +34,7 @@
       { id: 'T01', name: 'Home display name', selectors: '.app-home .home-profile h1' },
       { id: 'T02', name: 'Page/detail title', selectors: '.page-hero h1, .app-detail-hero h1' },
       { id: 'T11', name: 'Quotation or signoff', selectors: '.article-content.app-detail-prose blockquote p, .article-editorial-quote p, .article-editorial-signoff, .article-editorial-equations code' },
-      { id: 'T14', name: 'Date or annotation', selectors: '.app-timeline time, .resume-role time, .resume-education time, .blog-post-row .post-meta time, .post-count, .article-editorial-prompt-index' },
+      { id: 'T14', name: 'Date or annotation', selectors: '.app-timeline time, .resume-role time, .resume-education time, .blog-post-row .post-meta time, .post-count, .article-editorial-prompt-index, .contact-link-index' },
       { id: 'T15', name: 'Caption or tertiary copy', selectors: '.app-detail-figure figcaption, .article-content figcaption, .article-content .caption, .resume-highlight small, .site-footer-copyright, .site-footer-links a' },
       { id: 'T17', name: 'Code', selectors: '.article-content code, .article-content pre code' },
       { id: 'T07', name: 'Editorial lead', selectors: '.about-intro p, .resume-summary p, .article-editorial-opening' },
@@ -42,10 +42,10 @@
       { id: 'T06', name: 'Category heading', selectors: '.app-capabilities h3, .resume-skill-group h3, .article-editorial-callout > strong, .article-editorial-cta strong, .callout-title' },
       { id: 'T04', name: 'Editorial subheading', selectors: '.article-content.app-detail-prose h3, .article-content.app-detail-prose h4, .project-content h3' },
       { id: 'T05', name: 'Item or record title', selectors: '.app-timeline h3, .resume-role h3, .resume-education h3, .app-detail-next-title' },
-      { id: 'T03', name: 'Section or list title', selectors: '.app-experience-main h2, .project-row h2, .post-row h2, .contact-form-layout legend, .term-grid strong, .article-content.app-detail-prose h2, .project-content h2' },
-      { id: 'T13', name: 'Label, metadata, or tag', selectors: '.section-label, .app-section-number, .app-timeline-meta, .project-date, .project-tags span:not(.project-tag-separator), .post-meta, .post-details, .pagination, .app-detail-eyebrow, .app-detail-utility-meta, .app-detail-taxonomy > p, .app-detail-tags a, .article-editorial-quote cite, .article-editorial-callout > span, .article-editorial-prompts-label, .callout-kind, .article-editorial-code summary, .app-detail-next-label, .resume-highlight span, .resume-role-meta, .resume-education p, .contact-form-layout label, .term-grid a > span:first-child, .os-selector-label, .auth-selector-label' },
-      { id: 'T12', name: 'Navigation or action', selectors: '.primary-nav a, .app-button, .round-link, .app-detail-back, .app-resource-action, .icon-link, .contact-social-links a, .contact-form-layout input[type="submit"]' },
-      { id: 'T09', name: 'Primary body copy', selectors: '.article-content.app-detail-prose p, .article-content.app-detail-prose li:not(.article-editorial-prompt), .article-content.app-detail-prose dd, .project-content p, .project-content li, .about-history-copy p, .resume-highlight strong, .resume-bullets li, .resume-clean-list li, .callout-body p, .callout-body li, .contact-form-layout input:not([type="submit"]), .contact-form-layout textarea' }
+      { id: 'T03', name: 'Section or list title', selectors: '.app-experience-main h2, .project-row h2, .post-row h2, .term-grid strong, .contact-link-label, .article-content.app-detail-prose h2, .project-content h2' },
+      { id: 'T13', name: 'Label, metadata, or tag', selectors: '.section-label, .app-section-number, .app-timeline-meta, .project-date, .project-tags span:not(.project-tag-separator), .post-meta, .post-details, .pagination, .app-detail-eyebrow, .app-detail-utility-meta, .app-detail-taxonomy > p, .app-detail-tags a, .article-editorial-quote cite, .article-editorial-callout > span, .article-editorial-prompts-label, .callout-kind, .article-editorial-code summary, .app-detail-next-label, .resume-highlight span, .resume-role-meta, .resume-education p, .term-grid a > span:first-child, .os-selector-label, .auth-selector-label' },
+      { id: 'T12', name: 'Navigation or action', selectors: '.primary-nav a, .app-button, .round-link, .app-detail-back, .app-resource-action, .icon-link, .contact-social-links a' },
+      { id: 'T09', name: 'Primary body copy', selectors: '.article-content.app-detail-prose p, .article-content.app-detail-prose li:not(.article-editorial-prompt), .article-content.app-detail-prose dd, .project-content p, .project-content li, .about-history-copy p, .resume-highlight strong, .resume-bullets li, .resume-clean-list li, .callout-body p, .callout-body li' }
     ];
 
     var roleById = {};
@@ -108,7 +108,7 @@
       ['.project-index', 'Project archive rows'],
       ['.post-index', 'Archive rows'],
       ['.term-grid', 'Taxonomy terms'],
-      ['.contact-form-layout', 'Contact form'],
+      ['.contact-links-layout', 'Contact links'],
       ['.project-content', 'Reading column'],
       ['.not-found-actions', 'Recovery actions']
     ];

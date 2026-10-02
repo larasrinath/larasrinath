@@ -312,16 +312,12 @@ Template: `layouts/taxonomy/term.html`
 
 ### 5.12 Contact `/contact/`
 
-Template: `layouts/form/split-right.html`
+Template: `layouts/form/contact.html`
 
 | Visible region | Role | Notes |
 |---|---|---|
-| Page eyebrow, H1, hero copy | Shared page head | `T13`, `T02`, `T08`. |
-| Social links | `T12 Navigation/action` | Inter link treatment with icons. |
-| Form legend | `T03 Section/list title` | Fraunces. |
-| Field labels | `T13 Label/metadata/tag` | Inter uppercase. |
-| Input text | `T09 Primary body copy` | Lora. |
-| Submit button | `T12 Navigation/action` | Compact uppercase action. |
+| Page eyebrow, H1, hero copy | Shared page head | Standard `T13`, `T02`, `T08` styling and responsive layout, without Contact-specific hero overrides. |
+| Contact destinations | `T03 Section/list title` within `T12 Navigation/action` | Fraunces names, `T14` sequence numbers, platform logos from the shared social-link data, and circular external-link arrows, with no visible section label or row dividers. Rows are limited to 44rem and share hover and keyboard-focus treatments. Reduced-motion preferences suppress movement. |
 
 ### 5.13 Not found `/404.html`
 
