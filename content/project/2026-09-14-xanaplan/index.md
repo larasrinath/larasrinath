@@ -12,7 +12,7 @@ featured_image_fit: contain
 featured_meta: "Anaplan · AI · Chrome Extension — 2026"
 date: "2026-09-14"
 author: "Lara Srinath"
-draft: true
+draft: false
 tags:
   - Anaplan
   - Generative AI
