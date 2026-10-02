@@ -1,7 +1,7 @@
 ---
 title: "Built. Deployed. Broken."
 date: "2026-09-14"
-draft: true
+draft: false
 slug: "built-today-deployed-tomorrow-broken-next-week"
 summary: "Vibe coding can help us show an idea. Both the builder and the customer have a part to play before people start depending on it."
 subtitle: "A few thoughts on vibe coding and the rush to use what we build."
