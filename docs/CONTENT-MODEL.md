@@ -88,6 +88,10 @@ never autoplay, and accept an optional poster. Diagrams use supplied SVG or rast
 images; Mermaid source text is not supported. `toc` links to structured heading
 blocks, including repeated heading names, using unique IDs based on block position.
 
+Set `max_width` to a positive pixel width on a YAML media block (for example,
+`max_width: 400`) to center and limit its figure and caption. The figure still
+shrinks to fit narrower screens; media without this option keeps its normal width.
+
 Five shortcode adapters remain available for the existing Markdown exceptions:
 `figure`, `gallery`, `video`, `diagram`, and `toc`. They call the same renderer.
 Figure, diagram, and video accept `src` and `caption`; images also accept `alt`,

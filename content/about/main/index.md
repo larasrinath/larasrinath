@@ -19,7 +19,7 @@ history:
   - >-
     My career has been shaped as much by geography as technology. An opportunity with Deloitte took me to Manila and later Kuala Lumpur. During the pandemic I joined Vuealta and moved to Singapore, a journey through changing borders and travel rules that became [a story of its own](/blog/2021-04-30-moving-to-singapore/). Each new city strengthened my willingness to adapt, meet new people and keep moving forward.
   - >-
-    A later opportunity brought me to Dallas, while my wife remained in Singapore to continue her career. We are currently navigating marriage across two countries and very different time zones. The distance is the hardest part of this chapter, but supporting each other’s ambitions matters to both of us. Dallas is where I am based, but Singapore remains part of what home means to me.
+    A later opportunity brought me to Dallas, while my wife remained in Singapore to continue her career. We are currently navigating marriage across two continents and very different time zones. The distance is the hardest part of this chapter, but supporting each other’s ambitions matters to both of us. Dallas is where I am based, but Singapore remains part of what home means to me.
   - >-
     Away from planning systems and AI experiments, I build LEGO sets, keep up with major astronomical events and support Manchester United. It is a club powered by hopes, dreams and the undying belief that better days are always ahead. *Keep the Red Flag flying high.*
 experience_label: Experience

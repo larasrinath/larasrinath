@@ -29,7 +29,9 @@
   {{- $src := $block.src -}}
   {{- if not $src }}{{ errorf "%s needs src in %s" $type $page.Path }}{{ end -}}
   {{- with $page.Resources.GetMatch $src }}{{ $src = .RelPermalink }}{{ end -}}
-  <figure class="article-editorial-figure article-editorial-figure--secondary">
+  {{- $sizes := "(max-width: 760px) 100vw, 800px" -}}
+  {{- with $block.max_width }}{{ $sizes = printf "(max-width: %dpx) 100vw, %dpx" (int .) (int .) }}{{ end -}}
+  <figure class="article-editorial-figure article-editorial-figure--secondary"{{ with $block.max_width }} style="max-width: {{ int . }}px; margin-inline: auto;"{{ end }}>
     {{- if eq $type "video" -}}
       {{- $poster := $block.poster -}}
       {{- with $page.Resources.GetMatch ($poster | default "__no_poster__") }}{{ $poster = .RelPermalink }}{{ end -}}
@@ -42,7 +44,7 @@
       {{- if eq (lower (path.Ext $src)) ".svg" -}}
         <img src="{{ $src | relURL }}" alt="{{ $block.alt | default "" }}" loading="lazy" style="display:block;max-width:100%;height:auto">
       {{- else -}}
-        {{ partial "shared/responsive-image.html" (dict "page" $page "src" $block.src "alt" $block.alt "sizes" "(max-width: 760px) 100vw, 800px") }}
+        {{ partial "shared/responsive-image.html" (dict "page" $page "src" $block.src "alt" $block.alt "sizes" $sizes) }}
       {{- end -}}
       </a>
     {{- end -}}
